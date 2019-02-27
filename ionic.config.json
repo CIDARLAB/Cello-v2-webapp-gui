@@ -1,0 +1,7 @@
+{
+  "name": "Cello2-webapp-gui",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
