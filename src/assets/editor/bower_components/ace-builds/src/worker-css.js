@@ -1,5 +1,5 @@
 "no use strict";
-!(function(window) {
+;(function(window) {
 if (typeof window.window != "undefined" && window.document)
     return;
 if (window.require && window.define)
@@ -134,7 +134,7 @@ window.define = function(id, deps, factory) {
         exports: {},
         factory: function() {
             var module = this;
-            var returnExports = factory.apply(this, deps.slice(0, factory.length).map(function(dep) {
+            var returnExports = factory.apply(this, deps.map(function(dep) {
                 switch (dep) {
                     // Because "require", "exports" and "module" aren't actual
                     // dependencies, we must handle them seperately.
@@ -217,7 +217,7 @@ window.onmessage = function(e) {
 };
 })(this);
 
-define("ace/lib/oop",[], function(require, exports, module) {
+define("ace/lib/oop",["require","exports","module"], function(require, exports, module) {
 "use strict";
 
 exports.inherits = function(ctor, superCtor) {
@@ -245,7 +245,7 @@ exports.implement = function(proto, mixin) {
 
 });
 
-define("ace/lib/lang",[], function(require, exports, module) {
+define("ace/lib/lang",["require","exports","module"], function(require, exports, module) {
 "use strict";
 
 exports.last = function(a) {
@@ -291,7 +291,7 @@ exports.copyArray = function(array){
     var copy = [];
     for (var i=0, l=array.length; i<l; i++) {
         if (array[i] && typeof array[i] == "object")
-            copy[i] = this.copyObject(array[i]);
+            copy[i] = this.copyObject( array[i] );
         else 
             copy[i] = array[i];
     }
@@ -309,12 +309,14 @@ exports.deepCopy = function deepCopy(obj) {
         }
         return copy;
     }
-    if (Object.prototype.toString.call(obj) !== "[object Object]")
+    var cons = obj.constructor;
+    if (cons === RegExp)
         return obj;
     
-    copy = {};
-    for (var key in obj)
+    copy = cons();
+    for (var key in obj) {
         copy[key] = deepCopy(obj[key]);
+    }
     return copy;
 };
 
@@ -347,7 +349,7 @@ exports.escapeRegExp = function(str) {
 };
 
 exports.escapeHTML = function(str) {
-    return ("" + str).replace(/&/g, "&#38;").replace(/"/g, "&#34;").replace(/'/g, "&#39;").replace(/</g, "&#60;");
+    return str.replace(/&/g, "&#38;").replace(/"/g, "&#34;").replace(/'/g, "&#39;").replace(/</g, "&#60;");
 };
 
 exports.getMatchOffsets = function(string, regExp) {
@@ -433,7 +435,7 @@ exports.delayedCall = function(fcn, defaultTimeout) {
 };
 });
 
-define("ace/range",[], function(require, exports, module) {
+define("ace/range",["require","exports","module"], function(require, exports, module) {
 "use strict";
 var comparePoints = function(p1, p2) {
     return p1.row - p2.row || p1.column - p2.column;
@@ -638,9 +640,9 @@ var Range = function(startRow, startColumn, endRow, endColumn) {
     };
     this.collapseRows = function() {
         if (this.end.column == 0)
-            return new Range(this.start.row, 0, Math.max(this.start.row, this.end.row-1), 0);
+            return new Range(this.start.row, 0, Math.max(this.start.row, this.end.row-1), 0)
         else
-            return new Range(this.start.row, 0, this.end.row, 0);
+            return new Range(this.start.row, 0, this.end.row, 0)
     };
     this.toScreenRange = function(session) {
         var screenPosStart = session.documentToScreenPosition(this.start);
@@ -672,7 +674,7 @@ Range.comparePoints = function(p1, p2) {
 exports.Range = Range;
 });
 
-define("ace/apply_delta",[], function(require, exports, module) {
+define("ace/apply_delta",["require","exports","module"], function(require, exports, module) {
 "use strict";
 
 function throwDeltaError(delta, errorText){
@@ -734,10 +736,10 @@ exports.applyDelta = function(docLines, delta, doNotValidate) {
             }
             break;
     }
-};
+}
 });
 
-define("ace/lib/event_emitter",[], function(require, exports, module) {
+define("ace/lib/event_emitter",["require","exports","module"], function(require, exports, module) {
 "use strict";
 
 var EventEmitter = {};
@@ -787,20 +789,15 @@ EventEmitter._signal = function(eventName, e) {
 
 EventEmitter.once = function(eventName, callback) {
     var _self = this;
-    this.addEventListener(eventName, function newCallback() {
+    callback && this.addEventListener(eventName, function newCallback() {
         _self.removeEventListener(eventName, newCallback);
         callback.apply(null, arguments);
     });
-    if (!callback) {
-        return new Promise(function(resolve) {
-            callback = resolve;
-        });
-    }
 };
 
 
 EventEmitter.setDefaultHandler = function(eventName, callback) {
-    var handlers = this._defaultHandlers;
+    var handlers = this._defaultHandlers
     if (!handlers)
         handlers = this._defaultHandlers = {_disabled_: {}};
     
@@ -817,12 +814,13 @@ EventEmitter.setDefaultHandler = function(eventName, callback) {
     handlers[eventName] = callback;
 };
 EventEmitter.removeDefaultHandler = function(eventName, callback) {
-    var handlers = this._defaultHandlers;
+    var handlers = this._defaultHandlers
     if (!handlers)
         return;
     var disabled = handlers._disabled_[eventName];
     
     if (handlers[eventName] == callback) {
+        var old = handlers[eventName];
         if (disabled)
             this.setDefaultHandler(eventName, disabled.pop());
     } else if (disabled) {
@@ -867,7 +865,7 @@ exports.EventEmitter = EventEmitter;
 
 });
 
-define("ace/anchor",[], function(require, exports, module) {
+define("ace/anchor",["require","exports","module","ace/lib/oop","ace/lib/event_emitter"], function(require, exports, module) {
 "use strict";
 
 var oop = require("./lib/oop");
@@ -992,7 +990,7 @@ var Anchor = exports.Anchor = function(doc, row, column) {
 
 });
 
-define("ace/document",[], function(require, exports, module) {
+define("ace/document",["require","exports","module","ace/lib/oop","ace/apply_delta","ace/lib/event_emitter","ace/range","ace/anchor"], function(require, exports, module) {
 "use strict";
 
 var oop = require("./lib/oop");
@@ -1105,7 +1103,7 @@ var Document = function(textOrLines) {
         return this.removeFullLines(firstRow, lastRow);
     };
     this.insertNewLine = function(position) {
-        console.warn("Use of document.insertNewLine is deprecated. Use insertMergedLines(position, ['', '']) instead.");
+        console.warn("Use of document.insertNewLine is deprecated. Use insertMergedLines(position, [\'\', \'\']) instead.");
         return this.insertMergedLines(position, ["", ""]);
     };
     this.insert = function(position, text) {
@@ -1283,23 +1281,28 @@ var Document = function(textOrLines) {
             return;
         }
         
-        if (isInsert && delta.lines.length > 20000) {
+        if (isInsert && delta.lines.length > 20000)
             this.$splitAndapplyLargeDelta(delta, 20000);
-        }
-        else {
-            applyDelta(this.$lines, delta, doNotValidate);
-            this._signal("change", delta);
-        }
+        applyDelta(this.$lines, delta, doNotValidate);
+        this._signal("change", delta);
     };
     
     this.$splitAndapplyLargeDelta = function(delta, MAX) {
         var lines = delta.lines;
-        var l = lines.length - MAX + 1;
+        var l = lines.length;
         var row = delta.start.row; 
         var column = delta.start.column;
-        for (var from = 0, to = 0; from < l; from = to) {
+        var from = 0, to = 0;
+        do {
+            from = to;
             to += MAX - 1;
             var chunk = lines.slice(from, to);
+            if (to > l) {
+                delta.lines = chunk;
+                delta.start.row = row + from;
+                delta.start.column = column;
+                break;
+            }
             chunk.push("");
             this.applyDelta({
                 start: this.pos(row + from, column),
@@ -1307,11 +1310,7 @@ var Document = function(textOrLines) {
                 action: delta.action,
                 lines: chunk
             }, true);
-        }
-        delta.lines = lines.slice(from);
-        delta.start.row = row + from;
-        delta.start.column = column;
-        this.applyDelta(delta, true);
+        } while(true);
     };
     this.revertDelta = function(delta) {
         this.applyDelta({
@@ -1329,7 +1328,7 @@ var Document = function(textOrLines) {
             if (index < 0)
                 return {row: i, column: index + lines[i].length + newlineLength};
         }
-        return {row: l-1, column: index + lines[l-1].length + newlineLength};
+        return {row: l-1, column: lines[l-1].length};
     };
     this.positionToIndex = function(pos, startRow) {
         var lines = this.$lines || this.getAllLines();
@@ -1347,7 +1346,7 @@ var Document = function(textOrLines) {
 exports.Document = Document;
 });
 
-define("ace/worker/mirror",[], function(require, exports, module) {
+define("ace/worker/mirror",["require","exports","module","ace/range","ace/document","ace/lib/lang"], function(require, exports, module) {
 "use strict";
 
 var Range = require("../range").Range;
@@ -1409,7 +1408,7 @@ var Mirror = exports.Mirror = function(sender) {
 
 });
 
-define("ace/mode/css/csslint",[], function(require, exports, module) {
+define("ace/mode/css/csslint",["require","exports","module"], function(require, exports, module) {
 var parserlib = {};
 (function(){
 function EventTarget(){
@@ -2393,7 +2392,6 @@ Parser.prototype = function(){
                     expression  = null;
 
                 tokenStream.mustMatch(Tokens.LPAREN);
-                this._readWhitespace();
 
                 feature = this._media_feature();
                 this._readWhitespace();
@@ -3160,9 +3158,9 @@ Parser.prototype = function(){
                         if (operator){
                             values.push(operator);
                         } /*else {
-                            values.push(new PropertyValue(valueParts, valueParts[0].line, valueParts[0].col));
-                            valueParts = [];
-                        }*/
+							values.push(new PropertyValue(valueParts, valueParts[0].line, valueParts[0].col));
+							valueParts = [];
+						}*/
 
                         value = this._term(inFunction);
 
@@ -3617,7 +3615,7 @@ var Properties = {
     "alignment-baseline"            : "baseline | use-script | before-edge | text-before-edge | after-edge | text-after-edge | central | middle | ideographic | alphabetic | hanging | mathematical",
     "animation"                     : 1,
     "animation-delay"               : { multi: "<time>", comma: true },
-    "animation-direction"           : { multi: "normal | reverse | alternate | alternate-reverse", comma: true },
+    "animation-direction"           : { multi: "normal | alternate", comma: true },
     "animation-duration"            : { multi: "<time>", comma: true },
     "animation-fill-mode"           : { multi: "none | forwards | backwards | both", comma: true },
     "animation-iteration-count"     : { multi: "<number> | infinite", comma: true },
@@ -3625,21 +3623,21 @@ var Properties = {
     "animation-play-state"          : { multi: "running | paused", comma: true },
     "animation-timing-function"     : 1,
     "-moz-animation-delay"               : { multi: "<time>", comma: true },
-    "-moz-animation-direction"           : { multi: "normal | reverse | alternate | alternate-reverse", comma: true },
+    "-moz-animation-direction"           : { multi: "normal | alternate", comma: true },
     "-moz-animation-duration"            : { multi: "<time>", comma: true },
     "-moz-animation-iteration-count"     : { multi: "<number> | infinite", comma: true },
     "-moz-animation-name"                : { multi: "none | <ident>", comma: true },
     "-moz-animation-play-state"          : { multi: "running | paused", comma: true },
 
     "-ms-animation-delay"               : { multi: "<time>", comma: true },
-    "-ms-animation-direction"           : { multi: "normal | reverse | alternate | alternate-reverse", comma: true },
+    "-ms-animation-direction"           : { multi: "normal | alternate", comma: true },
     "-ms-animation-duration"            : { multi: "<time>", comma: true },
     "-ms-animation-iteration-count"     : { multi: "<number> | infinite", comma: true },
     "-ms-animation-name"                : { multi: "none | <ident>", comma: true },
     "-ms-animation-play-state"          : { multi: "running | paused", comma: true },
 
     "-webkit-animation-delay"               : { multi: "<time>", comma: true },
-    "-webkit-animation-direction"           : { multi: "normal | reverse | alternate | alternate-reverse", comma: true },
+    "-webkit-animation-direction"           : { multi: "normal | alternate", comma: true },
     "-webkit-animation-duration"            : { multi: "<time>", comma: true },
     "-webkit-animation-fill-mode"           : { multi: "none | forwards | backwards | both", comma: true },
     "-webkit-animation-iteration-count"     : { multi: "<number> | infinite", comma: true },
@@ -3647,7 +3645,7 @@ var Properties = {
     "-webkit-animation-play-state"          : { multi: "running | paused", comma: true },
 
     "-o-animation-delay"               : { multi: "<time>", comma: true },
-    "-o-animation-direction"           : { multi: "normal | reverse | alternate | alternate-reverse", comma: true },
+    "-o-animation-direction"           : { multi: "normal | alternate", comma: true },
     "-o-animation-duration"            : { multi: "<time>", comma: true },
     "-o-animation-iteration-count"     : { multi: "<number> | infinite", comma: true },
     "-o-animation-name"                : { multi: "none | <ident>", comma: true },
@@ -3963,10 +3961,8 @@ var Properties = {
     "marquee-style"                 : 1,
     "max-height"                    : "<length> | <percentage> | <content-sizing> | none | inherit",
     "max-width"                     : "<length> | <percentage> | <content-sizing> | none | inherit",
-    "max-zoom"                      : "<number> | <percentage> | auto",
     "min-height"                    : "<length> | <percentage> | <content-sizing> | contain-floats | -moz-contain-floats | -webkit-contain-floats | inherit",
     "min-width"                     : "<length> | <percentage> | <content-sizing> | contain-floats | -moz-contain-floats | -webkit-contain-floats | inherit",
-    "min-zoom"                      : "<number> | <percentage> | auto",
     "move-to"                       : 1,
     "nav-down"                      : 1,
     "nav-index"                     : 1,
@@ -4067,7 +4063,6 @@ var Properties = {
     "unicode-bidi"                  : "normal | embed | isolate | bidi-override | isolate-override | plaintext | inherit",
     "user-modify"                   : "read-only | read-write | write-only | inherit",
     "user-select"                   : "none | text | toggle | element | elements | all | inherit",
-    "user-zoom"                     : "zoom | fixed",
     "vertical-align"                : "auto | use-script | baseline | sub | super | top | text-top | central | middle | bottom | text-bottom | <percentage> | <length>",
     "visibility"                    : "visible | hidden | collapse | inherit",
     "voice-balance"                 : 1,
@@ -4445,15 +4440,15 @@ function isIdentStart(c){
 }
 
 function mix(receiver, supplier){
-    for (var prop in supplier){
-        if (supplier.hasOwnProperty(prop)){
-            receiver[prop] = supplier[prop];
-        }
-    }
-    return receiver;
+	for (var prop in supplier){
+		if (supplier.hasOwnProperty(prop)){
+			receiver[prop] = supplier[prop];
+		}
+	}
+	return receiver;
 }
 function TokenStream(input){
-    TokenStreamBase.call(this, input, Tokens);
+	TokenStreamBase.call(this, input, Tokens);
 }
 
 TokenStream.prototype = mix(new TokenStreamBase(), {
@@ -7998,7 +7993,7 @@ module.exports.CSSLint = CSSLint;
 
 });
 
-define("ace/mode/css_worker",[], function(require, exports, module) {
+define("ace/mode/css_worker",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/worker/mirror","ace/mode/css/csslint"], function(require, exports, module) {
 "use strict";
 
 var oop = require("../lib/oop");
@@ -8061,7 +8056,7 @@ oop.inherits(Worker, Mirror);
                 text: msg.message,
                 type: infoRules[msg.rule.id] ? "info" : msg.type,
                 rule: msg.rule.name
-            };
+            }
         }));
     };
 
@@ -8069,7 +8064,7 @@ oop.inherits(Worker, Mirror);
 
 });
 
-define("ace/lib/es5-shim",[], function(require, exports, module) {
+define("ace/lib/es5-shim",["require","exports","module"], function(require, exports, module) {
 
 function Empty() {}
 

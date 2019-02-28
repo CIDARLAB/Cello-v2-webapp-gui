@@ -65,7 +65,7 @@ DocCommentHighlightRules.getTagRule = function(start) {
         token : "comment.doc.tag.storage.type",
         regex : "\\b(?:TODO|FIXME|XXX|HACK)\\b"
     };
-};
+}
 
 DocCommentHighlightRules.getStartRule = function(start) {
     return {
@@ -163,10 +163,13 @@ var DotHighlightRules = function() {
         "comment" : [
             {
                 token : "comment", // closing comment
-                regex : "\\*\\/",
+                regex : ".*?\\*\\/",
+                merge : true,
                 next : "start"
             }, {
-                defaultToken : "comment"
+                token : "comment", // comment spanning whole line
+                merge : true,
+                regex : ".+"
             }
         ],
         "qqstring" : [
@@ -233,8 +236,8 @@ oop.inherits(FoldMode, BaseFoldMode);
 
 (function() {
     
-    this.foldingStartMarker = /([\{\[\(])[^\}\]\)]*$|^\s*(\/\*)/;
-    this.foldingStopMarker = /^[^\[\{\(]*([\}\]\)])|^[\s\*]*(\*\/)/;
+    this.foldingStartMarker = /(\{|\[)[^\}\]]*$|^\s*(\/\*)/;
+    this.foldingStopMarker = /^[^\[\{]*(\}|\])|^[\s\*]*(\*\/)/;
     this.singleLineBlockCommentRe= /^\s*(\/\*).*\*\/\s*$/;
     this.tripleStarBlockCommentRe = /^\s*(\/\*\*\*).*\*\/\s*$/;
     this.startRegionRe = /^\s*(\/\*|\/\/)#?region\b/;
@@ -365,7 +368,6 @@ var Mode = function() {
     this.HighlightRules = DotHighlightRules;
     this.$outdent = new MatchingBraceOutdent();
     this.foldingRules = new DotFoldMode();
-    this.$behaviour = this.$defaultBehaviour;
 };
 oop.inherits(Mode, TextMode);
 
@@ -386,7 +388,7 @@ oop.inherits(Mode, TextMode);
         }
 
         if (state == "start") {
-            var match = line.match(/^.*(?:\bcase\b.*:|[\{\(\[])\s*$/);
+            var match = line.match(/^.*(?:\bcase\b.*\:|[\{\(\[])\s*$/);
             if (match) {
                 indent += tab;
             }
@@ -407,11 +409,4 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
-                    window.require(["ace/mode/dot"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

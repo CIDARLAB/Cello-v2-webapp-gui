@@ -11,10 +11,14 @@ var XmlHighlightRules = function(normalize) {
         start : [
             {token : "string.cdata.xml", regex : "<\\!\\[CDATA\\[", next : "cdata"},
             {
+                token : ["punctuation.xml-decl.xml", "keyword.xml-decl.xml"],
+                regex : "(<\\?)(xml)(?=[\\s])", next : "xml_decl", caseInsensitive: true
+            },
+            {
                 token : ["punctuation.instruction.xml", "keyword.instruction.xml"],
                 regex : "(<\\?)(" + tagRegex + ")", next : "processing_instruction"
             },
-            {token : "comment.start.xml", regex : "<\\!--", next : "comment"},
+            {token : "comment.xml", regex : "<\\!--", next : "comment"},
             {
                 token : ["xml-pe.doctype.xml", "xml-pe.doctype.xml"],
                 regex : "(<\\!)(DOCTYPE)(?=[\\s])", next : "doctype", caseInsensitive: true
@@ -26,9 +30,9 @@ var XmlHighlightRules = function(normalize) {
             {defaultToken : "text.xml"}
         ],
 
-        processing_instruction : [{
+        xml_decl : [{
             token : "entity.other.attribute-name.decl-attribute-name.xml",
-            regex : tagRegex
+            regex : "(?:" + tagRegex + ":)?" + tagRegex + ""
         }, {
             token : "keyword.operator.decl-attribute-equals.xml",
             regex : "="
@@ -41,6 +45,11 @@ var XmlHighlightRules = function(normalize) {
             regex : "\\?>",
             next : "start"
         }],
+
+        processing_instruction : [
+            {token : "punctuation.instruction.xml", regex : "\\?>", next : "start"},
+            {defaultToken : "instruction.xml"}
+        ],
 
         doctype : [
             {include : "whitespace"},
@@ -79,7 +88,7 @@ var XmlHighlightRules = function(normalize) {
         ],
 
         comment : [
-            {token : "comment.end.xml", regex : "-->", next : "start"},
+            {token : "comment.xml", regex : "-->", next : "start"},
             {defaultToken : "comment.xml"}
         ],
 
@@ -126,7 +135,7 @@ var XmlHighlightRules = function(normalize) {
 
         attributes: [{
             token : "entity.other.attribute-name.xml",
-            regex : tagRegex
+            regex : "(?:" + tagRegex + ":)?" + tagRegex + ""
         }, {
             token : "keyword.operator.attribute-equals.xml",
             regex : "="
@@ -179,7 +188,7 @@ var XmlHighlightRules = function(normalize) {
                     stack.splice(0);
                     return this.token;
             }}
-        ];
+        ]
 
         this.embedRules(HighlightRules, prefix, [{
             token: ["meta.tag.punctuation.end-tag-open.xml", "meta.tag." + tag + ".tag-name.xml"],
@@ -210,7 +219,7 @@ var TokenIterator = require("../../token_iterator").TokenIterator;
 var lang = require("../../lib/lang");
 
 function is(token, type) {
-    return token && token.type.lastIndexOf(type + ".xml") > -1;
+    return token.type.lastIndexOf(type + ".xml") > -1;
 }
 
 var XmlBehaviour = function () {
@@ -272,7 +281,7 @@ var XmlBehaviour = function () {
 
     this.add("autoclosing", "insertion", function (state, action, editor, session, text) {
         if (text == '>') {
-            var position = editor.getSelectionRange().start;
+            var position = editor.getCursorPosition();
             var iterator = new TokenIterator(session, position.row, position.column);
             var token = iterator.getCurrentToken() || iterator.stepBackward();
             if (!token || !(is(token, "tag-name") || is(token, "tag-whitespace") || is(token, "attribute-name") || is(token, "attribute-equals") || is(token, "attribute-value")))
@@ -280,25 +289,16 @@ var XmlBehaviour = function () {
             if (is(token, "reference.attribute-value"))
                 return;
             if (is(token, "attribute-value")) {
-                var tokenEndColumn = iterator.getCurrentTokenColumn() + token.value.length;
-                if (position.column < tokenEndColumn)
-                    return;
-                if (position.column == tokenEndColumn) {
-                    var nextToken = iterator.stepForward();
-                    if (nextToken && is(nextToken, "attribute-value"))
+                var firstChar = token.value.charAt(0);
+                if (firstChar == '"' || firstChar == "'") {
+                    var lastChar = token.value.charAt(token.value.length - 1);
+                    var tokenEnd = iterator.getCurrentTokenColumn() + token.value.length;
+                    if (tokenEnd > position.column || tokenEnd == position.column && firstChar != lastChar)
                         return;
-                    iterator.stepBackward();
                 }
             }
-            
-            if (/^\s*>/.test(session.getLine(position.row).slice(position.column)))
-                return;
             while (!is(token, "tag-name")) {
                 token = iterator.stepBackward();
-                if (token.value == "<") {
-                    token = iterator.stepForward();
-                    break;
-                }
             }
 
             var tokenRow = iterator.getCurrentTokenRow();
@@ -410,7 +410,7 @@ function is(token, type) {
         var tag = this._getFirstTagInLine(session, row);
 
         if (!tag)
-            return this.getCommentFoldWidget(session, row);
+            return "";
 
         if (tag.closing || (!tag.tagName && tag.selfClosing))
             return foldStyle == "markbeginend" ? "end" : "";
@@ -422,12 +422,6 @@ function is(token, type) {
             return "";
 
         return "start";
-    };
-    
-    this.getCommentFoldWidget = function(session, row) {
-        if (/comment/.test(session.getState(row)) && /<!-/.test(session.getLine(row)))
-            return "start";
-        return "";
     };
     this._getFirstTagInLine = function(session, row) {
         var tokens = session.getTokens(row);
@@ -547,10 +541,8 @@ function is(token, type) {
     this.getFoldWidgetRange = function(session, foldStyle, row) {
         var firstTag = this._getFirstTagInLine(session, row);
         
-        if (!firstTag) {
-            return this.getCommentFoldWidget(session, row)
-                && session.getCommentFoldRange(row, session.getLine(row).length);
-        }
+        if (!firstTag)
+            return null;
         
         var isBackward = firstTag.closing || firstTag.selfClosing;
         var stack = [];
@@ -666,11 +658,4 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
-                    ace.require(["ace/mode/xml"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

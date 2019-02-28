@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar>
-	<ion-buttons slot="start">
-      <ion-menu-button autoHide="true"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <app-navbar></app-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-card>
+    <div class="editor" #editor [ngStyle]="{'height': height + 'px'}">
+      <iframe src="assets/editor/verilog2001.html"></iframe>
+    </div>
+  </ion-card>
 </ion-content>

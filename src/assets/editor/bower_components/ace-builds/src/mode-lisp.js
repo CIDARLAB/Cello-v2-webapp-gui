@@ -72,7 +72,7 @@ var LispHighlightRules = function() {
             next  : "start"
         }
     ]
-};
+}
 
 };
 
@@ -90,7 +90,6 @@ var LispHighlightRules = require("./lisp_highlight_rules").LispHighlightRules;
 
 var Mode = function() {
     this.HighlightRules = LispHighlightRules;
-    this.$behaviour = this.$defaultBehaviour;
 };
 oop.inherits(Mode, TextMode);
 
@@ -102,11 +101,4 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
-                    window.require(["ace/mode/lisp"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

@@ -135,11 +135,4 @@ snippet lld\n\
 ";
 exports.scope = "c_cpp";
 
-});                (function() {
-                    window.require(["ace/snippets/c_cpp"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

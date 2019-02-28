@@ -39,7 +39,7 @@ var ShHighlightRules = function() {
     var fileDescriptor = "(?:&" + intPart + ")";
 
     var variableName = "[a-zA-Z_][a-zA-Z0-9_]*";
-    var variable = "(?:" + variableName + "(?==))";
+    var variable = "(?:" + variableName + "=)";
 
     var builtinVariable = "(?:\\$(?:SHLVL|\\$|\\!|\\?))";
 
@@ -53,7 +53,7 @@ var ShHighlightRules = function() {
             token : ["text", "comment"],
             regex : /(^|\s)(#.*)$/
         }, {
-            token : "string.start",
+            token : "string",
             regex : '"',
             push : [{
                 token : "constant.language.escape",
@@ -64,7 +64,7 @@ var ShHighlightRules = function() {
                 token : "keyword.operator",
                 regex : /`/ // TODO highlight `
             }, {
-                token : "string.end",
+                token : "string",
                 regex : '"',
                 next: "pop"
             }, {
@@ -281,7 +281,7 @@ var MakefileHighlightRules = function() {
             next  : "start"
         }
     ]
-};
+}
 
 };
 
@@ -388,7 +388,6 @@ var FoldMode = require("./folding/coffee").FoldMode;
 var Mode = function() {
     this.HighlightRules = MakefileHighlightRules;
     this.foldingRules = new FoldMode();
-    this.$behaviour = this.$defaultBehaviour;
 };
 oop.inherits(Mode, TextMode);
 
@@ -401,11 +400,4 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
-                    window.require(["ace/mode/makefile"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

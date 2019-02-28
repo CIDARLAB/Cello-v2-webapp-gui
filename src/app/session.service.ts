@@ -17,7 +17,15 @@ export class SessionService {
     constructor(
         private storage: Storage,
         private http: HttpClient
-    ) { }
+    ) {
+        this.getLoginInfo().then(data => {
+            this.token = data[0];
+            this.id = data[1]
+        }).then(() => {
+            console.log(this.token);
+            console.log(this.id);
+        });
+    }
 
     getLoginInfo() {
         let promises = [

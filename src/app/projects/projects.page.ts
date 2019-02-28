@@ -40,15 +40,22 @@ export class ProjectsPage implements OnInit {
         private session: SessionService,
         private menuController: MenuController,
         private router: Router
-    ) { }
+    ) {
+    }
+
+    ionViewWillEnter() {
+        this.menuController.enable(false);
+        this.session.getLoginInfo().then(data => {
+            this.session.token = data[0];
+            this.session.id = data[1]
+        }).then(() => {
+            this.session.projects().subscribe((result) => {
+                this.projects = result;
+            });
+        });
+    }
 
     ngOnInit() {
-        this.menuController.enable(false);
-        this.session.projects().subscribe(
-            result => {
-                this.projects = result;
-            }
-        )
     }
 
     create() {

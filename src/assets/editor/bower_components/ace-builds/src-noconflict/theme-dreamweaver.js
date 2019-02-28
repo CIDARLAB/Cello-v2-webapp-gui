@@ -138,11 +138,4 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
 var dom = require("../lib/dom");
 dom.importCssString(exports.cssText, exports.cssClass);
-});                (function() {
-                    ace.require(["ace/theme/dreamweaver"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

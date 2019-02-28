@@ -65,7 +65,7 @@ export class AppComponent {
     initializeApp() {
         this.platform.ready()
             .then(() => {
-                // this.menuController.enable(false);
+                this.menuController.enable(false);
                 return this.initializeStorage();
             })
             .then(() => {

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ProjectsPage } from './projects.page';
+import { ComponentsModule } from '../components/components.module';
 
 const routes: Routes = [
     {
@@ -20,6 +21,7 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         CommonModule,
+        ComponentsModule,
     ],
     declarations: [ProjectsPage]
 })

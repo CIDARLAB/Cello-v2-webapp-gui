@@ -61,7 +61,6 @@ var PropertiesHighlightRules = require("./properties_highlight_rules").Propertie
 
 var Mode = function() {
     this.HighlightRules = PropertiesHighlightRules;
-    this.$behaviour = this.$defaultBehaviour;
 };
 oop.inherits(Mode, TextMode);
 
@@ -70,11 +69,4 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
-                    window.require(["ace/mode/properties"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

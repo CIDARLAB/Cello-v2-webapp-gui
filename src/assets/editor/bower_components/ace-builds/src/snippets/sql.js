@@ -30,11 +30,4 @@ snippet s*\n\
 ";
 exports.scope = "sql";
 
-});                (function() {
-                    window.require(["ace/snippets/sql"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

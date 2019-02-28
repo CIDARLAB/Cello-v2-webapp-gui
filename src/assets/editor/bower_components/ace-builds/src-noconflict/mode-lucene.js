@@ -9,44 +9,35 @@ var LuceneHighlightRules = function() {
     this.$rules = {
         "start" : [
             {
-                token: "constant.language.escape",
-                regex: /\\[\+\-&\|!\(\)\{\}\[\]^"~\*\?:\\]/
+                token : "constant.character.negation",
+                regex : "[\\-]"
             }, {
-                token: "constant.character.negation",
-                regex: "\\-"
+                token : "constant.character.interro",
+                regex : "[\\?]"
             }, {
-                token: "constant.character.interro",
-                regex: "\\?"
-            }, {
-                token: "constant.character.required",
-                regex: "\\+"
-            }, {
-                token: "constant.character.asterisk",
-                regex: "\\*"
+                token : "constant.character.asterisk",
+                regex : "[\\*]"
             }, {
                 token: 'constant.character.proximity',
-                regex: '~(?:0\\.[0-9]+|[0-9]+)?'
+                regex: '~[0-9]+\\b'
             }, {
-                token: 'keyword.operator',
-                regex: '(AND|OR|NOT|TO)\\b'
+                token : 'keyword.operator',
+                regex: '(?:AND|OR|NOT)\\b'
             }, {
-                token: "paren.lparen",
-                regex: "[\\(\\{\\[]"
+                token : "paren.lparen",
+                regex : "[\\(]"
             }, {
-                token: "paren.rparen",
-                regex: "[\\)\\}\\]]"
+                token : "paren.rparen",
+                regex : "[\\)]"
             }, {
-                token: "keyword",
-                regex: "(?:\\\\.|[^\\s:\\\\])+:"
+                token : "keyword",
+                regex : "[\\S]+:"
             }, {
-                token: "string",           // " string
-                regex: '"(?:\\\\"|[^"])*"'
+                token : "string",           // " string
+                regex : '".*?"'
             }, {
-                token: "term",
-                regex: "\\w+"
-            }, {
-                token: "text",
-                regex: "\\s+"
+                token : "text",
+                regex : "\\s+"
             }
         ]
     };
@@ -66,7 +57,6 @@ var LuceneHighlightRules = require("./lucene_highlight_rules").LuceneHighlightRu
 
 var Mode = function() {
     this.HighlightRules = LuceneHighlightRules;
-    this.$behaviour = this.$defaultBehaviour;
 };
 
 oop.inherits(Mode, TextMode);
@@ -76,11 +66,4 @@ oop.inherits(Mode, TextMode);
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
-});                (function() {
-                    ace.require(["ace/mode/lucene"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 
 @Component({
     selector: 'app-verilog',
@@ -8,12 +8,20 @@ import { MenuController } from '@ionic/angular';
 })
 export class VerilogPage implements OnInit {
 
+    private height: number;
+
     constructor(
-        private menuController: MenuController
-    ) { }
+        private menuController: MenuController,
+        private platform: Platform,
+    ) {
+        this.height = this.platform.height() - 275;
+    }
+
+    ionViewWillEnter() {
+        this.menuController.enable(true);
+    }
 
     ngOnInit() {
-        this.menuController.enable(true);
     }
 
 }

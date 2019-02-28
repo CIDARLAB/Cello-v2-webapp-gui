@@ -112,11 +112,4 @@ snippet r2r\n\
 ";
 exports.scope = "django";
 
-});                (function() {
-                    window.require(["ace/snippets/django"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+});

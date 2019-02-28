@@ -2,8 +2,6 @@
   <ion-split-pane>
     <ion-menu>
       <ion-header>
-        <ion-toolbar>
-        </ion-toolbar>
       </ion-header>
 	  <ion-content>
 		<ion-list lines="none">
@@ -12,7 +10,7 @@
 			  <ion-item-divider color="light">
 				{{section.name}}
 			  </ion-item-divider>
-			  <ion-item *ngFor="let item of section.pages">
+			  <ion-item *ngFor="let item of section.pages" [routerLink]="item.url">
 				{{item.name}}
 			  </ion-item>
 			</div>
@@ -23,7 +21,7 @@
 		  <ion-item>
 			<ion-input placeholder="project name"></ion-input>
 		  </ion-item>
-		  <ion-button shape="round" expand="block" padding>submit</ion-button>
+		  <ion-button shape="round" expand="block" padding>Submit</ion-button>
 		</ion-list>
 	  </ion-content>
     </ion-menu>
