@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { SessionService } from './session.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
     selector: 'app-root',
@@ -10,43 +11,57 @@ import { SessionService } from './session.service';
 })
 export class AppComponent {
     constructor(
-        private platform: Platform,
+        private menuController: MenuController,
+        private session: SessionService,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
-        private session: SessionService,
-        // private storage: Storage
+        private storage: Storage,
+        private platform: Platform,
     ) {
         this.initializeApp();
     }
 
     initializeApp() {
-        this.platform.ready().then(() => {
-            this.statusBar.styleDefault();
-            this.splashScreen.hide();
-        });
+        this.platform.ready()
+            .then(() => {
+                this.menuController.enable(false);
+                return this.initializeStorage();
+            })
+            .then(() => {
+                return this.session.getLoginInfo();
+            })
+            .then(() => {
+                if (this.session.token) {
+                    // this.rootPage = 'ProjectsPage';
+                } else {
+                    // this.rootPage = 'WelcomePage';
+                }
+                this.statusBar.styleDefault();
+                this.splashScreen.hide();
+            });
     }
 
-    // initializeStorage() {
-    //     let that = this;
+    initializeStorage() {
+        let self = this;
 
-    //     function recursive(resolve) {
-    //         that.storage.set('dbOpen', true);
-    //         that.storage.get('dbOpen').then((data) => {
-    //             if (data) {
-    //                 // db ready to use
-    //                 console.log('Read dbOpen from db successful');
-    //                 resolve(true);
-    //             } else {
-    //                 //not ready yet loop round and try to initialise again
-    //                 console.log('Read dbOpen from db failed');
-    //                 recursive(resolve);
-    //             }
-    //         });
-    //     }
+        function recursive(resolve) {
+            self.storage.set('dbOpen', true);
+            self.storage.get('dbOpen').then((data) => {
+                if (data) {
+                    // db ready to use
+                    console.log('Read dbOpen from db successful');
+                    resolve(true);
+                } else {
+                    //not ready yet loop round and try to initialise again
+                    console.log('Read dbOpen from db failed');
+                    recursive(resolve);
+                }
+            });
+        }
 
-    //     return new Promise((resolve) => {
-    //         recursive(resolve);
-    //     });
-    // }
+        return new Promise((resolve) => {
+            recursive(resolve);
+        });
+    }
 
 }
