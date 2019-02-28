@@ -8,6 +8,8 @@ import { Storage } from '@ionic/storage';
 })
 export class SessionService {
 
+    private base = "http://127.0.0.1:8080/";
+
     public project: Project;
     public token: string;
     public id: string;
@@ -30,6 +32,10 @@ export class SessionService {
         this.id = id;
         this.storage.set('token', token);
         this.storage.set('id', id);
+    }
+
+    login(body: object) {
+        return this.http.post(this.base + 'login', JSON.stringify(body));
     }
 
 }
