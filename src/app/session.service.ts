@@ -14,7 +14,7 @@ export class SessionService {
 
     constructor(
         private storage: Storage,
-        // private httpClient: HttpClient
+        private http: HttpClient
     ) { }
 
     getLoginInfo() {
@@ -25,11 +25,11 @@ export class SessionService {
         return Promise.all(promises);
     }
 
-    // setLoginInfo(token: string, id: string) {
-    //     this.token = token;
-    //     this.id = id;
-    //     this.storage.set('token', token);
-    //     this.storage.set('id', id);
-    // }
+    setLoginInfo(token: string, id: string) {
+        this.token = token;
+        this.id = id;
+        this.storage.set('token', token);
+        this.storage.set('id', id);
+    }
 
 }
