@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>projects</ion-title>
+	<ion-buttons slot="start">
+      <ion-menu-button autoHide="true"></ion-menu-button>
+    </ion-buttons>
+	<ion-title>
+	</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-row padding-bottom>
+    <ion-button icon-left (click)="create()" style="margin: 0px">
+      <ion-icon name="add"></ion-icon>
+      Create Project
+    </ion-button>
+  </ion-row>
+  <ion-row>
+     <ngx-datatable style="width:100%"
+        class="material fullscreen"
+        [columnMode]="'flex'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [rows]="rows">
+        <ngx-datatable-column name="Name" [flexGrow]="3">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Gender" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Age" [flexGrow]="1">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+  </ion-row>
 </ion-content>

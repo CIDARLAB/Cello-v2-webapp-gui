@@ -1,3 +1,32 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar>
+        </ion-toolbar>
+      </ion-header>
+	  <ion-content>
+		<ion-list lines="none">
+		  <div *ngFor="let section of pages">
+			<div *ngIf="section.active">
+			  <ion-item-divider color="light">
+				{{section.name}}
+			  </ion-item-divider>
+			  <ion-item *ngFor="let item of section.pages">
+				{{item.name}}
+			  </ion-item>
+			</div>
+		  </div>
+		  <ion-item-divider color="light">
+			Submission
+		  </ion-item-divider>
+		  <ion-item>
+			<ion-input placeholder="project name"></ion-input>
+		  </ion-item>
+		  <ion-button shape="round" expand="block" padding>submit</ion-button>
+		</ion-list>
+	  </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

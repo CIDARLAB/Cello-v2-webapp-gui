@@ -10,6 +10,47 @@ import { Storage } from '@ionic/storage';
     templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+    private pages = [{
+        name: 'Specification',
+        active: true,
+        pages: [{
+            name: 'Settings',
+            url: '/settings',
+            status: 'None',
+            message: '',
+        }, {
+            name: 'Library',
+            url: '/library',
+            status: 'None',
+            message: '',
+        }, {
+            name: 'Verilog',
+            url: '/verilog',
+            status: 'None',
+            message: ''
+        }, {
+            name: 'Constraints',
+            url: '/constraints',
+            status: 'None',
+            message: '',
+        }]
+    }, {
+        name: 'Results',
+        active: false,
+        pages: [{
+            name: 'View',
+            url: '/results',
+            status: 'None',
+            message: ''
+        }, {
+            name: 'Export',
+            url: '/export',
+            status: 'None',
+            message: ''
+        }]
+    }];
+
     constructor(
         private menuController: MenuController,
         private session: SessionService,
@@ -24,7 +65,7 @@ export class AppComponent {
     initializeApp() {
         this.platform.ready()
             .then(() => {
-                this.menuController.enable(false);
+                // this.menuController.enable(false);
                 return this.initializeStorage();
             })
             .then(() => {

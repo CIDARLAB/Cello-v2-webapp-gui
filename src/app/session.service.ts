@@ -38,4 +38,12 @@ export class SessionService {
         return this.http.post(this.base + 'login', JSON.stringify(body));
     }
 
+    projects() {
+        let body = {
+            "token": this.token,
+            "id": this.id
+        };
+        return this.http.post<object[]>(this.base + 'projects', JSON.stringify(body));
+    }
+
 }
