@@ -45,11 +45,10 @@ export class ProjectsPage implements OnInit {
 
     ionViewWillEnter() {
         this.menuController.enable(false);
-        this.session.getLoginInfo().then(data => {
-            this.session.token = data[0];
-            this.session.id = data[1]
+        this.session.getLoginInfo().then((data) => {
+            this.session.session = data;
         }).then(() => {
-            this.session.projects().subscribe((result) => {
+            this.session.projects(this.session.session).subscribe((result) => {
                 this.projects = result;
             });
         });

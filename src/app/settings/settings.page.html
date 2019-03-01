@@ -8,7 +8,7 @@
 	  <ion-item>
 		<ion-label class="application-label">Application</ion-label>
 		<ion-select interface="popover" [(ngModel)]="session.project['application']">
-          <ion-select-option *ngFor="let application of session.settings['applications']" value="{{application.name}}">{{application.name}}</ion-select-option>
+          <ion-select-option *ngFor="let application of session.settingsDefinition['applications']" value="{{application.name}}">{{application.name}}</ion-select-option>
 		</ion-select>
 	  </ion-item>
 	  <div *ngFor="let stage of getApplicationStages(session.project.application)">
@@ -24,20 +24,20 @@
 	  	<ion-input
 		  *ngIf="parameter.type == 'int'"
 		  text-right
-		  (ngModel)="session.project.settings.parameters[stage.name + '.' + parameter.name]"
+		  (ngModel)="session.project.settingsDefinition.parameters[stage.name + '.' + parameter.name]"
 		  value={{parameter.value}}
 	  	  type="number"></ion-input>
 		<ion-input
 		  *ngIf="parameter.type == 'string'"
 		  text-right
-		  (ngModel)="session.project.settings.parameters[stage.name + '.' + parameter.name]"
+		  (ngModel)="session.project.settingsDefinition.parameters[stage.name + '.' + parameter.name]"
 		  value={{parameter.value}}
 		  spellcheck=false
 	  	  type="string"></ion-input>
 		<ion-checkbox
 		  *ngIf="parameter.type == 'boolean'"
 		  text-right
-		  (ngModel)="session.project.settings.parameters[stage.name + '.' + parameter.name]"
+		  (ngModel)="session.project.settingsDefinition.parameters[stage.name + '.' + parameter.name]"
 		  checked={{parameter.value}}></ion-checkbox>
 		<!-- <ion-input *ngIf="parameter.type == 'string'" -->
 		<!-- 		   [(ngModel)]="session.project.settings.parameters[stage.name + '.' + parameter.name]" -->

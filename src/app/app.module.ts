@@ -9,16 +9,18 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
     imports: [
-        AppRoutingModule,
+        BrowserModule,
+        FormsModule,
         HttpClientModule,
         IonicModule.forRoot(),
         IonicStorageModule.forRoot(),
-        BrowserModule,
+        AppRoutingModule,
     ],
     providers: [
         StatusBar,

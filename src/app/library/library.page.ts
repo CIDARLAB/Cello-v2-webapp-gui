@@ -11,8 +11,6 @@ export class LibraryPage implements OnInit {
 
     private height: number;
 
-    public collections = [];
-
     constructor(
         private platform: Platform,
         private session: SessionService,

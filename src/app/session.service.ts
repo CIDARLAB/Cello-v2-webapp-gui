@@ -10,12 +10,10 @@ import { Observable } from 'rxjs';
 export class SessionService {
 
     private base = "http://127.0.0.1:8080/";
-    public settings: object;
+    public settingsDefinition: object;
 
     public project: Project;
-    // public session: object;
-    public token: string;
-    public id: string;
+    public session: object;
 
     public registries = [
         'https://synbiohub.org/',
@@ -23,6 +21,7 @@ export class SessionService {
         'https://synbiohub.cidarlab.org/',
         'https://synbiohub.programmingbiology.org/'
     ];
+    public collections = [];
     public registry: string;
     public collection: string;
 
@@ -30,38 +29,31 @@ export class SessionService {
     public outputConstraints = <{}[]>[];
 
     constructor(
+        private http: HttpClient,
         private storage: Storage,
-        private http: HttpClient
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
-        this.collections(this.registry).subscribe((result) => {
-            // this.collections = result;
+        this.getCollections(this.registry).subscribe((result) => {
+            this.collections = result;
         });
-        this.getLoginInfo().then(data => {
-            this.token = data[0];
-            this.id = data[1]
+        this.getLoginInfo().then((data) => {
+            this.session = data;
         });
         this.getSettingsDefinition().then((data) => {
-            this.settings = data;
+            this.settingsDefinition = data;
         });
         this.project = new Project();
     }
 
-    getLoginInfo() {
-        let promises = [
-            this.storage.get('token'),
-            this.storage.get('id'),
-        ];
-        // return this.storage.get('session');
-        return Promise.all(promises);
+    getLoginInfo(): Promise<object> {
+        return this.storage.get('session');
     }
 
-    setLoginInfo(token: string, id: string) {
-        this.token = token;
-        this.id = id;
-        this.storage.set('token', token);
-        this.storage.set('id', id);
+    setLoginInfo(session: object) {
+        this.session = session;
+        console.log(session);
+        this.storage.set('session', session);
     }
 
     getSettingsDefinition() {
@@ -75,33 +67,90 @@ export class SessionService {
         });
     }
 
-    collections(registry: string): Observable<object> {
+    getCollections(registry: string): Observable<object[]> {
         let url = registry + 'rootCollections';
-        return this.http.get(url);
+        return this.http.get<object[]>(url);
     }
 
+    settings(): object {
+        let parameters = {};
+        for (let stage in this.project.settings.algorithms) {
+            parameters[stage] = this.project.settings.algorithms[stage];
+        }
+        for (let parameter in this.project.settings.parameters) {
+            parameters[parameter] = this.project.settings.parameters[parameter];
+        }
+        let body = { 'application': this.project.application, 'parameters': parameters }
+        return body;
+    }
+
+    library() {
+        let useRegistry = true;
+        let body = {
+            use_registry: useRegistry,
+        };
+        if (useRegistry) {
+            body['registry'] = this.registry;
+            body['collection'] = this.collection;
+        }
+        return body;
+    }
+
+    verilog() {
+        return this.project.verilog;
+    }
+
+    specification(): object {
+        let specification = {
+            settings: this.settings(),
+            library: this.library(),
+            verilog: this.verilog(),
+            // constraints: this.constraints(),
+        }
+        return specification;
+    }
+
+    submit() {
+        return Promise.resolve()
+            .then(() => {
+                let body = {
+                    name: this.project.name,
+                    specification: this.specification()
+                };
+                body = Object.assign(this.session, body);
+                return this.specify(body).toPromise();
+            })
+            .then(() => {
+                let body = {
+                    name: this.project.name,
+                };
+                body = Object.assign(this.session, body);
+                return this.execute(body);
+            });
+    }
+
+    /////////
+    // API //
+    /////////
+
     login(body: object): Observable<object> {
-        return this.http.post(this.base + 'login', JSON.stringify(body));
+        return this.http.post<object>(this.base + 'login', JSON.stringify(body));
     }
 
     signup(body: any): Observable<object> {
-        return this.http.post(this.base + 'signup', JSON.stringify(body));
+        return this.http.post<object>(this.base + 'signup', JSON.stringify(body));
     }
 
-    projects(): Observable<object[]> {
-        let body = {
-            "token": this.token,
-            "id": this.id
-        };
+    projects(body: any): Observable<object[]> {
         return this.http.post<object[]>(this.base + 'projects', JSON.stringify(body));
     }
 
-    specify(body: any) {
-        return this.http.post(this.base + 'specify', JSON.stringify(body));
+    specify(body: any): Observable<object> {
+        return this.http.post<object>(this.base + 'specify', JSON.stringify(body));
     }
 
     execute(body: any) {
-        return this.http.post(this.base + 'execute', JSON.stringify(body));
+        return this.http.post<object>(this.base + 'execute', JSON.stringify(body));
     }
 
 }

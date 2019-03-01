@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     login() {
         this.session.login(this.form.value).subscribe(
             result => {
-                this.session.setLoginInfo(result["token"], result["id"]);
+                this.session.setLoginInfo(result);
                 this.router.navigateByUrl("projects");
             }
         );

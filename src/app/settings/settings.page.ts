@@ -23,9 +23,9 @@ export class SettingsPage implements OnInit {
     }
 
     getApplicationStages(name) {
-        for (let i = 0; i < this.session.settings['applications'].length; i++) {
-            if (this.session.settings['applications'][i].name == name) {
-                return this.session.settings['applications'][i].stages;
+        for (let i = 0; i < this.session.settingsDefinition['applications'].length; i++) {
+            if (this.session.settingsDefinition['applications'][i].name == name) {
+                return this.session.settingsDefinition['applications'][i].stages;
             }
         }
     }

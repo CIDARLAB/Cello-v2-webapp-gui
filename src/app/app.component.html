@@ -19,9 +19,9 @@
 			Submission
 		  </ion-item-divider>
 		  <ion-item>
-			<ion-input placeholder="project name"></ion-input>
+			<ion-input placeholder="project name" [(ngModel)]="session.project.name"></ion-input>
 		  </ion-item>
-		  <ion-button shape="round" expand="block" padding>Submit</ion-button>
+		  <ion-button shape="round" expand="block" (click)="session.submit()" padding>Submit</ion-button>
 		</ion-list>
 	  </ion-content>
     </ion-menu>
