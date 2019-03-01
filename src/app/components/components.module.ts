@@ -1,23 +1,29 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { InputRowComponent } from '../input-row/input-row.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
-        NavbarComponent
+        NavbarComponent,
+        InputRowComponent
     ],
     imports: [
         CommonModule,
         IonicModule.forRoot(),
-        RouterModule
+        RouterModule,
+        FormsModule
     ],
     entryComponents: [
-        NavbarComponent
+        NavbarComponent,
+        InputRowComponent
     ],
     exports: [
-        NavbarComponent
+        NavbarComponent,
+        InputRowComponent
     ]
 })
 export class ComponentsModule { }

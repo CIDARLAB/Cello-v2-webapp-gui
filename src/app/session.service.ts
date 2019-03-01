@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ export class SessionService {
     public settings: object;
 
     public project: Project;
+    // public session: object;
     public token: string;
     public id: string;
 
@@ -24,6 +26,9 @@ export class SessionService {
     public registry: string;
     public collection: string;
 
+    public inputConstraints = <{}[]>[];
+    public outputConstraints = <{}[]>[];
+
     constructor(
         private storage: Storage,
         private http: HttpClient
@@ -31,7 +36,7 @@ export class SessionService {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
         this.collections(this.registry).subscribe((result) => {
-            this.collections = result;
+            // this.collections = result;
         });
         this.getLoginInfo().then(data => {
             this.token = data[0];
@@ -40,7 +45,7 @@ export class SessionService {
         this.getSettingsDefinition().then((data) => {
             this.settings = data;
         });
-        // this.project = new Project();
+        this.project = new Project();
     }
 
     getLoginInfo() {
@@ -48,6 +53,7 @@ export class SessionService {
             this.storage.get('token'),
             this.storage.get('id'),
         ];
+        // return this.storage.get('session');
         return Promise.all(promises);
     }
 
@@ -74,16 +80,28 @@ export class SessionService {
         return this.http.get(url);
     }
 
-    login(body: object) {
+    login(body: object): Observable<object> {
         return this.http.post(this.base + 'login', JSON.stringify(body));
     }
 
-    projects() {
+    signup(body: any): Observable<object> {
+        return this.http.post(this.base + 'signup', JSON.stringify(body));
+    }
+
+    projects(): Observable<object[]> {
         let body = {
             "token": this.token,
             "id": this.id
         };
         return this.http.post<object[]>(this.base + 'projects', JSON.stringify(body));
+    }
+
+    specify(body: any) {
+        return this.http.post(this.base + 'specify', JSON.stringify(body));
+    }
+
+    execute(body: any) {
+        return this.http.post(this.base + 'execute', JSON.stringify(body));
     }
 
 }

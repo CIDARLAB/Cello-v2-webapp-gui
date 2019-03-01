@@ -7,6 +7,10 @@
 	app-navbar {
 		height: 65px !important;
 	}
+
+	.navbar-logo {
+		height: 20px;
+	}
 	
 	@import '~@swimlane/ngx-datatable/release/index.css';
 	@import '~@swimlane/ngx-datatable/release/themes/material.css';

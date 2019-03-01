@@ -4,5 +4,23 @@
 
 <ion-content padding>
   <ion-card>
+	<ion-list>
+	  <ion-list-header>
+        <b>Input constraints</b>
+      </ion-list-header>
+	  <div *ngFor="let i of session.inputConstraints; let ii=index">
+	  	<app-input-row [data]="i" (onDelete)="onDeleteInput($event)"></app-input-row>
+	  </div>
+	</ion-list>
+	<ion-button (click)="addInputConstraint()">Add</ion-button>
+	<ion-list>
+  	  <ion-list-header>
+        <b>Output constraints</b>
+      </ion-list-header>
+	  <div *ngFor="let i of session.outputConstraints; let ii=index">
+	  	<app-input-row [data]="i" (onDelete)="onDeleteOutput($event)"></app-input-row>
+	  </div>
+	</ion-list>
+	<ion-button (click)="addOutputConstraint()">Add</ion-button>
   </ion-card>
 </ion-content>
