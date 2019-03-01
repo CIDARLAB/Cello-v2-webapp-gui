@@ -5,7 +5,11 @@ export class Project {
     id: string;
 
     verilog: string;
-    settings: object;
+    settings = {
+        application: '',
+        algorithms: {},
+        parameters: {}
+    };
     constraints: object;
     library: object;
 

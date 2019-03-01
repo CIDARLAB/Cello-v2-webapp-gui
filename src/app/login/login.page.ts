@@ -9,6 +9,9 @@ import { Router } from "@angular/router";
 })
 export class LoginPage implements OnInit {
 
+    private email: string;
+    private password: string;
+
     constructor(
         private session: SessionService,
         private router: Router,

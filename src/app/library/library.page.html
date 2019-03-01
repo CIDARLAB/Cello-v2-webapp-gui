@@ -4,5 +4,21 @@
 
 <ion-content padding>
   <ion-card>
+	<ion-grid>
+      <ion-row>
+        <ion-col size="8">
+		  <ion-label position="stacked">Registry</ion-label>
+          <ion-select interface="popover" [(ngModel)]="session.registry">
+            <ion-select-option value="{{r}}" *ngFor="let r of session.registries">{{r}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size="4" style="padding: 2px">
+		  <ion-label position="stacked">Collection</ion-label>
+          <ion-select interface="popover" [(ngModel)]="session.collection">
+            <ion-select-option value="{{c.uri}}" *ngFor="let c of session.collections">{{c.name}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 </ion-content>

@@ -1,0 +1,73 @@
+<ion-header>
+  <app-navbar></app-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+	<ion-list>
+	  <ion-item>
+		<ion-label class="application-label">Application</ion-label>
+		<ion-select interface="popover" [(ngModel)]="session.project['application']">
+          <ion-select-option *ngFor="let application of session.settings['applications']" value="{{application.name}}">{{application.name}}</ion-select-option>
+		</ion-select>
+	  </ion-item>
+	  <div *ngFor="let stage of getApplicationStages(session.project.application)">
+	  <ion-item>
+		<ion-label class="stage-label">{{stage.name}}</ion-label>
+		<ion-select [(ngModel)]="session.project.settings.algorithms[stage.name]" interface="popover">
+	  	  <ion-select-option *ngFor="let algorithm of stage.algorithms" value="{{algorithm.name}}">{{algorithm.name}}</ion-select-option>
+	  	</ion-select>
+	  </ion-item>
+	  <div *ngFor="let parameter of getAlgorithmParameters(session.project.settings.algorithms[stage.name],stage)">
+	  <ion-item>
+		<ion-label class="parameter-label">{{parameter.name}}</ion-label>
+	  	<ion-input
+		  *ngIf="parameter.type == 'int'"
+		  text-right
+		  (ngModel)="session.project.settings.parameters[stage.name + '.' + parameter.name]"
+		  value={{parameter.value}}
+	  	  type="number"></ion-input>
+		<ion-input
+		  *ngIf="parameter.type == 'string'"
+		  text-right
+		  (ngModel)="session.project.settings.parameters[stage.name + '.' + parameter.name]"
+		  value={{parameter.value}}
+		  spellcheck=false
+	  	  type="string"></ion-input>
+		<ion-checkbox
+		  *ngIf="parameter.type == 'boolean'"
+		  text-right
+		  (ngModel)="session.project.settings.parameters[stage.name + '.' + parameter.name]"
+		  checked={{parameter.value}}></ion-checkbox>
+		<!-- <ion-input *ngIf="parameter.type == 'string'" -->
+		<!-- 		   [(ngModel)]="session.project.settings.parameters[stage.name + '.' + parameter.name]" -->
+	  	<!-- 		   type="string" value={{parameter.value}}>{{parameter.value}}</ion-input> -->
+	  </ion-item>
+	  </div>
+	  </div>
+	</ion-list>
+	
+	
+	
+	<!-- 	<div *ngIf="parameter.type == 'string'"> -->
+	  <!-- 	  <ion-item> -->
+	  	<!-- 		<ion-input [(ngModel)]="settingsProvider.settings.parameters[stage.name + '.' + parameter.name]" -->
+	  	<!-- 				   type="string" value="{{parameter.value}}"></ion-input> -->
+	  	<!-- 	  </ion-item> -->
+	  <!-- 	</div> -->
+	<!-- 	<div *ngIf="parameter.type == 'boolean'"> -->
+	  <!-- 	  <ion-select [(ngModel)]="settingsProvider.settings.parameters[stage.name + '.' + parameter.name]" -->
+	  <!-- 				  interface="popover"> -->
+	  	<!-- 		<ion-option value="true">true</ion-option> -->
+	  	<!-- 		<ion-option value="false">false</ion-option> -->
+	  	<!-- 	  </ion-select> -->
+	  <!-- 	</div> -->
+	<!--   </ion-col> -->
+<!-- </ion-row> -->
+
+<!-- </div> -->
+
+<!-- </div> -->
+
+</ion-card>
+</ion-content>

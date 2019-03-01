@@ -10,6 +10,8 @@ const routes: Routes = [
     { path: 'verilog', loadChildren: './verilog/verilog.module#VerilogPageModule' },
     { path: 'library', loadChildren: './library/library.module#LibraryPageModule' },
     { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
+  { path: 'constraints', loadChildren: './constraints/constraints.module#ConstraintsPageModule' },
 ];
 
 @NgModule({
