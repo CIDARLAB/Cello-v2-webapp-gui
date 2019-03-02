@@ -13,7 +13,7 @@ export class InputRowComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.data.id = new Date().getTime()
+        this.data.id = new Date().getTime();
     }
 
     deleteClicked() {

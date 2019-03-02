@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignupPage implements OnInit {
 
-    private form: FormGroup;
+    public form: FormGroup;
 
     constructor(
         private session: SessionService,
@@ -32,7 +32,6 @@ export class SignupPage implements OnInit {
     }
 
     signup() {
-        console.log(this.form.value);
         this.session.signup(this.form.value).subscribe((result) => {
             this.session.setLoginInfo(result);
             this.router.navigateByUrl("projects");

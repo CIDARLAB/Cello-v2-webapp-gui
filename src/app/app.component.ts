@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 })
 export class AppComponent {
 
-    private pages = [{
+    public pages = [{
         name: 'Specification',
         active: true,
         pages: [{
@@ -53,7 +53,7 @@ export class AppComponent {
 
     constructor(
         private menuController: MenuController,
-        private session: SessionService,
+        public session: SessionService,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private storage: Storage,

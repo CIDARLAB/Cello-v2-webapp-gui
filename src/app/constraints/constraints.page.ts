@@ -11,7 +11,7 @@ export class ConstraintsPage implements OnInit {
 
     constructor(
         private menuController: MenuController,
-        private session: SessionService
+        public session: SessionService
     ) {
     }
 

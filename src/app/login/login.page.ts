@@ -10,10 +10,10 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 })
 export class LoginPage implements OnInit {
 
-    private form: FormGroup;
+    public form: FormGroup;
 
     constructor(
-        private session: SessionService,
+        public session: SessionService,
         private router: Router,
         private formBuilder: FormBuilder,
     ) {

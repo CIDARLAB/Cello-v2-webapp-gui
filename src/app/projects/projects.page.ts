@@ -34,10 +34,10 @@ export class ProjectsPage implements OnInit {
         }
     ];
 
-    private projects: object[];
+    public projects: object[];
 
     constructor(
-        private session: SessionService,
+        public session: SessionService,
         private menuController: MenuController,
         private router: Router
     ) {

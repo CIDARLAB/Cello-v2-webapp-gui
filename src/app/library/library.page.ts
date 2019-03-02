@@ -13,7 +13,7 @@ export class LibraryPage implements OnInit {
 
     constructor(
         private platform: Platform,
-        private session: SessionService,
+        public session: SessionService,
         private menuController: MenuController,
     ) {
         this.height = this.platform.height() - 275;

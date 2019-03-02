@@ -9,7 +9,7 @@ import { SessionService } from '../session.service';
 })
 export class VerilogPage implements OnInit {
 
-    private height: number;
+    public height: number;
     public mode = 'verilog2001';
     public menuItem;
     @ViewChild('editor') editor: ElementRef;
