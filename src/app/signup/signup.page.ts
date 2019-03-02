@@ -33,11 +33,8 @@ export class SignupPage implements OnInit {
 
     signup() {
         console.log(this.form.value);
-        this.session.signup(this.form.value).subscribe(result => {
-            this.session.setLoginInfo(
-                result['token'],
-                result['id'],
-            );
+        this.session.signup(this.form.value).subscribe((result) => {
+            this.session.setLoginInfo(result);
             this.router.navigateByUrl("projects");
         }, (error) => {
         });

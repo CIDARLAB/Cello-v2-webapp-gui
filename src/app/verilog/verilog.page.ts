@@ -37,7 +37,6 @@ export class VerilogPage implements OnInit {
         window['editor'].setValue(this.session.project.verilog, 1);
         let self = this;
         window['editor'].getSession().on('change', function() {
-            console.log('change');
             setTimeout(() => {
                 self.session.project.verilog = window['editor'].getValue();
                 window.dispatchEvent(new Event('resize'));

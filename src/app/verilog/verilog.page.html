@@ -4,8 +4,8 @@
 
 <ion-content padding>
   <ion-card>
-    <div class="editor" #editor [ngStyle]="{'height': height + 'px'}" (load)="init()">
-      <iframe src="assets/editor/verilog2001.html"></iframe>
+    <div class="editor" #editor [ngStyle]="{'height': height + 'px'}">
+      <iframe src="assets/editor/verilog2001.html" (load)="init()"></iframe>
     </div>
   </ion-card>
 </ion-content>

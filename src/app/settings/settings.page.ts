@@ -22,6 +22,12 @@ export class SettingsPage implements OnInit {
     ngOnInit() {
     }
 
+    updateDefaults(stage: {}) {
+        for (let parameter of this.getAlgorithmParameters(this.session.project.settings.algorithms[stage['name']], stage)) {
+            this.session.project.settings.parameters[stage['name'] + '.' + parameter.name] = parameter.value;
+        }
+    }
+
     getApplicationStages(name) {
         for (let i = 0; i < this.session.settingsDefinition['applications'].length; i++) {
             if (this.session.settingsDefinition['applications'][i].name == name) {

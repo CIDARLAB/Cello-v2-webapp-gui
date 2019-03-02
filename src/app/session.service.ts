@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +32,8 @@ export class SessionService {
     constructor(
         private http: HttpClient,
         private storage: Storage,
+        private loadingController: LoadingController,
+        private toastController: ToastController,
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
@@ -52,7 +55,6 @@ export class SessionService {
 
     setLoginInfo(session: object) {
         this.session = session;
-        console.log(session);
         this.storage.set('session', session);
     }
 
@@ -100,32 +102,65 @@ export class SessionService {
         return this.project.verilog;
     }
 
+    constraints() {
+        let input = {};
+        let output = {};
+        for (let constraint of this.inputConstraints) {
+            input[constraint['input']] = constraint['value']
+        }
+        for (let constraint of this.outputConstraints) {
+            output[constraint['input']] = constraint['value']
+        }
+        let body = {
+            input_constraints: input,
+            output_constraints: output
+        };
+        return body;
+    }
+
     specification(): object {
         let specification = {
             settings: this.settings(),
             library: this.library(),
             verilog: this.verilog(),
-            // constraints: this.constraints(),
+            constraints: this.constraints(),
         }
         return specification;
     }
 
-    submit() {
+    async submit() {
+        // const loading = await this.loadingController.create({
+        //     message: 'Submitting specification...',
+        // });
+        const submitting = await this.toastController.create({
+            message: "Sending specification and building library.",
+            position: 'bottom',
+            showCloseButton: true,
+            duration: 5000,
+        });
+        const submitted = await this.toastController.create({
+            message: "Job submitted. Results will appear after successful execution.",
+            position: 'bottom',
+            showCloseButton: true,
+            duration: 5000,
+        });
         return Promise.resolve()
             .then(() => {
                 let body = {
                     name: this.project.name,
                     specification: this.specification()
                 };
+                submitting.present();
                 body = Object.assign(this.session, body);
                 return this.specify(body).toPromise();
             })
             .then(() => {
+                submitted.present();
                 let body = {
                     name: this.project.name,
                 };
                 body = Object.assign(this.session, body);
-                return this.execute(body);
+                return this.execute(body).toPromise();
             });
     }
 
@@ -149,7 +184,7 @@ export class SessionService {
         return this.http.post<object>(this.base + 'specify', JSON.stringify(body));
     }
 
-    execute(body: any) {
+    execute(body: any): Observable<object> {
         return this.http.post<object>(this.base + 'execute', JSON.stringify(body));
     }
 

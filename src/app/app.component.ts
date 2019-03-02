@@ -72,7 +72,7 @@ export class AppComponent {
                 return this.session.getLoginInfo();
             })
             .then(() => {
-                if (this.session.token) {
+                if (this.session.session) {
                     // this.rootPage = 'ProjectsPage';
                 } else {
                     // this.rootPage = 'WelcomePage';
