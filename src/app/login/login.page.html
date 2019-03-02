@@ -1,8 +1,10 @@
 <ion-header>
   <ion-toolbar>
-	<ion-title>
-	  <img class="navbar-logo" src="assets/images/banner.png">
-	</ion-title>
+	<ion-buttons slot="start">
+	  <div padding>
+		<img class="navbar-logo" src="assets/images/banner.png">
+	  </div>
+	</ion-buttons>
 	<ion-buttons slot="end">
 	  <ion-button routerLink="/about" >
 		<!-- <ion-icon name="information-circle"></ion-icon> -->
@@ -35,10 +37,10 @@
             <ion-button (click)="login()" [disabled]="!form.valid">Login</ion-button>
           </div>
           <!-- <ion-card *ngIf="error" color="danger"> -->
-          <!--   <div padding> -->
-          <!--     {{error}} -->
-          <!--   </div> -->
-          <!-- </ion-card> -->
+			<!--   <div padding> -->
+			  <!--     {{error}} -->
+			  <!--   </div> -->
+			<!-- </ion-card> -->
         </ion-col>
       </ion-row>
     </ion-grid>
