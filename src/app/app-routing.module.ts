@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'constraints', loadChildren: './constraints/constraints.module#ConstraintsPageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'export', loadChildren: './export/export.module#ExportPageModule' },
+  { path: 'results', loadChildren: './results/results.module#ResultsPageModule' },
 ];
 
 @NgModule({
