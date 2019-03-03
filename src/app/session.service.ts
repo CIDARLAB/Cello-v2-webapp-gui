@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { Storage } from '@ionic/storage';
@@ -72,6 +72,16 @@ export class SessionService {
     getCollections(registry: string): Observable<object[]> {
         let url = registry + 'rootCollections';
         return this.http.get<object[]>(url);
+    }
+
+    synBioHubLogin(body: any, url: string) {
+        const options = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Accept': 'text/plain',
+            })
+        };
+        return this.http.post<object>(url + 'login', JSON.stringify(body), options);
     }
 
     settings(): object {
