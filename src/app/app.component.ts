@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MenuController, Platform } from '@ionic/angular';
-import { SessionService } from './session.service';
+import { ApiService } from './api.service';
 import { Storage } from '@ionic/storage';
+import { ProjectService } from './project.service';
 
 @Component({
     selector: 'app-root',
@@ -52,12 +53,13 @@ export class AppComponent {
     }];
 
     constructor(
-        private menuController: MenuController,
-        public session: SessionService,
+        private platform: Platform,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private storage: Storage,
-        private platform: Platform,
+        public api: ApiService,
+        public project: ProjectService,
+        private menuController: MenuController,
     ) {
         this.initializeApp();
     }
@@ -69,10 +71,10 @@ export class AppComponent {
                 return this.initializeStorage();
             })
             .then(() => {
-                return this.session.getLoginInfo();
+                return this.api.getLoginInfo();
             })
             .then(() => {
-                if (this.session.session) {
+                if (this.api.session) {
                     // this.rootPage = 'ProjectsPage';
                 } else {
                     // this.rootPage = 'WelcomePage';

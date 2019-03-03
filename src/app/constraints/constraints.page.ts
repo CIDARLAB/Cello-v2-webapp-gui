@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { SessionService } from '../session.service';
+import { ProjectService } from '../project.service';
 
 @Component({
     selector: 'app-constraints',
@@ -11,7 +11,7 @@ export class ConstraintsPage implements OnInit {
 
     constructor(
         private menuController: MenuController,
-        public session: SessionService
+        public project: ProjectService,
     ) {
     }
 
@@ -23,19 +23,19 @@ export class ConstraintsPage implements OnInit {
     }
 
     addInputConstraint() {
-        this.session.inputConstraints.push({});
+        this.project.inputConstraints.push({});
     }
 
     addOutputConstraint() {
-        this.session.outputConstraints.push({});
+        this.project.outputConstraints.push({});
     }
 
     onDeleteInput(_event) {
-        this.session.inputConstraints = this.session.inputConstraints.filter((i: any) => i.id !== _event.id)
+        this.project.inputConstraints = this.project.inputConstraints.filter((i: any) => i.id !== _event.id)
     }
 
     onDeleteOutput(_event) {
-        this.session.outputConstraints = this.session.outputConstraints.filter((i: any) => i.id !== _event.id)
+        this.project.outputConstraints = this.project.outputConstraints.filter((i: any) => i.id !== _event.id)
     }
 
 }

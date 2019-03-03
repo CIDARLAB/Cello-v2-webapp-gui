@@ -1,21 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from './project';
-import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs';
-import { LoadingController, ToastController } from '@ionic/angular';
 import { SynBioHubService } from './synbiohub.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SessionService {
-
-    private base = "http://127.0.0.1:8080/";
-    public settingsDefinition: object;
+export class ProjectService {
 
     public project: Project;
-    public session: object;
+
+    public settingsDefinition: object;
 
     public registries = [
         'https://synbiohub.org/',
@@ -32,9 +29,8 @@ export class SessionService {
 
     constructor(
         private http: HttpClient,
-        private storage: Storage,
         private synbiohub: SynBioHubService,
-        private loadingController: LoadingController,
+        private api: ApiService,
         private toastController: ToastController,
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
@@ -42,22 +38,13 @@ export class SessionService {
         this.synbiohub.collections(this.registry).subscribe((result) => {
             this.collections = result;
         });
-        this.getLoginInfo().then((data) => {
-            this.session = data;
+        this.api.getLoginInfo().then((data) => {
+            this.api.session = data;
         });
         this.getSettingsDefinition().then((data) => {
             this.settingsDefinition = data;
         });
         this.project = new Project();
-    }
-
-    getLoginInfo(): Promise<object> {
-        return this.storage.get('session');
-    }
-
-    setLoginInfo(session: object) {
-        this.session = session;
-        this.storage.set('session', session);
     }
 
     getSettingsDefinition() {
@@ -148,41 +135,17 @@ export class SessionService {
                     specification: this.specification()
                 };
                 submitting.present();
-                body = Object.assign(this.session, body);
-                return this.specify(body).toPromise();
+                body = Object.assign(this.api.session, body);
+                return this.api.specify(body).toPromise();
             })
             .then(() => {
                 submitted.present();
                 let body = {
                     name: this.project.name,
                 };
-                body = Object.assign(this.session, body);
-                return this.execute(body).toPromise();
+                body = Object.assign(this.api.session, body);
+                return this.api.execute(body).toPromise();
             });
-    }
-
-    /////////
-    // API //
-    /////////
-
-    login(body: object): Observable<object> {
-        return this.http.post<object>(this.base + 'login', JSON.stringify(body));
-    }
-
-    signup(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'signup', JSON.stringify(body));
-    }
-
-    projects(body: any): Observable<object[]> {
-        return this.http.post<object[]>(this.base + 'projects', JSON.stringify(body));
-    }
-
-    specify(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'specify', JSON.stringify(body));
-    }
-
-    execute(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'execute', JSON.stringify(body));
     }
 
 }

@@ -13,7 +13,7 @@
               <ion-card-title>Login</ion-card-title>
 			  <ion-label position="stacked">Registry</ion-label>
 			  <ion-select interface="popover" placeholder="registry" [(ngModel)]="registry" [ngModelOptions]="{standalone: true}">
-				<ion-select-option value="{{r}}" *ngFor="let r of session.registries">{{r}}</ion-select-option>
+				<ion-select-option value="{{r}}" *ngFor="let r of project.registries">{{r}}</ion-select-option>
 			  </ion-select>
               <ion-list>
                 <ion-item>

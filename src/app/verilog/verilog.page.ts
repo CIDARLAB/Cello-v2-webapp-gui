@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
-import { SessionService } from '../session.service';
+import { ApiService } from '../api.service';
+import { ProjectService } from '../project.service';
 
 @Component({
     selector: 'app-verilog',
@@ -15,9 +16,10 @@ export class VerilogPage implements OnInit {
     @ViewChild('editor') editor: ElementRef;
 
     constructor(
-        private menuController: MenuController,
+        private api: ApiService,
         private platform: Platform,
-        private session: SessionService,
+        private project: ProjectService,
+        private menuController: MenuController,
     ) {
         this.height = this.platform.height() - 275;
     }
@@ -34,11 +36,11 @@ export class VerilogPage implements OnInit {
     }
 
     init() {
-        window['editor'].setValue(this.session.project.verilog, 1);
+        window['editor'].setValue(this.project.project.verilog, 1);
         let self = this;
         window['editor'].getSession().on('change', function() {
             setTimeout(() => {
-                self.session.project.verilog = window['editor'].getValue();
+                self.project.project.verilog = window['editor'].getValue();
                 window.dispatchEvent(new Event('resize'));
             }, 1000);
         });

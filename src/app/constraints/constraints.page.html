@@ -8,7 +8,7 @@
 	  <ion-list-header>
         <b>Input constraints</b>
       </ion-list-header>
-	  <div *ngFor="let i of session.inputConstraints; let ii=index">
+	  <div *ngFor="let i of project.inputConstraints; let ii=index">
 	  	<app-input-row [data]="i" (onDelete)="onDeleteInput($event)"></app-input-row>
 	  </div>
 	</ion-list>
@@ -17,7 +17,7 @@
   	  <ion-list-header>
         <b>Output constraints</b>
       </ion-list-header>
-	  <div *ngFor="let i of session.outputConstraints; let ii=index">
+	  <div *ngFor="let i of project.outputConstraints; let ii=index">
 	  	<app-input-row [data]="i" (onDelete)="onDeleteOutput($event)"></app-input-row>
 	  </div>
 	</ion-list>

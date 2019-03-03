@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { SessionService } from './session.service';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,15 +10,15 @@ import { MenuController } from '@ionic/angular';
 export class AuthGuard implements CanActivate {
 
     constructor(
+        private api: ApiService,
+        private menuController: MenuController,
         private router: Router,
-        private session: SessionService,
-        private menuController: MenuController
     ) { }
 
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        // if (!this.session.token) {
+        // if (!this.api.token) {
         //     this.menuController.enable(false);
         //     this.router.navigateByUrl("login");
         //     return true;

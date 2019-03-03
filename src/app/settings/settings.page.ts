@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { SessionService } from '../session.service';
+import { ProjectService } from '../project.service';
 
 @Component({
     selector: 'app-settings',
@@ -10,8 +10,8 @@ import { SessionService } from '../session.service';
 export class SettingsPage implements OnInit {
 
     constructor(
+        public project: ProjectService,
         private menuController: MenuController,
-        public session: SessionService
     ) {
     }
 
@@ -23,15 +23,15 @@ export class SettingsPage implements OnInit {
     }
 
     updateDefaults(stage: {}) {
-        for (let parameter of this.getAlgorithmParameters(this.session.project.settings.algorithms[stage['name']], stage)) {
-            this.session.project.settings.parameters[stage['name'] + '.' + parameter.name] = parameter.value;
+        for (let parameter of this.getAlgorithmParameters(this.project.project.settings.algorithms[stage['name']], stage)) {
+            this.project.project.settings.parameters[stage['name'] + '.' + parameter.name] = parameter.value;
         }
     }
 
     getApplicationStages(name) {
-        for (let i = 0; i < this.session.settingsDefinition['applications'].length; i++) {
-            if (this.session.settingsDefinition['applications'][i].name == name) {
-                return this.session.settingsDefinition['applications'][i].stages;
+        for (let i = 0; i < this.project.settingsDefinition['applications'].length; i++) {
+            if (this.project.settingsDefinition['applications'][i].name == name) {
+                return this.project.settingsDefinition['applications'][i].stages;
             }
         }
     }

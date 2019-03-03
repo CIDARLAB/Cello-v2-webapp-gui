@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../session.service';
+import { ApiService } from '../api.service';
 import { Router } from "@angular/router";
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
     public form: FormGroup;
 
     constructor(
-        public session: SessionService,
+        public api: ApiService,
         private router: Router,
         private formBuilder: FormBuilder,
     ) {
@@ -30,9 +30,9 @@ export class LoginPage implements OnInit {
     }
 
     login() {
-        this.session.login(this.form.value).subscribe(
+        this.api.login(this.form.value).subscribe(
             result => {
-                this.session.setLoginInfo(result);
+                this.api.setLoginInfo(result);
                 this.router.navigateByUrl("projects");
             }
         );

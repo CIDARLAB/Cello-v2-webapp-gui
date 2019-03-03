@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
-import { SessionService } from '../session.service';
+import { ApiService } from '../api.service';
+import { ProjectService } from '../project.service';
 
 @Component({
     selector: 'app-library',
@@ -13,7 +14,8 @@ export class LibraryPage implements OnInit {
 
     constructor(
         private platform: Platform,
-        public session: SessionService,
+        public api: ApiService,
+        public project: ProjectService,
         private menuController: MenuController,
     ) {
         this.height = this.platform.height() - 275;

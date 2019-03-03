@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../session.service';
-import { MenuController } from '@ionic/angular';
-import { Project } from '../project';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { ApiService } from '../api.service';
+import { Project } from '../project';
+import { ProjectService } from '../project.service';
 
 @Component({
     selector: 'app-projects',
@@ -11,44 +12,22 @@ import { Router } from '@angular/router';
 })
 export class ProjectsPage implements OnInit {
 
-    public rows = [
-        {
-            "name": "Ethel Price",
-            "gender": "female",
-            "age": 22
-        },
-        {
-            "name": "Claudine Neal",
-            "gender": "female",
-            "age": 55
-        },
-        {
-            "name": "Beryl Rice",
-            "gender": "female",
-            "age": 67
-        },
-        {
-            "name": "Simon Grimm",
-            "gender": "male",
-            "age": 28
-        }
-    ];
-
     public projects: object[];
 
     constructor(
-        public session: SessionService,
+        private router: Router,
+        public api: ApiService,
+        public project: ProjectService,
         private menuController: MenuController,
-        private router: Router
     ) {
     }
 
     ionViewWillEnter() {
         this.menuController.enable(false);
-        this.session.getLoginInfo().then((data) => {
-            this.session.session = data;
+        this.api.getLoginInfo().then((data) => {
+            this.api.session = data;
         }).then(() => {
-            this.session.projects(this.session.session).subscribe((result) => {
+            this.api.projects(this.api.session).subscribe((result) => {
                 this.projects = result;
             });
         });
@@ -58,7 +37,7 @@ export class ProjectsPage implements OnInit {
     }
 
     create() {
-        this.session.project = new Project();
+        this.project.project = new Project();
         this.router.navigateByUrl("verilog");
     }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { SessionService } from '../session.service';
+import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class SignupPage implements OnInit {
     public form: FormGroup;
 
     constructor(
-        private session: SessionService,
+        private api: ApiService,
         private router: Router,
         private formBuilder: FormBuilder,
     ) {
@@ -32,8 +32,8 @@ export class SignupPage implements OnInit {
     }
 
     signup() {
-        this.session.signup(this.form.value).subscribe((result) => {
-            this.session.setLoginInfo(result);
+        this.api.signup(this.form.value).subscribe((result) => {
+            this.api.setLoginInfo(result);
             this.router.navigateByUrl("projects");
         }, (error) => {
         });
