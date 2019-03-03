@@ -4,6 +4,7 @@ import { Project } from './project';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { SynBioHubService } from './synbiohub.service';
 
 @Injectable({
     providedIn: 'root'
@@ -32,12 +33,13 @@ export class SessionService {
     constructor(
         private http: HttpClient,
         private storage: Storage,
+        private synbiohub: SynBioHubService,
         private loadingController: LoadingController,
         private toastController: ToastController,
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
-        this.getCollections(this.registry).subscribe((result) => {
+        this.synbiohub.collections(this.registry).subscribe((result) => {
             this.collections = result;
         });
         this.getLoginInfo().then((data) => {
@@ -67,21 +69,6 @@ export class SessionService {
                     reject(error);
                 });
         });
-    }
-
-    getCollections(registry: string): Observable<object[]> {
-        let url = registry + 'rootCollections';
-        return this.http.get<object[]>(url);
-    }
-
-    synBioHubLogin(body: any, url: string) {
-        const options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Accept': 'text/plain',
-            })
-        };
-        return this.http.post<object>(url + 'login', JSON.stringify(body), options);
     }
 
     settings(): object {

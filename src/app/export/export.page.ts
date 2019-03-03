@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { SessionService } from '../session.service';
+import { SynBioHubService } from '../synbiohub.service';
 
 @Component({
     selector: 'app-export',
@@ -13,8 +14,9 @@ export class ExportPage implements OnInit {
     public registry: string;
 
     constructor(
-        public session: SessionService,
         private formBuilder: FormBuilder,
+        public session: SessionService,
+        public synbiohub: SynBioHubService,
     ) {
         this.form = this.formBuilder.group({
             email: new FormControl(null, Validators.compose([
@@ -29,7 +31,7 @@ export class ExportPage implements OnInit {
     }
 
     login() {
-        this.session.synBioHubLogin(this.form.value, this.registry).subscribe(
+        this.synbiohub.login(this.form.value, this.registry).subscribe(
             result => {
 
             }
