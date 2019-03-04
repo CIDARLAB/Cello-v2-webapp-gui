@@ -33,27 +33,38 @@ export class ApiService {
     /////////
 
     login(body: object): Observable<object> {
-        return this.http.post<object>(this.base + 'login', JSON.stringify(body));
+        let url = this.base + 'login'
+        return this.http.post<object>(url, JSON.stringify(body));
     }
 
     signup(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'signup', JSON.stringify(body));
+        let url = this.base + 'signup';
+        return this.http.post<object>(url, JSON.stringify(body));
     }
 
     projects(body: any): Observable<object[]> {
-        return this.http.post<object[]>(this.base + 'projects', JSON.stringify(body));
+        let url = this.base + 'projects';
+        return this.http.post<object[]>(url, JSON.stringify(body));
     }
 
     specify(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'specify', JSON.stringify(body));
+        let url = this.base + 'specify'
+        return this.http.post<object>(url, JSON.stringify(body));
     }
 
     execute(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'execute', JSON.stringify(body));
+        let url = this.base + 'execute';
+        return this.http.post<object>(url, JSON.stringify(body));
     }
 
-    results(body: any): Observable<object> {
-        return this.http.post<object>(this.base + 'results', JSON.stringify(body));
+    results(body: any, name: string): Observable<object>;
+    results(body: any, name: string, id: string): Observable<object>;
+    results(body: any, name: string, id?: string): Observable<object> {
+        let url = this.base + 'results/' + name;
+        if (id) {
+            url += '/' + id;
+        }
+        return this.http.post<object>(url, JSON.stringify(body));
     }
 
 }

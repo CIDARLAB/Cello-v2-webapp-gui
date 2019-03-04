@@ -155,7 +155,7 @@ export class ProjectService {
                 }
                 body = Object.assign(this.api.session, body);
                 if (this.project.name == name) {
-                    this.api.results(body).subscribe((result) => {
+                    this.api.results(body, name).subscribe((result) => {
                         console.log(result);
                         this.project.results = result;
                     });

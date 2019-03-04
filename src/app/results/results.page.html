@@ -4,6 +4,8 @@
 
 <ion-content padding>
   <ion-card padding>
-	Results
+	<ion-list>
+	  <ion-item *ngFor="let result of project.project.results">{{result.name}}</ion-item>
+	</ion-list>
   </ion-card>
 </ion-content>
