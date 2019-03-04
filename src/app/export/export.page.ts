@@ -31,10 +31,7 @@ export class ExportPage implements OnInit {
     }
 
     login() {
-        this.synbiohub.login(this.form.value, this.registry).subscribe(
-            result => {
-            }
-        );
+        this.synbiohub.login(this.form.value, this.registry).subscribe();
     }
 
 }

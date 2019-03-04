@@ -57,14 +57,14 @@ export class ApiService {
         return this.http.post<object>(url, JSON.stringify(body));
     }
 
-    results(body: any, name: string): Observable<object>;
-    results(body: any, name: string, id: string): Observable<object>;
-    results(body: any, name: string, id?: string): Observable<object> {
+    results(body: any, name: string): Observable<object[]>;
+    results(body: any, name: string, id: string): Observable<string>;
+    results(body: any, name: string, id?: string): Observable<any> {
         let url = this.base + 'results/' + name;
         if (id) {
             url += '/' + id;
         }
-        return this.http.post<object>(url, JSON.stringify(body));
+        return this.http.post<string>(url, JSON.stringify(body));
     }
 
 }

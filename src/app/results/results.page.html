@@ -5,7 +5,10 @@
 <ion-content padding>
   <ion-card padding>
 	<ion-list>
-	  <ion-item *ngFor="let result of project.project.results">{{result.name}}</ion-item>
+	  <ion-item *ngFor="let result of project.project.results" (click)="show(result)">{{result.name}}</ion-item>
 	</ion-list>
+  </ion-card>
+  <ion-card>
+	<div #view></div>
   </ion-card>
 </ion-content>

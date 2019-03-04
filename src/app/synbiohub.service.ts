@@ -20,7 +20,7 @@ export class SynBioHubService {
                 'Accept': 'text/plain',
             })
         };
-        return this.http.post<object>(registry + 'login', JSON.stringify(body), options);
+        return this.http.post<string>(registry + 'login', JSON.stringify(body), options);
     }
 
     collections(registry: string): Observable<object[]> {
