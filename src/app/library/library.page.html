@@ -4,6 +4,28 @@
 
 <ion-content padding>
   <ion-card>
+	<ion-list>
+	  <!-- <ion-radio-group> -->
+		<!--   <ion-item> -->
+		  <!--     <ion-label>Use registry</ion-label> -->
+		  <!--     <ion-radio value=true></ion-radio> -->
+		  <!--   </ion-item> -->
+		<!-- 	<ion-item> -->
+		  <!-- 	  <ion-label>Upload UCF</ion-label> -->
+		  <!--     <ion-radio value=false></ion-radio> -->
+		  <!--   </ion-item> -->
+		<!-- </ion-radio-group> -->
+	  <ion-segment>
+		<ion-segment-button value=true checked>
+		  <ion-label>Registry</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value=false>
+		  <ion-label>User constraints file</ion-label>
+		</ion-segment-button>
+	  </ion-segment>
+	</ion-list>
+  </ion-card>
+  <ion-card>
 	<ion-grid>
       <ion-row>
         <ion-col size="8">
@@ -20,5 +42,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-card>
+  <ion-card>
   </ion-card>
 </ion-content>

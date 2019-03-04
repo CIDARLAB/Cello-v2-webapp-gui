@@ -6,21 +6,30 @@
   <ion-card>
 	<ion-list>
 	  <ion-list-header>
-        <b>Input constraints</b>
+		<ion-col>
+          <b>Input</b>
+		</ion-col>
+		<ion-col text-right>
+		  <ion-button fill="clear" (click)="addInputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
+		</ion-col>
       </ion-list-header>
 	  <div *ngFor="let i of project.inputConstraints; let ii=index">
 	  	<app-input-row [data]="i" (onDelete)="onDeleteInput($event)"></app-input-row>
 	  </div>
 	</ion-list>
-	<ion-button (click)="addInputConstraint()">Add</ion-button>
+	
 	<ion-list>
-  	  <ion-list-header>
-        <b>Output constraints</b>
+	  	  <ion-list-header>
+		<ion-col>
+          <b>Output</b>
+		</ion-col>
+		<ion-col text-right>
+		  <ion-button fill="clear" (click)="addOutputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
+		</ion-col>
       </ion-list-header>
 	  <div *ngFor="let i of project.outputConstraints; let ii=index">
 	  	<app-input-row [data]="i" (onDelete)="onDeleteOutput($event)"></app-input-row>
 	  </div>
 	</ion-list>
-	<ion-button (click)="addOutputConstraint()">Add</ion-button>
   </ion-card>
 </ion-content>

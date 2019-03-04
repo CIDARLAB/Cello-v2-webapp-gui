@@ -52,4 +52,8 @@ export class ApiService {
         return this.http.post<object>(this.base + 'execute', JSON.stringify(body));
     }
 
+    results(body: any): Observable<object> {
+        return this.http.post<object>(this.base + 'results', JSON.stringify(body));
+    }
+
 }

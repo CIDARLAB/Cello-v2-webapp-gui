@@ -1,9 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { ApiService } from './api.service';
 import { Project } from './project';
 import { SynBioHubService } from './synbiohub.service';
-import { HttpClient } from '@angular/common/http';
-import { ApiService } from './api.service';
-import { ToastController } from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -32,6 +33,7 @@ export class ProjectService {
         private synbiohub: SynBioHubService,
         private api: ApiService,
         private toastController: ToastController,
+        private router: Router,
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
@@ -128,10 +130,11 @@ export class ProjectService {
             showCloseButton: true,
             duration: 5000,
         });
+        const name = this.project.name;
         return Promise.resolve()
             .then(() => {
                 let body = {
-                    name: this.project.name,
+                    name: name,
                     specification: this.specification()
                 };
                 submitting.present();
@@ -141,10 +144,24 @@ export class ProjectService {
             .then(() => {
                 submitted.present();
                 let body = {
-                    name: this.project.name,
+                    name: name,
                 };
                 body = Object.assign(this.api.session, body);
                 return this.api.execute(body).toPromise();
+            })
+            .then(() => {
+                let body = {
+                    name: name,
+                }
+                body = Object.assign(this.api.session, body);
+                if (this.project.name == name) {
+                    this.api.results(body).subscribe((result) => {
+                        console.log(result);
+                        this.project.results = result;
+                    });
+                    // this.app.activate('Results');
+                    this.router.navigateByUrl("results");
+                }
             });
     }
 

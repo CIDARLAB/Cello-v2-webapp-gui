@@ -44,11 +44,6 @@ export class AppComponent {
             url: '/results',
             status: 'None',
             message: ''
-        }, {
-            name: 'Export',
-            url: '/export',
-            status: 'None',
-            message: ''
         }]
     }];
 
@@ -105,6 +100,22 @@ export class AppComponent {
         return new Promise((resolve) => {
             recursive(resolve);
         });
+    }
+
+    activate(section: string) {
+        for (let s of this.pages) {
+            if (s.name == section) {
+                s.active = true;
+            }
+        }
+    }
+
+    disable(section: string) {
+        for (let s of this.pages) {
+            if (s.name == section) {
+                s.active = false;
+            }
+        }
     }
 
 }
