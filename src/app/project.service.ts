@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { ApiService } from './api.service';
 import { Project } from './project';
 import { SynBioHubService } from './synbiohub.service';
@@ -10,6 +10,41 @@ import { SynBioHubService } from './synbiohub.service';
     providedIn: 'root'
 })
 export class ProjectService {
+
+    public pages = [{
+        name: 'Specification',
+        active: true,
+        pages: [{
+            name: 'Settings',
+            url: '/settings',
+            status: 'None',
+            message: '',
+        }, {
+            name: 'Library',
+            url: '/library',
+            status: 'None',
+            message: '',
+        }, {
+            name: 'Verilog',
+            url: '/verilog',
+            status: 'None',
+            message: ''
+        }, {
+            name: 'Constraints',
+            url: '/constraints',
+            status: 'None',
+            message: '',
+        }]
+    }, {
+        name: 'Results',
+        active: false,
+        pages: [{
+            name: 'View',
+            url: '/results',
+            status: 'None',
+            message: ''
+        }]
+    }];
 
     public project: Project;
 
@@ -31,22 +66,37 @@ export class ProjectService {
     constructor(
         private http: HttpClient,
         private synbiohub: SynBioHubService,
+        private alertController: AlertController,
         private api: ApiService,
         private toastController: ToastController,
         private router: Router,
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
-        this.synbiohub.collections(this.registry).subscribe((result) => {
-            this.collections = result;
-        });
-        this.api.getLoginInfo().then((data) => {
+        this.updateCollections();
+        this.api.getLoginInfo().then((data: { token: string, session: string }) => {
             this.api.session = data;
         });
         this.getSettingsDefinition().then((data) => {
             this.settingsDefinition = data;
         });
         this.project = new Project();
+    }
+
+    activate(section: string) {
+        for (let s of this.pages) {
+            if (s.name == section) {
+                s.active = true;
+            }
+        }
+    }
+
+    disable(section: string) {
+        for (let s of this.pages) {
+            if (s.name == section) {
+                s.active = false;
+            }
+        }
     }
 
     getSettingsDefinition() {
@@ -57,6 +107,12 @@ export class ProjectService {
                 }, (error) => {
                     reject(error);
                 });
+        });
+    }
+
+    updateCollections() {
+        this.synbiohub.collections(this.registry).subscribe((result) => {
+            this.collections = result;
         });
     }
 
@@ -114,54 +170,54 @@ export class ProjectService {
         return specification;
     }
 
+    async alert(message) {
+        const alert = await this.alertController.create({
+            message: message,
+            buttons: ['OK']
+        });
+        return await alert.present();
+    }
+
+    async toast(message: string) {
+        const toast = await this.toastController.create({
+            message: message,
+            position: 'bottom',
+            showCloseButton: true,
+            duration: 5000,
+        });
+        return await toast.present();
+    }
+
     async submit() {
-        // const loading = await this.loadingController.create({
-        //     message: 'Submitting specification...',
-        // });
-        const submitting = await this.toastController.create({
-            message: "Sending specification and building library.",
-            position: 'bottom',
-            showCloseButton: true,
-            duration: 5000,
-        });
-        const submitted = await this.toastController.create({
-            message: "Job submitted. Results will appear after successful execution.",
-            position: 'bottom',
-            showCloseButton: true,
-            duration: 5000,
-        });
         const name = this.project.name;
         return Promise.resolve()
             .then(() => {
                 let body = {
-                    name: name,
+                    session: this.api.session.session,
+                    token: this.api.session.token,
                     specification: this.specification()
                 };
-                submitting.present();
-                body = Object.assign(this.api.session, body);
-                return this.api.specify(body).toPromise();
+                this.toast("Sending specification and building library.");
+                return this.api.specify(body, name).toPromise();
             })
             .then(() => {
-                submitted.present();
-                let body = {
-                    name: name,
-                };
-                body = Object.assign(this.api.session, body);
-                return this.api.execute(body).toPromise();
+                this.toast("Job submitted. Results will appear after successful execution.");
+                const body = this.api.session;
+                return this.api.execute(body, name).toPromise();
             })
             .then(() => {
-                let body = {
-                    name: name,
-                }
-                body = Object.assign(this.api.session, body);
+                const body = this.api.session;
                 if (this.project.name == name) {
                     this.api.results(body, name).subscribe((result) => {
-                        console.log(result);
                         this.project.results = result;
                     });
-                    // this.app.activate('Results');
+                    this.activate('Results');
                     this.router.navigateByUrl("results");
                 }
+            })
+            .catch((error) => {
+                this.toastController.dismiss();
+                this.alert(error.error);
             });
     }
 

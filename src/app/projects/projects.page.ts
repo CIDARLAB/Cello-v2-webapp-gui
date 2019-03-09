@@ -24,7 +24,7 @@ export class ProjectsPage implements OnInit {
 
     ionViewWillEnter() {
         this.menuController.enable(false);
-        this.api.getLoginInfo().then((data) => {
+        this.api.getLoginInfo().then((data: { token: string, session: string }) => {
             this.api.session = data;
         }).then(() => {
             this.api.projects(this.api.session).subscribe((result) => {
@@ -37,6 +37,7 @@ export class ProjectsPage implements OnInit {
     }
 
     create() {
+        this.project.disable("Results");
         this.project.project = new Project();
         this.router.navigateByUrl("verilog");
     }

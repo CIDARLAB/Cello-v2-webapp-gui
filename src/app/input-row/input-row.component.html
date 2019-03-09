@@ -1,9 +1,5 @@
-<ion-item-sliding>
-  <ion-item>
-	<ion-input [(ngModel)]="data.input" type="string" placeholder="node"></ion-input>
-	<ion-input [(ngModel)]="data.value" type="string" placeholder="device"></ion-input>
-  </ion-item>
-  <ion-item-options side="end">
-    <ion-button color="danger" expand="full" (click)="deleteClicked()">DELETE</ion-button>
-  </ion-item-options>
-</ion-item-sliding>
+<ion-item>
+  <ion-input [(ngModel)]="data.input" type="string" placeholder="node"></ion-input>
+  <ion-input [(ngModel)]="data.value" type="string" placeholder="device"></ion-input>
+  <ion-button fill="clear" (click)="deleteClicked()"><ion-icon name="close" slot="end"></ion-icon></ion-button>
+</ion-item>

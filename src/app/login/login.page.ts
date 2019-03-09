@@ -31,11 +31,11 @@ export class LoginPage implements OnInit {
 
     login() {
         this.api.login(this.form.value).subscribe(
-            result => {
-                this.api.setLoginInfo(result);
+            (data: { token: string, session: string }) => {
+                this.api.setLoginInfo(data);
                 this.router.navigateByUrl("projects");
-            }
-        );
+            },
+            (error) => { });
     }
 
 }

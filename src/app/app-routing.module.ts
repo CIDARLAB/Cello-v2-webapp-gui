@@ -10,15 +10,14 @@ const routes: Routes = [
     { path: 'verilog', loadChildren: './verilog/verilog.module#VerilogPageModule' },
     { path: 'library', loadChildren: './library/library.module#LibraryPageModule' },
     { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
-  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
-  { path: 'constraints', loadChildren: './constraints/constraints.module#ConstraintsPageModule' },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  { path: 'export', loadChildren: './export/export.module#ExportPageModule' },
-  { path: 'results', loadChildren: './results/results.module#ResultsPageModule' },
+    { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
+    { path: 'constraints', loadChildren: './constraints/constraints.module#ConstraintsPageModule' },
+    { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
+    { path: 'results', loadChildren: './results/results.module#ResultsPageModule' },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]
 })
 

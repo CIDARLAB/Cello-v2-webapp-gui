@@ -12,41 +12,6 @@ import { ProjectService } from './project.service';
 })
 export class AppComponent {
 
-    public pages = [{
-        name: 'Specification',
-        active: true,
-        pages: [{
-            name: 'Settings',
-            url: '/settings',
-            status: 'None',
-            message: '',
-        }, {
-            name: 'Library',
-            url: '/library',
-            status: 'None',
-            message: '',
-        }, {
-            name: 'Verilog',
-            url: '/verilog',
-            status: 'None',
-            message: ''
-        }, {
-            name: 'Constraints',
-            url: '/constraints',
-            status: 'None',
-            message: '',
-        }]
-    }, {
-        name: 'Results',
-        active: false,
-        pages: [{
-            name: 'View',
-            url: '/results',
-            status: 'None',
-            message: ''
-        }]
-    }];
-
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
@@ -100,22 +65,6 @@ export class AppComponent {
         return new Promise((resolve) => {
             recursive(resolve);
         });
-    }
-
-    activate(section: string) {
-        for (let s of this.pages) {
-            if (s.name == section) {
-                s.active = true;
-            }
-        }
-    }
-
-    disable(section: string) {
-        for (let s of this.pages) {
-            if (s.name == section) {
-                s.active = false;
-            }
-        }
     }
 
 }

@@ -17,6 +17,7 @@ export class Project {
 
     constructor() {
         this.verilog = '';
+        this.application = 'DNACompiler';
     }
 
 }

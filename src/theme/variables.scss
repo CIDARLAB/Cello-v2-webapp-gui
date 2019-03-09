@@ -4,6 +4,10 @@
 /** Ionic CSS Variables **/
 :root {
 
+	.popover-content {
+		--min-width: 80%;
+	}
+	
 	ion-toolbar {
 		height: 65px !important;
 	}

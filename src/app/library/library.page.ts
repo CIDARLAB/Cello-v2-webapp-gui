@@ -11,6 +11,7 @@ import { ProjectService } from '../project.service';
 export class LibraryPage implements OnInit {
 
     private height: number;
+    public mode: string;
 
     constructor(
         private platform: Platform,
@@ -19,6 +20,7 @@ export class LibraryPage implements OnInit {
         private menuController: MenuController,
     ) {
         this.height = this.platform.height() - 275;
+        this.mode = "registry";
     }
 
     ionViewWillEnter() {

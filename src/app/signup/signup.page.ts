@@ -32,7 +32,7 @@ export class SignupPage implements OnInit {
     }
 
     signup() {
-        this.api.signup(this.form.value).subscribe((result) => {
+        this.api.signup(this.form.value).subscribe((result: { token: string, session: string }) => {
             this.api.setLoginInfo(result);
             this.router.navigateByUrl("projects");
         }, (error) => {

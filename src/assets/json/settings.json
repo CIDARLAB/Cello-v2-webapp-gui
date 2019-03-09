@@ -140,12 +140,12 @@
                 {
                   "name": "AddPlasmidModules",
                   "type": "boolean",
-                  "value": true
+                  "value": false
                 },
                 {
                   "name": "AddBackbone",
                   "type": "boolean",
-                  "value": true
+                  "value": false
                 }
               ]
             }

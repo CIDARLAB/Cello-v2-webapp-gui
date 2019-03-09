@@ -4,26 +4,31 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { InputRowComponent } from '../input-row/input-row.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SynBioHubComponent } from '../synbiohub/synbiohub.component';
 
 @NgModule({
     declarations: [
         NavbarComponent,
-        InputRowComponent
+        InputRowComponent,
+        SynBioHubComponent,
     ],
     imports: [
         CommonModule,
         IonicModule.forRoot(),
         RouterModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
     ],
     entryComponents: [
         NavbarComponent,
-        InputRowComponent
+        InputRowComponent,
+        SynBioHubComponent,
     ],
     exports: [
         NavbarComponent,
-        InputRowComponent
+        InputRowComponent,
+        SynBioHubComponent,
     ]
 })
 export class ComponentsModule { }
