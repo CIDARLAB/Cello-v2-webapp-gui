@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { ApiService } from '../api.service';
 
 @Component({
     selector: 'app-home',
@@ -10,12 +11,17 @@ import { Router } from '@angular/router';
 export class HomePage {
 
     constructor(
-        private api: ApiService,
+        private menuController: MenuController,
         private router: Router,
+        private api: ApiService,
     ) {
         if (this.api.session) {
             this.router.navigateByUrl("projects");
         }
+    }
+
+    ionViewWillEnter() {
+        this.menuController.enable(false);
     }
 
 }
