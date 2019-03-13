@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class SynBioHubService {
 
     // private baseUrl = "http://127.0.0.1:8080/";
-    private baseUrl = "http://128.197.47.203:8080/";
-    // private baseUrl = "";
+    // private baseUrl = "http://128.197.47.203:8080/";
+    private baseUrl = "";
     public token: string;
 
     constructor(
