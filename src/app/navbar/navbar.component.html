@@ -4,21 +4,23 @@
   <ion-buttons slot="start">
 	<ion-menu-button autoHide="true"></ion-menu-button>
 	<div padding>
-	  <img class="navbar-logo" src="assets/images/banner.png">
+	  <img [ngStyle]="{'visibility': router.url == '/home' ? 'hidden' : ''}" class="navbar-logo" src="assets/images/banner.png">
 	</div>
   </ion-buttons>
   <ion-buttons slot="end">
-	<ion-button routerLink="/about" >
+	<ion-button (click)="about()" >
 	  <!-- <ion-icon name="information-circle"></ion-icon> -->
       About
 	</ion-button>
-	<ion-button routerLink="/projects" routerDirection="forward">
-	  <!-- <ion-icon name="albums"></ion-icon> -->
-      Projects
-	</ion-button>
-	<ion-button (click)="logout()">
-	  <!-- <ion-icon name="exit"></ion-icon> -->
-      Logout
-	</ion-button>
+	<div *ngIf="api.session">
+	  <ion-button routerLink="/projects" routerDirection="forward">
+		<!-- <ion-icon name="albums"></ion-icon> -->
+		Projects
+	  </ion-button>
+	  <ion-button (click)="logout()">
+		<!-- <ion-icon name="exit"></ion-icon> -->
+		Logout
+	  </ion-button>
+	</div>
   </ion-buttons>
 </ion-toolbar>

@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { HomePage } from './home.page';
 import { ComponentsModule } from '../components/components.module';
+import { HomePage } from './home.page';
 
 @NgModule({
     imports: [
@@ -17,7 +17,7 @@ import { ComponentsModule } from '../components/components.module';
                 component: HomePage
             }
         ]),
-        ComponentsModule
+        ComponentsModule,
     ],
     declarations: [HomePage]
 })
