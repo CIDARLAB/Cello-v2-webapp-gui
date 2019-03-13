@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MenuController, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { ApiService } from '../api.service';
 import { ProjectService } from '../project.service';
 
@@ -19,13 +19,8 @@ export class VerilogPage implements OnInit {
         private api: ApiService,
         private platform: Platform,
         private project: ProjectService,
-        private menuController: MenuController,
     ) {
         this.height = this.platform.height() - 275;
-    }
-
-    ionViewWillEnter() {
-        this.menuController.enable(true);
     }
 
     ionViewWillLoad() {

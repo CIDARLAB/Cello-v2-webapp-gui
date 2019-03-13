@@ -1,0 +1,12 @@
+<ion-content padding>
+  <ion-row>
+	<ion-col>
+	  <ion-input placeholder="project name" [(ngModel)]="project.project.name" spellcheck=false></ion-input>
+	</ion-col>
+  </ion-row>
+  <ion-row>
+	<ion-col>
+	  <ion-button (click)="project.submit()" padding>Submit</ion-button>
+	</ion-col>
+  </ion-row>
+</ion-content>

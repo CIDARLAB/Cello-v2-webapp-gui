@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { ProjectService } from '../project.service';
 
 @Component({
@@ -11,12 +10,7 @@ export class SettingsPage implements OnInit {
 
     constructor(
         public project: ProjectService,
-        private menuController: MenuController,
     ) {
-    }
-
-    ionViewWillEnter() {
-        this.menuController.enable(true);
     }
 
     ngOnInit() {

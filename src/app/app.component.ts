@@ -5,6 +5,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { ApiService } from './api.service';
 import { Storage } from '@ionic/storage';
 import { ProjectService } from './project.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -13,13 +14,14 @@ import { ProjectService } from './project.service';
 export class AppComponent {
 
     constructor(
-        private platform: Platform,
+        private menuController: MenuController,
+        private router: Router,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private storage: Storage,
         public api: ApiService,
         public project: ProjectService,
-        private menuController: MenuController,
+        private platform: Platform,
     ) {
         this.initializeApp();
     }
@@ -35,9 +37,9 @@ export class AppComponent {
             })
             .then(() => {
                 if (this.api.session) {
-                    // this.rootPage = 'ProjectsPage';
+                    this.router.navigateByUrl("projects");
                 } else {
-                    // this.rootPage = 'WelcomePage';
+                    this.router.navigateByUrl("home");
                 }
                 this.statusBar.styleDefault();
                 this.splashScreen.hide();

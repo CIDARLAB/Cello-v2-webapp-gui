@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, ModalController } from '@ionic/angular';
+import { MenuController, ModalController, Platform } from '@ionic/angular';
 import { AboutPage } from '../about/about.page';
 import { ApiService } from '../api.service';
 
@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
         private modalController: ModalController,
         public router: Router,
         public api: ApiService,
+        public platform: Platform,
     ) {
     }
 

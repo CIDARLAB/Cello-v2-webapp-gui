@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
 import { ApiService } from '../api.service';
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
@@ -18,12 +17,10 @@ export class ProjectsPage implements OnInit {
         private router: Router,
         public api: ApiService,
         public project: ProjectService,
-        private menuController: MenuController,
     ) {
     }
 
     ionViewWillEnter() {
-        this.menuController.enable(false);
         this.api.getLoginInfo().then((data: { token: string, session: string }) => {
             this.api.session = data;
         }).then(() => {
@@ -37,9 +34,8 @@ export class ProjectsPage implements OnInit {
     }
 
     create() {
-        this.project.disable("Results");
         this.project.project = new Project();
-        this.router.navigateByUrl("verilog");
+        this.router.navigateByUrl("spec");
     }
 
 }

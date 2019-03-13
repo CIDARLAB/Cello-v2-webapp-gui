@@ -1,6 +1,15 @@
 <ion-content padding>
   <ion-card padding>
-	<h3>About</h3>
+	<!-- <h3>About</h3> -->
+	<ion-row>
+	  <ion-col no-padding><h3>About</h3></ion-col>
+	  <ion-col no-padding>
+		<ion-button fill="clear" size="small" float-right (click)="close()">
+		  Close
+		  <ion-icon name="close"></ion-icon>
+		</ion-button>
+	  </ion-col>
+	</ion-row>
 	<p>Cello2 is the continuation of the Cello genetic circuit design software.
 	The original version of Cello was published in <i>Science</i> (<a href="http://dx.doi.org/10.1126/science.aac7341">link</a>):</p>
 	<div style="margin: 0 .4em 0 1.5em;">

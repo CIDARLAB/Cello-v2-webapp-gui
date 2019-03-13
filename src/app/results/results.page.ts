@@ -23,16 +23,11 @@ export class ResultsPage implements OnInit {
     constructor(
         private api: ApiService,
         private http: HttpClient,
-        private menuController: MenuController,
         public project: ProjectService,
     ) {
         this.result = {};
         // this.project.project.name = "a";
         this.registry = this.project.registry;
-    }
-
-    ionViewWillEnter() {
-        this.menuController.enable(true);
     }
 
     ngOnInit() {
@@ -46,15 +41,23 @@ export class ResultsPage implements OnInit {
         return this.api.results(this.api.session, this.project.project.name, file);
     }
 
+    isDot() {
+        if (this.result['name']) {
+            if (this.result['name'].endsWith(".dot"))
+                return true;
+        }
+        else
+            return false;
+    }
+
     show(result: object) {
         this.result = result;
-        d3.select(this.view.nativeElement).selectAll(function() { return this.childNodes; }).remove();
+        // d3.select(this.view.nativeElement).selectAll(function() { return this.childNodes; }).remove();
         if (result['name'].endsWith(".dot")) {
             this.results(result['name']).subscribe(async (data) => {
                 // const reader = new FileReader();
                 // let str = reader.readAsText(data);
                 const text = await new Response(data).text();
-                console.log(text);
                 d3.select(this.view.nativeElement).graphviz().renderDot(data);
             });
         }

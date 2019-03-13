@@ -2,13 +2,13 @@
   <ion-title>
   </ion-title>
   <ion-buttons slot="start">
-	<ion-menu-button autoHide="true"></ion-menu-button>
+	<!-- <ion-menu-button autoHide="true"></ion-menu-button> -->
 	<div padding>
 	  <img [ngStyle]="{'visibility': router.url == '/home' ? 'hidden' : ''}" class="navbar-logo" src="assets/images/banner.png">
 	</div>
   </ion-buttons>
   <ion-buttons slot="end">
-	<ion-button (click)="about()" >
+	<ion-button (click)="about()">
 	  <!-- <ion-icon name="information-circle"></ion-icon> -->
       About
 	</ion-button>
