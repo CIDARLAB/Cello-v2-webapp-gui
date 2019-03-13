@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController, Platform } from '@ionic/angular';
+import { AboutPage } from '../about/about.page';
+import { ApiService } from '../api.service';
 
 @Component({
     selector: 'app-navbar',
@@ -11,9 +12,11 @@ import { MenuController } from '@ionic/angular';
 export class NavbarComponent implements OnInit {
 
     constructor(
-        private api: ApiService,
-        private router: Router,
         private menuController: MenuController,
+        private modalController: ModalController,
+        public router: Router,
+        public api: ApiService,
+        public platform: Platform,
     ) {
     }
 
@@ -23,6 +26,14 @@ export class NavbarComponent implements OnInit {
         this.api.logout();
         this.menuController.enable(false);
         this.router.navigateByUrl("home");
+    }
+
+    async about() {
+        console.log(this.router.url);
+        const modal = await this.modalController.create({
+            component: AboutPage,
+        });
+        return await modal.present();
     }
 
 }

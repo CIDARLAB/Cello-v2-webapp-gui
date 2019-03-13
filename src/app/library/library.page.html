@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <!-- <ion-card> -->
 	<ion-list>
 	  <ion-segment [(ngModel)]="mode">
 		<ion-segment-button value="registry">
@@ -14,26 +14,29 @@
 		</ion-segment-button>
 	  </ion-segment>
 	</ion-list>
-  </ion-card>
-  <ion-card>
-	
-  </ion-card>
-  <ion-card *ngIf="mode == 'registry'">
-	<ion-list>
-	  <ion-item style="width: 60%">
-		<ion-label position="stacked">Registry</ion-label>
-		<ion-select interface="popover" [(ngModel)]="project.registry" (ionChange)="project.updateCollections()">
-		  <ion-select-option value="{{r}}" *ngFor="let r of project.registries">{{r}}</ion-select-option>
-		</ion-select>
-	  </ion-item>
-	  <ion-item style="width: 40%">
-		<ion-label position="stacked">Collection</ion-label>
-		<ion-select interface="popover" [(ngModel)]="project.collection">
-		  <ion-select-option value="{{c.uri}}" *ngFor="let c of project.collections">{{c.name}}</ion-select-option>
-		</ion-select>
-	  </ion-item>
-	</ion-list>
-  </ion-card>
+	<!-- </ion-card> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" text-center no-padding>
+		<ion-card *ngIf="mode == 'registry'">
+		  <ion-list>
+			<ion-item style="width: 60%">
+			  <ion-label position="stacked">Registry</ion-label>
+			  <ion-select interface="popover" [(ngModel)]="project.registry" (ionChange)="project.updateCollections()">
+				<ion-select-option value="{{r}}" *ngFor="let r of project.registries">{{r}}</ion-select-option>
+			  </ion-select>
+			</ion-item>
+			<ion-item style="width: 40%">
+			  <ion-label position="stacked">Collection</ion-label>
+			  <ion-select interface="popover" [(ngModel)]="project.collection">
+				<ion-select-option value="{{c.uri}}" *ngFor="let c of project.collections">{{c.name}}</ion-select-option>
+			  </ion-select>
+			</ion-item>
+		  </ion-list>
+		</ion-card>
+	  </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-card #view>
   </ion-card>
 </ion-content>

@@ -13,11 +13,12 @@ export class Project {
     constraints: object;
     library: object;
 
-    results: {};
+    results: object;
 
     constructor() {
         this.verilog = '';
         this.application = 'DNACompiler';
+        this.results = {};
     }
 
 }

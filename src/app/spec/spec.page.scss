@@ -1,0 +1,9 @@
+.final-tab {
+    border-left: 1px solid #ccc;
+}
+
+.tab-selected {
+	background: #3880ff !important;
+	color: white !important;
+	--color-selected: var(--ion-color-dark);
+}

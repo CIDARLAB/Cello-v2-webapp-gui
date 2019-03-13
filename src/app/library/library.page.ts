@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { ApiService } from '../api.service';
 import { ProjectService } from '../project.service';
 
@@ -17,14 +17,9 @@ export class LibraryPage implements OnInit {
         private platform: Platform,
         public api: ApiService,
         public project: ProjectService,
-        private menuController: MenuController,
     ) {
         this.height = this.platform.height() - 275;
         this.mode = "registry";
-    }
-
-    ionViewWillEnter() {
-        this.menuController.enable(true);
     }
 
     ngOnInit() {

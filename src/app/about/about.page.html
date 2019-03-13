@@ -1,20 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-	<ion-title>
-	</ion-title>
-	<ion-buttons slot="start">
-	  <div padding>
-		<img class="navbar-logo" src="assets/images/banner.png">
-	  </div>
-	</ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content padding>
   <ion-card padding>
-	<h3>About</h3>
+	<!-- <h3>About</h3> -->
+	<ion-row>
+	  <ion-col no-padding><h3>About</h3></ion-col>
+	  <ion-col no-padding>
+		<ion-button fill="clear" size="small" float-right (click)="close()">
+		  Close
+		  <ion-icon name="close"></ion-icon>
+		</ion-button>
+	  </ion-col>
+	</ion-row>
 	<p>Cello2 is the continuation of the Cello genetic circuit design software.
-	The original version of Cello was published in <i>Science</i> (<a href="http://dx.doi.org/10.1126/science.aac7341">link</a>):</p>
+	The original version of Cello was published in <i>Science</i> (<a href="http://dx.doi.org/10.1126/science.aac7341" target="_blank">link</a>):</p>
 	<div style="margin: 0 .4em 0 1.5em;">
 	  Nielsen, A. A. K. <i>et al.</i> Genetic circuit design automation. <i>Science</i>&nbsp;<b>352</b>, aac7341 (2016).
 	</div>
@@ -38,25 +35,25 @@
 	  <li>Elizabeth Strychalski</li>
 	  <li>Prashant Vaidyanathan</li>
 	  <li>Shuyi Zhang</li>
-	  <li><i><a href="http://cidarlab.org/">Douglas Densmore</a></i></li>
-	  <li><i><a href="http://web.mit.edu/voigtlab/">Chris Voigt</a></i></li>
+	  <li><i><a href="http://cidarlab.org/" target="_blank">Douglas Densmore</a></i></li>
+	  <li><i><a href="http://web.mit.edu/voigtlab/" target="_blank">Chris Voigt</a></i></li>
 	</ul>
 	<h3>Source</h3>
 	<p>
 	  The Cello2 source can be found at:
-	  <br><a href="http://www.github.com/CIDARLAB/Cello2">github.com/CIDARLAB/Cello2</a>.
+	  <br><a href="http://www.github.com/CIDARLAB/Cello2" target="_blank">github.com/CIDARLAB/Cello2</a>.
 	</p>
 	<p>
 	  The source for this webapp can be found at:
-	  <br><a href="http://www.github.com/CIDARLAB/Cello2-webapp">github.com/CIDARLAB/Cello2-webapp</a>.
+	  <br><a href="http://www.github.com/CIDARLAB/Cello2-webapp" target="_blank">github.com/CIDARLAB/Cello2-webapp</a>.
 	</p>
 	<p>
 	  The source for the GUI of this webapp can be found at:
-	  <br><a href="http://www.github.com/CIDARLAB/Cello2-webapp-gui">github.com/CIDARLAB/Cello2-webapp-gui</a>.
+	  <br><a href="http://www.github.com/CIDARLAB/Cello2-webapp-gui" target="_blank">github.com/CIDARLAB/Cello2-webapp-gui</a>.
 	</p>
 	<p>
 	  The source for the original version of Cello can be found at:
-	  <br><a href="http://www.github.com/CIDARLAB/cello">github.com/CIDARLAB/cello</a>.
+	  <br><a href="http://www.github.com/CIDARLAB/cello" target="_blank">github.com/CIDARLAB/cello</a>.
 	</p>
   </ion-card>
 </ion-content>

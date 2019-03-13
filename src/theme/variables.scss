@@ -3,9 +3,26 @@
 
 /** Ionic CSS Variables **/
 :root {
+	.custom-modal {
+		.modal-wrapper {
+			--max-height: 200px;
+		}
+	}
 
-	.popover-content {
-		--min-width: 80%;
+	// .popover-content {
+	// 	--min-width: 80%;
+	// }
+
+	ion-popover{
+		.popover-wrapper{
+			ion-label {
+				padding-right: 10px;
+			}
+			.popover-content{
+				width: auto;
+				max-width: 90vw;
+			}
+		}
 	}
 	
 	ion-toolbar {

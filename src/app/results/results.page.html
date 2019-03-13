@@ -17,18 +17,14 @@
 	  </ion-item>
 	</ion-list>
   </ion-card>
-  <ion-card>
-	<div #graphviz></div>
+  <div *ngIf="isDot()">
+	<ion-card>
+	  <div #graphviz></div>
+	</ion-card>
+  </div>
+  <ion-card style="max-width: 500px;">
+	<div #sbh *ngIf="result['type'] === 'structure' && result['name'].endsWith('.xml')">
+	  <app-synbiohub [result]="result"></app-synbiohub>
+	</div>
   </ion-card>
-  <ion-grid>
-    <ion-row>
-	  <ion-col size-sm="10" size-md="6" text-center>
-		<ion-card>
-		  <div #sbh *ngIf="result['type'] === 'structure' && result['name'].endsWith('.xml')">
-			<app-synbiohub [result]="result"></app-synbiohub>
-		  </div>
-		</ion-card>
-	  </ion-col>
-	</ion-row>
-  </ion-grid>
 </ion-content>

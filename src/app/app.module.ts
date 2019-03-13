@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
 import { FormsModule } from '@angular/forms';
+import { AboutPageModule } from './about/about.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
         IonicModule.forRoot(),
         IonicStorageModule.forRoot(),
         AppRoutingModule,
+        AboutPageModule,
     ],
     providers: [
         StatusBar,

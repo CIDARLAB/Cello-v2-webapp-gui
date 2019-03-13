@@ -11,41 +11,6 @@ import { SynBioHubService } from './synbiohub.service';
 })
 export class ProjectService {
 
-    public pages = [{
-        name: 'Specification',
-        active: true,
-        pages: [{
-            name: 'Settings',
-            url: '/settings',
-            status: 'None',
-            message: '',
-        }, {
-            name: 'Library',
-            url: '/library',
-            status: 'None',
-            message: '',
-        }, {
-            name: 'Verilog',
-            url: '/verilog',
-            status: 'None',
-            message: ''
-        }, {
-            name: 'Constraints',
-            url: '/constraints',
-            status: 'None',
-            message: '',
-        }]
-    }, {
-        name: 'Results',
-        active: false,
-        pages: [{
-            name: 'View',
-            url: '/results',
-            status: 'None',
-            message: ''
-        }]
-    }];
-
     public project: Project;
 
     public settingsDefinition: object;
@@ -81,22 +46,6 @@ export class ProjectService {
             this.settingsDefinition = data;
         });
         this.project = new Project();
-    }
-
-    activate(section: string) {
-        for (let s of this.pages) {
-            if (s.name == section) {
-                s.active = true;
-            }
-        }
-    }
-
-    disable(section: string) {
-        for (let s of this.pages) {
-            if (s.name == section) {
-                s.active = false;
-            }
-        }
     }
 
     getSettingsDefinition() {
@@ -211,8 +160,8 @@ export class ProjectService {
                     this.api.results(body, name).subscribe((result) => {
                         this.project.results = result;
                     });
-                    this.activate('Results');
-                    this.router.navigateByUrl("results");
+                    this.toast("Results available.");
+                    // this.router.navigateByUrl("results");
                 }
             })
             .catch((error) => {
