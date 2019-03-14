@@ -6,12 +6,14 @@ import { InputRowComponent } from '../input-row/input-row.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SynBioHubComponent } from '../synbiohub/synbiohub.component';
+import { ViSbolComponent } from '../visbol/visbol.component';
 
 @NgModule({
     declarations: [
         NavbarComponent,
         InputRowComponent,
         SynBioHubComponent,
+        ViSbolComponent,
     ],
     imports: [
         CommonModule,
@@ -24,11 +26,13 @@ import { SynBioHubComponent } from '../synbiohub/synbiohub.component';
         NavbarComponent,
         InputRowComponent,
         SynBioHubComponent,
+        ViSbolComponent,
     ],
     exports: [
         NavbarComponent,
         InputRowComponent,
         SynBioHubComponent,
+        ViSbolComponent,
     ]
 })
 export class ComponentsModule { }

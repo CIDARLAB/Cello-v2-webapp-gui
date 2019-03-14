@@ -16,6 +16,16 @@ export class SynBioHubService {
         private http: HttpClient,
     ) { }
 
+    visualization(uri: string): Observable<string> {
+        const url = uri + '/visualization';
+        return this.http.get<string>(url, { responseType: 'text' as 'json' });
+    }
+
+    sbol(collection: string): Observable<string> {
+        const url = collection + '/sbol';
+        return this.http.get<string>(url, { responseType: 'text' as 'json' });
+    }
+
     login(body: { email: string, password: string }, registry: string): Observable<string> {
         const url = this.baseUrl + 'synbiohub/login?u=' + encodeURIComponent(registry);
         return this.http.post<string>(url, body, { responseType: 'text' as 'json' });
