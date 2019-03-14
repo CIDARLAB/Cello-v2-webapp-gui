@@ -4,6 +4,7 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
+    "postinstall": "node patch.js",
     "install": "napa maiermic/antlr4-ace-ext maiermic/ace-worker",
     "ng": "ng",
     "start": "ng serve",
