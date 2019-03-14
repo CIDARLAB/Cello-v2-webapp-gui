@@ -42,6 +42,7 @@
     "ionicons": "^4.5.5",
     "napa": "^3.0.0",
     "rxjs": "~6.3.3",
+    "sboljs": "^2.1.13",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
