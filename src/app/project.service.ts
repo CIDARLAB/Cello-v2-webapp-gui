@@ -5,6 +5,7 @@ import { ToastController, AlertController } from '@ionic/angular';
 import { ApiService } from './api.service';
 import { Project } from './project';
 import { SynBioHubService } from './synbiohub.service';
+import { Constraint } from './constraint';
 
 @Injectable({
     providedIn: 'root'
@@ -25,8 +26,10 @@ export class ProjectService {
     public registry: string;
     public collection: string;
 
-    public inputConstraints = <{}[]>[];
-    public outputConstraints = <{}[]>[];
+    public inputConstraints: Constraint[];
+    public outputConstraints: Constraint[];
+
+    public validCallbacks: object;
 
     constructor(
         private http: HttpClient,
@@ -36,6 +39,8 @@ export class ProjectService {
         private toastController: ToastController,
         private router: Router,
     ) {
+        this.inputConstraints = [];
+        this.outputConstraints = [];
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
         this.updateCollections();
@@ -46,6 +51,19 @@ export class ProjectService {
             this.settingsDefinition = data;
         });
         this.project = new Project();
+        this.validCallbacks = {};
+    }
+
+    valid(name: string) {
+        let callback = this.validCallbacks[name];
+        if (callback) {
+            return callback();
+        }
+        return true;
+    }
+
+    register(name: string, callback: () => boolean) {
+        this.validCallbacks[name] = callback;
     }
 
     getSettingsDefinition() {

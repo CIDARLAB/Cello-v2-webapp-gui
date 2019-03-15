@@ -20,7 +20,13 @@ export class LibraryPage implements OnInit {
     ) {
         this.height = this.platform.height() - 275;
         this.mode = "registry";
+        this.project.register('library', this.valid);
     }
+
+    public valid = (() => {
+        if (this.mode === 'registry')
+            return this.project.collection && this.project.registry;
+    }).bind(this);
 
     ngOnInit() {
     }

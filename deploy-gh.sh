@@ -9,8 +9,8 @@ rm README.md
 rm -rf src
 rm node_modules
 cp -r www/* .
-rm .gitignore config.xml angular.json ionic.config.json package.json package-lock.json tsconfig.json tslint.json
-rm -rf www node_modules resources e2e platforms plugins
+rm .gitignore angular.json config.xml ionic.config.json package.json package-lock.json tsconfig.json tslint.json
+rm -rf www node_modules resources e2e
 git add .
 git reset deploy-gh.sh
 git commit -m "Publishing to gh-pages."

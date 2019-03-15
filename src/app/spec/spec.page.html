@@ -2,26 +2,25 @@
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="verilog">
-      <ion-badge color="warning"></ion-badge>
+      <ion-badge color="warning" *ngIf="!project.valid('verilog')"></ion-badge>
       <ion-icon name="code-working"></ion-icon>
       <ion-label>Verilog</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="library">
-      <ion-badge color="success"></ion-badge>
-      <ion-badge color="success"></ion-badge>
+      <ion-badge color="warning" *ngIf="!project.valid('library')"></ion-badge>
       <ion-icon name="book"></ion-icon>
       <ion-label>Library</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="settings">
-      <ion-badge color="success"></ion-badge>
+      <ion-badge color="warning" *ngIf="!project.valid('settings')"></ion-badge>
       <ion-icon name="options"></ion-icon>
       <ion-label>Settings</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="constraints">
-      <ion-badge color="success"></ion-badge>
+      <ion-badge color="warning" *ngIf="!project.valid('constraints')"></ion-badge>
       <ion-icon name="crop"></ion-icon>
       <ion-label>Constraits</ion-label>
     </ion-tab-button>

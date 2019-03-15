@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MenuController, Platform } from '@ionic/angular';
-import { ApiService } from './api.service';
 import { Storage } from '@ionic/storage';
+import { ApiService } from './api.service';
 import { ProjectService } from './project.service';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
     constructor(
-        private menuController: MenuController,
+        private platform: Platform,
         private router: Router,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private storage: Storage,
         public api: ApiService,
         public project: ProjectService,
-        private platform: Platform,
+        private menuController: MenuController,
     ) {
         this.initializeApp();
     }

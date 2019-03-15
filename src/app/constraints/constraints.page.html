@@ -6,37 +6,37 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="12" offset-sm="0" size-md="8" offset-md="2" size-lg="4" offset-lg="4" text-center>
-  <ion-card>
-	<ion-list>
-	  <ion-list-header>
-		<ion-col text-left>
-          <b>Input</b>
-		</ion-col>
-		<ion-col text-right>
-		  <ion-button fill="clear" (click)="addInputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
-		</ion-col>
-      </ion-list-header>
-	  <div *ngFor="let i of project.inputConstraints; let ii=index">
-	  	<app-input-row [data]="i" (onDelete)="onDeleteInput($event)"></app-input-row>
-	  </div>
-	</ion-list>
-  </ion-card>
-  <ion-card>
-	<ion-list>
-	  <ion-list-header>
-		<ion-col text-left>
-          <b>Output</b>
-		</ion-col>
-		<ion-col text-right>
-		  <ion-button fill="clear" (click)="addOutputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
-		</ion-col>
-      </ion-list-header>
-	  <div *ngFor="let i of project.outputConstraints; let ii=index">
-	  	<app-input-row [data]="i" (onDelete)="onDeleteOutput($event)"></app-input-row>
-	  </div>
-	</ion-list>
-  </ion-card>
-  </ion-col>
+		<ion-card>
+		  <ion-list>
+			<ion-list-header>
+			  <ion-col text-left>
+				<b>Input</b>
+			  </ion-col>
+			  <ion-col text-right>
+				<ion-button fill="clear" (click)="addInputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
+			  </ion-col>
+			</ion-list-header>
+			<div *ngFor="let i of project.inputConstraints; let ii=index">
+	  		  <app-constraint [constraint]="i" (onDelete)="onDeleteInput($event)"></app-constraint>
+			</div>
+		  </ion-list>
+		</ion-card>
+		<ion-card>
+		  <ion-list>
+			<ion-list-header>
+			  <ion-col text-left>
+				<b>Output</b>
+			  </ion-col>
+			  <ion-col text-right>
+				<ion-button fill="clear" (click)="addOutputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
+			  </ion-col>
+			</ion-list-header>
+			<div *ngFor="let i of project.outputConstraints; let ii=index">
+	  		  <app-constraint [constraint]="i" (onDelete)="onDeleteOutput($event)"></app-constraint>
+			</div>
+		  </ion-list>
+		</ion-card>
+	  </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

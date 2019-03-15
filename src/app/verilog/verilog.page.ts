@@ -21,7 +21,16 @@ export class VerilogPage implements OnInit {
         private project: ProjectService,
     ) {
         this.height = this.platform.height() - 275;
+        this.project.register('verilog', this.valid);
     }
+
+    public valid = (() => {
+        let rtn = null;
+        try {
+            rtn = (window['editor'].getSession().getAnnotations().length === 0) && (window['editor'].getValue());
+        } catch { }
+        return rtn;
+    }).bind(window);
 
     ionViewWillLoad() {
         this.init();
