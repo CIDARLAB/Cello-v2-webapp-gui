@@ -42,7 +42,7 @@ export class SynBioHubComponent implements OnInit {
             id: new FormControl(null, Validators.required),
             version: new FormControl(null, Validators.compose([
                 Validators.required,
-                Validators.pattern('[0-9]+')
+                Validators.pattern('^[0-9]+$')
             ])),
             name: new FormControl(null, Validators.required),
             description: new FormControl(null, Validators.required),
