@@ -115,10 +115,10 @@ export class ProjectService {
         let input = {};
         let output = {};
         for (let constraint of this.inputConstraints) {
-            input[constraint['input']] = constraint['value']
+            input[constraint.node] = constraint.device
         }
         for (let constraint of this.outputConstraints) {
-            output[constraint['input']] = constraint['value']
+            output[constraint.node] = constraint.device
         }
         let body = {
             input_constraints: input,
