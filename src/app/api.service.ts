@@ -44,8 +44,8 @@ export class ApiService {
         return this.http.post<object>(url, body);
     }
 
-    signup(body: object): Observable<object> {
-        const url = this.baseUrl + 'signup';
+    signup(body: { username: string, password: string }): Observable<object> {
+        const url = this.baseUrl + 'users/signup';
         return this.http.post<object>(url, body);
     }
 

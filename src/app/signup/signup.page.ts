@@ -20,7 +20,7 @@ export class SignupPage implements OnInit {
         this.form = this.formBuilder.group({
             name: new FormControl(null),
             institution: new FormControl(null),
-            email: new FormControl(null, Validators.compose([
+            username: new FormControl(null, Validators.compose([
                 Validators.required,
                 Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
             ])),
