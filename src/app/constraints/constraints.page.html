@@ -16,7 +16,7 @@
 				<ion-button fill="clear" (click)="addInputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
 			  </ion-col>
 			</ion-list-header>
-			<div *ngFor="let i of project.inputConstraints; let ii=index">
+			<div *ngFor="let i of project.project.constraints.input; let ii=index">
 	  		  <app-constraint [constraint]="i" (onDelete)="onDeleteInput($event)"></app-constraint>
 			</div>
 		  </ion-list>
@@ -31,7 +31,7 @@
 				<ion-button fill="clear" (click)="addOutputConstraint()"><ion-icon name="add"></ion-icon>New constraint</ion-button>
 			  </ion-col>
 			</ion-list-header>
-			<div *ngFor="let i of project.outputConstraints; let ii=index">
+			<div *ngFor="let i of project.project.constraints.output; let ii=index">
 	  		  <app-constraint [constraint]="i" (onDelete)="onDeleteOutput($event)"></app-constraint>
 			</div>
 		  </ion-list>

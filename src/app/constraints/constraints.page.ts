@@ -16,11 +16,11 @@ export class ConstraintsPage implements OnInit {
     }
 
     public valid = (() => {
-        for (let c of this.project.inputConstraints) {
+        for (let c of this.project.project.constraints.input) {
             if (!c.valid())
                 return false;
         }
-        for (let c of this.project.outputConstraints) {
+        for (let c of this.project.project.constraints.output) {
             if (!c.valid())
                 return false;
         }
@@ -31,19 +31,19 @@ export class ConstraintsPage implements OnInit {
     }
 
     addInputConstraint() {
-        this.project.inputConstraints.push(new Constraint());
+        this.project.project.constraints.input.push(new Constraint());
     }
 
     addOutputConstraint() {
-        this.project.outputConstraints.push(new Constraint());
+        this.project.project.constraints.output.push(new Constraint());
     }
 
     onDeleteInput(_event) {
-        this.project.inputConstraints = this.project.inputConstraints.filter((i: Constraint) => i.id !== _event.id)
+        this.project.project.constraints.input = this.project.project.constraints.input.filter((i: Constraint) => i.id !== _event.id)
     }
 
     onDeleteOutput(_event) {
-        this.project.outputConstraints = this.project.outputConstraints.filter((i: Constraint) => i.id !== _event.id)
+        this.project.project.constraints.output = this.project.project.constraints.output.filter((i: Constraint) => i.id !== _event.id)
     }
 
 }

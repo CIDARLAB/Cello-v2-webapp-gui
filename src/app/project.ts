@@ -1,3 +1,5 @@
+import { Constraint } from './constraint';
+
 export class Project {
 
     name: string;
@@ -5,12 +7,15 @@ export class Project {
     id: string;
 
     verilog: string;
-    settings = {
-        application: '',
-        algorithms: {},
-        parameters: {}
+    settings: {
+        application: string,
+        algorithms: object,
+        parameters: object
     };
-    constraints: object;
+    constraints: {
+        input: Constraint[],
+        output: Constraint[]
+    };
     library: object;
 
     results: object;
@@ -19,6 +24,8 @@ export class Project {
         this.verilog = '';
         this.application = 'DNACompiler';
         this.results = {};
+        this.settings = { application: '', algorithms: {}, parameters: {} };
+        this.constraints = { input: [], output: [] };
     }
 
 }

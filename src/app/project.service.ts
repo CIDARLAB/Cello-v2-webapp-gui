@@ -26,9 +26,6 @@ export class ProjectService {
     public registry: string;
     public collection: string;
 
-    public inputConstraints: Constraint[];
-    public outputConstraints: Constraint[];
-
     public validCallbacks: object;
 
     constructor(
@@ -39,8 +36,6 @@ export class ProjectService {
         private toastController: ToastController,
         private router: Router,
     ) {
-        this.inputConstraints = [];
-        this.outputConstraints = [];
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
         this.updateCollections();
@@ -114,10 +109,10 @@ export class ProjectService {
     constraints() {
         let input = {};
         let output = {};
-        for (let constraint of this.inputConstraints) {
+        for (let constraint of this.project.constraints.input) {
             input[constraint.node] = constraint.device
         }
-        for (let constraint of this.outputConstraints) {
+        for (let constraint of this.project.constraints.output) {
             output[constraint.node] = constraint.device
         }
         let body = {
