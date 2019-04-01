@@ -36,7 +36,7 @@ export class AppComponent {
                 return this.api.getLoginInfo();
             })
             .then(() => {
-                if (this.api.session) {
+                if (this.api.token) {
                     this.router.navigateByUrl("projects");
                 } else {
                     this.router.navigateByUrl("home");

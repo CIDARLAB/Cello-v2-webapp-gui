@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-signup',
@@ -32,8 +33,9 @@ export class SignupPage implements OnInit {
     }
 
     signup() {
-        this.api.signup(this.form.value).subscribe((result: { token: string, session: string }) => {
-            this.api.setLoginInfo(result);
+        this.api.signup(this.form.value).subscribe((result: HttpResponse<any>) => {
+            const token = result.headers.get('Authorization');
+            this.api.setLoginInfo(token);
             this.router.navigateByUrl("projects");
         }, (error) => {
         });

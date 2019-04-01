@@ -38,10 +38,6 @@ export class ProjectService {
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
-        this.updateCollections();
-        this.api.getLoginInfo().then((data: { token: string, session: string }) => {
-            this.api.session = data;
-        });
         this.getSettingsDefinition().then((data) => {
             this.settingsDefinition = data;
         });
@@ -154,23 +150,17 @@ export class ProjectService {
         const name = this.project.name;
         return Promise.resolve()
             .then(() => {
-                let body = {
-                    session: this.api.session.session,
-                    token: this.api.session.token,
-                    specification: this.specification()
-                };
+                let body = this.specification();
                 this.toast("Sending specification and building library.");
                 return this.api.specify(body, name).toPromise();
             })
             .then(() => {
                 this.toast("Job submitted. Results will appear after successful execution.");
-                const body = this.api.session;
-                return this.api.execute(body, name).toPromise();
+                return this.api.execute(name).toPromise();
             })
             .then(() => {
-                const body = this.api.session;
                 if (this.project.name == name) {
-                    this.api.results(body, name).subscribe((result) => {
+                    this.api.results(name).subscribe((result) => {
                         this.project.results = result;
                     });
                     this.toast("Results available.");
