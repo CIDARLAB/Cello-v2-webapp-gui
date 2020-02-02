@@ -14,7 +14,7 @@ const _ = d3Graphviz.graphviz;
     styleUrls: ['./results.page.scss'],
 })
 export class ResultsPage implements OnInit {
-    @ViewChild('graphviz')
+    @ViewChild('graphviz', {static: true})
     private view: ElementRef;
     public result: object;
     public registry: string;
