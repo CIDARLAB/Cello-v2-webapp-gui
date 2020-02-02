@@ -51,6 +51,11 @@ export class ApiService {
         return this.http.post<object>(url, body, { observe: 'response' });
     }
 
+	ucfs(): Observable<object[]> {
+        const url = this.baseUrl + 'resources/ucfs';
+        return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });
+    }
+
     projects(): Observable<object[]> {
         const url = this.baseUrl + 'projects';
         return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });

@@ -16,6 +16,7 @@ export class ProjectService {
 
     public settingsDefinition: object;
 
+    // Registry
     public registries = [
         'https://synbiohub.org/',
         'https://synbiohub.utah.edu/',
@@ -25,6 +26,14 @@ export class ProjectService {
     public collections = [];
     public registry: string;
     public collection: string;
+
+    // UCF
+    public ucfs = [];
+    public ucf: string;
+    public inputSensorFiles = [];
+    public inputSensorFile: string;
+    public outputDeviceFiles = [];
+    public outputDeviceFile: string;
 
     public validCallbacks: object;
 
@@ -71,6 +80,11 @@ export class ProjectService {
     updateCollections() {
         this.synbiohub.collections(this.registry).subscribe((result) => {
             this.collections = result;
+        });
+    }
+
+    updateUCFs() {
+        this.api.ucfs().subscribe((result) => {
         });
     }
 

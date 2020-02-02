@@ -19,7 +19,7 @@ export class LibraryPage implements OnInit {
         public project: ProjectService,
     ) {
         this.height = this.platform.height() - 275;
-        this.mode = "registry";
+        this.mode = "ucf";
         this.project.register('library', this.valid);
         this.project.updateCollections();
     }
@@ -27,6 +27,9 @@ export class LibraryPage implements OnInit {
     public valid = (() => {
         if (this.mode === 'registry')
             return this.project.collection && this.project.registry;
+        if (this.mode === 'ucf')
+            return true;
+        return false;
     }).bind(this);
 
     ngOnInit() {
