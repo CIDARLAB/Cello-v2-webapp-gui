@@ -2,11 +2,11 @@
   <app-navbar></app-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
   <form [formGroup]="form">
     <ion-grid>
       <ion-row>
-        <ion-col size-sm="10" offset-sm="1" size-md="6" offset-md="3" text-center>
+        <ion-col size-sm="10" offset-sm="1" size-md="6" offset-md="3" class="ion-text-center">
           <img id="logo" src="assets/images/logo.png"/>
           <ion-card>
             <ion-card-content>
@@ -27,11 +27,11 @@
               </ion-list>
             </ion-card-content>
           </ion-card>
-          <div padding>
+          <div class="ion-padding">
             <ion-button (click)="signup()" [disabled]="!form.valid">Sign up</ion-button>
           </div>
           <!-- <ion-card *ngIf="error" color="danger"> -->
-          <!--   <div padding> -->
+          <!--   <div class="ion-padding"> -->
           <!--     {{error}} -->
           <!--   </div> -->
           <!-- </ion-card> -->
