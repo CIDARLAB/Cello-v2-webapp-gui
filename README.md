@@ -10,6 +10,16 @@ This is the GUI that supports the [Cello2-webapp](https://github.com/CIDARLAB/Ce
 
 See the documentation for the Ionic Framework [here](https://ionicframework.com/).
 
+## Clone the repository
+
+	git clone https://github.com/CIDARLAB/Cello2-webapp-gui.git
+
+## Prepare environment
+
+	npm install -g @ionic/cli @angular/cli
+	cd Cello2-webapp-gui
+	npm install
+
 ## Serve for development
 
 	ionic serve --cordova --platform browser
