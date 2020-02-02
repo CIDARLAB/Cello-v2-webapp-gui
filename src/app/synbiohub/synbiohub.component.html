@@ -13,7 +13,7 @@
 		<ion-input formControlName="password" type="password" placeholder="password"></ion-input>
 	  </ion-item>
 	</ion-list>
-	<div padding>
+	<div class="ion-padding">
       <ion-button (click)="login(loginForm.value)" [disabled]="!loginForm.valid">Login</ion-button>
     </div>
   </form>
@@ -49,7 +49,7 @@
 		<ion-checkbox formControlName="overwrite"></ion-checkbox>
 	  </ion-item>
 	</ion-list>
-	<div padding>
+	<div class="ion-padding">
 	  <ion-row>
 		<ion-col>
 		  <!-- <ion-button expand="block" (click)="dolog()">Submit</ion-button> -->
@@ -73,7 +73,7 @@
 		<ion-checkbox formControlName="overwrite"></ion-checkbox>
 	  </ion-item>
 	</ion-list>
-	<div padding>
+	<div class="ion-padding">
 	  <ion-row>
 		<ion-col>
 		  <ion-button expand="block" (click)="submit(addToCollection.value)" [disabled]="!addToCollection.valid">Submit</ion-button>

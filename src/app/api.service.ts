@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs';
@@ -12,68 +12,75 @@ export class ApiService {
     // private baseUrl = "http://128.197.47.203:8080/";
     private baseUrl = "";
 
-    public session: { session: string, token: string } | null = null;
+    public token: string | null = null;
 
     constructor(
         private http: HttpClient,
         private storage: Storage,
     ) {
-
+        this.getLoginInfo().then((data) => {
+            this.token = data;
+        });
     }
 
-    getLoginInfo(): Promise<object> {
-        return this.storage.get('session');
+    getLoginInfo(): Promise<string> {
+        return this.storage.get('token');
     }
 
-    setLoginInfo(session: { session: string, token: string }) {
-        this.session = session;
-        this.storage.set('session', session);
+    setLoginInfo(token: string) {
+        this.token = token;
+        this.storage.set('token', token);
     }
 
     logout() {
-        this.session = null;
-        this.storage.remove('session');
+        this.token = null;
+        this.storage.remove('token');
     }
 
     /////////
     // API //
     /////////
 
-    login(body: { session: string, token: string }): Observable<object> {
+    login(body: { username: string, password: string }): Observable<HttpResponse<any>> {
         const url = this.baseUrl + 'login';
-        return this.http.post<object>(url, body);
+        return this.http.post<object>(url, body, { observe: 'response' });
     }
 
-    signup(body: object): Observable<object> {
-        const url = this.baseUrl + 'signup';
-        return this.http.post<object>(url, body);
+    signup(body: { username: string, password: string }): Observable<HttpResponse<any>> {
+        const url = this.baseUrl + 'users/signup';
+        return this.http.post<object>(url, body, { observe: 'response' });
     }
 
-    projects(body: { session: string, token: string }): Observable<object[]> {
+	ucfs(): Observable<object[]> {
+        const url = this.baseUrl + 'resources/ucfs';
+        return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });
+    }
+
+    projects(): Observable<object[]> {
         const url = this.baseUrl + 'projects';
-        return this.http.post<object[]>(url, body);
+        return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });
     }
 
-    specify(body: { session: string, token: string, specification: object }, project: string): Observable<object> {
-        const url = this.baseUrl + 'specify/' + encodeURIComponent(project);
-        return this.http.post<object>(url, body);
+    specify(body: object, project: string): Observable<any> {
+        const url = this.baseUrl + 'project/' + encodeURIComponent(project) + '/specify';
+        return this.http.post<object>(url, body, { headers: { "Authorization": this.token } });
     }
 
-    execute(body: { session: string, token: string }, project: string): Observable<object> {
-        const url = this.baseUrl + 'execute/' + encodeURIComponent(project);
-        return this.http.post<object>(url, body);
+    execute(project: string): Observable<any> {
+        const url = this.baseUrl + 'project/' + encodeURIComponent(project) + '/execute';
+        return this.http.get(url, { headers: { "Authorization": this.token } });
     }
 
-    results(body: any, project: string): Observable<object[]>;
-    results(body: any, project: string, file: string): Observable<Blob>;
-    results(body: any, project: string, file?: string): Observable<any> {
+    results(project: string): Observable<object[]>;
+    results(project: string, file: string): Observable<Blob>;
+    results(project: string, file?: string): Observable<any> {
         let url = this.baseUrl + 'results/' + encodeURIComponent(project);
         let responseType = 'json';
         if (file) {
             url += '/' + encodeURIComponent(file);
             responseType = 'text';
         }
-        let rtn = this.http.post(url, body, { responseType: responseType as 'json' });
+        let rtn = this.http.get(url, { headers: { "Authorization": this.token }, responseType: responseType as 'json' });
         return rtn;
     }
 

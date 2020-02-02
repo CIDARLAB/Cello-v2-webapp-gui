@@ -96,8 +96,6 @@ export class SynBioHubComponent implements OnInit {
     submit(collection: any, project: string, file: string) {
         const body = {
             collection: collection,
-            session: this.api.session.session,
-            token: this.api.session.token,
         };
         this.synbiohub.submit(body, project, file, this.registry).subscribe((data) => {
             this.toast("Succussfully uploaded.");

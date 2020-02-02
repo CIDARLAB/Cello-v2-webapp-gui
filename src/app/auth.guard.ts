@@ -16,10 +16,10 @@ export class AuthGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        if (!this.api.session) {
-            this.router.navigateByUrl("home");
-            return false;
-        }
+        // if (!this.api.token) {
+        //     this.router.navigateByUrl("home");
+        //     return false;
+        // }
         return true;
     }
 }

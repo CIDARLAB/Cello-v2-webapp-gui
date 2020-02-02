@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root'
@@ -8,12 +10,13 @@ import { Observable } from 'rxjs';
 export class SynBioHubService {
 
     // private baseUrl = "http://127.0.0.1:8080/";
-    // private baseUrl = "http://128.197.47.203:8080/";
-    private baseUrl = "";
+    private baseUrl = "http://128.197.47.203:8080/";
+    // private baseUrl = "";
     public token: string;
 
     constructor(
         private http: HttpClient,
+        private api: ApiService
     ) { }
 
     login(body: { email: string, password: string }, registry: string): Observable<string> {
@@ -22,12 +25,33 @@ export class SynBioHubService {
     }
 
     collections(registry: string, personal?: boolean): Observable<object[]> {
-        let options = {};
+        let headers = {};
+        // return from(this.api.getLoginInfo()).pipe(
+        //     map((result) => {
+        //         console.log(result);
+        //         headers["Authorization"] = result;
+        //         if (this.token && personal) {
+        //             headers["X-authorization"] = this.token;
+        //         }
+        //         const url = this.baseUrl + 'synbiohub/collections?u=' + encodeURIComponent(registry);
+        //         return this.http.get<object[]>(url, { headers: headers });
+        //     })
+        // );
+        // return this.api.getLoginInfo().then((data) => {
+        //     headers["Authorization"] = data;
+        // }).then(() => {
+        //     if (this.token && personal) {
+        //         headers["X-authorization"] = this.token;
+        //     }
+        //     const url = this.baseUrl + 'synbiohub/collections?u=' + encodeURIComponent(registry);
+        //     return this.http.get<object[]>(url, { headers: headers }).toPromise();
+        // });
+        headers["Authorization"] = this.api.token;
         if (this.token && personal) {
-            options = { headers: { "X-authorization": this.token } };
+            headers["X-authorization"] = this.token;
         }
         const url = this.baseUrl + 'synbiohub/collections?u=' + encodeURIComponent(registry);
-        return this.http.get<object[]>(url, options);
+        return this.http.get<object[]>(url, { headers: headers });
     }
 
     submit(
@@ -40,8 +64,6 @@ export class SynBioHubService {
                 citations: string,
                 overwrite: boolean
             },
-            session: string,
-            token: string,
         },
         project: string,
         file: string,
@@ -50,8 +72,6 @@ export class SynBioHubService {
     submit(
         body: {
             collection: { uri: string, overwrite: boolean },
-            session: string,
-            token: string,
         },
         project: string,
         file: string,
@@ -67,7 +87,7 @@ export class SynBioHubService {
             + encodeURIComponent(project) + '/'
             + encodeURIComponent(file) + '?u='
             + encodeURIComponent(registry);
-        const options = { headers: { "X-authorization": this.token } };
+        const options = { headers: { "Authorization": this.api.token, "X-authorization": this.token } };
         return this.http.post<string>(url, body, options);
     }
 

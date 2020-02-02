@@ -21,10 +21,10 @@ export class ProjectsPage implements OnInit {
     }
 
     ionViewWillEnter() {
-        this.api.getLoginInfo().then((data: { token: string, session: string }) => {
-            this.api.session = data;
+        this.api.getLoginInfo().then((data) => {
+            this.api.token = data;
         }).then(() => {
-            this.api.projects(this.api.session).subscribe((result) => {
+            this.api.projects().subscribe((result) => {
                 this.projects = result;
             });
         });

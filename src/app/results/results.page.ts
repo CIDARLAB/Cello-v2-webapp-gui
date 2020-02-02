@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import * as d3Graphviz from 'd3-graphviz';
 import { ApiService } from '../api.service';
 import { ProjectService } from '../project.service';
-import { MenuController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
 // https://github.com/AntoineTB/debugD3GraphViz
@@ -15,7 +14,7 @@ const _ = d3Graphviz.graphviz;
     styleUrls: ['./results.page.scss'],
 })
 export class ResultsPage implements OnInit {
-    @ViewChild('graphviz')
+    @ViewChild('graphviz', {static: true})
     private view: ElementRef;
     public result: object;
     public registry: string;
@@ -38,7 +37,7 @@ export class ResultsPage implements OnInit {
     }
 
     results(file: string) {
-        return this.api.results(this.api.session, this.project.project.name, file);
+        return this.api.results(this.project.project.name, file);
     }
 
     isDot() {
@@ -66,7 +65,7 @@ export class ResultsPage implements OnInit {
     download(result: object) {
         const file = result['name'];
         let url = 'results/' + this.project.project.name + '/' + file;
-        this.http.post(url, this.api.session, { responseType: "blob" }).subscribe((data) => {
+        this.http.get(url, { responseType: "blob" }).subscribe((data) => {
             let dataType = data.type;
             let binaryData = [];
             binaryData.push(data);
