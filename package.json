@@ -4,6 +4,7 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
+    "install": "napa maiermic/antlr4-ace-ext maiermic/ace-worker",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -28,7 +29,7 @@
     "@ionic/storage": "^2.2.0",
     "@swimlane/ngx-datatable": "^16.0.3",
     "ajv": "^6.9.2",
-    "cordova-browser": "6.0.0",
+    "cordova-browser": "^6.0.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.3",
