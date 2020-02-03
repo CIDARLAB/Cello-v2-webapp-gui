@@ -195,7 +195,6 @@ export class ProjectService {
         return Promise.resolve()
             .then(() => {
                 let body = this.specification();
-                this.toast("Sending specification and building library.");
                 return this.api.specify(body, name).toPromise();
             })
             .then(() => {
@@ -205,10 +204,11 @@ export class ProjectService {
             .then(() => {
                 if (this.project.name == name) {
                     this.api.results(name).subscribe((result) => {
-                        this.project.results = result;
+                        this.project.results = result.sort((a, b) => (a.name > b.name) ? 1 : -1);
                     });
+
                     this.toast("Results available.");
-                    // this.router.navigateByUrl("results");
+                    this.router.navigateByUrl("results");
                 }
             })
             .catch((error) => {

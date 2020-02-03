@@ -140,15 +140,10 @@
                 {
                   "name": "AddInteractions",
                   "type": "boolean",
-                  "value": true
+                  "value": false
                 },
                 {
-                  "name": "AddPlasmidModules",
-                  "type": "boolean",
-                  "value": true
-                },
-                {
-                  "name": "AddBackbone",
+                  "name": "AddDesignModules",
                   "type": "boolean",
                   "value": true
                 }

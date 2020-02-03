@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    // private baseUrl = "http://127.0.0.1:8080/";
+    private baseUrl = "http://127.0.0.1:8080/";
     // private baseUrl = "http://128.197.47.203:8080/";
-    private baseUrl = "";
+    // private baseUrl = "";
 
     public token: string | null = null;
 
@@ -81,17 +81,44 @@ export class ApiService {
         return this.http.get(url, { headers: { "Authorization": this.token } });
     }
 
-    results(project: string): Observable<object[]>;
-    results(project: string, file: string): Observable<Blob>;
-    results(project: string, file?: string): Observable<any> {
-        let url = this.baseUrl + 'results/' + encodeURIComponent(project);
+    // results(project: string): Observable<object[]>;
+    // results(project: string, file: string): Observable<Blob>;
+    // results(project: string, file?: string): Observable<any> {
+    //     let url = this.baseUrl + 'results/' + encodeURIComponent(project);
+    //     let responseType = 'json';
+    //     if (file) {
+    //         url += '/' + encodeURIComponent(file);
+    //         responseType = 'text';
+    //     }
+    //     let rtn = this.http.get(url, { headers: { "Authorization": this.token }, responseType: responseType as 'json' });
+    //     return rtn;
+    // }
+
+    results(project: string): Observable<any> {
+        let url = this.baseUrl + 'project/' + encodeURIComponent(project) + '/results';
         let responseType = 'json';
-        if (file) {
-            url += '/' + encodeURIComponent(file);
-            responseType = 'text';
-        }
         let rtn = this.http.get(url, { headers: { "Authorization": this.token }, responseType: responseType as 'json' });
         return rtn;
+    }
+
+    result(project: string, file: string): Observable<any> {
+        let url = this.baseUrl + 'project/' + encodeURIComponent(project) + '/result/' + encodeURIComponent(file);
+        return this.http.get(url, { headers: { "Authorization": this.token } });
+    }
+
+    download(project: string, result: string) {
+        const url = this.baseUrl + 'project/' + encodeURIComponent(project) + '/result/' + encodeURIComponent(result) + '/download';
+        this.http.get(url, { headers: { "Authorization": this.token }, responseType: 'blob' as 'blob' }).subscribe((data) => {
+            let dataType = data.type;
+            let binaryData = [];
+            binaryData.push(data);
+            let downloadLink = document.createElement('a');
+            downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
+            downloadLink.setAttribute('download', result);
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            console.log(data);
+        });
     }
 
 }

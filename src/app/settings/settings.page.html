@@ -26,18 +26,18 @@
 				  <ion-label class="parameter-label">{{parameter.name}}</ion-label>
 	  			  <ion-input
 					*ngIf="parameter.type == 'int'"
-					text-right
+					class="ion-text-right"
 					[(ngModel)]="project.project.settings.parameters[stage.name + '.' + parameter.name]"
 	  				type="number"></ion-input>
 				  <ion-input
 					*ngIf="parameter.type == 'string'"
-					text-right
+					class="ion-text-right"
 					[(ngModel)]="project.project.settings.parameters[stage.name + '.' + parameter.name]"
 					spellcheck=false
 	  				type="string"></ion-input>
 				  <ion-checkbox
 					*ngIf="parameter.type == 'boolean'"
-					text-right
+					class="ion-text-right"
 					[(ngModel)]="project.project.settings.parameters[stage.name + '.' + parameter.name]"
 					></ion-checkbox>
 				</ion-item>

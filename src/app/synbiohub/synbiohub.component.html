@@ -2,7 +2,7 @@
   <form [formGroup]="loginForm">
 	<ion-list>
 	  <ion-item>
-		<ion-select interface="popover" [(ngModel)]="registry" [ngModelOptions]="{standalone: true}" style="min-width:100%" text-left>
+		<ion-select interface="popover" [(ngModel)]="registry" [ngModelOptions]="{standalone: true}" style="min-width:100%" class="ion-text-left">
 		  <ion-select-option value="{{r}}" *ngFor="let r of project.registries">{{r}}</ion-select-option>
 		</ion-select>
 	  </ion-item>
@@ -64,7 +64,7 @@
   <form [formGroup]="addToCollection" *ngIf="mode === 'existing'">
 	<ion-list>
 	  <ion-item>
-		<ion-select interface="popover" style="min-width:100%" text-left>
+		<ion-select interface="popover" style="min-width:100%" class="ion-text-left">
 		  <ion-select-option value="{{c.uri}}" *ngFor="let c of collections">{{c.name}}</ion-select-option>
 		</ion-select>
 	  </ion-item>

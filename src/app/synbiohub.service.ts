@@ -9,8 +9,8 @@ import { ApiService } from './api.service';
 })
 export class SynBioHubService {
 
-    // private baseUrl = "http://127.0.0.1:8080/";
-    private baseUrl = "http://128.197.47.203:8080/";
+    private baseUrl = "http://127.0.0.1:8080/";
+    // private baseUrl = "http://128.197.47.203:8080/";
     // private baseUrl = "";
     public token: string;
 
@@ -21,7 +21,7 @@ export class SynBioHubService {
 
     login(body: { email: string, password: string }, registry: string): Observable<string> {
         const url = this.baseUrl + 'synbiohub/login?u=' + encodeURIComponent(registry);
-        return this.http.post<string>(url, body, { responseType: 'text' as 'json' });
+        return this.http.post<string>(url, body, { headers: { "Authorization": this.api.token }, responseType: 'text' as 'json' });
     }
 
     collections(registry: string, personal?: boolean): Observable<object[]> {
