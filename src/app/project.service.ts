@@ -28,12 +28,17 @@ export class ProjectService {
     public collection: string;
 
     // UCF
-    public ucfs = [];
-    public ucf: string;
+    public userConstraintsFiles = [
+        "Eco/Eco1C1G1T1.UCF.json",
+        "Bth/Bth1C1G1T1.UCF.json"
+    ];
+    public userConstraintsFile: string;
     public inputSensorFiles = [];
     public inputSensorFile: string;
     public outputDeviceFiles = [];
     public outputDeviceFile: string;
+
+    public libraryMode = "ucf";
 
     public validCallbacks: object;
 
@@ -52,6 +57,9 @@ export class ProjectService {
         });
         this.project = new Project();
         this.validCallbacks = {};
+        this.userConstraintsFile = "";
+        this.inputSensorFile = "";
+        this.outputDeviceFile = "";
     }
 
     valid(name: string) {
@@ -83,8 +91,21 @@ export class ProjectService {
         });
     }
 
-    updateUCFs() {
-        this.api.ucfs().subscribe((result) => {
+    updateUserConstraintsFiles() {
+        this.api.userConstraintsFiles().subscribe((result) => {
+            this.userConstraintsFiles = result;
+        });
+    }
+
+    updateInputSensorFiles() {
+        this.api.inputSensorFiles().subscribe((result) => {
+            this.inputSensorFiles = result;
+        });
+    }
+
+    updateOutputDeviceFiles() {
+        this.api.outputDeviceFiles().subscribe((result) => {
+            this.outputDeviceFiles = result;
         });
     }
 
@@ -101,13 +122,22 @@ export class ProjectService {
     }
 
     library() {
-        let useRegistry = true;
+        let f = false;
+        if (this.libraryMode === "registry")
+            f = true;
+        if (this.libraryMode === "ucf")
+            f = false;
         let body = {
-            use_registry: useRegistry,
+            use_registry: f,
         };
-        if (useRegistry) {
+        if (f) {
             body['registry'] = this.registry;
             body['collection'] = this.collection;
+        }
+        else {
+            body['user_constraints_file'] = this.userConstraintsFile;
+            body['input_sensor_file'] = this.inputSensorFile;
+            body['output_device_file'] = this.outputDeviceFile;
         }
         return body;
     }
@@ -183,7 +213,7 @@ export class ProjectService {
             })
             .catch((error) => {
                 this.toastController.dismiss();
-                this.alert(error.error);
+                this.alert(error.error.message);
             });
     }
 

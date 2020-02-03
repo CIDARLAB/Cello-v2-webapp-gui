@@ -34,15 +34,15 @@ const routes: Routes = [
                     }
                 ]
             },
-            {
-                path: 'constraints',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../constraints/constraints.module#ConstraintsPageModule'
-                    }
-                ]
-            },
+            // {
+            //     path: 'constraints',
+            //     children: [
+            //         {
+            //             path: '',
+            //             loadChildren: '../constraints/constraints.module#ConstraintsPageModule'
+            //         }
+            //     ]
+            // },
             {
                 path: 'results',
                 children: [
