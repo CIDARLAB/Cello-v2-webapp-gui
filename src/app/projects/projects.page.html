@@ -4,45 +4,49 @@
 
 <ion-content class="ion-padding">
   <ion-row class="ion-padding-bottom">
-    <ion-button icon-left (click)="create()" style="margin: 0px">
-      <ion-icon name="add"></ion-icon>
-      New project
-    </ion-button>
+	<ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2">
+      <ion-button icon-left (click)="create()" style="margin: 0px">
+		<ion-icon name="add"></ion-icon>
+		New project
+      </ion-button>
+	</ion-col>
   </ion-row>
-  <ion-row>
-    <ngx-datatable style="width:100%"
-				   class="material fullscreen"
-				   [columnMode]="'flex'"
-				   [headerHeight]="50"
-				   [footerHeight]="50"
-				   [rowHeight]="'auto'"
-				   [rows]="projects">
-      <ngx-datatable-column name="name" [flexGrow]="1">
-		<ng-template let-column="column" ngx-datatable-header-template>
-          Project name
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value}}
-        </ng-template>
-      </ngx-datatable-column>
-	  <ngx-datatable-column name="timestamp" [flexGrow]="1">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Created on
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value}}
-        </ng-template>
-      </ngx-datatable-column>
-      <!-- <ngx-datatable-column name="Gender" [flexGrow]="1"> -->
-        <!--   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template> -->
-          <!--     {{value}} -->
-          <!--   </ng-template> -->
-        <!-- </ngx-datatable-column> -->
-      <!-- <ngx-datatable-column name="Age" [flexGrow]="1"> -->
-        <!--   <ng-template let-value="value" ngx-datatable-cell-template> -->
-          <!--     {{value}} -->
-          <!--   </ng-template> -->
-        <!-- </ngx-datatable-column> -->
-    </ngx-datatable>
+  <ion-row class="ion-padding-bottom">
+	<ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2">
+      <ngx-datatable style="width:100%"
+					 class="material fullscreen"
+					 [columnMode]="'flex'"
+					 [headerHeight]="50"
+					 [footerHeight]="50"
+					 [rowHeight]="'auto'"
+					 [rows]="projects">
+		<ngx-datatable-column name="name" [flexGrow]="1">
+		  <ng-template let-column="column" ngx-datatable-header-template>
+			Project name
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+			{{value}}
+          </ng-template>
+		</ngx-datatable-column>
+		<ngx-datatable-column name="created" [flexGrow]="1">
+          <ng-template let-column="column" ngx-datatable-header-template>
+			Created on
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+			{{value}}
+          </ng-template>
+		</ngx-datatable-column>
+		<!-- <ngx-datatable-column name="Gender" [flexGrow]="1"> -->
+          <!--   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template> -->
+			<!--     {{value}} -->
+			<!--   </ng-template> -->
+          <!-- </ngx-datatable-column> -->
+		<!-- <ngx-datatable-column name="Age" [flexGrow]="1"> -->
+          <!--   <ng-template let-value="value" ngx-datatable-cell-template> -->
+			<!--     {{value}} -->
+			<!--   </ng-template> -->
+          <!-- </ngx-datatable-column> -->
+      </ngx-datatable>
+	</ion-col>
   </ion-row>
 </ion-content>

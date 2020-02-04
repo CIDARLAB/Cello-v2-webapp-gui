@@ -3,28 +3,36 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
-	<ion-list>
-	  <ion-item *ngFor="let r of project.project.results">
-		<ion-col size="10" (click)="selected = r;" style="cursor:pointer">
-		  {{r.name}}
-		</ion-col>
-		<ion-col>
-		  <ion-button fill="clear" class="ion-float-right" (click)="download(r['name'])">
-			<ion-icon name="download"></ion-icon>
-		  </ion-button>
-		</ion-col>
-	  </ion-item>
-	</ion-list>
-  </ion-card>
-  <!-- <div *ngIf="selected['name'].endsWith('.dot')"> -->
-  <!-- 	<ion-card> -->
-  <!-- 	  <div #graphviz></div> -->
-  <!-- 	</ion-card> -->
-  <!-- </div> -->
-  <ion-card style="max-width: 500px;">
-  	<div #sbh *ngIf="isExt('xml')">
-  	  <app-synbiohub [result]="selected"></app-synbiohub>
-  	</div>
-  </ion-card>
+  <ion-row>
+	<ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2">
+	  <ion-card>
+		<ion-list>
+		  <ion-item *ngFor="let r of project.project.results">
+			<ion-col size="10" (click)="selected = r;" style="cursor:pointer">
+			  {{r.name}}
+			</ion-col>
+			<ion-col>
+			  <ion-button fill="clear" class="ion-float-right" (click)="download(r['name'])">
+				<ion-icon name="download"></ion-icon>
+			  </ion-button>
+			</ion-col>
+		  </ion-item>
+		</ion-list>
+	  </ion-card>
+	</ion-col>
+  </ion-row>
+  <ion-row>
+	<!-- <div *ngIf="selected['name'].endsWith('.dot')"> -->
+	  <!-- 	<ion-card> -->
+		<!-- 	  <div #graphviz></div> -->
+		<!-- 	</ion-card> -->
+	  <!-- </div> -->
+	<ion-col offset-sm="0" offset-lg="2">
+	  <ion-card style="max-width: 500px;">
+  		<div #sbh *ngIf="isExt('xml')">
+  		  <app-synbiohub [result]="selected"></app-synbiohub>
+  		</div>
+	  </ion-card>
+	</ion-col>
+  </ion-row>
 </ion-content>
