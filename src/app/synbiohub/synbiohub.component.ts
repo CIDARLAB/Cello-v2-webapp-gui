@@ -39,15 +39,21 @@ export class SynBioHubComponent implements OnInit {
             password: new FormControl(null, Validators.required)
         });
         this.createCollection = this.formBuilder.group({
-            id: new FormControl(null, Validators.required),
+            name: new FormControl(null, Validators.compose([
+                Validators.required,
+                Validators.pattern('^[A-Za-z0-9_]+$')
+            ])),
+            description: new FormControl(null, Validators.required),
+            id: new FormControl(null, Validators.compose([
+                Validators.required,
+                Validators.pattern('^[A-Za-z_][A-Za-z0-9_]*$')
+            ])),
             version: new FormControl(null, Validators.compose([
                 Validators.required,
                 Validators.pattern('^[0-9]+$')
             ])),
-            name: new FormControl(null, Validators.required),
-            description: new FormControl(null, Validators.required),
             citations: new FormControl(),
-            overwrite: new FormControl(null, Validators.required)
+            overwrite: new FormControl(false, Validators.required)
         });
         this.addToCollection = this.formBuilder.group({
             uri: new FormControl(null, Validators.required),

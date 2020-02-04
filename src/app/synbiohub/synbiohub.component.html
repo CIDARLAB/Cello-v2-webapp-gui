@@ -30,16 +30,16 @@
   <form [formGroup]="createCollection" *ngIf="mode === 'create'">
 	<ion-list>
 	  <ion-item>
-		<ion-input formControlName="id" type="text" placeholder="Id"></ion-input>
-	  </ion-item>
-	  <ion-item>
-		<ion-input formControlName="version" type="text" placeholder="Version"></ion-input>
-	  </ion-item>
-	  <ion-item>
 		<ion-input formControlName="name" type="text" placeholder="Name"></ion-input>
 	  </ion-item>
 	  <ion-item>
 		<ion-textarea formControlName="description" type="text" placeholder="Description" ></ion-textarea>
+	  </ion-item>
+	  <ion-item>
+		<ion-input formControlName="id" type="text" placeholder="Id"></ion-input>
+	  </ion-item>
+	  <ion-item>
+		<ion-input formControlName="version" type="text" placeholder="Version"></ion-input>
 	  </ion-item>
 	  <ion-item>
 		<ion-input formControlName="citations" type="text" placeholder="Citations"></ion-input>
