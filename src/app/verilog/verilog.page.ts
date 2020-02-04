@@ -15,6 +15,8 @@ export class VerilogPage implements OnInit {
     public menuItem;
     @ViewChild('editor', {static: true}) editor: ElementRef;
 
+	public sample: string;
+
     constructor(
         private api: ApiService,
         private platform: Platform,
@@ -49,5 +51,13 @@ export class VerilogPage implements OnInit {
             }, 1000);
         });
     }
+
+	loadVerilog(file: string) {
+		this.project.loadVerilog(file).subscribe((data) => {
+			this.project.project.verilog = data;
+			window['editor'].setValue(data, 1);
+		});
+	}
+
 
 }

@@ -6,6 +6,7 @@ import { ApiService } from './api.service';
 import { Project } from './project';
 import { SynBioHubService } from './synbiohub.service';
 import { Constraint } from './constraint';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -28,10 +29,7 @@ export class ProjectService {
     public collection: string;
 
     // UCF
-    public userConstraintsFiles = [
-        "Eco/Eco1C1G1T1.UCF.json",
-        "Bth/Bth1C1G1T1.UCF.json"
-    ];
+    public userConstraintsFiles = [];
     public userConstraintsFile: string;
     public inputSensorFiles = [];
     public inputSensorFile: string;
@@ -39,6 +37,20 @@ export class ProjectService {
     public outputDeviceFile: string;
 
     public libraryMode = "ucf";
+
+	// verilog
+	public sampleVerilog = [
+		"and_gate.v",
+		"xor_gate.v",
+		"struct.v",
+		"mixed.v",
+		"sub_modules.v",
+		"0x01_behavioral.v",
+		"0x01.v",
+		"0x6F.v",
+		"0x78.v",
+		"sr_latch.v"
+	];
 
     public validCallbacks: object;
 
@@ -73,6 +85,10 @@ export class ProjectService {
     register(name: string, callback: () => boolean) {
         this.validCallbacks[name] = callback;
     }
+
+	loadVerilog(file: string): Observable<string> {
+		return this.http.get<string>('assets/verilog/' + file, {responseType: 'text' as 'json'});
+	}
 
     getSettingsDefinition() {
         return new Promise((resolve, reject) => {
