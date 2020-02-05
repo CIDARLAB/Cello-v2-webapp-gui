@@ -64,7 +64,7 @@
   <form [formGroup]="addToCollection" *ngIf="mode === 'existing'">
 	<ion-list>
 	  <ion-item>
-		<ion-select interface="popover" style="min-width:100%" class="ion-text-left">
+		<ion-select formControlName="uri" interface="popover" style="min-width:100%" class="ion-text-left">
 		  <ion-select-option value="{{c.uri}}" *ngFor="let c of collections">{{c.name}}</ion-select-option>
 		</ion-select>
 	  </ion-item>
