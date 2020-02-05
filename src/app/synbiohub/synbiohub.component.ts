@@ -57,7 +57,7 @@ export class SynBioHubComponent implements OnInit {
         });
         this.addToCollection = this.formBuilder.group({
             uri: new FormControl(null, Validators.required),
-            overwrite: new FormControl(null, Validators.required),
+            overwrite: new FormControl(false, Validators.required),
         });
         if (synbiohub.token)
             this.updateCollections(this.registry, true);
