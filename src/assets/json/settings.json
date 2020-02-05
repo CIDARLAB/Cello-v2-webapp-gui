@@ -98,7 +98,13 @@
             },
             {
               "name": "SimulatedAnnealing",
-              "parameters": []
+              "parameters": [
+                {
+                  "name" : "ComputeTandemEfficiency",
+                  "type" : "boolean",
+                  "value": false
+                }
+              ]
             }
           ]
         },
@@ -112,6 +118,11 @@
                   "name": "MaxPlacements",
                   "type": "int",
                   "value": 5
+                },
+                {
+                  "name" : "KeepPromoterOrder",
+                  "type" : "boolean",
+                  "value": false
                 }
               ]
             },
