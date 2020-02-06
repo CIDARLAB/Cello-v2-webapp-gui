@@ -1,4 +1,4 @@
-This is the GUI that supports the [Cello2-webapp](https://github.com/CIDARLAB/Cello2-webapp), ordinary users of Cello2 will not be interested. The compiled version of the GUI is deployed to the gh-pages branch and used in [Cello2-webapp](https://github.com/CIDARLAB/Cello2-webapp) as a submodule.
+This is the GUI that supports the [Cello v2 webapp](https://github.com/CIDARLAB/Cello2-webapp), ordinary users of Cello v2 will not be interested. The compiled version of the GUI is deployed to the gh-pages branch and used in the webapp as a submodule.
 
 # Dependencies
 
@@ -8,7 +8,10 @@ This is the GUI that supports the [Cello2-webapp](https://github.com/CIDARLAB/Ce
   
 # Developer usage
 
-See the documentation for the Ionic Framework [here](https://ionicframework.com/).
+Framework documentation: 
+
+  + [Ionic Framework](https://ionicframework.com/)
+  + [Angular](https://angular.io/)
 
 ## Clone the repository
 
