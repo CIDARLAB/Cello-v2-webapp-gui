@@ -13,6 +13,6 @@ rm .gitignore angular.json config.xml ionic.config.json package.json package-loc
 rm -rf www node_modules resources e2e
 git add .
 git reset deploy-gh.sh
-git commit -m "Publishing to gh-pages."
+git commit -S -m "Publishing to gh-pages."
 git push -u origin gh-pages
 git checkout develop
