@@ -9,7 +9,7 @@ rm README.md
 rm -rf src
 rm node_modules
 cp -r www/* .
-rm .gitignore angular.json config.xml ionic.config.json package.json package-lock.json tsconfig.json tslint.json
+rm .gitignore angular.json config.xml deploy-gh.sh ionic.config.json package.json package-lock.json tsconfig.json tslint.json
 rm -rf www node_modules resources e2e
 git add .
 git reset deploy-gh.sh
