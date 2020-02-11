@@ -13,14 +13,14 @@ export class VerilogPage implements OnInit {
     public height: number;
     public mode = 'verilog2001';
     public menuItem;
-    @ViewChild('editor', {static: true}) editor: ElementRef;
+    @ViewChild('editor', { static: true }) editor: ElementRef;
 
-	public sample: string;
+    public sample: string;
 
     constructor(
         private api: ApiService,
         private platform: Platform,
-        private project: ProjectService,
+        public project: ProjectService,
     ) {
         this.height = this.platform.height() - 275;
         this.project.register('verilog', this.valid);
@@ -52,12 +52,12 @@ export class VerilogPage implements OnInit {
         });
     }
 
-	loadVerilog(file: string) {
-		this.project.loadVerilog(file).subscribe((data) => {
-			this.project.project.verilog = data;
-			window['editor'].setValue(data, 1);
-		});
-	}
+    loadVerilog(file: string) {
+        this.project.loadVerilog(file).subscribe((data) => {
+            this.project.project.verilog = data;
+            window['editor'].setValue(data, 1);
+        });
+    }
 
 
 }

@@ -17,7 +17,7 @@
 			  </ion-col>
 			</ion-list-header>
 			<div *ngFor="let i of project.project.constraints.input; let ii=index">
-	  		  <app-constraint [constraint]="i" [direction]="'input'" (onDelete)="onDeleteInput($event)"></app-constraint>
+	  		  <app-constraint [constraint]="i" (onDelete)="onDeleteInput($event)"></app-constraint>
 			</div>
 		  </ion-list>
 		</ion-card>
@@ -32,7 +32,7 @@
 			  </ion-col>
 			</ion-list-header>
 			<div *ngFor="let i of project.project.constraints.output; let ii=index">
-	  		  <app-constraint [constraint]="i" [direction]="'output'" (onDelete)="onDeleteOutput($event)"></app-constraint>
+	  		  <app-constraint [constraint]="i" (onDelete)="onDeleteOutput($event)"></app-constraint>
 			</div>
 		  </ion-list>
 		</ion-card>
