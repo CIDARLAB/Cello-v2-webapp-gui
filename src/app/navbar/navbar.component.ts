@@ -29,7 +29,6 @@ export class NavbarComponent implements OnInit {
     }
 
     async about() {
-        console.log(this.router.url);
         const modal = await this.modalController.create({
             component: AboutPage,
         });

@@ -117,7 +117,6 @@ export class ApiService {
             downloadLink.setAttribute('download', result);
             document.body.appendChild(downloadLink);
             downloadLink.click();
-            console.log(data);
         });
     }
 
