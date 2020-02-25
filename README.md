@@ -1,4 +1,4 @@
-This is the GUI that supports the [Cello v2 webapp](https://github.com/CIDARLAB/Cello2-webapp), ordinary users of Cello v2 will not be interested. The compiled version of the GUI is deployed to the gh-pages branch and used in the webapp as a submodule.
+This is the GUI that supports the [Cello v2 webapp](https://github.com/CIDARLAB/Cello-v2-webapp), ordinary users of Cello v2 will not be interested. The compiled version of the GUI is deployed to the gh-pages branch and used in the webapp as a submodule.
 
 # Dependencies
 
@@ -15,12 +15,12 @@ Framework documentation:
 
 ## Clone the repository
 
-	git clone https://github.com/CIDARLAB/Cello2-webapp-gui.git
+	git clone https://github.com/CIDARLAB/Cello-v2-webapp-gui.git
 
 ## Prepare environment
 
 	npm install -g @ionic/cli @angular/cli
-	cd Cello2-webapp-gui
+	cd Cello-v2-webapp-gui
 	npm install
 
 ## Serve for development
