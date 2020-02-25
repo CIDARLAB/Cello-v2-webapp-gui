@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CIDARLAB/Cello-v2-webapp-gui.svg?branch=develop)](https://travis-ci.org/CIDARLAB/Cello-v2-webapp-gui)
+
 This is the GUI that supports the [Cello v2 webapp][webapp]. This repository is used only for development. If you want to run the webapp, navigate to [its repository][webapp].
 
 # Developer usage
