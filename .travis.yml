@@ -5,4 +5,4 @@ install:
   - npm install -g @ionic/cli cordova
   - npm install
 script:
-  - ionic cordova build browser --prod
+  - ionic cordova build browser --prod --no-interactive
