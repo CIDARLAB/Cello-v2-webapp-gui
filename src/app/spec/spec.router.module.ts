@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SpecPage } from './spec.page';
+import { VerilogComponent } from './verilog/verilog.component';
+import { SynBioHubComponent } from '../synbiohub/synbiohub.component';
 
 const routes: Routes = [
     {
@@ -9,12 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'verilog',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../verilog/verilog.module#VerilogPageModule'
-                    }
-                ]
+                component: VerilogComponent
             },
             {
                 path: 'library',

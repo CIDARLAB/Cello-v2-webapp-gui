@@ -1,18 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { ApiService } from '../api.service';
-import { ProjectService } from '../project.service';
+import { ApiService } from '../../api.service';
+import { ProjectService } from '../../project.service';
 
 @Component({
     selector: 'app-verilog',
-    templateUrl: './verilog.page.html',
-    styleUrls: ['./verilog.page.scss'],
+    templateUrl: './verilog.component.html',
+    styleUrls: ['./verilog.component.scss'],
 })
-export class VerilogPage implements OnInit {
+export class VerilogComponent implements OnInit {
 
-    public height: number;
     public mode = 'verilog2001';
-    public menuItem;
     @ViewChild('editor', { static: true }) editor: ElementRef;
 
     public sample: string;
@@ -22,7 +20,6 @@ export class VerilogPage implements OnInit {
         private platform: Platform,
         public project: ProjectService,
     ) {
-        this.height = this.platform.height() - 275;
         this.project.register('verilog', this.valid);
     }
 
@@ -52,12 +49,16 @@ export class VerilogPage implements OnInit {
         });
     }
 
+    public height() {
+        console.log(this.platform.height() - 275)
+        return this.platform.height() - 275;
+    }
+
     loadVerilog(file: string) {
         this.project.loadVerilog(file).subscribe((data) => {
             this.project.project.verilog = data;
             window['editor'].setValue(data, 1);
         });
     }
-
 
 }

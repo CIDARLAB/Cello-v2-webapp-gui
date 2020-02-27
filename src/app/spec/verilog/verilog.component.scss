@@ -1,0 +1,24 @@
+iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+ion-grid {
+	height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.editor {
+	height: 100%;
+    display: flex;
+}
+
+.editor-row {
+	flex-grow: 1;
+}
+
+.editor-card {
+	height: 100%;
+}
