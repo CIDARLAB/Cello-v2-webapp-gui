@@ -5,10 +5,10 @@ import { ProjectService } from 'src/app/project.service';
 
 @Component({
     selector: 'app-library',
-    templateUrl: './library.component.html',
-    styleUrls: ['./library.component.scss'],
+    templateUrl: './library.page.html',
+    styleUrls: ['./library.page.scss'],
 })
-export class LibraryComponent implements OnInit {
+export class LibraryPage implements OnInit {
 
     public mode: string;
 

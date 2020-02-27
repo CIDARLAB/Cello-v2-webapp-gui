@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { SpecPage } from './spec.page';
 import { VerilogComponent } from './verilog/verilog.component';
 import { SynBioHubComponent } from '../synbiohub/synbiohub.component';
-import { LibraryComponent } from './library/library.component';
 
 const routes: Routes = [
     {
@@ -16,7 +15,12 @@ const routes: Routes = [
             },
             {
                 path: 'library',
-                component: LibraryComponent
+                children: [
+                    {
+                        path: '',
+                        loadChildren: './library/library.module#LibraryPageModule'
+                    }
+                ]
             },
             {
                 path: 'settings',
