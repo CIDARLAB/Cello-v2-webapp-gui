@@ -7,6 +7,7 @@ import { SpecPage } from './spec.page';
 import { SpecPageRoutingModule } from './spec.router.module';
 import { VerilogComponent } from './verilog/verilog.component';
 import { ComponentsModule } from '../components/components.module';
+import { LibraryComponent } from './library/library.component';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { ComponentsModule } from '../components/components.module';
     declarations: [
         SpecPage,
         VerilogComponent,
+        LibraryComponent,
     ]
 })
 export class SpecPageModule { }
