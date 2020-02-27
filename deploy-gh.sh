@@ -5,14 +5,11 @@ git push origin --delete gh-pages
 git checkout -b gh-pages
 npm install
 ionic cordova build browser --prod
-rm README.md
-rm -rf src
-rm node_modules
+rm -rf $(ls | grep -v www)
 cp -r www/* .
-rm .gitignore angular.json config.xml deploy-gh.sh ionic.config.json package.json package-lock.json tsconfig.json tslint.json
-rm -rf www node_modules resources e2e
+rmdir www
+rm .travis.yml
 git add .
-git reset deploy-gh.sh
 git commit -S -m "Publishing to gh-pages."
 git push -u origin gh-pages
 git checkout develop
