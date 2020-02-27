@@ -13,7 +13,6 @@
 	<ion-row>
 	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center ion-no-padding">
 		<div *ngIf="project.libraryMode == 'ucf'">
-
 		  <ion-card>
 			<mat-expansion-panel>
 			  <mat-expansion-panel-header>
@@ -41,7 +40,7 @@
 			<mat-expansion-panel>
 			  <mat-expansion-panel-header>
 				<mat-panel-title>
-				  User Constraints File
+				  Input Sensors
 				</mat-panel-title>
 			  </mat-expansion-panel-header>
 			  <ion-list>
@@ -64,22 +63,22 @@
 			<mat-expansion-panel>
 			  <mat-expansion-panel-header>
 				<mat-panel-title>
-				  User Constraints File
+				  Output Devices
 				</mat-panel-title>
 			  </mat-expansion-panel-header>
-			<ion-list>
-			  <ion-item style="width: 100%">
-				<ion-label position="stacked">Output Device File</ion-label>
-				<ion-select interface="popover" [(ngModel)]="project.outputDeviceFile" (ionChange)="project.updateOutputDeviceFiles()">
-				  <ion-select-option value="{{f}}" *ngFor="let f of project.outputDeviceFiles">{{f}}</ion-select-option>
-				</ion-select>
-			  </ion-item>
-			  <ion-item style="width: 100%">
-				<ion-label position="stacked">Upload</ion-label>
-				<ion-input accept="application/json" type="file"></ion-input>
-			  </ion-item>
-			  <ion-button fill="clear">Upload</ion-button>
-			</ion-list>
+			  <ion-list>
+				<ion-item style="width: 100%">
+				  <ion-label position="stacked">Output Device File</ion-label>
+				  <ion-select interface="popover" [(ngModel)]="project.outputDeviceFile" (ionChange)="project.updateOutputDeviceFiles()">
+					<ion-select-option value="{{f}}" *ngFor="let f of project.outputDeviceFiles">{{f}}</ion-select-option>
+				  </ion-select>
+				</ion-item>
+				<ion-item style="width: 100%">
+				  <ion-label position="stacked">Upload</ion-label>
+				  <ion-input accept="application/json" type="file"></ion-input>
+				</ion-item>
+				<ion-button fill="clear">Upload</ion-button>
+			  </ion-list>
 			</mat-expansion-panel>
 		  </ion-card>
 		</div>
