@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
 import { ProjectService } from 'src/app/project.service';
 

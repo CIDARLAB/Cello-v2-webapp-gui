@@ -1,20 +1,27 @@
 <ion-content>
   <ion-grid>
-	<ion-row class="editor-row ion-padding-bottom">
-	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center ion-no-padding">
+	<ion-row>
+	  <ion-col>
+		<ion-text color="primary" class="ion-text-center">
+		  <h3>Specify the design</h3>
+		</ion-text>
+	  </ion-col>
+	</ion-row>
+	<ion-row>
+	  <ion-col offset-lg="2" size-md="4" offset-md="0" size-sm="6" offset-sm="0" size-xs="12" offset-xs="0" class="ion-text-center">
+		<ion-card>
+		  <ion-select placeholder="Example file" interface="popover" style="min-width:20%" [(ngModel)]="sample" class="ion-text-left" (ionChange)="loadVerilog(sample)" style="--placeholder-opacity: 1.0;">
+			<ion-select-option value="{{f}}" *ngFor="let f of project.sampleVerilog">{{f}}</ion-select-option>
+		  </ion-select>
+		</ion-card>
+	  </ion-col>
+	</ion-row>
+	<ion-row class="editor-row">
+	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center">
 		<ion-card class="editor-card">
 		  <div class="editor" #editor>
 			<iframe src="assets/editor/verilog2001.html" (load)="init()"></iframe>
 		  </div>
-		</ion-card>
-	  </ion-col>
-	</ion-row>
-	<ion-row>
-	  <ion-col offset-lg="2" size-md="4" offset-md="0" size-sm="6" offset-sm="0" size-xs="12" offset-xs="0" class="ion-text-center ion-no-padding">
-		<ion-card>
-		  <ion-select placeholder="example" interface="popover" style="min-width:20%" [(ngModel)]="sample" class="ion-text-left" (ionChange)="loadVerilog(sample)">
-			<ion-select-option value="{{f}}" *ngFor="let f of project.sampleVerilog">{{f}}</ion-select-option>
-		  </ion-select>
 		</ion-card>
 	  </ion-col>
 	</ion-row>

@@ -1,5 +1,9 @@
 ion-item {
 	display: block;
 	width: auto;
-	float:left;
+	float: left;
+}
+
+ion-segment-button {
+	max-width: unset;
 }

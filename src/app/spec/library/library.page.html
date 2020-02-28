@@ -1,17 +1,24 @@
 <ion-content>
-  <ion-list>
-	<ion-segment [(ngModel)]="project.libraryMode">
-	  <ion-segment-button value="ucf" style="width: 50%">
-		<ion-label>File</ion-label>
-	  </ion-segment-button>
-	  <ion-segment-button value="registry" style="width: 50%">
-		<ion-label>Registry</ion-label>
-	  </ion-segment-button>
-	</ion-segment>
-  </ion-list>
   <ion-grid>
 	<ion-row>
-	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center ion-no-padding">
+	  <ion-col>
+		<ion-text color="primary" class="ion-text-center">
+		  <h3>Choose a library</h3>
+		</ion-text>
+	  </ion-col>
+	</ion-row>
+	<ion-row>
+	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center">
+		<ion-card>
+		  <ion-segment [(ngModel)]="project.libraryMode">
+			<ion-segment-button value="ucf" style="width: 50%">
+			  <ion-label>Choose a file</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="registry" style="width: 50%">
+			  <ion-label>Build from registry</ion-label>
+			</ion-segment-button>
+		  </ion-segment>
+		</ion-card>
 		<div *ngIf="project.libraryMode == 'ucf'">
 		  <ion-card>
 			<mat-expansion-panel>
@@ -35,7 +42,7 @@
 			  </ion-list>
 			</mat-expansion-panel>
 		  </ion-card>
-		  
+
 		  <ion-card>
 			<mat-expansion-panel>
 			  <mat-expansion-panel-header>
