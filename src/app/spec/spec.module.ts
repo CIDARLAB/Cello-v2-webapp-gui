@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { IonicModule } from '@ionic/angular';
+import { ComponentsModule } from '../components/components.module';
 import { SubmitPageModule } from '../submit/submit.module';
 import { SpecPage } from './spec.page';
 import { SpecPageRoutingModule } from './spec.router.module';
-import { VerilogComponent } from './verilog/verilog.component';
-import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
     imports: [
@@ -20,7 +18,6 @@ import { ComponentsModule } from '../components/components.module';
     ],
     declarations: [
         SpecPage,
-        VerilogComponent,
     ]
 })
 export class SpecPageModule { }

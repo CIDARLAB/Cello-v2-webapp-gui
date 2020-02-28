@@ -32,6 +32,7 @@
     "@ionic/storage": "^2.2.0",
     "@swimlane/ngx-datatable": "^16.0.3",
     "ajv": "^6.9.2",
+    "antlr4": "^4.7.2",
     "cordova-browser": "6.0.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",

@@ -1,7 +1,7 @@
 <ion-content>
   <ion-grid>
 	<ion-row class="editor-row ion-padding-bottom">
-      <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center ion-no-padding">
+	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center ion-no-padding">
 		<ion-card class="editor-card">
 		  <div class="editor" #editor>
 			<iframe src="assets/editor/verilog2001.html" (load)="init()"></iframe>
@@ -14,9 +14,9 @@
 		<ion-card>
 		  <ion-select placeholder="example" interface="popover" style="min-width:20%" [(ngModel)]="sample" class="ion-text-left" (ionChange)="loadVerilog(sample)">
 			<ion-select-option value="{{f}}" *ngFor="let f of project.sampleVerilog">{{f}}</ion-select-option>
-          </ion-select>
+		  </ion-select>
 		</ion-card>
-  	  </ion-col>
+	  </ion-col>
 	</ion-row>
   </ion-grid>
 </ion-content>

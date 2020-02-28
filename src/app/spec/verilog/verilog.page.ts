@@ -5,10 +5,10 @@ import { ProjectService } from '../../project.service';
 
 @Component({
     selector: 'app-verilog',
-    templateUrl: './verilog.component.html',
-    styleUrls: ['./verilog.component.scss'],
+    templateUrl: './verilog.page.html',
+    styleUrls: ['./verilog.page.scss'],
 })
-export class VerilogComponent implements OnInit {
+export class VerilogPage implements OnInit {
 
     public mode = 'verilog2001';
     @ViewChild('editor', { static: true }) editor: ElementRef;

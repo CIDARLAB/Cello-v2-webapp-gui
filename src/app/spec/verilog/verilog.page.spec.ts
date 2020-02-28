@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { VerilogComponent } from './verilog.component';
+import { VerilogPage } from './verilog.page';
 
-describe('VerilogComponent', () => {
-  let component: VerilogComponent;
-  let fixture: ComponentFixture<VerilogComponent>;
+describe('VerilogPage', () => {
+  let component: VerilogPage;
+  let fixture: ComponentFixture<VerilogPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerilogComponent ],
+      declarations: [ VerilogPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VerilogComponent);
+    fixture = TestBed.createComponent(VerilogPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
