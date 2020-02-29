@@ -93,7 +93,6 @@ export class SynBioHubComponent implements OnInit {
         const toast = await this.toastController.create({
             message: message,
             position: 'bottom',
-            showCloseButton: true,
             duration: 5000,
         });
         return await toast.present();

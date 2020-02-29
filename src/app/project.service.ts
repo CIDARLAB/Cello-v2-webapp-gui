@@ -39,7 +39,7 @@ export class ProjectService {
     public outputDeviceFiles = [];
     public outputDeviceFile: string;
 
-    public libraryMode = "ucf";
+    public libraryMode: string = 'ucf';
 
     // verilog
     public sampleVerilog = [
@@ -203,7 +203,6 @@ export class ProjectService {
         const toast = await this.toastController.create({
             message: message,
             position: 'bottom',
-            showCloseButton: true,
             duration: 5000,
         });
         return await toast.present();

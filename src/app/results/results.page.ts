@@ -1,12 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as d3 from 'd3';
-import * as d3Graphviz from 'd3-graphviz';
 import { ApiService } from '../api.service';
 import { ProjectService } from '../project.service';
 import { HttpClient } from '@angular/common/http';
-
-// https://github.com/AntoineTB/debugD3GraphViz
-const _ = d3Graphviz.graphviz;
 
 @Component({
     selector: 'app-results',

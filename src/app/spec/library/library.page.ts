@@ -9,7 +9,7 @@ import { ProjectService } from 'src/app/project.service';
 })
 export class LibraryPage implements OnInit {
 
-    public mode: string;
+    public mode: string = 'ucf';
 
     constructor(
         public api: ApiService,

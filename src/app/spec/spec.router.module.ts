@@ -9,54 +9,29 @@ const routes: Routes = [
         children: [
             {
                 path: 'verilog',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: './verilog/verilog.module#VerilogPageModule'
-                    }
-                ]
+                loadChildren: () => import('./verilog/verilog.module').then(m => m.VerilogPageModule)
             },
             {
                 path: 'library',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: './library/library.module#LibraryPageModule'
-                    }
-                ]
+                loadChildren: () => import('./library/library.module').then(m => m.LibraryPageModule)
             },
             {
                 path: 'settings',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: './settings/settings.module#SettingsPageModule'
-                    }
-                ]
+                loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
             },
             // {
             //     path: 'constraints',
-            //     children: [
-            //         {
-            //             path: '',
-            //             loadChildren: '../constraints/constraints.module#ConstraintsPageModule'
-            //         }
-            //     ]
+            // 	loadChildren: () => import('./constraints/constraints.module').then(m => m.ConstraintsPageModule)
             // },
             {
                 path: 'results',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../results/results.module#ResultsPageModule'
-                    }
-                ]
+                loadChildren: () => import('./../results/results.module').then(m => m.ResultsPageModule)
             },
             {
                 path: '',
                 redirectTo: '/spec/verilog',
                 pathMatch: 'full'
-            }
+            },
         ]
     }
 ];
