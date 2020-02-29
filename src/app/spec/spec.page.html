@@ -6,17 +6,24 @@
 
   <ion-tabs #specTabs>
 
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="custom-fab">
+	  <ion-fab-button>
+		<ion-icon name="paper-plane"></ion-icon>
+	  </ion-fab-button>
+	</ion-fab>
+
 	<ion-tab-bar slot="bottom">
-	  <ion-tab-button tab="verilog">
-		<ion-badge color="warning" *ngIf="!project.valid('verilog')"></ion-badge>
-		<ion-icon name="code-working-outline"></ion-icon>
-		<ion-label>Verilog</ion-label>
-	  </ion-tab-button>
 
 	  <ion-tab-button tab="library">
 		<ion-badge color="warning" *ngIf="!project.valid('library')"></ion-badge>
 		<ion-icon name="book"></ion-icon>
 		<ion-label>Library</ion-label>
+	  </ion-tab-button>
+
+	  <ion-tab-button tab="design">
+		<ion-badge color="warning" *ngIf="!project.valid('verilog')"></ion-badge>
+		<ion-icon name="code-working-outline"></ion-icon>
+		<ion-label>Design</ion-label>
 	  </ion-tab-button>
 
 	  <ion-tab-button tab="settings">
@@ -31,15 +38,11 @@
 		<!--   <ion-label>Constraits</ion-label> -->
 		<!-- </ion-tab-button> -->
 
-	  <ion-tab-button class="final-tab" (click)="submit()" *ngIf="isEmptyObject(project.project.results)">
-		<ion-icon name="paper-plane"></ion-icon>
-		<ion-label>Submit</ion-label>
-	  </ion-tab-button>
-
-	  <ion-tab-button class="final-tab" tab="results" *ngIf="!isEmptyObject(project.project.results)">
+	  <ion-tab-button tab="results">
 		<ion-icon name="analytics"></ion-icon>
 		<ion-label>Results</ion-label>
 	  </ion-tab-button>
+
 	</ion-tab-bar>
 
   </ion-tabs>

@@ -8,7 +8,7 @@ const routes: Routes = [
         component: SpecPage,
         children: [
             {
-                path: 'verilog',
+                path: 'design',
                 loadChildren: () => import('./verilog/verilog.module').then(m => m.VerilogPageModule)
             },
             {
@@ -29,7 +29,7 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: '/spec/verilog',
+                redirectTo: '/spec/library',
                 pathMatch: 'full'
             },
         ]

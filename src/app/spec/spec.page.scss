@@ -1,9 +1,24 @@
 .final-tab {
-    border-left: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 }
 
 .tab-selected {
 	background: #3880ff !important;
 	color: white !important;
 	--color-selected: var(--ion-color-dark);
+}
+
+.custom-fab {
+	bottom: 70px;
+	right: 14px;
+}
+
+ion-fab-button {
+}
+
+.my-fab {
+	width: 100px;
+	position: absolute;
+	bottom: 56px;
+	right: 0;
 }
