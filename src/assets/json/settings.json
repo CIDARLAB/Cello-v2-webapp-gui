@@ -9,15 +9,10 @@
             {
               "name": "Yosys",
               "parameters": [
-                {
-                  "name": "Gates",
-                  "type": "string",
-                  "value": "NOR"
-                },
 				{
                   "name": "NetSynth",
                   "type": "boolean",
-                  "value": true
+                  "value": false
                 }
               ]
             }
@@ -99,11 +94,6 @@
             {
               "name": "SimulatedAnnealing",
               "parameters": [
-                {
-                  "name" : "ComputeTandemEfficiency",
-                  "type" : "boolean",
-                  "value": false
-                }
               ]
             }
           ]
@@ -118,11 +108,6 @@
                   "name": "MaxPlacements",
                   "type": "int",
                   "value": 5
-                },
-                {
-                  "name" : "KeepPromoterOrder",
-                  "type" : "boolean",
-                  "value": false
                 }
               ]
             },
