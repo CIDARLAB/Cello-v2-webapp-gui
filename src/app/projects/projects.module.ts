@@ -1,27 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NavbarComponentModule } from '../navbar/navbar.module';
+import { ProjectsPageRoutingModule } from './projects-routing.module';
 import { ProjectsPage } from './projects.page';
-import { ComponentsModule } from '../components/components.module';
-
-const routes: Routes = [
-    {
-        path: '',
-        component: ProjectsPage
-    }
-];
 
 @NgModule({
     imports: [
-        NgxDatatableModule,
-        RouterModule.forChild(routes),
+        CommonModule,
         FormsModule,
         IonicModule,
-        CommonModule,
-        ComponentsModule,
+        ProjectsPageRoutingModule,
+        NavbarComponentModule,
+        NgxDatatableModule,
     ],
     declarations: [ProjectsPage]
 })

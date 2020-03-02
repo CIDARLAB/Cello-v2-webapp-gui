@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SynBioHubService } from './syn-bio-hub.service';
+import { SynbiohubService } from './synbiohub.service';
 
-describe('SynBioHubService', () => {
+describe('SynbiohubService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: SynBioHubService = TestBed.get(SynBioHubService);
+    const service: SynbiohubService = TestBed.get(SynbiohubService);
     expect(service).toBeTruthy();
   });
 });

@@ -23,6 +23,7 @@ export class ProjectsPage implements OnInit {
     ionViewWillEnter() {
         this.api.getLoginInfo().then((data) => {
             this.api.token = data;
+            console.log(data);
         }).then(() => {
             this.api.projects().subscribe((result) => {
                 this.projects = result;

@@ -1,25 +1,22 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
-import { SynBioHubPage } from './synbiohub.page';
+import { SynBioHubComponent } from './synbiohub.component';
 
-describe('SynBioHubPage', () => {
-    let component: SynBioHubPage;
-    let fixture: ComponentFixture<SynBioHubPage>;
+describe('SynbiohubComponent', () => {
+    let component: SynbiohubComponent;
+    let fixture: ComponentFixture<SynbiohubComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SynBioHubPage],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        })
-            .compileComponents();
-    }));
+            declarations: [SynbiohubComponent],
+            imports: [IonicModule.forRoot()]
+        }).compileComponents();
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(SynBioHubPage);
+        fixture = TestBed.createComponent(SynBioHubComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-    });
+    }));
 
     it('should create', () => {
         expect(component).toBeTruthy();

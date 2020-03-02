@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuController, ModalController, Platform } from '@ionic/angular';
-import { AboutPage } from '../about/about.page';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { AboutPage } from '../about/about.page';
 
 @Component({
     selector: 'app-navbar',
@@ -17,8 +17,7 @@ export class NavbarComponent implements OnInit {
         public router: Router,
         public api: ApiService,
         public platform: Platform,
-    ) {
-    }
+    ) { }
 
     ngOnInit() { }
 
@@ -30,9 +29,10 @@ export class NavbarComponent implements OnInit {
 
     async about() {
         const modal = await this.modalController.create({
-            component: AboutPage,
+            component: AboutPage
         });
         return await modal.present();
     }
+
 
 }

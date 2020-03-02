@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
@@ -15,11 +15,13 @@ export class AuthGuard implements CanActivate {
 
     canActivate(
         next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        state: RouterStateSnapshot
+    ): Observable<boolean> | Promise<boolean> | boolean {
         if (!this.api.token) {
             this.router.navigateByUrl("home");
             return false;
         }
         return true;
     }
+
 }

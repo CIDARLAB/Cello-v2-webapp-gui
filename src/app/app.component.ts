@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { MenuController, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ApiService } from './api.service';
 import { ProjectService } from './project.service';
 
 @Component({
     selector: 'app-root',
-    templateUrl: 'app.component.html'
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.scss']
 })
 export class AppComponent {
 
@@ -21,7 +22,6 @@ export class AppComponent {
         private storage: Storage,
         public api: ApiService,
         public project: ProjectService,
-        private menuController: MenuController,
     ) {
         this.initializeApp();
     }
@@ -29,7 +29,6 @@ export class AppComponent {
     initializeApp() {
         this.platform.ready()
             .then(() => {
-                this.menuController.enable(false);
                 return this.initializeStorage();
             })
             .then(() => {
@@ -68,5 +67,4 @@ export class AppComponent {
             recursive(resolve);
         });
     }
-
 }

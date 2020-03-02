@@ -1,6 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -17,11 +16,10 @@ import { AuthGuard } from './auth.guard';
     entryComponents: [],
     imports: [
         BrowserModule,
-        FormsModule,
-        HttpClientModule,
         IonicModule.forRoot(),
-        IonicStorageModule.forRoot(),
         AppRoutingModule,
+        HttpClientModule,
+        IonicStorageModule.forRoot(),
         AboutPageModule,
     ],
     providers: [

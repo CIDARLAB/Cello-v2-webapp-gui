@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ProjectService } from '../project.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-results',
@@ -9,14 +8,11 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./results.page.scss'],
 })
 export class ResultsPage implements OnInit {
-    @ViewChild('graphviz', { static: true })
-    private view: ElementRef;
     public registry: string;
     public selected: object;
 
     constructor(
         private api: ApiService,
-        private http: HttpClient,
         public project: ProjectService,
     ) {
         this.selected = {};
@@ -34,15 +30,6 @@ export class ResultsPage implements OnInit {
         return this.api.result(this.project.project.name, file);
     }
 
-    // isDot() {
-    //     if (this.selected['name']) {
-    //         if (this.result['name'].endsWith(".dot"))
-    //             return true;
-    //     }
-    //     else
-    //         return false;
-    // }
-
     isExt(ext: string) {
         if (this.selected['name']) {
             if (this.selected['name'].endsWith("." + ext)) {
@@ -51,19 +38,6 @@ export class ResultsPage implements OnInit {
         }
         else
             return false;
-    }
-
-    show(result: object) {
-        // this.selected = result;
-        // d3.select(this.view.nativeElement).selectAll(function() { return this.childNodes; }).remove();
-        // if (result['name'].endsWith(".dot")) {
-        //     this.api.result(this.project.project.name, result['name']).subscribe(async (data) => {
-        //         // const reader = new FileReader();
-        //         // let str = reader.readAsText(data);
-        //         const text = await new Response(data).text();
-        //         d3.select(this.view.nativeElement).graphviz().renderDot(data);
-        //     });
-        // }
     }
 
     download(r: string) {

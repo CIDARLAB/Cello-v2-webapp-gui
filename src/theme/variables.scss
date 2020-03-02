@@ -35,14 +35,6 @@
 		}
 	}
 	
-	ion-toolbar {
-		height: 65px !important;
-	}
-
-	.navbar-logo {
-		height: 20px;
-	}
-	
 	@import '~@swimlane/ngx-datatable/index.css';
 	@import '~@swimlane/ngx-datatable/themes/material.css';
 	@import '~@swimlane/ngx-datatable/assets/icons.css';

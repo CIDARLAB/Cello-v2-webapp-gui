@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { ProjectService } from '../project.service';
-import { SubmitPage } from '../submit/submit.page';
 
 @Component({
     selector: 'app-spec',
@@ -11,18 +10,9 @@ import { SubmitPage } from '../submit/submit.page';
 export class SpecPage {
 
     constructor(
-        private modalController: ModalController,
         private alertController: AlertController,
         public project: ProjectService,
     ) { }
-
-    // async submitModal() {
-    //     const modal = await this.modalController.create({
-    //         component: SubmitPage,
-    //         cssClass: 'custom-modal',
-    //     });
-    //     return await modal.present();
-    // }
 
     async submit() {
         const alert = await this.alertController.create({
