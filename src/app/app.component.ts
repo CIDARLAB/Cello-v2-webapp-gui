@@ -53,7 +53,6 @@ export class AppComponent {
             self.storage.get('dbOpen').then((data) => {
                 if (data) {
                     // db ready to use
-                    console.log('Read dbOpen from db successful');
                     resolve(true);
                 } else {
                     //not ready yet loop round and try to initialise again
