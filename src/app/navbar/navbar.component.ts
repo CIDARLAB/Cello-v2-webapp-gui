@@ -34,5 +34,4 @@ export class NavbarComponent implements OnInit {
         return await modal.present();
     }
 
-
 }
