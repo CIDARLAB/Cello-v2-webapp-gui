@@ -1,88 +1,89 @@
 <ion-content>
   <ion-grid>
-	<ion-row>
-	  <ion-col>
-		<ion-text color="primary" class="ion-text-center">
-		  <h3>Choose a library</h3>
-		</ion-text>
-	  </ion-col>
-	</ion-row>
-	<ion-row>
-	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center">
-		<ion-card>
-		  <ion-segment [(ngModel)]="mode">
-			<ion-segment-button value="ucf" style="width: 50%">
-			  <ion-label>Choose a file</ion-label>
-			</ion-segment-button>
-			<ion-segment-button value="registry" style="width: 50%">
-			  <ion-label>Build from registry</ion-label>
-			</ion-segment-button>
-		  </ion-segment>
-		  <div *ngIf="mode === 'ucf'">
-			<ion-list>
-			  <ion-item style="width: 100%">
-				      <ngx-datatable style="width:100%"
-					 class="material fullscreen"
-					 [columnMode]="'flex'"
-					 [headerHeight]="50"
-					 [footerHeight]="50"
-					 [rowHeight]="'auto'"
-					 [rows]="project.userConstraintsFiles">
-		<ngx-datatable-column name="name" [flexGrow]="1">
-		  <ng-template let-column="column" ngx-datatable-header-template>
-			File name
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-			{{value}}
-          </ng-template>
-		</ngx-datatable-column>
-		<ngx-datatable-column name="name" [flexGrow]="1">
-		  <ng-template let-column="column" ngx-datatable-header-template>
-			Organism
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-			{{value}}
-          </ng-template>
-		</ngx-datatable-column>
-		<ngx-datatable-column name="name" [flexGrow]="1">
-		  <ng-template let-column="column" ngx-datatable-header-template>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-			<a href="#"><ion-icon name="cloud-download-outline"></ion-icon></a>
-			<a href="#"><ion-icon name="information-circle-outline"></ion-icon></a>
-          </ng-template>
-		</ngx-datatable-column>
-      </ngx-datatable>
-				<!-- <ion-label position="stacked">User Constraints File</ion-label> -->
-				<!-- <ion-select interface="popover" [(ngModel)]="project.userConstraintsFile" (ionChange)="project.updateUserConstraintsFiles()"> -->
-				<!--   <ion-select-option value="{{f}}" *ngFor="let f of project.userConstraintsFiles">{{f}}</ion-select-option> -->
-				<!-- </ion-select> -->
-			  </ion-item>
-			  <ion-item style="width: 100%">
-				<ion-label position="stacked">Upload</ion-label>
-				<ion-input accept="application/json" type="file"></ion-input>
-			  </ion-item>
-			  <ion-button fill="clear">Upload</ion-button>
-			</ion-list>
-		  </div>
-		  <div *ngIf="mode === 'registry'">
-			<ion-list>
-			  <ion-item style="width: 60%">
-				<ion-label position="stacked">Registry</ion-label>
-				<ion-select interface="popover" [(ngModel)]="project.registry" (ionChange)="project.updateCollections()">
-				  <ion-select-option value="{{r}}" *ngFor="let r of project.registries">{{r}}</ion-select-option>
-				</ion-select>
-			  </ion-item>
-			  <ion-item style="width: 40%">
-				<ion-label position="stacked">Collection</ion-label>
-				<ion-select interface="popover" [(ngModel)]="project.collection">
-				  <ion-select-option value="{{c.uri}}" *ngFor="let c of project.collections">{{c.name}}</ion-select-option>
-				</ion-select>
-			  </ion-item>
-			</ion-list>
-		  </div>
-		</ion-card>
-	  </ion-col>
-	</ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text color="primary" class="ion-text-center">
+          <h3>Choose a library</h3>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center">
+        <ion-card>
+          <ion-segment [(ngModel)]="mode">
+            <ion-segment-button value="ucf" style="width: 50%">
+              <ion-label>Choose a file</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="registry" style="width: 50%">
+              <ion-label>Build from registry</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          <div *ngIf="mode === 'ucf'">
+            <ion-list>
+              <ion-item style="width: 100%">
+                <ngx-datatable style="width:100%"
+                               class="material fullscreen"
+                               [columnMode]="'flex'"
+                               [headerHeight]="50"
+                               [footerHeight]="50"
+                               [rowHeight]="'auto'"
+                               [selectionType]="'single'"
+                               [rows]="project.userConstraintsFiles">
+                  <ngx-datatable-column name="name" [flexGrow]="1">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                      File name
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      {{value}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="name" [flexGrow]="1">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                      Organism
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      {{value}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="name" [flexGrow]="1">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      <a href="#"><ion-icon name="cloud-download-outline"></ion-icon></a>
+                      <a href="#"><ion-icon name="information-circle-outline"></ion-icon></a>
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+                <!-- <ion-label position="stacked">User Constraints File</ion-label> -->
+                <!-- <ion-select interface="popover" [(ngModel)]="project.userConstraintsFile" (ionChange)="project.updateUserConstraintsFiles()"> -->
+                  <!--   <ion-select-option value="{{f}}" *ngFor="let f of project.userConstraintsFiles">{{f}}</ion-select-option> -->
+                  <!-- </ion-select> -->
+              </ion-item>
+              <ion-item style="width: 100%">
+                <ion-label position="stacked">Upload</ion-label>
+                <ion-input accept="application/json" type="file"></ion-input>
+              </ion-item>
+              <ion-button fill="clear">Upload</ion-button>
+            </ion-list>
+          </div>
+          <div *ngIf="mode === 'registry'">
+            <ion-list>
+              <ion-item style="width: 60%">
+                <ion-label position="stacked">Registry</ion-label>
+                <ion-select interface="popover" [(ngModel)]="project.registry" (ionChange)="project.updateCollections()">
+                  <ion-select-option value="{{r}}" *ngFor="let r of project.registries">{{r}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item style="width: 40%">
+                <ion-label position="stacked">Collection</ion-label>
+                <ion-select interface="popover" [(ngModel)]="project.collection">
+                  <ion-select-option value="{{c.uri}}" *ngFor="let c of project.collections">{{c.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

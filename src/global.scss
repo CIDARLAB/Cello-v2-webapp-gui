@@ -25,6 +25,8 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.css';
+$ngx-datatable-selected-active-background: #3880ff;
+$ngx-datatable-selected-active-background-hover: lighten($ngx-datatable-selected-active-background, 15);
+@import '~@swimlane/ngx-datatable/index.scss';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
