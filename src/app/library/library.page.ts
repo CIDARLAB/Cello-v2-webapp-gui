@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { ProjectService } from 'src/app/project.service';
+import { SelectionType, ColumnMode } from '@swimlane/ngx-datatable';
 
 @Component({
     selector: 'app-library',
@@ -10,6 +11,12 @@ import { ProjectService } from 'src/app/project.service';
 export class LibraryPage implements OnInit {
 
     public mode: string = 'ucf';
+
+    public selected = [];
+    public columns = [{ name: "Organism", prop: "header.organism" }, { name: "Version", prop: "header.version" }];
+
+    public SelectionType = SelectionType;
+    public ColumnMode = ColumnMode;
 
     constructor(
         public api: ApiService,

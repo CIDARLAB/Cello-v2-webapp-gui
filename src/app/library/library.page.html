@@ -20,44 +20,55 @@
           </ion-segment>
           <div *ngIf="mode === 'ucf'">
             <ion-list>
-              <ion-item style="width: 100%">
-                <ngx-datatable style="width:100%"
-                               class="material fullscreen"
-                               [columnMode]="'flex'"
-                               [headerHeight]="50"
-                               [footerHeight]="50"
-                               [rowHeight]="'auto'"
-                               [selectionType]="'single'"
-                               [rows]="project.userConstraintsFiles">
-                  <ngx-datatable-column name="name" [flexGrow]="1">
-                    <ng-template let-column="column" ngx-datatable-header-template>
-                      File name
-                    </ng-template>
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                      {{value}}
-                    </ng-template>
-                  </ngx-datatable-column>
-                  <ngx-datatable-column name="name" [flexGrow]="1">
-                    <ng-template let-column="column" ngx-datatable-header-template>
+              <ion-item class="ion-item-with-ngx-datatable">
+                <ngx-datatable class="material fullscreen"
+                               [columnMode]="ColumnMode.force"
+                               headerHeight="50"
+                               footerHeight="50"
+                               rowHeight="'auto'"
+                               [selectionType]="SelectionType.single"
+                               [selected]="selected"
+                               [rows]="project.userConstraintsFiles"
+                               >
+                  <ngx-datatable-column prop="header.organism" [flexGrow]="1">
+                    <ng-template ngx-datatable-header-template>
                       Organism
                     </ng-template>
                     <ng-template let-value="value" ngx-datatable-cell-template>
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="name" [flexGrow]="1">
-                    <ng-template let-column="column" ngx-datatable-header-template>
+                  <ngx-datatable-column prop="header.version" [flexGrow]="1">
+                    <ng-template ngx-datatable-header-template>
+                      Version
                     </ng-template>
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                      <a href="#"><ion-icon name="cloud-download-outline"></ion-icon></a>
-                      <a href="#"><ion-icon name="information-circle-outline"></ion-icon></a>
+                      {{value}}
                     </ng-template>
                   </ngx-datatable-column>
+                  <ngx-datatable-column [maxWidth]="100" sortable="false" >
+                    <ng-template ngx-datatable-header-template>
+                      Actions
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      <a><ion-icon name="cloud-download-outline"></ion-icon></a>
+                      <a><ion-icon name="information-circle-outline"></ion-icon></a>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-footer>
+                    <ng-template
+                      ngx-datatable-footer-template
+                      let-rowCount="rowCount"
+                      let-pageSize="pageSize"
+                      let-selectedCount="selectedCount"
+                      let-curPage="curPage"
+                      let-offset="offset">
+                      <div style="padding: 5px 10px">
+                        <div>{{ rowCount }} total</div>
+                      </div>
+                    </ng-template>
+                  </ngx-datatable-footer>
                 </ngx-datatable>
-                <!-- <ion-label position="stacked">User Constraints File</ion-label> -->
-                <!-- <ion-select interface="popover" [(ngModel)]="project.userConstraintsFile" (ionChange)="project.updateUserConstraintsFiles()"> -->
-                  <!--   <ion-select-option value="{{f}}" *ngFor="let f of project.userConstraintsFiles">{{f}}</ion-select-option> -->
-                  <!-- </ion-select> -->
               </ion-item>
               <ion-item style="width: 100%">
                 <ion-label position="stacked">Upload</ion-label>

@@ -1,9 +1,30 @@
 ion-item {
-	display: block;
-	width: auto;
-	float: left;
+    display: block;
+    width: auto;
+    float: left;
 }
 
 ion-segment-button {
-	max-width: unset;
+    max-width: unset;
+}
+
+ion-icon {
+    font-size: 24px;
+}
+
+.ngx-datatable {
+    box-shadow: unset;
+}
+
+ion-item {
+    width: 100%;
+}
+
+ngx-datatable {
+    width: 100%;
+}
+
+.ion-item-with-ngx-datatable {
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
 }
