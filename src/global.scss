@@ -27,6 +27,23 @@
 
 $ngx-datatable-selected-active-background: #3880ff;
 $ngx-datatable-selected-active-background-hover: lighten($ngx-datatable-selected-active-background, 15);
+
 @import '~@swimlane/ngx-datatable/index.scss';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
+
+.ngx-datatable.material {
+    &.single-selection,
+    &.multi-selection,
+    &.multi-click-selection {
+        .datatable-body-row {
+            &.active,
+            &.active .datatable-row-group,
+            &.active .datatable-row-group datatable-body-cell {
+                a {
+                    color: inherit;
+                }
+            }
+        }
+    }
+}
