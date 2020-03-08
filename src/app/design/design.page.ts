@@ -50,7 +50,6 @@ export class DesignPage implements OnInit {
     }
 
     public height() {
-        console.log(this.platform.height() - 275)
         return this.platform.height() - 275;
     }
 
