@@ -17,22 +17,22 @@ Clone the repository.
 
 Prepare the repository.
 
-	npm install -g @ionic/cli cordova
+	npm install -g @ionic/cli
 	cd Cello-v2-webapp-gui
 	npm install
 
 ## Build for production
 
-	ionic cordova build browser --prod
+	ionic build browser --prod
 
 ## Serve during development
 
 Serve locally and refresh on changes. Run the build step above at least once before this step.
 
-	ionic serve --cordova --platform browser
+	ionic serve --platform browser
 
-## Deploy to the gh-pages branch
+## Deploy to the production branch
 
-	sh deploy.sh
+	sh deploy-gh.sh
 
 [webapp]: https://github.com/CIDARLAB/Cello-v2-webapp

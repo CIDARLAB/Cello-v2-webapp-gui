@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 13
 install:
-  - npm install -g @ionic/cli cordova
+  - npm install -g @ionic/cli
   - npm install
 script:
-  - ionic cordova build browser --prod --no-interactive --confirm
+  - ionic build --prod --no-interactive --confirm
