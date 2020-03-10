@@ -12,7 +12,7 @@
         <ion-card>
           <ion-segment [(ngModel)]="mode">
             <ion-segment-button value="ucf" style="width: 50%">
-              <ion-label>Choose a file</ion-label>
+              <ion-label>Select a file</ion-label>
             </ion-segment-button>
             <ion-segment-button value="registry" style="width: 50%">
               <ion-label>Build from registry</ion-label>
@@ -25,7 +25,7 @@
                                [columnMode]="ColumnMode.force"
                                headerHeight="50"
                                footerHeight="50"
-                               rowHeight="'auto'"
+                               rowHeight="auto"
                                [selectionType]="SelectionType.single"
                                [selected]="selected"
                                [rows]="project.userConstraintsFiles"
@@ -41,6 +41,14 @@
                   <ngx-datatable-column prop="header.version" [flexGrow]="1">
                     <ng-template ngx-datatable-header-template>
                       Version
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      {{value}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column prop="header.description" [flexGrow]="1">
+                    <ng-template ngx-datatable-header-template>
+                      Description
                     </ng-template>
                     <ng-template let-value="value" ngx-datatable-cell-template>
                       {{value}}
