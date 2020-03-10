@@ -51,19 +51,24 @@ export class ApiService {
         return this.http.post<object>(url, body, { observe: 'response' });
     }
 
-    userConstraintsFiles(): Observable<string[]> {
+    userConstraintsFiles(): Observable<object[]> {
         const url = this.baseUrl + 'resources/user_constraints_files';
-        return this.http.get<string[]>(url, { headers: { "Authorization": this.token } });
+        return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });
     }
 
-    inputSensorFiles(): Observable<string[]> {
+    inputSensorFiles(): Observable<object[]> {
         const url = this.baseUrl + 'resources/input_sensor_files';
-        return this.http.get<string[]>(url, { headers: { "Authorization": this.token } });
+        return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });
     }
 
-    outputDeviceFiles(): Observable<string[]> {
+    outputDeviceFiles(): Observable<object[]> {
         const url = this.baseUrl + 'resources/output_device_files';
-        return this.http.get<string[]>(url, { headers: { "Authorization": this.token } });
+        return this.http.get<object[]>(url, { headers: { "Authorization": this.token } });
+    }
+
+    settings(): Observable<object> {
+        const url = this.baseUrl + 'resources/settings';
+        return this.http.get<object>(url, { headers: { "Authorization": this.token } });
     }
 
     projects(): Observable<object[]> {

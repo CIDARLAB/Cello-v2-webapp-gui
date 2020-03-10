@@ -9,8 +9,7 @@ export class Project {
     verilog: string;
     settings: {
         application: string,
-        algorithms: object,
-        parameters: object
+        applications: Map<string, any>
     };
     constraints: {
         input: Constraint[],
@@ -24,7 +23,6 @@ export class Project {
         this.verilog = '';
         this.application = 'DNACompiler';
         this.results = {};
-        this.settings = { application: '', algorithms: {}, parameters: {} };
         this.constraints = { input: [], output: [] };
     }
 

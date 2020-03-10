@@ -18,6 +18,7 @@ export class ProjectsPage implements OnInit {
         public api: ApiService,
         public project: ProjectService,
     ) {
+        this.project.init();
     }
 
     ionViewWillEnter() {
@@ -34,7 +35,7 @@ export class ProjectsPage implements OnInit {
     }
 
     create() {
-        this.project.project = new Project();
+        this.project.newProject();
         this.router.navigateByUrl("spec");
     }
 

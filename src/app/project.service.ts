@@ -18,7 +18,10 @@ export class ProjectService {
 
     public project: Project;
 
-    public settingsDefinition: object;
+    public defaultSettings: {
+        application: string,
+        applications: Map<string, any>
+    };
 
     // Registry
     public registries = [
@@ -67,14 +70,18 @@ export class ProjectService {
     ) {
         this.registry = 'https://synbiohub.programmingbiology.org/';
         this.collection = 'https://synbiohub.programmingbiology.org/public/Eco1C1G1T1/Eco1C1G1T1_collection/1';
-        this.getSettingsDefinition().then((data) => {
-            this.settingsDefinition = data;
-        });
-        this.project = new Project();
         this.validCallbacks = {};
         this.userConstraintsFile = "";
         this.inputSensorFile = "";
         this.outputDeviceFile = "";
+    }
+
+    init() {
+        this.updateCollections();
+        this.updateDefaultSettings();
+        this.updateUserConstraintsFiles();
+        this.updateInputSensorFiles();
+        this.updateOutputDeviceFiles();
     }
 
     valid(name: string) {
@@ -89,20 +96,19 @@ export class ProjectService {
         this.validCallbacks[name] = callback;
     }
 
+    // example verilog
     loadVerilog(file: string): Observable<string> {
         return this.http.get<string>('assets/verilog/' + file, { responseType: 'text' as 'json' });
     }
 
-    getSettingsDefinition() {
-        return new Promise((resolve, reject) => {
-            this.http.get('assets/json/settings.json')
-                .subscribe((result) => {
-                    resolve(result);
-                }, (error) => {
-                    reject(error);
-                });
-        });
+    newProject() {
+        this.project = new Project();
+        this.project.settings = this.defaultSettings;
     }
+
+    //////////////////////
+    // update resources //
+    //////////////////////
 
     updateCollections() {
         this.synbiohub.collections(this.registry).subscribe((result) => {
@@ -128,14 +134,67 @@ export class ProjectService {
         });
     }
 
+    updateDefaultSettings() {
+        this.api.settings().subscribe((result) => {
+            this.defaultSettings = {
+                application: "",
+                applications: new Map()
+            };
+            for (let application of result["applications"]) {
+                this.defaultSettings.applications.set(application.name, new Map());
+                if (application.name === result["default"]) {
+                    this.defaultSettings
+                        .application = application.name;
+                }
+                for (let stage of application.stages) {
+                    this.defaultSettings
+                        .applications
+                        .get(application.name)
+                        .set(stage.name, {
+                            algorithm: "",
+                            parameters: new Map()
+                        });
+                    for (let algorithm of stage.algorithms) {
+                        if (algorithm.name === stage["default"]) {
+                            this.defaultSettings
+                                .applications
+                                .get(application.name)
+                                .get(stage.name)
+                                .algorithm = algorithm.name;
+                        }
+                        this.defaultSettings
+                            .applications
+                            .get(application.name)
+                            .get(stage.name)
+                            .parameters
+                            .set(algorithm.name, new Map());
+                        for (let parameter of algorithm.parameters) {
+                            this.defaultSettings
+                                .applications
+                                .get(application.name)
+                                .get(stage.name)
+                                .parameters
+                                .get(algorithm.name)
+                                .set(parameter.name, parameter.value);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    ////////////////////////////////
+    // specification body methods //
+    ////////////////////////////////
+
     settings(): object {
         let parameters = {};
-        for (let stage in this.project.settings.algorithms) {
-            parameters[stage] = this.project.settings.algorithms[stage];
-        }
-        for (let parameter in this.project.settings.parameters) {
-            parameters[parameter] = this.project.settings.parameters[parameter];
-        }
+        // for (let stage in this.project.settings.algorithms) {
+        //     parameters[stage] = this.project.settings.algorithms[stage];
+        // }
+        // for (let parameter in this.project.settings.parameters) {
+        //     parameters[parameter] = this.project.settings.parameters[parameter];
+        // }
         let body = { 'application': this.project.application, 'parameters': parameters }
         return body;
     }
@@ -191,6 +250,10 @@ export class ProjectService {
         return specification;
     }
 
+    ////////////
+    // alerts //
+    ////////////
+
     async alert(message) {
         const alert = await this.alertController.create({
             message: message,
@@ -207,6 +270,10 @@ export class ProjectService {
         });
         return await toast.present();
     }
+
+    ////////////
+    // sumbit //
+    ////////////
 
     async submit() {
         const name = this.project.name;
@@ -234,6 +301,10 @@ export class ProjectService {
                 this.alert(error.error.message);
             });
     }
+
+    /////////////////////
+    // verilog parsing //
+    /////////////////////
 
     private parsePortDeclarations(portDeclarations) {
         let rtn = { input: [], output: [] };

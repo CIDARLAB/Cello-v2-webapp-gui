@@ -23,10 +23,6 @@ export class LibraryPage implements OnInit {
         public project: ProjectService,
     ) {
         this.project.register('library', this.valid);
-        this.project.updateCollections();
-        this.project.updateUserConstraintsFiles();
-        this.project.updateInputSensorFiles();
-        this.project.updateOutputDeviceFiles();
     }
 
     public valid = (() => {

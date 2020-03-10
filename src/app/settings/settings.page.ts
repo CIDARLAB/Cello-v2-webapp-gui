@@ -10,32 +10,42 @@ export class SettingsPage implements OnInit {
 
     constructor(
         public project: ProjectService,
-    ) {
-    }
+    ) { }
 
     ngOnInit() {
     }
 
-    updateDefaults(stage: {}) {
-        for (let parameter of this.getAlgorithmParameters(this.project.project.settings.algorithms[stage['name']], stage)) {
-            this.project.project.settings.parameters[stage['name'] + '.' + parameter.name] = parameter.value;
-        }
+    applications() {
+        return Array.from(this.project.project.settings.applications.keys());
     }
 
-    getApplicationStages(name) {
-        for (let i = 0; i < this.project.settingsDefinition['applications'].length; i++) {
-            if (this.project.settingsDefinition['applications'][i].name == name) {
-                return this.project.settingsDefinition['applications'][i].stages;
-            }
-        }
+    application() {
+        return this.project.project.settings.application;
     }
 
-    getAlgorithmParameters(name, stage) {
-        for (let i = 0; i < stage.algorithms.length; i++) {
-            if (stage.algorithms[i].name == name) {
-                return stage.algorithms[i].parameters;
-            }
-        }
+    stages() {
+        return Array.from(this.project.project.settings.applications.get(this.project.project.settings.application).keys());
+    }
+
+    algorithms(stage: string) {
+        return Array.from(this.project.project.settings.applications.get(this.application()).get(stage).parameters.keys());
+    }
+
+    algorithm(stage: string) {
+        return this.project.project.settings.applications.get(this.application()).get(stage).algorithm;
+    }
+
+    parameters(stage: string, algorithm: string) {
+        return Array.from(this.project.project.settings.applications.get(this.application()).get(stage).parameters.get(algorithm).keys());
+    }
+
+    parameterValue(stage: string, algorithm: string, parameter: string) {
+        console.log(typeof 1 == 'number');
+        return this.project.project.settings.applications.get(this.application()).get(stage).parameters.get(algorithm).get(parameter);
+    }
+
+    typeOf(value: any) {
+        return (typeof value);
     }
 
 }
