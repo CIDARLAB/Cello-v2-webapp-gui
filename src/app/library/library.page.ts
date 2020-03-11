@@ -12,8 +12,7 @@ export class LibraryPage implements OnInit {
 
     public mode: string = 'ucf';
 
-    public selected = [];
-    public columns = [{ name: "Organism", prop: "header.organism" }, { name: "Version", prop: "header.version" }];
+    public selected = [this.project.userConstraintsFiles[1]];
 
     public SelectionType = SelectionType;
     public ColumnMode = ColumnMode;
