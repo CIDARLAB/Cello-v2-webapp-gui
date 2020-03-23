@@ -22,7 +22,7 @@
             <ion-list>
               <ion-item class="ion-item-with-ngx-datatable">
                 <ngx-datatable class="material fullscreen"
-                               [columnMode]="ColumnMode.force"
+                               [columnMode]="ColumnMode.flex"
                                headerHeight="50"
                                footerHeight="50"
                                rowHeight="auto"
@@ -30,15 +30,15 @@
                                [selected]="selected"
                                [rows]="project.userConstraintsFiles"
                                >
-                  <ngx-datatable-column prop="header.organism" [flexGrow]="1">
+                  <ngx-datatable-column prop="header.organism" [flexGrow]="2">
                     <ng-template ngx-datatable-header-template>
-                      Organism
+                      Strain
                     </ng-template>
                     <ng-template let-value="value" ngx-datatable-cell-template>
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column prop="header.version" [flexGrow]="1">
+                  <ngx-datatable-column prop="header.version" [minWidth]="160" [flexGrow]="1">
                     <ng-template ngx-datatable-header-template>
                       Version
                     </ng-template>
@@ -46,7 +46,7 @@
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column prop="header.description" [flexGrow]="1">
+                  <ngx-datatable-column prop="header.description" [flexGrow]="3">
                     <ng-template ngx-datatable-header-template>
                       Description
                     </ng-template>
@@ -54,7 +54,7 @@
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column [maxWidth]="100" sortable="false" >
+                  <ngx-datatable-column [minWidth]="120" [flexGrow]="1" sortable="false" >
                     <ng-template ngx-datatable-header-template>
                       Actions
                     </ng-template>
