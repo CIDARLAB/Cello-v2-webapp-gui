@@ -30,17 +30,17 @@
                                [selected]="selected"
                                [rows]="project.userConstraintsFiles"
                                >
-                  <ngx-datatable-column prop="header.organism" [flexGrow]="2">
+                  <ngx-datatable-column prop="header.version" [minWidth]="160" [flexGrow]="1">
                     <ng-template ngx-datatable-header-template>
-                      Strain
+                      Identifier
                     </ng-template>
                     <ng-template let-value="value" ngx-datatable-cell-template>
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column prop="header.version" [minWidth]="160" [flexGrow]="1">
+                  <ngx-datatable-column prop="header.organism" [flexGrow]="2">
                     <ng-template ngx-datatable-header-template>
-                      Version
+                      Strain
                     </ng-template>
                     <ng-template let-value="value" ngx-datatable-cell-template>
                       {{value}}
@@ -58,9 +58,9 @@
                     <ng-template ngx-datatable-header-template>
                       Actions
                     </ng-template>
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                      <a><ion-icon name="cloud-download-outline"></ion-icon></a>
-                      <a><ion-icon name="information-circle-outline"></ion-icon></a>
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                      <ion-button class="ion-no-padding" fill="clear" (click)="download(row, $event)"><ion-icon name="cloud-download-outline"></ion-icon></ion-button>
+                      <ion-button class="ion-no-padding" fill="clear" (click)="details(row, $event)"><ion-icon name="information-circle-outline"></ion-icon></ion-button>
                     </ng-template>
                   </ngx-datatable-column>
                   <ngx-datatable-footer>

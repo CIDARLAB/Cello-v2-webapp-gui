@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-card class="ion-padding">
+	<h3 [innerHTML]="library.header.version"></h3>
+    <ion-list>
+      <ion-label>Strain</ion-label>
+	  <ion-item [innerHTML]="library.header.organism"></ion-item>
+      <ion-label>Genome</ion-label>
+	  <ion-item [innerHTML]="library.header.genome"></ion-item>
+      <ion-label>Description</ion-label>
+	  <ion-item [innerHTML]="library.header.description"></ion-item>
+      <ion-label>Growth</ion-label>
+	  <ion-item [innerHTML]="library.header.growth"></ion-item>
+      <ion-label>Temperature</ion-label>
+	  <ion-item [innerHTML]="library.header.temperature + '°C'"></ion-item>
+      <ion-label>Media</ion-label>
+	  <ion-item [innerHTML]="library.header.media"></ion-item>
+      <ion-label>Date</ion-label>
+	  <ion-item [innerHTML]="library.header.date"></ion-item>
+      <ion-label>Authors</ion-label>
+	  <ion-item [innerHTML]="library.header.author.join('<br/>')"></ion-item>
+	</ion-list>
+  </ion-card>
+</ion-content>

@@ -40,7 +40,7 @@ $ngx-datatable-selected-active-background-hover: lighten($ngx-datatable-selected
             &.active,
             &.active .datatable-row-group,
             &.active .datatable-row-group datatable-body-cell {
-                a {
+                ion-button {
                     color: inherit;
                 }
             }

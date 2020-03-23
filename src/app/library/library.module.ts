@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LibraryPageRoutingModule } from './library-routing.module';
 import { LibraryPage } from './library.page';
+import { LibraryDetailsComponentModule } from '../library-details/library-details.module';
+import { LibraryDetailsComponent } from '../library-details/library-details.component';
 
 @NgModule({
     imports: [
@@ -13,7 +15,9 @@ import { LibraryPage } from './library.page';
         IonicModule,
         LibraryPageRoutingModule,
         NgxDatatableModule,
+        LibraryDetailsComponentModule,
     ],
-    declarations: [LibraryPage]
+    declarations: [LibraryPage],
+    entryComponents: [LibraryDetailsComponent],
 })
 export class LibraryPageModule { }
