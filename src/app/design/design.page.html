@@ -34,7 +34,7 @@
                         <h6>Inputs</h6>
                       </ion-text>
                       <div [innerHTML]="project.ports().input"></div>
-                      <div style="position: absolute; bottom: 10px;">
+                      <div style="position: absolute; bottom: 0px;">
                         <ion-item style="width: 100%;">
                           <!-- <ion-label position="stacked">Upload</ion-label> -->
                           <ion-input accept="application/json" type="file"></ion-input>
@@ -49,6 +49,13 @@
                         <h6>Outputs</h6>
                       </ion-text>
                       <div [innerHTML]="project.ports().output"></div>
+                      <div style="position: absolute; bottom: 0px;">
+                        <ion-item style="width: 100%;">
+                          <!-- <ion-label position="stacked">Upload</ion-label> -->
+                          <ion-input accept="application/json" type="file"></ion-input>
+                          <ion-button slot="end" fill="clear" style="bottom: 0px;">Upload</ion-button>
+                        </ion-item>
+                      </div>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
