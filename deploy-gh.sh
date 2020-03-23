@@ -10,6 +10,6 @@ cp -r www/* .
 rmdir www
 rm .travis.yml
 git add .
-git commit -S -m "Publishing to `production` branch."
+git commit -S -m 'Publishing to `production` branch.'
 git push -u origin production
 git checkout develop
