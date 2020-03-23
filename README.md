@@ -23,7 +23,7 @@ Prepare the repository.
 
 ## Build for production
 
-	ionic build browser --prod
+	ionic build --prod
 
 ## Serve during development
 
