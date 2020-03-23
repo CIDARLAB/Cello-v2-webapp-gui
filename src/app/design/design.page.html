@@ -1,29 +1,62 @@
 <ion-content>
   <ion-grid>
-	<ion-row>
-	  <ion-col>
-		<ion-text color="primary" class="ion-text-center">
-		  <h3>Specify the design</h3>
-		</ion-text>
-	  </ion-col>
-	</ion-row>
-	<ion-row>
-	  <ion-col offset-lg="2" size-md="4" offset-md="0" size-sm="6" offset-sm="0" size-xs="12" offset-xs="0" class="ion-text-center">
-		<ion-card>
-		  <ion-select placeholder="Choose from examples" interface="popover" style="min-width:20%" [(ngModel)]="sample" class="ion-text-left" (ionChange)="loadVerilog(sample)">
-			<ion-select-option value="{{f}}" *ngFor="let f of project.sampleVerilog">{{f}}</ion-select-option>
-		  </ion-select>
-		</ion-card>
-	  </ion-col>
-	</ion-row>
-	<ion-row class="editor-row">
-	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center">
-		<ion-card class="editor-card">
-		  <div class="editor" #editor>
-			<iframe src="assets/editor/verilog2001.html" (load)="init()"></iframe>
-		  </div>
-		</ion-card>
-	  </ion-col>
-	</ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text color="primary" class="ion-text-center">
+          <h3>Specify the design</h3>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-lg="2" size-md="4" offset-md="0" size-sm="6" offset-sm="0" size-xs="12" offset-xs="0" class="ion-text-center">
+        <ion-card>
+          <ion-select placeholder="Choose from examples" interface="popover" style="min-width:20%" [(ngModel)]="sample" class="ion-text-left" (ionChange)="loadVerilog(sample)">
+            <ion-select-option value="{{f}}" *ngFor="let f of project.sampleVerilog">{{f}}</ion-select-option>
+          </ion-select>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="editor-row">
+      <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2" class="ion-text-center">
+        <ion-card class="editor-card" style="width: 100%; height: 100%">
+          <ion-grid class="ion-no-padding" style="width: 100%; height: 100%">
+            <ion-row class="ion-no-padding" style="width: 100%; height: 100%">
+              <ion-col size="7" class="ion-no-padding" style="width: 100%; height: 100%; border-right: var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13)))) solid 1px;">
+                <div class="editor" #editor>
+                  <iframe src="assets/editor/verilog2001.html" (load)="init()"></iframe>
+                </div>
+              </ion-col>
+              <ion-col size="5" class="ion-no-padding">
+                <ion-grid class="ion-no-padding" style="width: 100%; height: 100%">
+                  <ion-row class="ion-no-padding" style="width: 100%; height: 100%">
+                    <ion-col class="ion-no-padding" style="width: 100%; height: 100%">
+                      <ion-text color="secondary" class="ion-text-center">
+                        <h6>Inputs</h6>
+                      </ion-text>
+                      <div [innerHTML]="project.ports().input"></div>
+                      <div style="position: absolute; bottom: 10px;">
+                        <ion-item style="width: 100%;">
+                          <!-- <ion-label position="stacked">Upload</ion-label> -->
+                          <ion-input accept="application/json" type="file"></ion-input>
+                          <ion-button slot="end" fill="clear" style="bottom: 0px;">Upload</ion-button>
+                        </ion-item>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="ion-no-padding" style="width: 100%; height: 100%; border-top: var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13)))) solid 1px;">
+                    <ion-col class="ion-no-padding" style="width: 100%; height: 100%">
+                      <ion-text color="secondary" class="ion-text-center">
+                        <h6>Outputs</h6>
+                      </ion-text>
+                      <div [innerHTML]="project.ports().output"></div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

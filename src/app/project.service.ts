@@ -333,13 +333,18 @@ export class ProjectService {
     }
 
     ports() {
+        let rtn = { input: [], output: [] };
         let stream = new antlr4.InputStream(this.project.verilog);
+        // let stream = new antlr4.InputStream(this.project.verilog);
         let lexer = new Verilog2001Lexer.Verilog2001Lexer(stream);
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new Verilog2001Parser.Verilog2001Parser(tokens);
         let tree = parser.source_text();
         let descriptions = tree.description();
         // FIXME assess heirarchy
+        if (descriptions.length < 1) {
+            return rtn;
+        }
         let description = descriptions[descriptions.length - 1];
         // for (let description of descriptions) {
         let moduleDeclaration = description.module_declaration();
@@ -360,7 +365,7 @@ export class ProjectService {
             let portDeclarations = listOfPortDeclarations.port_declaration();
             return this.parsePortDeclarations(portDeclarations);
         }
-        // }
+        return rtn;
     }
 
 }
