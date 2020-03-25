@@ -33,14 +33,17 @@
                       <ion-text color="secondary" class="ion-text-center">
                         <h6>Inputs</h6>
                       </ion-text>
+                      <ion-select interface="popover" [(ngModel)]="project.inputSensorFile">
+				        <ion-select-option value="{{f.file}}" *ngFor="let f of project.inputSensorFiles">{{f.file}}</ion-select-option>
+			          </ion-select>
                       <div [innerHTML]="project.ports().input"></div>
-                      <div style="position: absolute; bottom: 0px;">
-                        <ion-item style="width: 100%;">
-                          <!-- <ion-label position="stacked">Upload</ion-label> -->
-                          <ion-input accept="application/json" type="file"></ion-input>
-                          <ion-button slot="end" fill="clear" style="bottom: 0px;">Upload</ion-button>
-                        </ion-item>
-                      </div>
+                      <!-- <div style="position: absolute; bottom: 0px;"> -->
+                      <!--   <ion-item style="width: 100%;"> -->
+                      <!--     <\!-- <ion-label position="stacked">Upload</ion-label> -\-> -->
+                      <!--     <ion-input accept="application/json" type="file"></ion-input> -->
+                      <!--     <ion-button slot="end" fill="clear" style="bottom: 0px;">Upload</ion-button> -->
+                      <!--   </ion-item> -->
+                      <!-- </div> -->
                     </ion-col>
                   </ion-row>
                   <ion-row class="ion-no-padding" style="width: 100%; height: 100%; border-top: var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13)))) solid 1px;">
@@ -48,14 +51,17 @@
                       <ion-text color="secondary" class="ion-text-center">
                         <h6>Outputs</h6>
                       </ion-text>
+                      <ion-select interface="popover" [(ngModel)]="project.outputDeviceFile">
+				        <ion-select-option value="{{f.file}}" *ngFor="let f of project.outputDeviceFiles">{{f.file}}</ion-select-option>
+			          </ion-select>
                       <div [innerHTML]="project.ports().output"></div>
-                      <div style="position: absolute; bottom: 0px;">
-                        <ion-item style="width: 100%;">
-                          <!-- <ion-label position="stacked">Upload</ion-label> -->
-                          <ion-input accept="application/json" type="file"></ion-input>
-                          <ion-button slot="end" fill="clear" style="bottom: 0px;">Upload</ion-button>
-                        </ion-item>
-                      </div>
+                      <!-- <div style="position: absolute; bottom: 0px;"> -->
+                      <!--   <ion-item style="width: 100%;"> -->
+                      <!--     <\!-- <ion-label position="stacked">Upload</ion-label> -\-> -->
+                      <!--     <ion-input accept="application/json" type="file"></ion-input> -->
+                      <!--     <ion-button slot="end" fill="clear" style="bottom: 0px;">Upload</ion-button> -->
+                      <!--   </ion-item> -->
+                      <!-- </div> -->
                     </ion-col>
                   </ion-row>
                 </ion-grid>
