@@ -20,7 +20,7 @@
 					 [footerHeight]="50"
 					 [rowHeight]="'auto'"
 					 [rows]="projects">
-		<ngx-datatable-column name="name" [flexGrow]="1">
+		<ngx-datatable-column name="name" [resizeable]="false" [flexGrow]="1">
 		  <ng-template let-column="column" ngx-datatable-header-template>
 			Project name
           </ng-template>
@@ -28,7 +28,7 @@
 			{{value}}
           </ng-template>
 		</ngx-datatable-column>
-		<ngx-datatable-column name="created" [flexGrow]="1">
+		<ngx-datatable-column name="created" [resizeable]="false" [flexGrow]="1">
           <ng-template let-column="column" ngx-datatable-header-template>
 			Created on
           </ng-template>

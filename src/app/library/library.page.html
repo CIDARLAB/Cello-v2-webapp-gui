@@ -30,7 +30,7 @@
                                [selected]="selected"
                                [rows]="project.userConstraintsFiles"
                                >
-                  <ngx-datatable-column prop="header.version" [minWidth]="160" [flexGrow]="1">
+                  <ngx-datatable-column prop="header.version" [minWidth]="160" [resizeable]="false" [flexGrow]="1">
                     <ng-template ngx-datatable-header-template>
                       Identifier
                     </ng-template>
@@ -38,7 +38,7 @@
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column prop="header.organism" [flexGrow]="2">
+                  <ngx-datatable-column prop="header.organism" [resizeable]="false" [flexGrow]="2">
                     <ng-template ngx-datatable-header-template>
                       Strain
                     </ng-template>
@@ -46,7 +46,7 @@
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column prop="header.description" [flexGrow]="3">
+                  <ngx-datatable-column prop="header.description" [resizeable]="false" [flexGrow]="3">
                     <ng-template ngx-datatable-header-template>
                       Description
                     </ng-template>
@@ -54,7 +54,7 @@
                       {{value}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column [minWidth]="120" [flexGrow]="1" sortable="false" >
+                  <ngx-datatable-column [minWidth]="120" [resizeable]="false" [flexGrow]="1" sortable="false" >
                     <ng-template ngx-datatable-header-template>
                       Actions
                     </ng-template>
@@ -71,7 +71,7 @@
                       let-selectedCount="selectedCount"
                       let-curPage="curPage"
                       let-offset="offset">
-                      <div style="padding: 5px 10px">
+                      <div style="padding: 0 1.2rem">
                         <div>{{ rowCount }} total</div>
                       </div>
                     </ng-template>
