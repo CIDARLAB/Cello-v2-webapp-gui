@@ -3,42 +3,7 @@
 
 /** Ionic CSS Variables **/
 :root {
-	
-	// https://github.com/ionic-team/ionic/issues/12310
-	// begin workaround
-	ion-select-popover ion-list ion-item {
-		--border-width: 0;
-		--inner-border-width: 0;
-	}
-
-	ion-select-popover ion-list ion-item ion-radio {
-		--color: transparent;
-		--color-checked: transparent;
-	}
-	// end workaround
-
-	.custom-modal {
-		.modal-wrapper {
-			--max-height: 200px;
-		}
-	}
-
-	ion-popover{
-		.popover-wrapper{
-			ion-label {
-				padding-right: 10px;
-			}
-			.popover-content{
-				width: auto;
-				max-width: 90vw;
-			}
-		}
-	}
-	
-	@import '~@swimlane/ngx-datatable/index.css';
-	@import '~@swimlane/ngx-datatable/themes/material.css';
-	@import '~@swimlane/ngx-datatable/assets/icons.css';
-
+    
 	/** primary **/
 	--ion-color-primary: #3880ff;
 	--ion-color-primary-rgb: 56, 128, 255;

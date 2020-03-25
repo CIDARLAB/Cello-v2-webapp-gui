@@ -25,13 +25,29 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-$ngx-datatable-selected-active-background: #3880ff;
-$ngx-datatable-selected-active-background-hover: lighten($ngx-datatable-selected-active-background, 15);
+// ngx-datatable overrides
+// see ~@swimlane/ngx-datatable/themes/material.scss
+// see ~patches (https://www.npmjs.com/package/patch-package)
+$ngx-datatable-background: var(--ion-item-background);
 
+$ngx-datatable-default-background: var(--ion-item-background);
+$ngx-datatable-default-background-hover: var(--ion-item-background-activated);
+
+$datatable-header-cell-background: var(--ion-item-background);
+$datatable-header-cell-color: var(--ion-color-step-550);
+
+$ngx-datatable-selected-active-background: var(--ion-color-primary);
+$ngx-datatable-selected-active-background-hover: var(--ion-color-primary-tint);
+
+$datatable-body-cell-color: var(--ion-text-color);
+
+$datatable-footer-cell-color: var(--ion-color-step-550);
+    
 @import '~@swimlane/ngx-datatable/index.scss';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 
+// ion-button in selected row: inherit text color
 .ngx-datatable.material {
     &.single-selection,
     &.multi-selection,
@@ -46,4 +62,35 @@ $ngx-datatable-selected-active-background-hover: lighten($ngx-datatable-selected
             }
         }
     }
+}
+
+// https://github.com/ionic-team/ionic/issues/12310
+// begin workaround
+ion-select-popover ion-list ion-item {
+	--border-width: 0;
+	--inner-border-width: 0;
+}
+
+ion-select-popover ion-list ion-item ion-radio {
+	--color: transparent;
+	--color-checked: transparent;
+}
+// end workaround
+
+.custom-modal {
+	.modal-wrapper {
+		--max-height: 200px;
+	}
+}
+
+ion-popover{
+	.popover-wrapper{
+		ion-label {
+			padding-right: 10px;
+		}
+		.popover-content{
+			width: auto;
+			max-width: 90vw;
+		}
+	}
 }
