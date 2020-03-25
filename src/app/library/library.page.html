@@ -28,6 +28,7 @@
                                rowHeight="auto"
                                [selectionType]="SelectionType.single"
                                [selected]="selected"
+                               (select)="onSelect($event)"
                                [rows]="project.userConstraintsFiles"
                                >
                   <ngx-datatable-column prop="header.version" [minWidth]="160" [resizeable]="false" [flexGrow]="1">

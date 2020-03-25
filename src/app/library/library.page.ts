@@ -25,6 +25,7 @@ export class LibraryPage implements OnInit {
         private modalController: ModalController,
     ) {
         this.project.register('library', this.valid);
+        this.project.userConstraintsFile = this.selected[0].file;
     }
 
     public valid = (() => {
@@ -52,6 +53,10 @@ export class LibraryPage implements OnInit {
 
     download(library: object, event: any) {
         event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+    }
+
+    onSelect(event: any) {
+        this.project.userConstraintsFile = event.selected[0].file;
     }
 
 }
