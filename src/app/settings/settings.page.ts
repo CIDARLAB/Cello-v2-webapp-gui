@@ -40,7 +40,6 @@ export class SettingsPage implements OnInit {
     }
 
     parameterValue(stage: string, algorithm: string, parameter: string) {
-        console.log(typeof 1 == 'number');
         return this.project.project.settings.applications.get(this.application()).get(stage).parameters.get(algorithm).get(parameter);
     }
 

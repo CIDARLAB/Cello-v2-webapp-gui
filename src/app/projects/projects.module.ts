@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NavbarComponentModule } from '../navbar/navbar.module';
 import { ProjectsPageRoutingModule } from './projects-routing.module';
 import { ProjectsPage } from './projects.page';
 
@@ -13,7 +12,6 @@ import { ProjectsPage } from './projects.page';
         FormsModule,
         IonicModule,
         ProjectsPageRoutingModule,
-        NavbarComponentModule,
         NgxDatatableModule,
     ],
     declarations: [ProjectsPage]

@@ -10,6 +10,7 @@ import { AboutPageModule } from './about/about.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
+import { NavbarComponentModule } from './navbar/navbar.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { AuthGuard } from './auth.guard';
         HttpClientModule,
         IonicStorageModule.forRoot(),
         AboutPageModule,
+        NavbarComponentModule,
     ],
     providers: [
         StatusBar,

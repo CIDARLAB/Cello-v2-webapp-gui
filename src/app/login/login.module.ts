@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
-import { NavbarComponentModule } from '../navbar/navbar.module';
 
 @NgModule({
     imports: [
@@ -12,7 +11,6 @@ import { NavbarComponentModule } from '../navbar/navbar.module';
         FormsModule,
         IonicModule,
         LoginPageRoutingModule,
-        NavbarComponentModule,
         ReactiveFormsModule,
         FormsModule,
     ],
