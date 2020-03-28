@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { SpecPageRoutingModule } from './spec-routing.module';
-import { SpecPage } from './spec.page';
+import { ProjectPageRoutingModule } from './project-routing.module';
+import { ProjectPage } from './project.page';
 
 @NgModule({
     imports: [
         IonicModule,
         CommonModule,
         FormsModule,
-        SpecPageRoutingModule,
+        ProjectPageRoutingModule,
     ],
-    declarations: [SpecPage]
+    declarations: [ProjectPage]
 })
-export class SpecPageModule { }
+export class ProjectPageModule { }

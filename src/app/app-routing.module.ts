@@ -13,8 +13,8 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
     },
     {
-        path: 'spec',
-        loadChildren: () => import('./spec/spec.module').then(m => m.SpecPageModule),
+        path: 'project',
+        loadChildren: () => import('./project/project.module').then(m => m.ProjectPageModule),
         canActivate: [AuthGuard]
     },
     {

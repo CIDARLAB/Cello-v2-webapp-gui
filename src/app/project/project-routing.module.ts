@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SpecPage } from './spec.page';
+import { ProjectPage } from './project.page';
 
 const routes: Routes = [
     {
         path: '',
-        component: SpecPage,
+        component: ProjectPage,
         children: [
             {
                 path: 'library',
@@ -39,14 +39,14 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: '/spec/library',
+                redirectTo: '/project/library',
                 pathMatch: 'full'
             }
         ]
     },
     {
         path: '',
-        redirectTo: '/spec/library',
+        redirectTo: '/project/library',
         pathMatch: 'full'
     }
 ];
@@ -55,4 +55,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class SpecPageRoutingModule { }
+export class ProjectPageRoutingModule { }

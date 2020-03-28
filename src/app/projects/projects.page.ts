@@ -36,7 +36,7 @@ export class ProjectsPage implements OnInit {
 
     create() {
         this.project.newProject();
-        this.router.navigateByUrl("spec");
+        this.router.navigateByUrl("project");
     }
 
 }

@@ -3,11 +3,11 @@ import { AlertController } from '@ionic/angular';
 import { ProjectService } from '../project.service';
 
 @Component({
-    selector: 'app-spec',
-    templateUrl: 'spec.page.html',
-    styleUrls: ['spec.page.scss']
+    selector: 'app-project',
+    templateUrl: 'project.page.html',
+    styleUrls: ['project.page.scss']
 })
-export class SpecPage {
+export class ProjectPage {
 
     constructor(
         private alertController: AlertController,

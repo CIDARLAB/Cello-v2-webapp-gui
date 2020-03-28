@@ -293,7 +293,7 @@ export class ProjectService {
                     });
 
                     this.toast("Results available.");
-                    this.router.navigateByUrl("results");
+                    this.router.navigateByUrl("project/results");
                 }
             })
             .catch((error) => {
