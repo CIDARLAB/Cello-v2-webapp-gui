@@ -1,29 +1,42 @@
-<ion-content class="ion-padding">
-  <ion-row>
-	<ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2">
-	  <ion-card>
-		<ion-list>
-		  <ion-item *ngFor="let r of project.project.results">
-			<ion-col size="10" (click)="selected = r;" style="cursor:pointer">
-			  {{r.name}}
-			</ion-col>
-			<ion-col>
-			  <ion-button fill="clear" class="ion-float-right" (click)="download(r['name'])">
-				<ion-icon name="download"></ion-icon>
-			  </ion-button>
-			</ion-col>
-		  </ion-item>
-		</ion-list>
-	  </ion-card>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-	<ion-col offset-sm="0" offset-lg="2">
-	  <ion-card style="max-width: 500px;">
-  		<div #sbh *ngIf="isExt('xml')">
-  		  <app-synbiohub [result]="selected"></app-synbiohub>
-  		</div>
-	  </ion-card>
-	</ion-col>
-  </ion-row>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+	  <ion-col size-sm="12" offset-sm="0" size-lg="8" offset-lg="2">
+        <ion-text color="primary" class="ion-text-center">
+          <h3>Results view</h3>
+        </ion-text>
+	    <ion-card>
+          <ion-segment [(ngModel)]="mode">
+            <ion-segment-button value="ucf" style="width: 50%">
+              <ion-label>Select a file</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="registry" style="width: 50%" disabled>
+              <ion-label>Build from registry</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+		  <!-- <ion-list> -->
+		    <!--   <ion-item *ngFor="let r of project.project.results"> -->
+		      <!-- 	<ion-col size="10" (click)="selected = r;" style="cursor:pointer"> -->
+		        <!-- 	  {{r.name}} -->
+		        <!-- 	</ion-col> -->
+		      <!-- 	<ion-col> -->
+		        <!-- 	  <ion-button fill="clear" class="ion-float-right" (click)="download(r['name'])"> -->
+		          <!-- 		<ion-icon name="download"></ion-icon> -->
+		          <!-- 	  </ion-button> -->
+		        <!-- 	</ion-col> -->
+		      <!--   </ion-item> -->
+		    <!-- </ion-list> -->
+	    </ion-card>
+	  </ion-col>
+    </ion-row>
+    <!-- <ion-row> -->
+      <!--   <ion-col offset-sm="0" offset-lg="2"> -->
+        <!--     <ion-card style="max-width: 500px;"> -->
+          <!-- 		<div #sbh *ngIf="isExt('xml')"> -->
+            <!-- 		  <app-synbiohub [result]="selected"></app-synbiohub> -->
+            <!-- 		</div> -->
+          <!--     </ion-card> -->
+        <!--   </ion-col> -->
+      <!-- </ion-row> -->
+  </ion-grid>
 </ion-content>

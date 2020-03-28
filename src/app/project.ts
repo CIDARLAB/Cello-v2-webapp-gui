@@ -17,12 +17,12 @@ export class Project {
     };
     library: object;
 
-    results: object;
+    results: object[];
 
     constructor() {
         this.verilog = '';
         this.application = 'DNACompiler';
-        this.results = {};
+        this.results = [];
         this.constraints = { input: [], output: [] };
     }
 

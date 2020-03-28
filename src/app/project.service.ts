@@ -262,11 +262,12 @@ export class ProjectService {
         return await alert.present();
     }
 
-    async toast(message: string) {
+    async toast(message: string, color: string = '') {
         const toast = await this.toastController.create({
             message: message,
             position: 'bottom',
-            duration: 5000,
+            color: color,
+            duration: 2000,
         });
         return await toast.present();
     }
@@ -291,9 +292,8 @@ export class ProjectService {
                     this.api.results(name).subscribe((result) => {
                         this.project.results = result.sort((a, b) => (a.name > b.name) ? 1 : -1);
                     });
-
-                    this.toast("Results available.");
-                    this.router.navigateByUrl("project/results");
+                    this.toast("Project " + name + " finished successfully.", "success");
+                    // this.router.navigateByUrl("project/results");
                 }
             })
             .catch((error) => {

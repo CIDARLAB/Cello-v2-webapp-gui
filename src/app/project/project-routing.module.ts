@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectPage } from './project.page';
+import { ResultsGuard } from '../results.guard';
 
 const routes: Routes = [
     {
@@ -34,6 +35,17 @@ const routes: Routes = [
                         path: '',
                         loadChildren: () =>
                             import('../settings/settings.module').then(m => m.SettingsPageModule)
+                    }
+                ]
+            },
+            {
+                path: 'results',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () =>
+                            import('../results/results.module').then(m => m.ResultsPageModule),
+                        canActivate: [ResultsGuard]
                     }
                 ]
             },

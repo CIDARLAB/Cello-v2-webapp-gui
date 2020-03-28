@@ -34,7 +34,7 @@
 		<!--   <ion-label>Constraits</ion-label> -->
 		<!-- </ion-tab-button> -->
 
-	  <ion-tab-button tab="results" disabled>
+	  <ion-tab-button tab="results" [disabled]="project.project.results.length === 0">
 		<ion-icon name="analytics"></ion-icon>
 		<ion-label>Results</ion-label>
 	  </ion-tab-button>

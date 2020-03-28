@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ProjectService } from '../project.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-project',
@@ -12,6 +13,7 @@ export class ProjectPage {
     constructor(
         private alertController: AlertController,
         public project: ProjectService,
+        public router: Router,
     ) { }
 
     async submit() {
@@ -35,7 +37,6 @@ export class ProjectPage {
         });
         return await alert.present();
     }
-
 
     isEmptyObject(obj) {
         return Object.keys(obj).length === 0;
