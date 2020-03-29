@@ -8,6 +8,7 @@ import { ProjectService } from '../project.service';
     styleUrls: ['./results.page.scss'],
 })
 export class ResultsPage implements OnInit {
+
     public registry: string;
     public selected: object;
 
