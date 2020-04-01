@@ -2,23 +2,23 @@
   <ion-title>
   </ion-title>
   <ion-buttons slot="start">
-	<div class="ion-padding">
-	  <img [ngStyle]="{'visibility': router.url == '/home' ? 'hidden' : ''}" class="navbar-logo" src="assets/images/banner.png">
+    <div [ngStyle]="{'visibility': router.url == '/home' ? 'hidden' : ''}" class="ion-padding">
+      <img class="navbar-logo" src="assets/images/banner.png">
       <span style="width: 2em; display: inline-block;"></span>
       <small><i>Genetic circuit design automation</i></small>
-	</div>
+    </div>
   </ion-buttons>
   <ion-buttons slot="end">
-	<ion-button (click)="about()">
+    <ion-button (click)="about()">
       About
-	</ion-button>
-	<div *ngIf="api.token">
-	  <ion-button [routerLink]="['/projects']" routerDirection="forward">
-		Projects
-	  </ion-button>
-	  <ion-button (click)="logout()">
-		Logout
-	  </ion-button>
-	</div>
+    </ion-button>
+    <div *ngIf="api.token">
+      <ion-button [routerLink]="['/projects']" routerDirection="forward">
+        Projects
+      </ion-button>
+      <ion-button (click)="logout()">
+        Logout
+      </ion-button>
+    </div>
   </ion-buttons>
 </ion-toolbar>
