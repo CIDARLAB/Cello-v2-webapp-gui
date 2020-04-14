@@ -1,0 +1,26 @@
+<ion-toolbar>
+  <ion-title> </ion-title>
+  <ion-buttons slot="start">
+    <div class="ion-padding">
+      <img class="navbar-logo" src="assets/images/banner.png" />
+      <!-- <span style="width: 2em; display: inline-block;"></span> -->
+      <!-- <small><i>Genetic circuit design automation</i></small> -->
+    </div>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button translate>
+      About
+    </ion-button>
+    <ion-button
+      style="text-transform: none;"
+      class="profile-button"
+      (click)="showProfileActions()"
+      shape="round"
+      fill="outline"
+      size="small"
+      expand="block"
+    >
+      <ion-icon name="person"></ion-icon> {{ username }}
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
