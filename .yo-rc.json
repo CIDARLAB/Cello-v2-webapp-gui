@@ -1,0 +1,31 @@
+{
+  "generator-ngx-rocket": {
+    "version": "8.0.0",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "Cello-v2-webapp-gui",
+      "target": ["web"],
+      "pwa": true,
+      "ui": "ionic",
+      "layout": "side-menu",
+      "auth": true,
+      "lazy": true,
+      "angulartics": true,
+      "languages": ["de-DE", "en-US", "fr-FR", "zh-CN"],
+      "analyticsProvider": "ga",
+      "googleAnalyticsAccount": "UA-1234567-1",
+      "tools": ["prettier", "hads", "compodoc", "jest", "puppeteer"],
+      "utility": [],
+      "deploy": "github",
+      "projectName": "cello-v-2-webapp-gui",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}

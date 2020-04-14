@@ -1,0 +1,19 @@
+{
+  "APP_NAME": "Cello",
+  "About": "Über",
+  "Hello world !": "Hallo welt !",
+  "Home": "Hause",
+  "Cancel": "Abbruch",
+  "Change language": "Sprache wechseln",
+  "Language": "Sprache",
+  "Ok": "Ok",
+  "Login": "Anmelden",
+  "Logout": "Abmelden",
+  "Password": "Passwort",
+  "Password is required": "Passwort wird benötigt",
+  "Username": "Benutzername",
+  "Username is required": "Benutzername wird benötigt",
+  "Username or password incorrect.": "Benutzername oder Passwort falsch.",
+  "Remember me": "Eingeloggt bleiben",
+  "Version": "Version"
+}

@@ -1,0 +1,31 @@
+digraph and_gateVirtualNetlistFO {
+label="and_gateVirtualNetlistFO"
+rankdir="LR"
+remincross=true
+splines=ortho
+{rank = same; "b";"a";}
+{rank = same; "out";}
+"$1" [shape=box, label="$1
+NOR
+S2_SrpR"]
+"out" [shape=octagon, label="out
+PRIMARY_OUTPUT
+YFP_reporter"]
+"$2" [shape=box, label="$2
+NOT
+P1_PhlF"]
+"$3" [shape=box, label="$3
+NOT
+B1_BM3R1"]
+"b" [shape=octagon, label="b
+PRIMARY_INPUT
+LacI_sensor"]
+"a" [shape=octagon, label="a
+PRIMARY_INPUT
+TetR_sensor"]
+"$1" -> "out"
+"$2" -> "$1"
+"$3" -> "$1"
+"b" -> "$3"
+"a" -> "$2"
+}
