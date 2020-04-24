@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
 import { Credentials, CredentialsService } from './credentials.service';
+import { ApiService } from '@app/api/api.service';
+import { map, mergeAll } from 'rxjs/operators';
 
 export interface LoginContext {
   username: string;
@@ -17,7 +18,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  constructor(private credentialsService: CredentialsService, private apiService: ApiService) {}
 
   /**
    * Authenticates the user.
@@ -25,13 +26,17 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456',
-    };
-    this.credentialsService.setCredentials(data, context.remember);
-    return of(data);
+    return this.apiService.login(context).pipe(
+      map((token: string) => {
+        let credentials = {
+          username: context.username,
+          token: token,
+        };
+        this.credentialsService.setCredentials(credentials, context.remember);
+        return of(credentials);
+      }),
+      mergeAll()
+    );
   }
 
   /**

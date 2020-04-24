@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService, CredentialsService } from '@app/auth';
 import { I18nService } from '@app/i18n';
-import { ActionSheetController, AlertController, Platform } from '@ionic/angular';
+import { ActionSheetController, AlertController, Platform, ModalController } from '@ionic/angular';
 import { ActionSheetButton, ActionSheetOptions, TextFieldTypes } from '@ionic/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AboutComponent } from '@app/about/about.component';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit(): void {}
@@ -99,5 +101,12 @@ export class NavbarComponent implements OnInit {
       ],
     });
     await alertController.present();
+  }
+
+  async about() {
+    const modal = await this.modalController.create({
+      component: AboutComponent,
+    });
+    return await modal.present();
   }
 }

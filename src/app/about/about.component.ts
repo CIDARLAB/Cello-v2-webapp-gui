@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { environment } from '@env/environment';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-about',
@@ -10,7 +11,11 @@ import { environment } from '@env/environment';
 export class AboutComponent implements OnInit {
   version: string | null = environment.version;
 
-  constructor() {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
+
+  close() {
+    this.modalController.dismiss();
+  }
 }

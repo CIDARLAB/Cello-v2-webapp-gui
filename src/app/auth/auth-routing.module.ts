@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { extract } from '@app/i18n';
 import { LoginComponent } from './login.component';
 

@@ -1,13 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoadingController, Platform } from '@ionic/angular';
-import { map } from 'rxjs/operators';
-import { forkJoin, from } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-
-import { environment } from '@env/environment';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Logger, untilDestroyed } from '@core';
+import { environment } from '@env/environment';
+import { LoadingController, Platform } from '@ionic/angular';
+import { forkJoin, from } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
 
 const log = new Logger('Login');
