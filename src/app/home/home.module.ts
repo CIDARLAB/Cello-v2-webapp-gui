@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-import { IonicModule } from '@ionic/angular';
-import { Angulartics2Module } from 'angulartics2';
-
+import { NgModule } from '@angular/core';
+import { ProjectModule } from '@app/project/project.module';
 import { CoreModule } from '@core';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared';
+import { Angulartics2Module } from 'angulartics2';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { QuoteService } from './quote.service';
 
 @NgModule({
   imports: [
@@ -19,6 +18,7 @@ import { QuoteService } from './quote.service';
     IonicModule,
     Angulartics2Module,
     HomeRoutingModule,
+    ProjectModule,
   ],
   declarations: [HomeComponent],
 })
