@@ -1,1 +1,26 @@
-<p>project-list works!</p>
+<ngx-datatable
+  style="width: 100%;"
+  class="material"
+  [columnMode]="'flex'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="'auto'"
+  [rows]="projects"
+>
+  <ngx-datatable-column name="name" [resizeable]="false" [flexGrow]="1">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      Project name
+    </ng-template>
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      {{ value }}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="created" [resizeable]="false" [flexGrow]="1">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      Created on
+    </ng-template>
+    <ng-template let-value="value.format('YYYY-MM-DD hh:mma');" ngx-datatable-cell-template>
+      {{ value }}
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>

@@ -126,6 +126,7 @@ Development, build and quality processes are based on [angular-cli](https://gith
 - [Ionic Native](https://ionicframework.com/docs/native/)
 - [RxJS](http://reactivex.io/rxjs)
 - [ngx-translate](https://github.com/ngx-translate/core)
+- [Moment.js](https://momentjs.com)
 
 #### Coding guides
 
