@@ -1,7 +1,0 @@
-{
-  "name": "Cello-v2-webapp-gui",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
