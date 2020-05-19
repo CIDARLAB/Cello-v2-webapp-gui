@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectListComponent } from './project-list/project-list.component';
+import { NgModule } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectRoutingModule } from './project-routing.module';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
-  imports: [CommonModule, NgxDatatableModule],
-  declarations: [ProjectListComponent],
+  imports: [CommonModule, NgxDatatableModule, IonicModule, ProjectRoutingModule],
+  declarations: [ProjectListComponent, ProjectComponent],
   exports: [ProjectListComponent],
 })
 export class ProjectModule {}

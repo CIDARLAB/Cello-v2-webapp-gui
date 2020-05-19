@@ -1,5 +1,16 @@
-ul {
+ul#author-list {
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
+}
+
+#sources-list {
+  list-style-type: none;
+  list-style-position: outside;
+  margin: 0;
+  padding: 0;
+}
+
+#sources-list > li {
+  padding-bottom: 6pt;
 }

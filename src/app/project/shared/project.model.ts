@@ -8,6 +8,7 @@ export class Project implements Deserializeable {
   name: string;
   application: string;
   id: string;
+  description: string;
 
   created: moment.Moment;
 

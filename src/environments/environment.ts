@@ -14,7 +14,7 @@ export const environment = {
   production: false,
   hmr: true,
   version: env.npm_package_version + '-dev',
-  serverUrl: '/api',
+  serverUrl: 'http://128.197.47.203:8080',
   defaultLanguage: 'en-US',
   supportedLanguages: ['de-DE', 'en-US', 'fr-FR', 'zh-CN'],
 };

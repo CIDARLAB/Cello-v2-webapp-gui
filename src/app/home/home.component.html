@@ -1,17 +1,15 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title><span translate>Home</span></ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
   <ion-card>
-    <ion-card-content>
-      <ion-card-title>
-        <span translate>Projects</span>
+    <ion-card-header class="ion-padding">
+      <ion-card-title class="ion-text-center">
+        <ion-text color="primary"><span translate>Projects</span></ion-text>
       </ion-card-title>
+      <ion-button id="create-project-button" href="/project" target="_blank">
+        <ion-icon name="add"></ion-icon>
+        <span translate>New</span>
+      </ion-button>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding">
       <p>
         <app-loader [isLoading]="isLoading"></app-loader>
         <app-project-list [hidden]="isLoading"></app-project-list>
