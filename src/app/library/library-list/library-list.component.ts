@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '@app/api/api.service';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { UserConstraintsFile } from '../shared/user-constraints-file.model';
 
 @Component({
   selector: 'app-library-list',
@@ -6,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./library-list.component.scss'],
 })
 export class LibraryListComponent implements OnInit {
-  constructor() {}
+  SelectionType = SelectionType;
+  ColumnMode = ColumnMode;
 
-  ngOnInit(): void {}
+  libraries: UserConstraintsFile[];
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.userConstraintsFiles().subscribe((data) => {
+      this.libraries = data;
+    });
+  }
 }

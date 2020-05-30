@@ -1,0 +1,72 @@
+<ion-content no-bounce>
+  <div class="signup-background"><img id="logo" src="assets/images/logo.png" /></div>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center ion-no-padding">
+      <ion-col size-sm="8" size-lg="6" size-xl="4" class="ion-align-self-center ion-no-padding">
+        <div class="ion-text-center">
+          <!-- <h1 translate>APP_NAME</h1> -->
+          <ion-list *ngIf="isWeb" color="primary" lines="none" class="ion-no-padding">
+            <app-language-selector type="select" itemClass="item-lines-none"> </app-language-selector>
+          </ion-list>
+        </div>
+        <div class="signup-container">
+          <form (ngSubmit)="signup()" [formGroup]="signupForm" novalidate>
+            <ion-text color="danger" [hidden]="!error || signupForm.dirty || isLoading">
+              <span class="ion-padding" translate>User already exists.</span>
+            </ion-text>
+            <ion-list>
+              <!-- USERNAME -->
+              <ion-item lines="inset">
+                <ion-label color="medium" position="floating" translate>Email</ion-label>
+                <ion-input type="text" formControlName="username" autocomplete="username"></ion-input>
+              </ion-item>
+              <ion-text
+                color="danger"
+                [hidden]="signupForm.controls.username.valid || signupForm.controls.username.untouched"
+              >
+                <span class="ion-padding" translate>Email is required</span>
+              </ion-text>
+              <!-- PASSWORD -->
+              <ion-item lines="inset">
+                <ion-label color="medium" position="floating" translate>Password</ion-label>
+                <ion-input type="password" formControlName="password" autocomplete="current-password"></ion-input>
+              </ion-item>
+              <ion-text
+                color="danger"
+                [hidden]="signupForm.controls.password.valid || signupForm.controls.password.untouched"
+              >
+                <span class="ion-padding" translate>Password is required</span>
+              </ion-text>
+              <!-- NAME -->
+              <ion-item lines="inset">
+                <ion-label color="medium" position="floating" translate>Name</ion-label>
+                <ion-input type="text" formControlName="name" autocomplete="name"></ion-input>
+              </ion-item>
+              <!-- ORGANIZATION -->
+              <ion-item lines="inset">
+                <ion-label color="medium" position="floating" translate>Institution</ion-label>
+                <ion-input type="text" formControlName="institution" autocomplete="institution"></ion-input>
+              </ion-item>
+              <!-- REMEMBER ME -->
+              <ion-item class="ion-padding-top" lines="none">
+                <ion-label translate>Remember me</ion-label>
+                <ion-checkbox slot="start" formControlName="remember"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+            <div class="ion-padding-horizontal">
+              <ion-button
+                type="submit"
+                [disabled]="signupForm.invalid || isLoading"
+                color="primary"
+                expand="block"
+                translate
+              >
+                Signup
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

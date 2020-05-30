@@ -9,7 +9,7 @@ const routes: Routes = [
     {
       path: '',
       component: LibraryComponent,
-      data: { title: extract('Library') },
+      data: { title: extract('Cello : Project : Library') },
     },
   ]),
 ];

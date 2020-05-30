@@ -7,7 +7,7 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   Shell.childRoutes([
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, data: { title: extract('Home') } },
+    { path: 'home', component: HomeComponent, data: { title: extract('Cello : Home') } },
   ]),
 ];
 

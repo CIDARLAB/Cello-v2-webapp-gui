@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 import { LoadingController, Platform } from '@ionic/angular';
 import { forkJoin, from } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '../authentication.service';
 
 const log = new Logger('Login');
 

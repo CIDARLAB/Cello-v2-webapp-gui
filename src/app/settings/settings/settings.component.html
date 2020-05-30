@@ -1,0 +1,7 @@
+<ion-content>
+  <ion-text color="medium" class="ion-text-center">
+    <h3>Application settings</h3>
+  </ion-text>
+  <app-loader [isLoading]="isLoading"></app-loader>
+  <app-settings-list [hidden]="isLoading"></app-settings-list>
+</ion-content>

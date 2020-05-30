@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AboutComponent } from '@app/about/about.component';
 import { AuthenticationService, CredentialsService } from '@app/auth';
 import { I18nService } from '@app/i18n';
-import { ActionSheetController, AlertController, Platform, ModalController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ModalController, Platform } from '@ionic/angular';
 import { ActionSheetButton, ActionSheetOptions, TextFieldTypes } from '@ionic/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AboutComponent } from '@app/about/about.component';
 
 @Component({
   selector: 'app-navbar',

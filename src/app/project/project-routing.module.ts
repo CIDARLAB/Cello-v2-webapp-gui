@@ -19,6 +19,34 @@ const routes: Routes = [
             },
           ],
         },
+        {
+          path: 'verilog',
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('@app/verilog/verilog.module').then((m) => m.VerilogModule),
+            },
+          ],
+        },
+        {
+          path: 'settings',
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('@app/settings/settings.module').then((m) => m.SettingsModule),
+            },
+          ],
+        },
+        {
+          path: 'results',
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('@app/results/results.module').then((m) => m.ResultsModule),
+            },
+          ],
+        },
+        { path: '', redirectTo: 'library', pathMatch: 'full' },
       ],
       data: { title: extract('Project') },
     },

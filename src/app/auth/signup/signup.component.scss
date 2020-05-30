@@ -3,13 +3,13 @@ ion-row {
   height: 100%;
 }
 
-.login-header,
-.login-background {
+.signup-header,
+.signup-background {
   background-color: var(--ion-color-primary);
   color: var(--ion-color-primary-contrast);
 }
 
-.login-background {
+.signup-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,16 +17,13 @@ ion-row {
   bottom: 50%;
 }
 
-.login-container {
+.signup-container {
   background-color: var(--ion-background-color);
 }
 
-// .background {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   // z-index: -100;
-// }
+ion-text {
+  font-size: x-small;
+}
 
 #logo {
   height: 400px;

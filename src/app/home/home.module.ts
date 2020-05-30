@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NavbarModule } from '@app/navbar/navbar.module';
 import { ProjectModule } from '@app/project/project.module';
 import { CoreModule } from '@core';
 import { IonicModule } from '@ionic/angular';
@@ -19,6 +20,7 @@ import { HomeComponent } from './home.component';
     Angulartics2Module,
     HomeRoutingModule,
     ProjectModule,
+    NavbarModule,
   ],
   declarations: [HomeComponent],
 })
