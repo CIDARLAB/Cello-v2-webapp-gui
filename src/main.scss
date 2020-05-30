@@ -12,7 +12,39 @@
 // Theme customization
 @import "theme/theme";
 
+$ngx-datatable-background: var(--ion-item-background);
+
+$ngx-datatable-default-background: var(--ion-item-background);
+$ngx-datatable-default-background-hover: var(--ion-item-background-activated);
+
+$datatable-header-cell-background: var(--ion-item-background);
+$datatable-header-cell-color: var(--ion-color-step-550);
+
+$ngx-datatable-selected-active-background: var(--ion-color-primary);
+$ngx-datatable-selected-active-background-hover: var(--ion-color-primary-tint);
+
+$datatable-body-cell-color: var(--ion-text-color);
+
+$datatable-footer-cell-color: var(--ion-color-step-550);
+
 // ngx-datatable
 @import "~@swimlane/ngx-datatable/index.scss";
 @import "~@swimlane/ngx-datatable/themes/material.scss";
 @import "~@swimlane/ngx-datatable/assets/icons.css";
+
+// ion-button in selected row: inherit text color
+.ngx-datatable.material {
+  &.single-selection,
+  &.multi-selection,
+  &.multi-click-selection {
+    .datatable-body-row {
+      &.active,
+      &.active .datatable-row-group,
+      &.active .datatable-row-group datatable-body-cell {
+        ion-button {
+          color: inherit;
+        }
+      }
+    }
+  }
+}

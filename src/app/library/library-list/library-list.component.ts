@@ -15,12 +15,14 @@ export class LibraryListComponent implements OnInit {
   ColumnMode = ColumnMode;
 
   libraries: UserConstraintsFile[];
+  selected: UserConstraintsFile[] = [];
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
   ngOnInit(): void {
     this.apiService.userConstraintsFiles().subscribe((data) => {
       this.libraries = data;
+      this.selected = [this.libraries[1]];
     });
   }
 
