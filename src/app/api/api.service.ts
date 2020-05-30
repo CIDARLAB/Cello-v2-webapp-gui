@@ -19,6 +19,8 @@ const routes = {
   inputSensorFiles: '/resources/input_sensor_files',
   outputDeviceFiles: '/resources/output_device_files',
   settings: '/resources/settings',
+  versionApi: '/version/api',
+  versionCore: '/version/core',
 };
 
 @Injectable({
@@ -89,5 +91,15 @@ export class ApiService {
     return this.httpClient
       .get<Result[]>(routes.settings, { headers: { Authorization: credentials.token } })
       .pipe(map((data) => data.map((data) => new Result().deserialize(data))));
+  }
+
+  versionApi(): Observable<string> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.get<string>(routes.versionApi, { headers: { Authorization: credentials.token } });
+  }
+
+  versionCore(): Observable<string> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.get<string>(routes.versionApi, { headers: { Authorization: credentials.token } });
   }
 }

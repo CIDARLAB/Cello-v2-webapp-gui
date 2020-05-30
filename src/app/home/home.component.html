@@ -5,13 +5,16 @@
   <ion-text color="primary" class="ion-text-center">
     <h3><span translate>Projects</span></h3>
   </ion-text>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" class="custom-fab">
+    <ion-fab-button href="/project" target="_blank">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- <ion-button id="create-project-button" href="/project" target="_blank"> -->
+  <!--   <ion-icon name="add"></ion-icon> -->
+  <!--   <span translate>New</span> -->
+  <!-- </ion-button> -->
   <ion-card>
-    <ion-card-header class="ion-padding">
-      <ion-button id="create-project-button" href="/project" target="_blank">
-        <ion-icon name="add"></ion-icon>
-        <span translate>New</span>
-      </ion-button>
-    </ion-card-header>
     <ion-card-content class="ion-no-padding">
       <p>
         <app-loader [isLoading]="isLoading"></app-loader>
