@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cello-v-2-webapp-gui": {
+    "cello-v2-webapp-gui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -78,12 +78,12 @@
           "options": {
             "hmr": true,
             "hmrWarning": false,
-            "browserTarget": "cello-v-2-webapp-gui:build"
+            "browserTarget": "cello-v2-webapp-gui:build"
           },
           "configurations": {
             "production": {
               "hmr": false,
-              "browserTarget": "cello-v-2-webapp-gui:build:production"
+              "browserTarget": "cello-v2-webapp-gui:build:production"
             },
             "ci": {
               "progress": false
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cello-v-2-webapp-gui:build"
+            "browserTarget": "cello-v2-webapp-gui:build"
           }
         },
         "test": {
@@ -123,7 +123,7 @@
         }
       }
     },
-    "cello-v-2-webapp-gui-e2e": {
+    "cello-v2-webapp-gui-e2e": {
       "root": "e2e",
       "projectType": "application",
       "architect": {
@@ -131,7 +131,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cello-v-2-webapp-gui:serve"
+            "devServerTarget": "cello-v2-webapp-gui:serve"
           }
         },
         "lint": {
@@ -144,5 +144,5 @@
       }
     }
   },
-  "defaultProject": "cello-v-2-webapp-gui"
+  "defaultProject": "cello-v2-webapp-gui"
 }
