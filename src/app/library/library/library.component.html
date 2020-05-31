@@ -2,10 +2,12 @@
   <ion-text color="primary" class="ion-text-center">
     <h3>Choose a library</h3>
   </ion-text>
-  <ion-input accept="application/json" type="file"></ion-input>
+  <!-- <ion-input accept="application/json" type="file"></ion-input> -->
   <ion-fab vertical="top" horizontal="end" slot="fixed" class="custom-fab">
-    <ion-fab-button>
+    <!-- https://stackoverflow.com/questions/53584875/how-to-create-a-custom-file-upload-button-in-angular -->
+    <ion-fab-button (click)="fileInput.click()">
       <ion-icon name="add"></ion-icon>
+      <input #fileInput accept="application/json" type="file" style="display: none;" (change)="onFileInput($event)" />
     </ion-fab-button>
   </ion-fab>
   <ion-card>

@@ -16,6 +16,7 @@ const routes = {
   signup: '/users/signup',
   projects: '/projects',
   userConstraintsFiles: '/resources/user_constraints_files',
+  userConstraintsFile: '/resources/user_constraints_file',
   inputSensorFiles: '/resources/input_sensor_files',
   outputDeviceFiles: '/resources/output_device_files',
   settings: '/resources/settings',
@@ -63,6 +64,13 @@ export class ApiService {
     return this.httpClient
       .get<UserConstraintsFile[]>(routes.userConstraintsFiles, { headers: { Authorization: credentials.token } })
       .pipe(map((data) => data.map((data) => new UserConstraintsFile().deserialize(data))));
+  }
+
+  userConstraintsFile(body: string | ArrayBuffer): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.post<object>(routes.userConstraintsFile, body, {
+      headers: { Authorization: credentials.token },
+    });
   }
 
   inputSensorFiles(): Observable<InputSensorFile[]> {
