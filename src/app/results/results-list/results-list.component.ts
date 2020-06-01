@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '@app/project/project.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Result } from '@app/project/shared/result.model';
 
 @Component({
   selector: 'app-results-list',
@@ -7,7 +7,26 @@ import { ProjectService } from '@app/project/project.service';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit {
-  constructor(private projectService: ProjectService) {}
+  @Input() results: Result[];
+  map: Map<string, Result[]>;
+
+  constructor() {
+    this.map = new Map<string, Result[]>();
+    this.map.set('logic', []);
+  }
+
+  private groupResultsByStage() {
+    for (let result of this.results) {
+      if (!this.map[result.stage]) {
+        this.map[result.stage] = [];
+      }
+      this.map[result.stage].push(result);
+    }
+  }
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.groupResultsByStage();
+  }
 }

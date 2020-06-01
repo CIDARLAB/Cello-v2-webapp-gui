@@ -1,55 +1,49 @@
-<ion-card>
-  <div style="height: 150px; overflow: hidden;">
-    <img src="assets/images/dpl.png" />
-  </div>
-  <mat-expansion-panel class="ion-text-center">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Topology
-      </mat-panel-title>
-      <mat-panel-description>
-        The Boolean network and biological gate assignments.
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <img src="assets/images/and.png" />
-  </mat-expansion-panel>
-  <mat-expansion-panel class="ion-text-center">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Behavior
-      </mat-panel-title>
-      <mat-panel-description>
-        Predictions of measurements like RNAseq, flow cytometry, and optical density.
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <img src="assets/images/rnaseq_and.png" />
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        SBOL
-      </mat-panel-title>
-      <mat-panel-description>
-        Synthetic Biology Open Language (SBOL) description of the circuit.
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <h5>Files</h5>
-          <ion-list lines="none">
-            <ion-item>
-              <a>and.xml</a>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col>
-          <h5>Submit</h5>
-          <div #sbh>
-            <app-synbiohub [result]="selected"></app-synbiohub>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </mat-expansion-panel>
-</ion-card>
+<!-- <div style="height: 150px; overflow: hidden;"> -->
+<!--   <img src="assets/images/dpl.png" /> -->
+<!-- </div> -->
+<mat-expansion-panel class="ion-text-center" *ngFor="let stage of map.keys()">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ stage }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+</mat-expansion-panel>
+<!-- <mat-expansion-panel class="ion-text-center"> -->
+<!--   <mat-expansion-panel-header> -->
+<!--     <mat-panel-title> -->
+<!--       Behavior -->
+<!--     </mat-panel-title> -->
+<!--     <mat-panel-description> -->
+<!--       Predictions of measurements like RNAseq, flow cytometry, and optical density. -->
+<!--     </mat-panel-description> -->
+<!--   </mat-expansion-panel-header> -->
+<!--   <img src="assets/images/rnaseq_and.png" /> -->
+<!-- </mat-expansion-panel> -->
+<!-- <mat-expansion-panel> -->
+<!--   <mat-expansion-panel-header> -->
+<!--     <mat-panel-title> -->
+<!--       SBOL -->
+<!--     </mat-panel-title> -->
+<!--     <mat-panel-description> -->
+<!--       Synthetic Biology Open Language (SBOL) description of the circuit. -->
+<!--     </mat-panel-description> -->
+<!--   </mat-expansion-panel-header> -->
+<!--   <ion-grid> -->
+<!--     <ion-row> -->
+<!--       <ion-col> -->
+<!--         <h5>Files</h5> -->
+<!--         <ion-list lines="none"> -->
+<!--           <ion-item> -->
+<!--             <a>and.xml</a> -->
+<!--           </ion-item> -->
+<!--         </ion-list> -->
+<!--       </ion-col> -->
+<!--       <ion-col> -->
+<!--         <h5>Submit</h5> -->
+<!--         <div #sbh> -->
+<!--           <app-synbiohub [result]="selected"></app-synbiohub> -->
+<!--         </div> -->
+<!--       </ion-col> -->
+<!--     </ion-row> -->
+<!--   </ion-grid> -->
+<!-- </mat-expansion-panel> -->

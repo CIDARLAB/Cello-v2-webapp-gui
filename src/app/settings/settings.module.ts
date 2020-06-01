@@ -6,9 +6,10 @@ import { IonicModule } from '@ionic/angular';
 import { SettingsListComponent } from './settings-list/settings-list.component';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings/settings.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [SettingsComponent, SettingsListComponent],
-  imports: [CommonModule, FormsModule, IonicModule, SettingsRoutingModule, SharedModule],
+  imports: [CommonModule, TranslateModule, FormsModule, IonicModule, SettingsRoutingModule, SharedModule],
 })
 export class SettingsModule {}

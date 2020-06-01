@@ -5,9 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { ResultsListComponent } from './results-list/results-list.component';
 import { ResultsRoutingModule } from './results-routing.module';
 import { ResultsComponent } from './results/results.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ResultsListComponent, ResultsComponent],
-  imports: [CommonModule, IonicModule, ResultsRoutingModule, MatExpansionModule],
+  imports: [CommonModule, TranslateModule, IonicModule, ResultsRoutingModule, MatExpansionModule],
 })
 export class ResultsModule {}

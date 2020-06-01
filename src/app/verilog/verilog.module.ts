@@ -7,10 +7,19 @@ import { VerilogEditorComponent } from './verilog-editor/verilog-editor.componen
 import { VerilogRoutingModule } from './verilog-routing.module';
 import { VerilogComponent } from './verilog/verilog.component';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [VerilogComponent, VerilogEditorComponent],
-  imports: [CommonModule, IonicModule, FormsModule, VerilogRoutingModule, InputEditorModule, OutputEditorModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    IonicModule,
+    FormsModule,
+    VerilogRoutingModule,
+    InputEditorModule,
+    OutputEditorModule,
+  ],
   exports: [VerilogEditorComponent],
 })
 export class VerilogModule {}

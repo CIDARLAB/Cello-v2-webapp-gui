@@ -10,7 +10,7 @@
 >
   <ngx-datatable-column name="name" [resizeable]="false" [flexGrow]="1">
     <ng-template let-column="column" ngx-datatable-header-template>
-      Project name
+      <span translate>Project name</span>
     </ng-template>
     <ng-template let-value="value" ngx-datatable-cell-template>
       {{ value }}
@@ -18,7 +18,7 @@
   </ngx-datatable-column>
   <ngx-datatable-column name="description" [resizeable]="false" [flexGrow]="2">
     <ng-template let-column="column" ngx-datatable-header-template>
-      Description
+      <span translate>Description</span>
     </ng-template>
     <ng-template let-value="value" ngx-datatable-cell-template>
       {{ value }}
@@ -26,7 +26,7 @@
   </ngx-datatable-column>
   <ngx-datatable-column name="created" [resizeable]="false" [flexGrow]="1">
     <ng-template let-column="column" ngx-datatable-header-template>
-      Created on
+      <span translate>Created on</span>
     </ng-template>
     <ng-template let-value="value.format('YYYY-MM-DD hh:mma');" ngx-datatable-cell-template>
       {{ value }}
@@ -34,7 +34,7 @@
   </ngx-datatable-column>
   <ngx-datatable-column [minWidth]="184" [resizeable]="false" [flexGrow]="1" sortable="false">
     <ng-template ngx-datatable-header-template>
-      Actions
+      <span translate>Actions</span>
     </ng-template>
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       <ion-button class="ion-no-padding action-button" fill="clear">
@@ -51,17 +51,18 @@
       </ion-button>
     </ng-template>
   </ngx-datatable-column>
-  <!-- <ngx-datatable-footer> -->
-  <!--   <ng-template -->
-  <!--     ngx-datatable-footer-template -->
-  <!--     let-rowCount="rowCount" -->
-  <!--     let-pageSize="pageSize" -->
-  <!--     let-selectedCount="selectedCount" -->
-  <!--     let-curPage="curPage" -->
-  <!--     let-offset="offset"> -->
-  <!--     <div style="padding: 0 1.2rem"> -->
-  <!--       <div>{{ rowCount }} total</div> -->
-  <!--     </div> -->
-  <!--   </ng-template> -->
-  <!-- </ngx-datatable-footer> -->
+  <ngx-datatable-footer>
+    <ng-template
+      ngx-datatable-footer-template
+      let-rowCount="rowCount"
+      let-pageSize="pageSize"
+      let-selectedCount="selectedCount"
+      let-curPage="curPage"
+      let-offset="offset"
+    >
+      <div style="padding: 0 1.2rem;">
+        <div>{{ rowCount }} <span translate>total</span></div>
+      </div>
+    </ng-template>
+  </ngx-datatable-footer>
 </ngx-datatable>

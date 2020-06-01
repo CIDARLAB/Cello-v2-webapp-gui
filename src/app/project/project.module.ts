@@ -6,9 +6,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project/project.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule, NgxDatatableModule, IonicModule, ProjectRoutingModule, NavbarModule],
+  imports: [CommonModule, TranslateModule, NgxDatatableModule, IonicModule, ProjectRoutingModule, NavbarModule],
   declarations: [ProjectListComponent, ProjectComponent],
   exports: [ProjectListComponent],
 })

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { environment } from '@env/environment';
 import { ModalController } from '@ionic/angular';
 

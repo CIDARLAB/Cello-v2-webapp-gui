@@ -1,6 +1,6 @@
 <ion-content>
   <ion-text color="primary" class="ion-text-center">
-    <h3>Specify the circuit function</h3>
+    <h3 translate>Specify the circuit function</h3>
   </ion-text>
   <!--   <ion-col offset-lg="2" size-md="4" offset-md="0" size-sm="6" offset-sm="0" size-xs="12" offset-xs="0" class="ion-text-center"> -->
   <!--     <ion-card> -->
@@ -18,7 +18,7 @@
             <ion-card-header>
               <ion-card-title>Verilog</ion-card-title>
               <ion-select
-                placeholder="Load example file"
+                placeholder="{{ 'Load example file' | translate }}"
                 interface="popover"
                 style="float: right;"
                 (ionChange)="loadSample($event)"
@@ -40,9 +40,9 @@
             <ion-col>
               <ion-card>
                 <ion-card-header>
-                  <ion-card-title>Inputs</ion-card-title>
+                  <ion-card-title translate>Inputs</ion-card-title>
                   <ion-select
-                    placeholder="Load existing"
+                    placeholder="{{ 'Load existing' | translate }}"
                     interface="popover"
                     style="float: right;"
                     [(ngModel)]="projectService.project.library.inputSensorFile"
@@ -62,9 +62,9 @@
             <ion-col>
               <ion-card>
                 <ion-card-header>
-                  <ion-card-title>Outputs</ion-card-title>
+                  <ion-card-title translate>Outputs</ion-card-title>
                   <ion-select
-                    placeholder="Load existing"
+                    placeholder="{{ 'Load existing' | translate }}"
                     interface="popover"
                     style="float: right;"
                     [(ngModel)]="projectService.project.library.outputDeviceFile"
