@@ -1,0 +1,29 @@
+.editor-card {
+  height: 500px;
+}
+
+.editor-card-content {
+  height: 100%;
+}
+
+.editor {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+app-verilog-editor {
+  width: 100%;
+}
+
+ion-select {
+  --placeholder-opacity: 0.75;
+}
+
+ion-card-title {
+  display: inline-block;
+}
+
+ion-card-header {
+  border-bottom: 1px solid lightgray;
+}

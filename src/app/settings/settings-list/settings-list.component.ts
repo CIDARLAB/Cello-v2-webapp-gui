@@ -1,11 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Logger } from '@app/@core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
-import { Settings } from '../shared/settings.model';
-import { finalize } from 'rxjs/operators';
-import { Application } from '../shared/application.model';
-
-const log = new Logger('SettingsList');
+import { ProjectService } from '@app/project/project.service';
 
 @Component({
   selector: 'app-settings-list',
@@ -13,23 +8,13 @@ const log = new Logger('SettingsList');
   styleUrls: ['./settings-list.component.scss'],
 })
 export class SettingsListComponent implements OnInit {
-  @Input() settings: Settings = new Settings();
-  isLoading = false;
-
-  constructor(private apiService: ApiService) {}
+  // TODO: don't use project service
+  constructor(private apiService: ApiService, public projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.apiService
-      .settings()
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((data) => {
-        this.settings = data;
-      });
+    this.apiService.settings().subscribe((data) => {
+      this.projectService.project.settings = data;
+    });
   }
 
   typeOf(value: any) {

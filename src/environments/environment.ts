@@ -14,11 +14,11 @@ export const environment = {
   production: false,
   hmr: true,
   version: env.npm_package_version + '-dev',
-  serverUrl: 'http://128.197.47.203:8080',
+  serverUrl: 'http://localhost:8080',
   defaultLanguage: 'en-US',
   supportedLanguages: ['de-DE', 'en-US', 'fr-FR', 'zh-CN'],
 };
-
+// serverUrl: 'http://128.197.47.203:8080',
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

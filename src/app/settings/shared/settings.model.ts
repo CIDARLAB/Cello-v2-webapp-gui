@@ -16,4 +16,19 @@ export class Settings implements Deserializeable {
     }
     return this;
   }
+
+  // TODO barf
+  getIntermediate() {
+    let rtn = {
+      application: this.application.name,
+      parameters: {},
+    };
+    for (let stage of this.application.stages) {
+      rtn.parameters[stage.name] = stage.algorithm.name;
+      for (let parameter of stage.algorithm.parameters) {
+        rtn.parameters[stage.name + '.' + parameter.name] = parameter.value;
+      }
+    }
+    return rtn;
+  }
 }

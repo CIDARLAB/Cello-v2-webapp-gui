@@ -16,7 +16,7 @@ const routes = {
   signup: '/users/signup',
   projects: '/projects',
   userConstraintsFiles: '/resources/user_constraints_files',
-  userConstraintsFile: '/resources/user_constraints_file',
+  userConstraintsFileSubmit: '/resources/user_constraints_file/submit',
   inputSensorFiles: '/resources/input_sensor_files',
   outputDeviceFiles: '/resources/output_device_files',
   settings: '/resources/settings',
@@ -68,7 +68,7 @@ export class ApiService {
 
   userConstraintsFile(body: string | ArrayBuffer): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.post<object>(routes.userConstraintsFile, body, {
+    return this.httpClient.post<object>(routes.userConstraintsFileSubmit, body, {
       headers: { Authorization: credentials.token },
     });
   }
@@ -94,10 +94,27 @@ export class ApiService {
       .pipe(map((data) => new Settings().deserialize(data)));
   }
 
-  results(): Observable<Result[]> {
+  // TODO: Use routes
+  specify(body: object, project: string): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
+    const url = '/project/' + encodeURIComponent(project) + '/specify';
+    return this.httpClient.post<object>(url, body, {
+      headers: { Authorization: credentials.token },
+    });
+  }
+
+  // TODO: Use routes
+  execute(project: string): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    const url = '/project/' + encodeURIComponent(project) + '/execute';
+    return this.httpClient.get(url, { headers: { Authorization: credentials.token } });
+  }
+
+  results(project: string): Observable<Result[]> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    let url = '/project/' + encodeURIComponent(project) + '/results/';
     return this.httpClient
-      .get<Result[]>(routes.settings, { headers: { Authorization: credentials.token } })
+      .get<Result[]>(url, { headers: { Authorization: credentials.token } })
       .pipe(map((data) => data.map((data) => new Result().deserialize(data))));
   }
 

@@ -2,4 +2,86 @@
   <ion-text color="primary" class="ion-text-center">
     <h3>Specify the circuit function</h3>
   </ion-text>
+  <!--   <ion-col offset-lg="2" size-md="4" offset-md="0" size-sm="6" offset-sm="0" size-xs="12" offset-xs="0" class="ion-text-center"> -->
+  <!--     <ion-card> -->
+
+  <!--     </ion-card> -->
+  <!--   </ion-col> -->
+  <!-- </ion-row> -->
+
+  <!-- <ion-card class="editor-card" style="height: 90%"> -->
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="7">
+        <div>
+          <ion-card class="editor-card">
+            <ion-card-header>
+              <ion-card-title>Verilog</ion-card-title>
+              <ion-select
+                placeholder="Load example file"
+                interface="popover"
+                style="float: right;"
+                (ionChange)="loadSample($event)"
+              >
+                <ion-select-option value="{{ file }}" *ngFor="let file of sampleVerilog">{{ file }}</ion-select-option>
+              </ion-select>
+            </ion-card-header>
+            <ion-card-content class="ion-no-padding editor-card-content">
+              <div class="editor" #editor>
+                <app-verilog-editor (verilog)="verilog($event)"></app-verilog-editor>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+      <ion-col size="5">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col>
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title>Inputs</ion-card-title>
+                  <ion-select
+                    placeholder="Load existing"
+                    interface="popover"
+                    style="float: right;"
+                    [(ngModel)]="projectService.project.library.inputSensorFile"
+                  >
+                    <ion-select-option *ngFor="let file of inputSensorFiles" [value]="file">
+                      {{ file.file }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-card-header>
+                <ion-card-content class="ion-no-padding">
+                  <!-- <app-input-editor></app-input-editor> -->
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title>Outputs</ion-card-title>
+                  <ion-select
+                    placeholder="Load existing"
+                    interface="popover"
+                    style="float: right;"
+                    [(ngModel)]="projectService.project.library.outputDeviceFile"
+                  >
+                    <ion-select-option *ngFor="let file of outputDeviceFiles" [value]="file">
+                      {{ file.file }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-card-header>
+                <ion-card-content class="ion-no-padding">
+                  <!-- <app-output-editor></app-output-editor> -->
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

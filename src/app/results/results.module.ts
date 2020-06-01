@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResultsRoutingModule } from './results-routing.module';
+import { NgModule } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { ResultsListComponent } from './results-list/results-list.component';
+import { ResultsRoutingModule } from './results-routing.module';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
-  declarations: [ResultsListComponent],
-  imports: [CommonModule, ResultsRoutingModule],
+  declarations: [ResultsListComponent, ResultsComponent],
+  imports: [CommonModule, IonicModule, ResultsRoutingModule],
 })
 export class ResultsModule {}

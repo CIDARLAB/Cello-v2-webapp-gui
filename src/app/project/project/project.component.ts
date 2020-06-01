@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../project.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-project',
@@ -6,7 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  constructor() {}
+  constructor(public projectService: ProjectService, private alertController: AlertController) {}
 
   ngOnInit(): void {}
+
+  async submit() {
+    const alert = await this.alertController.create({
+      header: 'Submit',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'project name',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Submit',
+          handler: (data) => {
+            this.projectService.project.name = data.name;
+            this.projectService.submit();
+          },
+        },
+      ],
+    });
+    return await alert.present();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { UserConstraintsFile } from '../shared/user-constraints-file.model';
@@ -14,17 +14,17 @@ export class LibraryListComponent implements OnInit {
   SelectionType = SelectionType;
   ColumnMode = ColumnMode;
 
+  @Input()
   libraries: UserConstraintsFile[];
-  selected: UserConstraintsFile[] = [];
+
+  library: UserConstraintsFile[] = [];
+
+  @Output()
+  selected = new EventEmitter<UserConstraintsFile>();
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
-  ngOnInit(): void {
-    this.apiService.userConstraintsFiles().subscribe((data) => {
-      this.libraries = data;
-      this.selected = [this.libraries[1]];
-    });
-  }
+  ngOnInit(): void {}
 
   async details(library: object, event: any) {
     event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
@@ -39,5 +39,9 @@ export class LibraryListComponent implements OnInit {
 
   download(library: object, event: any) {
     event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+  }
+
+  select(event: any) {
+    this.selected.emit(event.selected[0]);
   }
 }

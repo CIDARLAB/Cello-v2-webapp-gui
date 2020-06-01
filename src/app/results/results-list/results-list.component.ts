@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '@app/project/project.service';
 
 @Component({
   selector: 'app-results-list',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit {
-  constructor() {}
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {}
 }
