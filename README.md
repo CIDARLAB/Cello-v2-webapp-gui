@@ -84,6 +84,10 @@ Run `npm run generate -- component <name>` to generate a new component. You can 
 If you have installed [angular-cli](https://github.com/angular/angular-cli) globally with `npm install -g @angular/cli`,
 you can also use the command `ng generate` directly.
 
+## Deployment
+
+This project uses [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) for deployment. Run `ng deploy [--dry-run]` to deploy to the `production` branch.
+
 ## Additional tools
 
 Tasks are mostly based on the `angular-cli` tool. Use `ng help` to get more help or go check out the
