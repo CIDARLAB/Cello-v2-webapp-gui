@@ -1,12 +1,15 @@
-<!-- <div style="height: 150px; overflow: hidden;"> -->
-<!--   <img src="assets/images/dpl.png" /> -->
-<!-- </div> -->
-<mat-expansion-panel class="ion-text-center" *ngFor="let stage of map.keys()">
+<div style="height: 150px; overflow: hidden;">
+  <img [src]="headline" />
+</div>
+<mat-expansion-panel class="ion-text-center" *ngFor="let stage of keys">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{ stage }}
+      {{ stages.get(stage) }}
     </mat-panel-title>
   </mat-expansion-panel-header>
+  <div *ngFor="let result of map.get(stage)">
+    {{ result.name }}
+  </div>
 </mat-expansion-panel>
 <!-- <mat-expansion-panel class="ion-text-center"> -->
 <!--   <mat-expansion-panel-header> -->
