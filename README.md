@@ -147,3 +147,5 @@ Development, build and quality processes are based on [angular-cli](https://gith
 - [Updating dependencies and tools](docs/updating.md)
 - [Using a backend proxy for development](docs/backend-proxy.md)
 - [Browser routing](docs/routing.md)
+
+[webapp]: https://github.com/CIDARLAB/Cello-v2-webapp
