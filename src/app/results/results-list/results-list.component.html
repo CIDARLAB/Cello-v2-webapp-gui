@@ -1,4 +1,4 @@
-<div style="height: 150px; overflow: hidden;">
+<div style="height: auto; overflow: hidden;">
   <img [src]="headline" />
 </div>
 <mat-expansion-panel class="ion-text-center" *ngFor="let stage of keys">
@@ -8,9 +8,19 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div *ngFor="let result of map.get(stage)">
-    {{ result.name }}
+    <!-- {{ result.name }} -->
+    <div *ngIf="result.file.endsWith('.png')">
+      <div style="height: auto; overflow: hidden;">
+        <img [src]="blobs.get(result.file)" />
+      </div>
+    </div>
     <div *ngIf="result.name === 'sbol'">
-      <app-synbiohub-submit></app-synbiohub-submit>
+      <ion-text>
+        Login to SynBioHub to submit the SBOL representation of your design:
+      </ion-text>
+      <div id="synbiohub-submit">
+        <app-synbiohub-submit [result]="result"></app-synbiohub-submit>
+      </div>
     </div>
   </div>
 </mat-expansion-panel>
