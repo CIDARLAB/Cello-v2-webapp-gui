@@ -9,6 +9,9 @@
   </mat-expansion-panel-header>
   <div *ngFor="let result of map.get(stage)">
     {{ result.name }}
+    <div *ngIf="result.name === 'sbol'">
+      <app-synbiohub-submit></app-synbiohub-submit>
+    </div>
   </div>
 </mat-expansion-panel>
 <!-- <mat-expansion-panel class="ion-text-center"> -->
