@@ -1,7 +1,10 @@
+[![Build Status](https://travis-ci.org/CIDARLAB/Cello-v2-webapp-gui.svg?branch=develop)](https://travis-ci.org/CIDARLAB/Cello-v2-webapp-gui)
+
 # Cello-v2-webapp-gui
 
-This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
-version 8.0.0
+This is the GUI that supports the [Cello v2 webapp][webapp]. This repository is used only for development. If you want to run the webapp, navigate to [its repository][webapp].
+
+This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/), version 8.0.0.
 
 # Getting started
 
