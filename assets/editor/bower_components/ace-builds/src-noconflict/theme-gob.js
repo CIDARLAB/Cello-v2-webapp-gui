@@ -1,8 +1,8 @@
-ace.define("ace/theme/gob",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
-
-exports.isDark = true;
-exports.cssClass = "ace-gob";
-exports.cssText = ".ace-gob .ace_gutter {\
+ace.define('ace/theme/gob', ['require', 'exports', 'module', 'ace/lib/dom'], function (require, exports, module) {
+  exports.isDark = true;
+  exports.cssClass = 'ace-gob';
+  exports.cssText =
+    '.ace-gob .ace_gutter {\
 background: #0B1818;\
 color: #03EE03\
 }\
@@ -105,15 +105,15 @@ color: #488858;\
 .ace-gob .ace_indent-guide {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWMQERFpYLC1tf0PAAgOAnPnhxyiAAAAAElFTkSuQmCC) right repeat-y\
 }\
-";
+';
 
-var dom = require("../lib/dom");
-dom.importCssString(exports.cssText, exports.cssClass);
-});                (function() {
-                    ace.require(["ace/theme/gob"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+  var dom = require('../lib/dom');
+  dom.importCssString(exports.cssText, exports.cssClass);
+});
+(function () {
+  ace.require(['ace/theme/gob'], function (m) {
+    if (typeof module == 'object' && typeof exports == 'object' && module) {
+      module.exports = m;
+    }
+  });
+})();

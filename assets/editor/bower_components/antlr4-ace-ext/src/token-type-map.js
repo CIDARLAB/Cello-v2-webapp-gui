@@ -1,5 +1,5 @@
 ace.define('ace/ext/antlr4/token-type-map', [], function (require, exports, module) {
-  "use strict";
+  'use strict';
 
   /**
    * Create a token type map for an Antlr4Tokenizer.
@@ -39,33 +39,25 @@ ace.define('ace/ext/antlr4/token-type-map', [], function (require, exports, modu
   }
 
   function mergeObjects(a, b) {
-    return toPairs(a).concat(toPairs(b))
-      .reduce(addKeyValuePairToObject, {});
+    return toPairs(a).concat(toPairs(b)).reduce(addKeyValuePairToObject, {});
   }
 
   function mapLiterals(literals) {
-    return mapObject(
-      literals,
-      function (type, tokenName) {
-        return toArray(tokenName)
-          .map(toLiteralName)
-          .map(function (literalName) {
-            return [literalName, type];
-          });
-      }
-    );
+    return mapObject(literals, function (type, tokenName) {
+      return toArray(tokenName)
+        .map(toLiteralName)
+        .map(function (literalName) {
+          return [literalName, type];
+        });
+    });
   }
 
   function mapSymbols(symbols) {
-    return mapObject(
-      symbols,
-      function reverse(type, tokenName) {
-        return toArray(tokenName)
-          .map(function (symbolName) {
-            return [symbolName, type];
-          });
-      }
-    );
+    return mapObject(symbols, function reverse(type, tokenName) {
+      return toArray(tokenName).map(function (symbolName) {
+        return [symbolName, type];
+      });
+    });
   }
 
   function mapObject(obj, mapFn) {
@@ -83,10 +75,9 @@ ace.define('ace/ext/antlr4/token-type-map', [], function (require, exports, modu
   }
 
   function toPairs(obj) {
-    return Object.keys(obj)
-      .map(function (key) {
-        return [key, obj[key]];
-      });
+    return Object.keys(obj).map(function (key) {
+      return [key, obj[key]];
+    });
   }
 
   function flatten(a, b) {
@@ -117,6 +108,6 @@ ace.define('ace/ext/antlr4/token-type-map', [], function (require, exports, modu
     mapObject: mapObject,
     toArray: toArray,
     toLiteralName: toLiteralName,
-    toPairs: toPairs
+    toPairs: toPairs,
   };
 });

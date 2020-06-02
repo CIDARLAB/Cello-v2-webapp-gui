@@ -1,7 +1,8 @@
-ace.define("ace/snippets/lsl",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/lsl', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet @\n\
+  exports.snippetText =
+    'snippet @\n\
 	@${1:label};\n\
 snippet CAMERA_ACTIVE\n\
 	CAMERA_ACTIVE, ${1:integer isActive}, $0\n\
@@ -1233,7 +1234,6 @@ snippet while\n\
 	{\n\
 		$0\n\
 	}\n\
-";
-exports.scope = "lsl";
-
+';
+  exports.scope = 'lsl';
 });

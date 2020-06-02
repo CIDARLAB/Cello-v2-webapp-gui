@@ -1,7 +1,8 @@
-ace.define("ace/snippets/textile",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/textile', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "# Jekyll post header\n\
+  exports.snippetText =
+    '# Jekyll post header\n\
 snippet header\n\
 	---\n\
 	title: ${1:title}\n\
@@ -19,7 +20,7 @@ snippet |\n\
 \n\
 # Link\n\
 snippet link\n\
-	\"${1:link text}\":${2:url}\n\
+	"${1:link text}":${2:url}\n\
 \n\
 # Acronym\n\
 snippet (\n\
@@ -31,7 +32,6 @@ snippet fn\n\
 \n\
 	fn$1. ${2:footnote}\n\
 	\n\
-";
-exports.scope = "textile";
-
+';
+  exports.scope = 'textile';
 });

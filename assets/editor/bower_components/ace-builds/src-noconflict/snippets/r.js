@@ -1,7 +1,8 @@
-ace.define("ace/snippets/r",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/r', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet #!\n\
+  exports.snippetText =
+    'snippet #!\n\
 	#!/usr/bin/env Rscript\n\
 \n\
 # includes\n\
@@ -10,7 +11,7 @@ snippet lib\n\
 snippet req\n\
 	require(${1:package})\n\
 snippet source\n\
-	source('${1:file}')\n\
+	source(\'${1:file}\')\n\
 \n\
 # conditionals\n\
 snippet if\n\
@@ -103,7 +104,7 @@ snippet pl\n\
 snippet ggp\n\
 	ggplot(${1:data}, aes(${2:aesthetics}))\n\
 snippet img\n\
-	${1:(jpeg,bmp,png,tiff)}(filename=\"${2:filename}\", width=${3}, height=${4}, unit=\"${5}\")\n\
+	${1:(jpeg,bmp,png,tiff)}(filename="${2:filename}", width=${3}, height=${4}, unit="${5}")\n\
 	${6:plot}\n\
 	dev.off()\n\
 \n\
@@ -122,7 +123,6 @@ snippet fte\n\
 	var.test(${1:x}, ${2:y})\n\
 snippet kvt \n\
 	kv.test(${1:x}, ${2:y})\n\
-";
-exports.scope = "r";
-
+';
+  exports.scope = 'r';
 });

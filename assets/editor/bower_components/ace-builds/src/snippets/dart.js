@@ -1,14 +1,15 @@
-define("ace/snippets/dart",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/dart', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet lib\n\
+  exports.snippetText =
+    'snippet lib\n\
 	library ${1};\n\
 	${2}\n\
 snippet im\n\
-	import '${1}';\n\
+	import \'${1}\';\n\
 	${2}\n\
 snippet pa\n\
-	part '${1}';\n\
+	part \'${1}\';\n\
 	${2}\n\
 snippet pao\n\
 	part of ${1};\n\
@@ -28,7 +29,7 @@ snippet br\n\
 snippet th\n\
 	throw ${1}\n\
 snippet cl\n\
-	class ${1:`Filename(\"\", \"untitled\")`} ${2}\n\
+	class ${1:`Filename("", "untitled")`} ${2}\n\
 snippet imp\n\
 	implements ${1}\n\
 snippet ext\n\
@@ -84,7 +85,6 @@ snippet tryf\n\
 	} catch (${1:Exception e}) {\n\
 	} finally {\n\
 	}\n\
-";
-exports.scope = "dart";
-
+';
+  exports.scope = 'dart';
 });

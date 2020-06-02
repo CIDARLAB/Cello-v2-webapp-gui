@@ -1,7 +1,8 @@
-ace.define("ace/snippets/edifact",["require","exports","module"], function(require, exports, module) {
-    "use strict";
-    
-    exports.snippetText = "## Access Modifiers\n\
+ace.define('ace/snippets/edifact', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
+
+  exports.snippetText =
+    '## Access Modifiers\n\
 snippet u\n\
 	UN\n\
 snippet un\n\
@@ -42,9 +43,9 @@ snippet j.u\n\
 ##\n\
 ## Class\n\
 snippet cl\n\
-	class ${1:`Filename(\"\", \"untitled\")`} ${2}\n\
+	class ${1:`Filename("", "untitled")`} ${2}\n\
 snippet in\n\
-	interface ${1:`Filename(\"\", \"untitled\")`} ${2:extends Parent}${3}\n\
+	interface ${1:`Filename("", "untitled")`} ${2:extends Parent}${3}\n\
 snippet tc\n\
 	public class ${1:`Filename()`} extends ${2:TestCase}\n\
 ##\n\
@@ -64,7 +65,7 @@ snippet /*\n\
 snippet co\n\
 	static public final ${1:String} ${2:var} = ${3};${4}\n\
 snippet cos\n\
-	static public final String ${1:var} = \"${2}\";${3}\n\
+	static public final String ${1:var} = "${2}";${3}\n\
 ##\n\
 ## Control Statements\n\
 snippet case\n\
@@ -104,15 +105,15 @@ snippet sy\n\
 ##\n\
 ## Error Methods\n\
 snippet err\n\
-	System.err.print(\"${1:Message}\");\n\
+	System.err.print("${1:Message}");\n\
 snippet errf\n\
-	System.err.printf(\"${1:Message}\", ${2:exception});\n\
+	System.err.printf("${1:Message}", ${2:exception});\n\
 snippet errln\n\
-	System.err.println(\"${1:Message}\");\n\
+	System.err.println("${1:Message}");\n\
 ##\n\
 ## Exception Handling\n\
 snippet as\n\
-	assert ${1:test} : \"${2:Failure message}\";${3}\n\
+	assert ${1:test} : "${2:Failure message}";${3}\n\
 snippet ca\n\
 	catch(${1:Exception} ${2:e}) ${3}\n\
 snippet thr\n\
@@ -143,7 +144,7 @@ snippet /**\n\
 	 * ${1}\n\
 	 */\n\
 snippet @au\n\
-	@author `system(\"grep \\`id -un\\` /etc/passwd | cut -d \\\":\\\" -f5 | cut -d \\\",\\\" -f1\")`\n\
+	@author `system("grep \\`id -un\\` /etc/passwd | cut -d \\":\\" -f5 | cut -d \\",\\" -f1")`\n\
 snippet @br\n\
 	@brief ${1:Description}\n\
 snippet @fi\n\
@@ -179,9 +180,9 @@ snippet main\n\
 ##\n\
 ## Print Methods\n\
 snippet print\n\
-	System.out.print(\"${1:Message}\");\n\
+	System.out.print("${1:Message}");\n\
 snippet printf\n\
-	System.out.printf(\"${1:Message}\", ${2:args});\n\
+	System.out.printf("${1:Message}", ${2:args});\n\
 snippet println\n\
 	System.out.println(${1});\n\
 ##\n\
@@ -189,7 +190,7 @@ snippet println\n\
 snippet ren\n\
 	render(${1:param});${2}\n\
 snippet rena\n\
-	renderArgs.put(\"${1}\", ${2});${3}\n\
+	renderArgs.put("${1}", ${2});${3}\n\
 snippet renb\n\
 	renderBinary(${1:param});${2}\n\
 snippet renj\n\
@@ -241,14 +242,13 @@ snippet ru\n\
 	unauthorized(${1:param});${2}\n\
 snippet unless\n\
 	(unless=${1:param});${2}\n\
-";
-    exports.scope = "edifact";
-    
-});                (function() {
-                    ace.require(["ace/snippets/edifact"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+';
+  exports.scope = 'edifact';
+});
+(function () {
+  ace.require(['ace/snippets/edifact'], function (m) {
+    if (typeof module == 'object' && typeof exports == 'object' && module) {
+      module.exports = m;
+    }
+  });
+})();

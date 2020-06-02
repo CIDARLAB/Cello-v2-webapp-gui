@@ -1,7 +1,8 @@
-define("ace/snippets/ruby",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/ruby', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "########################################\n\
+  exports.snippetText =
+    '########################################\n\
 # Ruby snippets - for Rails, see below #\n\
 ########################################\n\
 \n\
@@ -30,7 +31,7 @@ snippet beg\n\
 	end\n\
 \n\
 snippet req require\n\
-	require \"${1}\"${2}\n\
+	require "${1}"${2}\n\
 snippet #\n\
 	# =>\n\
 snippet end\n\
@@ -81,23 +82,23 @@ snippet until\n\
 		${2}\n\
 	end\n\
 snippet cla class .. end\n\
-	class ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`}\n\
+	class ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`}\n\
 		${2}\n\
 	end\n\
 snippet cla class .. initialize .. end\n\
-	class ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`}\n\
+	class ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`}\n\
 		def initialize(${2:args})\n\
 			${3}\n\
 		end\n\
 	end\n\
 snippet cla class .. < ParentClass .. initialize .. end\n\
-	class ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`} < ${2:ParentClass}\n\
+	class ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`} < ${2:ParentClass}\n\
 		def initialize(${3:args})\n\
 			${4}\n\
 		end\n\
 	end\n\
 snippet cla ClassName = Struct .. do .. end\n\
-	${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`} = Struct.new(:${2:attr_names}) do\n\
+	${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`} = Struct.new(:${2:attr_names}) do\n\
 		def ${3:method_name}\n\
 			${4}\n\
 		end\n\
@@ -112,7 +113,7 @@ snippet cla class << self .. end\n\
 	end\n\
 # class .. < DelegateClass .. initialize .. end\n\
 snippet cla-\n\
-	class ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`} < DelegateClass(${2:ParentClass})\n\
+	class ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`} < DelegateClass(${2:ParentClass})\n\
 		def initialize(${3:args})\n\
 			super(${4:del_obj})\n\
 \n\
@@ -120,17 +121,17 @@ snippet cla-\n\
 		end\n\
 	end\n\
 snippet mod module .. end\n\
-	module ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`}\n\
+	module ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`}\n\
 		${2}\n\
 	end\n\
 snippet mod module .. module_function .. end\n\
-	module ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`}\n\
+	module ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`}\n\
 		module_function\n\
 \n\
 		${2}\n\
 	end\n\
 snippet mod module .. ClassMethods .. end\n\
-	module ${1:`substitute(Filename(), '\\(_\\|^\\)\\(.\\)', '\\u\\2', 'g')`}\n\
+	module ${1:`substitute(Filename(), \'\\(_\\|^\\)\\(.\\)\', \'\\u\\2\', \'g\')`}\n\
 		module ClassMethods\n\
 			${2}\n\
 		end\n\
@@ -197,25 +198,25 @@ snippet app\n\
 # usage_if()\n\
 snippet usai\n\
 	if ARGV.${1}\n\
-		abort \"Usage: #{$PROGRAM_NAME} ${2:ARGS_GO_HERE}\"${3}\n\
+		abort "Usage: #{$PROGRAM_NAME} ${2:ARGS_GO_HERE}"${3}\n\
 	end\n\
 # usage_unless()\n\
 snippet usau\n\
 	unless ARGV.${1}\n\
-		abort \"Usage: #{$PROGRAM_NAME} ${2:ARGS_GO_HERE}\"${3}\n\
+		abort "Usage: #{$PROGRAM_NAME} ${2:ARGS_GO_HERE}"${3}\n\
 	end\n\
 snippet array\n\
 	Array.new(${1:10}) { |${2:i}| ${3} }\n\
 snippet hash\n\
 	Hash.new { |${1:hash}, ${2:key}| $1[$2] = ${3} }\n\
 snippet file File.foreach() { |line| .. }\n\
-	File.foreach(${1:\"path/to/file\"}) { |${2:line}| ${3} }\n\
+	File.foreach(${1:"path/to/file"}) { |${2:line}| ${3} }\n\
 snippet file File.read()\n\
-	File.read(${1:\"path/to/file\"})${2}\n\
+	File.read(${1:"path/to/file"})${2}\n\
 snippet Dir Dir.global() { |file| .. }\n\
-	Dir.glob(${1:\"dir/glob/*\"}) { |${2:file}| ${3} }\n\
-snippet Dir Dir[\"..\"]\n\
-	Dir[${1:\"glob/**/*.rb\"}]${2}\n\
+	Dir.glob(${1:"dir/glob/*"}) { |${2:file}| ${3} }\n\
+snippet Dir Dir[".."]\n\
+	Dir[${1:"glob/**/*.rb"}]${2}\n\
 snippet dir\n\
 	Filename.dirname(__FILE__)\n\
 snippet deli\n\
@@ -393,9 +394,9 @@ snippet dov\n\
 		${2}\n\
 	end\n\
 snippet :\n\
-	:${1:key} => ${2:\"value\"}${3}\n\
+	:${1:key} => ${2:"value"}${3}\n\
 snippet ope\n\
-	open(${1:\"path/or/url/or/pipe\"}, \"${2:w}\") { |${3:io}| ${4} }\n\
+	open(${1:"path/or/url/or/pipe"}, "${2:w}") { |${3:io}| ${4} }\n\
 # path_from_here()\n\
 snippet fpath\n\
 	File.join(File.dirname(__FILE__), *%2[${1:rel path here}])${2}\n\
@@ -406,21 +407,21 @@ snippet unif\n\
 	end\n\
 # option_parse {}\n\
 snippet optp\n\
-	require \"optparse\"\n\
+	require "optparse"\n\
 \n\
-	options = {${1:default => \"args\"}}\n\
+	options = {${1:default => "args"}}\n\
 \n\
 	ARGV.options do |opts|\n\
-		opts.banner = \"Usage: #{File.basename($PROGRAM_NAME)}\n\
+		opts.banner = "Usage: #{File.basename($PROGRAM_NAME)}\n\
 snippet opt\n\
-	opts.on( \"-${1:o}\", \"--${2:long-option-name}\", ${3:String},\n\
-	         \"${4:Option description.}\") do |${5:opt}|\n\
+	opts.on( "-${1:o}", "--${2:long-option-name}", ${3:String},\n\
+	         "${4:Option description.}") do |${5:opt}|\n\
 		${6}\n\
 	end\n\
 snippet tc\n\
-	require \"test/unit\"\n\
+	require "test/unit"\n\
 \n\
-	require \"${1:library_file_name}\"\n\
+	require "${1:library_file_name}"\n\
 \n\
 	class Test${2:$1} < Test::Unit::TestCase\n\
 		def test_${3:case_name}\n\
@@ -428,12 +429,12 @@ snippet tc\n\
 		end\n\
 	end\n\
 snippet ts\n\
-	require \"test/unit\"\n\
+	require "test/unit"\n\
 \n\
-	require \"tc_${1:test_case_file}\"\n\
-	require \"tc_${2:test_case_file}\"${3}\n\
+	require "tc_${1:test_case_file}"\n\
+	require "tc_${2:test_case_file}"${3}\n\
 snippet as\n\
-	assert ${1:test}, \"${2:Failure message.}\"${3}\n\
+	assert ${1:test}, "${2:Failure message.}"${3}\n\
 snippet ase\n\
 	assert_equal ${1:expected}, ${2:actual}${3}\n\
 snippet asne\n\
@@ -487,7 +488,7 @@ snippet asntd\n\
 		${1}\n\
 	end\n\
 snippet fl\n\
-	flunk \"${1:Failure message.}\"${2}\n\
+	flunk "${1:Failure message.}"${2}\n\
 # Benchmark.bmbm do .. end\n\
 snippet bm-\n\
 	TESTS = ${1:10_000}\n\
@@ -495,31 +496,31 @@ snippet bm-\n\
 		${2}\n\
 	end\n\
 snippet rep\n\
-	results.report(\"${1:name}:\") { TESTS.times { ${2} }}\n\
+	results.report("${1:name}:") { TESTS.times { ${2} }}\n\
 # Marshal.dump(.., file)\n\
 snippet Md\n\
-	File.open(${1:\"path/to/file.dump\"}, \"wb\") { |${2:file}| Marshal.dump(${3:obj}, $2) }${4}\n\
+	File.open(${1:"path/to/file.dump"}, "wb") { |${2:file}| Marshal.dump(${3:obj}, $2) }${4}\n\
 # Mashal.load(obj)\n\
 snippet Ml\n\
-	File.open(${1:\"path/to/file.dump\"}, \"rb\") { |${2:file}| Marshal.load($2) }${3}\n\
+	File.open(${1:"path/to/file.dump"}, "rb") { |${2:file}| Marshal.load($2) }${3}\n\
 # deep_copy(..)\n\
 snippet deec\n\
 	Marshal.load(Marshal.dump(${1:obj_to_copy}))${2}\n\
 snippet Pn-\n\
-	PStore.new(${1:\"file_name.pstore\"})${2}\n\
+	PStore.new(${1:"file_name.pstore"})${2}\n\
 snippet tra\n\
 	transaction(${1:true}) { ${2} }\n\
 # xmlread(..)\n\
 snippet xml-\n\
-	REXML::Document.new(File.read(${1:\"path/to/file\"}))${2}\n\
+	REXML::Document.new(File.read(${1:"path/to/file"}))${2}\n\
 # xpath(..) { .. }\n\
 snippet xpa\n\
-	elements.each(${1:\"//Xpath\"}) do |${2:node}|\n\
+	elements.each(${1:"//Xpath"}) do |${2:node}|\n\
 		${3}\n\
 	end\n\
 # class_from_name()\n\
 snippet clafn\n\
-	split(\"::\").inject(Object) { |par, const| par.const_get(const) }\n\
+	split("::").inject(Object) { |par, const| par.const_get(const) }\n\
 # singleton_class()\n\
 snippet sinc\n\
 	class << self; self end\n\
@@ -528,7 +529,7 @@ snippet nam\n\
 		${2}\n\
 	end\n\
 snippet tas\n\
-	desc \"${1:Task description}\"\n\
+	desc "${1:Task description}"\n\
 	task :${2:task_name => [:dependent, :tasks]} do\n\
 		${3}\n\
 	end\n\
@@ -537,7 +538,7 @@ snippet b\n\
 	{ |${1:var}| ${2} }\n\
 snippet begin\n\
 	begin\n\
-		raise 'A test exception.'\n\
+		raise \'A test exception.\'\n\
 	rescue Exception => e\n\
 		puts e.message\n\
 		puts e.backtrace.inspect\n\
@@ -549,15 +550,15 @@ snippet begin\n\
 \n\
 #debugging\n\
 snippet debug\n\
-	require 'ruby-debug'; debugger; true;\n\
+	require \'ruby-debug\'; debugger; true;\n\
 snippet pry\n\
-	require 'pry'; binding.pry\n\
+	require \'pry\'; binding.pry\n\
 \n\
 #############################################\n\
 # Rails snippets - for pure Ruby, see above #\n\
 #############################################\n\
 snippet art\n\
-	assert_redirected_to ${1::action => \"${2:index}\"}\n\
+	assert_redirected_to ${1::action => "${2:index}"}\n\
 snippet artnp\n\
 	assert_redirected_to ${1:parent}_${2:child}_path(${3:@$1}, ${4:@$2})\n\
 snippet artnpp\n\
@@ -567,19 +568,19 @@ snippet artp\n\
 snippet artpp\n\
 	assert_redirected_to ${1:model}s_path\n\
 snippet asd\n\
-	assert_difference \"${1:Model}.${2:count}\", $1 do\n\
+	assert_difference "${1:Model}.${2:count}", $1 do\n\
 		${3}\n\
 	end\n\
 snippet asnd\n\
-	assert_no_difference \"${1:Model}.${2:count}\" do\n\
+	assert_no_difference "${1:Model}.${2:count}" do\n\
 		${3}\n\
 	end\n\
 snippet asre\n\
 	assert_response :${1:success}, @response.body${2}\n\
 snippet asrj\n\
-	assert_rjs :${1:replace}, \"${2:dom id}\"\n\
+	assert_rjs :${1:replace}, "${2:dom id}"\n\
 snippet ass assert_select(..)\n\
-	assert_select '${1:path}', :${2:text} => '${3:inner_html' ${4:do}\n\
+	assert_select \'${1:path}\', :${2:text} => \'${3:inner_html\' ${4:do}\n\
 snippet bf\n\
 	before_filter :${1:method}\n\
 snippet bt\n\
@@ -592,11 +593,11 @@ snippet defcreate\n\
 \n\
 		respond_to do |wants|\n\
 			if @$1.save\n\
-				flash[:notice] = '$2 was successfully created.'\n\
+				flash[:notice] = \'$2 was successfully created.\'\n\
 				wants.html { redirect_to(@$1) }\n\
 				wants.xml  { render :xml => @$1, :status => :created, :location => @$1 }\n\
 			else\n\
-				wants.html { render :action => \"new\" }\n\
+				wants.html { render :action => "new" }\n\
 				wants.xml  { render :xml => @$1.errors, :status => :unprocessable_entity }\n\
 			end\n\
 		end\n\
@@ -648,55 +649,55 @@ snippet defupdate\n\
 \n\
 		respond_to do |wants|\n\
 			if @$1.update_attributes(params[:$1])\n\
-				flash[:notice] = '$2 was successfully updated.'\n\
+				flash[:notice] = \'$2 was successfully updated.\'\n\
 				wants.html { redirect_to(@$1) }\n\
 				wants.xml  { head :ok }\n\
 			else\n\
-				wants.html { render :action => \"edit\" }\n\
+				wants.html { render :action => "edit" }\n\
 				wants.xml  { render :xml => @$1.errors, :status => :unprocessable_entity }\n\
 			end\n\
 		end\n\
 	end${3}\n\
 snippet flash\n\
-	flash[:${1:notice}] = \"${2}\"\n\
+	flash[:${1:notice}] = "${2}"\n\
 snippet habtm\n\
-	has_and_belongs_to_many :${1:object}, :join_table => \"${2:table_name}\", :foreign_key => \"${3}_id\"${4}\n\
+	has_and_belongs_to_many :${1:object}, :join_table => "${2:table_name}", :foreign_key => "${3}_id"${4}\n\
 snippet hm\n\
 	has_many :${1:object}\n\
 snippet hmd\n\
-	has_many :${1:other}s, :class_name => \"${2:$1}\", :foreign_key => \"${3:$1}_id\", :dependent => :destroy${4}\n\
+	has_many :${1:other}s, :class_name => "${2:$1}", :foreign_key => "${3:$1}_id", :dependent => :destroy${4}\n\
 snippet hmt\n\
 	has_many :${1:object}, :through => :${2:object}\n\
 snippet ho\n\
 	has_one :${1:object}\n\
 snippet i18\n\
-	I18n.t('${1:type.key}')${2}\n\
+	I18n.t(\'${1:type.key}\')${2}\n\
 snippet ist\n\
-	<%= image_submit_tag(\"${1:agree.png}\", :id => \"${2:id}\"${3} %>\n\
+	<%= image_submit_tag("${1:agree.png}", :id => "${2:id}"${3} %>\n\
 snippet log\n\
 	Rails.logger.${1:debug} ${2}\n\
 snippet log2\n\
 	RAILS_DEFAULT_LOGGER.${1:debug} ${2}\n\
 snippet logd\n\
-	logger.debug { \"${1:message}\" }${2}\n\
+	logger.debug { "${1:message}" }${2}\n\
 snippet loge\n\
-	logger.error { \"${1:message}\" }${2}\n\
+	logger.error { "${1:message}" }${2}\n\
 snippet logf\n\
-	logger.fatal { \"${1:message}\" }${2}\n\
+	logger.fatal { "${1:message}" }${2}\n\
 snippet logi\n\
-	logger.info { \"${1:message}\" }${2}\n\
+	logger.info { "${1:message}" }${2}\n\
 snippet logw\n\
-	logger.warn { \"${1:message}\" }${2}\n\
+	logger.warn { "${1:message}" }${2}\n\
 snippet mapc\n\
-	${1:map}.${2:connect} '${3:controller/:action/:id}'\n\
+	${1:map}.${2:connect} \'${3:controller/:action/:id}\'\n\
 snippet mapca\n\
-	${1:map}.catch_all \"*${2:anything}\", :controller => \"${3:default}\", :action => \"${4:error}\"${5}\n\
+	${1:map}.catch_all "*${2:anything}", :controller => "${3:default}", :action => "${4:error}"${5}\n\
 snippet mapr\n\
 	${1:map}.resource :${2:resource}\n\
 snippet maprs\n\
 	${1:map}.resources :${2:resource}\n\
 snippet mapwo\n\
-	${1:map}.with_options :${2:controller} => '${3:thing}' do |$3|\n\
+	${1:map}.with_options :${2:controller} => \'${3:thing}\' do |$3|\n\
 		${4}\n\
 	end\n\
 snippet mbs\n\
@@ -710,55 +711,55 @@ snippet mp\n\
 snippet mrw\n\
 	mattr_accessor :${1:attr_names}\n\
 snippet oa\n\
-	order(\"${1:field}\")\n\
+	order("${1:field}")\n\
 snippet od\n\
-	order(\"${1:field} DESC\")\n\
+	order("${1:field} DESC")\n\
 snippet pa\n\
 	params[:${1:id}]${2}\n\
 snippet ra\n\
-	render :action => \"${1:action}\"\n\
+	render :action => "${1:action}"\n\
 snippet ral\n\
-	render :action => \"${1:action}\", :layout => \"${2:layoutname}\"\n\
+	render :action => "${1:action}", :layout => "${2:layoutname}"\n\
 snippet rest\n\
 	respond_to do |wants|\n\
 		wants.${1:html} { ${2} }\n\
 	end\n\
 snippet rf\n\
-	render :file => \"${1:filepath}\"\n\
+	render :file => "${1:filepath}"\n\
 snippet rfu\n\
-	render :file => \"${1:filepath}\", :use_full_path => ${2:false}\n\
+	render :file => "${1:filepath}", :use_full_path => ${2:false}\n\
 snippet ri\n\
-	render :inline => \"${1:<%= 'hello' %>}\"\n\
+	render :inline => "${1:<%= \'hello\' %>}"\n\
 snippet ril\n\
-	render :inline => \"${1:<%= 'hello' %>}\", :locals => { ${2::name} => \"${3:value}\"${4} }\n\
+	render :inline => "${1:<%= \'hello\' %>}", :locals => { ${2::name} => "${3:value}"${4} }\n\
 snippet rit\n\
-	render :inline => \"${1:<%= 'hello' %>}\", :type => ${2::rxml}\n\
+	render :inline => "${1:<%= \'hello\' %>}", :type => ${2::rxml}\n\
 snippet rjson\n\
 	render :json => ${1:text to render}\n\
 snippet rl\n\
-	render :layout => \"${1:layoutname}\"\n\
+	render :layout => "${1:layoutname}"\n\
 snippet rn\n\
 	render :nothing => ${1:true}\n\
 snippet rns\n\
 	render :nothing => ${1:true}, :status => ${2:401}\n\
 snippet rp\n\
-	render :partial => \"${1:item}\"\n\
+	render :partial => "${1:item}"\n\
 snippet rpc\n\
-	render :partial => \"${1:item}\", :collection => ${2:@$1s}\n\
+	render :partial => "${1:item}", :collection => ${2:@$1s}\n\
 snippet rpl\n\
-	render :partial => \"${1:item}\", :locals => { :${2:$1} => ${3:@$1}\n\
+	render :partial => "${1:item}", :locals => { :${2:$1} => ${3:@$1}\n\
 snippet rpo\n\
-	render :partial => \"${1:item}\", :object => ${2:@$1}\n\
+	render :partial => "${1:item}", :object => ${2:@$1}\n\
 snippet rps\n\
-	render :partial => \"${1:item}\", :status => ${2:500}\n\
+	render :partial => "${1:item}", :status => ${2:500}\n\
 snippet rt\n\
-	render :text => \"${1:text to render}\"\n\
+	render :text => "${1:text to render}"\n\
 snippet rtl\n\
-	render :text => \"${1:text to render}\", :layout => \"${2:layoutname}\"\n\
+	render :text => "${1:text to render}", :layout => "${2:layoutname}"\n\
 snippet rtlt\n\
-	render :text => \"${1:text to render}\", :layout => ${2:true}\n\
+	render :text => "${1:text to render}", :layout => ${2:true}\n\
 snippet rts\n\
-	render :text => \"${1:text to render}\", :status => ${2:401}\n\
+	render :text => "${1:text to render}", :status => ${2:401}\n\
 snippet ru\n\
 	render :update do |${1:page}|\n\
 		$1.${2}\n\
@@ -769,7 +770,7 @@ snippet sc\n\
 	scope :${1:name}, :where(:@${2:field} => ${3:value})\n\
 snippet sl\n\
 	scope :${1:name}, lambda do |${2:value}|\n\
-		where(\"${3:field = ?}\", ${4:bind var})\n\
+		where("${3:field = ?}", ${4:bind var})\n\
 	end\n\
 snippet sha1\n\
 	Digest::SHA1.hexdigest(${1:string})\n\
@@ -817,7 +818,7 @@ snippet tcl\n\
 	t.integer :lock_version, :null => false, :default => 0\n\
 	${1}\n\
 snippet tcr\n\
-	t.references :${1:taggable}, :polymorphic => { :default => '${2:Photo}' }\n\
+	t.references :${1:taggable}, :polymorphic => { :default => \'${2:Photo}\' }\n\
 	${3}\n\
 snippet tcs\n\
 	t.string :${1:title}\n\
@@ -857,7 +858,7 @@ snippet vu\n\
 snippet wants\n\
 	wants.${1:js|xml|html} { ${2} }\n\
 snippet wc\n\
-	where(${1:\"conditions\"}${2:, bind_var})\n\
+	where(${1:"conditions"}${2:, bind_var})\n\
 snippet wh\n\
 	where(${1:field} => ${2:value})\n\
 snippet xdelete\n\
@@ -869,7 +870,7 @@ snippet xpost\n\
 snippet xput\n\
 	xhr :put, :${1:update}, :id => ${2:1}, :${3:object} => { ${4} }${5}\n\
 snippet test\n\
-	test \"should ${1:do something}\" do\n\
+	test "should ${1:do something}" do\n\
 		${2}\n\
 	end\n\
 #migrations\n\
@@ -907,18 +908,18 @@ snippet tref\n\
 \n\
 #rspec\n\
 snippet it\n\
-	it \"${1:spec_name}\" do\n\
+	it "${1:spec_name}" do\n\
 		${2}\n\
 	end\n\
 snippet itp\n\
-	it \"${1:spec_name}\"\n\
+	it "${1:spec_name}"\n\
 	${2}\n\
 snippet desc\n\
 	describe ${1:class_name} do\n\
 		${2}\n\
 	end\n\
 snippet cont\n\
-	context \"${1:message}\" do\n\
+	context "${1:message}" do\n\
 		${2}\n\
 	end\n\
 snippet bef\n\
@@ -929,7 +930,6 @@ snippet aft\n\
 	after :${1:each} do\n\
 		${2}\n\
 	end\n\
-";
-exports.scope = "ruby";
-
+';
+  exports.scope = 'ruby';
 });

@@ -1,8 +1,8 @@
-define("ace/theme/gruvbox",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
-
-exports.isDark = true;
-exports.cssClass = "ace-gruvbox";
-exports.cssText = ".ace-gruvbox .ace_gutter-active-line {\
+define('ace/theme/gruvbox', ['require', 'exports', 'module', 'ace/lib/dom'], function (require, exports, module) {
+  exports.isDark = true;
+  exports.cssClass = 'ace-gruvbox';
+  exports.cssText =
+    '.ace-gruvbox .ace_gutter-active-line {\
 background-color: #3C3836;\
 }\
 .ace-gruvbox {\
@@ -73,17 +73,16 @@ width: 5px;\
 background: #3C3836;\
 }\
 .ace-gruvbox .ace_indent-guide {\
-background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWNQUFD4z6Crq/sfAAuYAuYl+7lfAAAAAElFTkSuQmCC\") right repeat-y;\
-}";
+background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWNQUFD4z6Crq/sfAAuYAuYl+7lfAAAAAElFTkSuQmCC") right repeat-y;\
+}';
 
-var dom = require("../lib/dom");
-dom.importCssString(exports.cssText, exports.cssClass);
-
-});                (function() {
-                    window.require(["ace/theme/gruvbox"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+  var dom = require('../lib/dom');
+  dom.importCssString(exports.cssText, exports.cssClass);
+});
+(function () {
+  window.require(['ace/theme/gruvbox'], function (m) {
+    if (typeof module == 'object' && typeof exports == 'object' && module) {
+      module.exports = m;
+    }
+  });
+})();

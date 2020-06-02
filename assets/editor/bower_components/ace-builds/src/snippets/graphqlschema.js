@@ -1,7 +1,8 @@
-define("ace/snippets/graphqlschema",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/graphqlschema', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "# Type Snippet\n\
+  exports.snippetText =
+    '# Type Snippet\n\
 trigger type\n\
 snippet type\n\
 	type ${1:type_name} {\n\
@@ -33,14 +34,13 @@ snippet enum\n\
 	enum ${1:enum_name} {\n\
 		${2:enum_siblings}\n\
 	}\n\
-";
-exports.scope = "graphqlschema";
-
-});                (function() {
-                    window.require(["ace/snippets/graphqlschema"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+';
+  exports.scope = 'graphqlschema';
+});
+(function () {
+  window.require(['ace/snippets/graphqlschema'], function (m) {
+    if (typeof module == 'object' && typeof exports == 'object' && module) {
+      module.exports = m;
+    }
+  });
+})();

@@ -1,7 +1,8 @@
-define("ace/snippets/lua",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/lua', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet #!\n\
+  exports.snippetText =
+    'snippet #!\n\
 	#!/usr/bin/env lua\n\
 	$1\n\
 snippet local\n\
@@ -22,7 +23,6 @@ snippet fori\n\
 	for ${1:i},${2:v} in ipairs(${3:table_name}) do\n\
 	   ${4:-- body}\n\
 	end\n\
-";
-exports.scope = "lua";
-
+';
+  exports.scope = 'lua';
 });

@@ -1,12 +1,13 @@
-ace.define("ace/snippets/jsoniq",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/jsoniq', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet for\n\
+  exports.snippetText =
+    'snippet for\n\
 	for $${1:item} in ${2:expr}\n\
 snippet return\n\
 	return ${1:expr}\n\
 snippet import\n\
-	import module namespace ${1:ns} = \"${2:http://www.example.com/}\";\n\
+	import module namespace ${1:ns} = "${2:http://www.example.com/}";\n\
 snippet some\n\
 	some $${1:varname} in ${2:expr} satisfies ${3:expr}\n\
 snippet every\n\
@@ -14,8 +15,8 @@ snippet every\n\
 snippet if\n\
 	if(${1:true}) then ${2:expr} else ${3:true}\n\
 snippet switch\n\
-	switch(${1:\"foo\"})\n\
-	case ${2:\"foo\"}\n\
+	switch(${1:"foo"})\n\
+	case ${2:"foo"}\n\
 	return ${3:true}\n\
 	default return ${4:false}\n\
 snippet try\n\
@@ -61,8 +62,7 @@ snippet fn\n\
 	${3:expr}\n\
 	};\n\
 snippet module\n\
-	module namespace ${1:ns} = \"${2:http://www.example.com}\";\n\
-";
-exports.scope = "jsoniq";
-
+	module namespace ${1:ns} = "${2:http://www.example.com}";\n\
+';
+  exports.scope = 'jsoniq';
 });

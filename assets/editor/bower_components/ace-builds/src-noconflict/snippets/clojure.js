@@ -1,7 +1,8 @@
-ace.define("ace/snippets/clojure",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/clojure', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet comm\n\
+  exports.snippetText =
+    'snippet comm\n\
 	(comment\n\
 	  ${1}\n\
 	  )\n\
@@ -11,14 +12,14 @@ snippet condp\n\
 snippet def\n\
 	(def ${1})\n\
 snippet defm\n\
-	(defmethod ${1:multifn} \"${2:doc-string}\" ${3:dispatch-val} [${4:args}]\n\
+	(defmethod ${1:multifn} "${2:doc-string}" ${3:dispatch-val} [${4:args}]\n\
 	  ${5})\n\
 snippet defmm\n\
-	(defmulti ${1:name} \"${2:doc-string}\" ${3:dispatch-fn})\n\
+	(defmulti ${1:name} "${2:doc-string}" ${3:dispatch-fn})\n\
 snippet defma\n\
-	(defmacro ${1:name} \"${2:doc-string}\" ${3:dispatch-fn})\n\
+	(defmacro ${1:name} "${2:doc-string}" ${3:dispatch-fn})\n\
 snippet defn\n\
-	(defn ${1:name} \"${2:doc-string}\" [${3:arg-list}]\n\
+	(defn ${1:name} "${2:doc-string}" [${3:arg-list}]\n\
 	  ${4})\n\
 snippet defp\n\
 	(defprotocol ${1:name}\n\
@@ -91,7 +92,6 @@ snippet when\n\
 snippet when-let\n\
 	(when-let [${1:result} ${2:test}]\n\
 		${3:body})\n\
-";
-exports.scope = "clojure";
-
+';
+  exports.scope = 'clojure';
 });

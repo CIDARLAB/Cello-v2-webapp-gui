@@ -1,7 +1,8 @@
-ace.define("ace/snippets/wollok",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/wollok', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "##\n\
+  exports.snippetText =
+    '##\n\
 ## Basic Java packages and import\n\
 snippet im\n\
 	import\n\
@@ -12,11 +13,11 @@ snippet w.i\n\
 \n\
 ## Class and object\n\
 snippet cl\n\
-	class ${1:`Filename(\"\", \"untitled\")`} ${2}\n\
+	class ${1:`Filename("", "untitled")`} ${2}\n\
 snippet obj\n\
-	object ${1:`Filename(\"\", \"untitled\")`} ${2:inherits Parent}${3}\n\
+	object ${1:`Filename("", "untitled")`} ${2:inherits Parent}${3}\n\
 snippet te\n\
-	test ${1:`Filename(\"\", \"untitled\")`}\n\
+	test ${1:`Filename("", "untitled")`}\n\
 \n\
 ##\n\
 ## Enhancements\n\
@@ -69,7 +70,7 @@ snippet /**\n\
 ##\n\
 ## Print Methods\n\
 snippet print\n\
-	console.println(\"${1:Message}\")\n\
+	console.println("${1:Message}")\n\
 \n\
 ##\n\
 ## Setter and Getter Methods\n\
@@ -85,7 +86,6 @@ snippet get\n\
 ##\n\
 ## Terminate Methods or Loops\n\
 snippet re\n\
-	return";
-exports.scope = "wollok";
-
+	return';
+  exports.scope = 'wollok';
 });

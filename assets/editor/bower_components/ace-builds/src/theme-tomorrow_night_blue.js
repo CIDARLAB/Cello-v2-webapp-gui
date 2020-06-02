@@ -1,8 +1,12 @@
-define("ace/theme/tomorrow_night_blue",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
-
-exports.isDark = true;
-exports.cssClass = "ace-tomorrow-night-blue";
-exports.cssText = ".ace-tomorrow-night-blue .ace_gutter {\
+define('ace/theme/tomorrow_night_blue', ['require', 'exports', 'module', 'ace/lib/dom'], function (
+  require,
+  exports,
+  module
+) {
+  exports.isDark = true;
+  exports.cssClass = 'ace-tomorrow-night-blue';
+  exports.cssText =
+    '.ace-tomorrow-night-blue .ace_gutter {\
 background: #00204b;\
 color: #7388b5\
 }\
@@ -99,8 +103,8 @@ color: #7285B7\
 }\
 .ace-tomorrow-night-blue .ace_indent-guide {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWNgYGBgYJDzqfwPAANXAeNsiA+ZAAAAAElFTkSuQmCC) right repeat-y\
-}";
+}';
 
-var dom = require("../lib/dom");
-dom.importCssString(exports.cssText, exports.cssClass);
+  var dom = require('../lib/dom');
+  dom.importCssString(exports.cssText, exports.cssClass);
 });

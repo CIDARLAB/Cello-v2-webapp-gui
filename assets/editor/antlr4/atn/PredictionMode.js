@@ -43,7 +43,7 @@ var ATNConfig = require('./ATNConfig').ATNConfig;
 var SemanticContext = require('./SemanticContext').SemanticContext;
 
 function PredictionMode() {
-	return this;
+  return this;
 }
 
 //
@@ -105,7 +105,6 @@ PredictionMode.LL = 1;
 // behavior for syntactically-incorrect inputs.</p>
 //
 PredictionMode.LL_EXACT_AMBIG_DETECTION = 2;
-
 
 //
 // Computes the SLL prediction termination condition.
@@ -199,35 +198,35 @@ PredictionMode.LL_EXACT_AMBIG_DETECTION = 2;
 // the configurations to strip out all of the predicates so that a standard
 // {@link ATNConfigSet} will merge everything ignoring predicates.</p>
 //
-PredictionMode.hasSLLConflictTerminatingPrediction = function( mode, configs) {
-    // Configs in rule stop states indicate reaching the end of the decision
-    // rule (local context) or end of start rule (full context). If all
-    // configs meet this condition, then none of the configurations is able
-    // to match additional input so we terminate prediction.
-    //
-    if (PredictionMode.allConfigsInRuleStopStates(configs)) {
-        return true;
+PredictionMode.hasSLLConflictTerminatingPrediction = function (mode, configs) {
+  // Configs in rule stop states indicate reaching the end of the decision
+  // rule (local context) or end of start rule (full context). If all
+  // configs meet this condition, then none of the configurations is able
+  // to match additional input so we terminate prediction.
+  //
+  if (PredictionMode.allConfigsInRuleStopStates(configs)) {
+    return true;
+  }
+  // pure SLL mode parsing
+  if (mode === PredictionMode.SLL) {
+    // Don't bother with combining configs from different semantic
+    // contexts if we can fail over to full LL; costs more time
+    // since we'll often fail over anyway.
+    if (configs.hasSemanticContext) {
+      // dup configs, tossing out semantic predicates
+      var dup = new ATNConfigSet();
+      for (var i = 0; i < configs.items.length; i++) {
+        var c = configs.items[i];
+        c = new ATNConfig({ semanticContext: SemanticContext.NONE }, c);
+        dup.add(c);
+      }
+      configs = dup;
     }
-    // pure SLL mode parsing
-    if (mode === PredictionMode.SLL) {
-        // Don't bother with combining configs from different semantic
-        // contexts if we can fail over to full LL; costs more time
-        // since we'll often fail over anyway.
-        if (configs.hasSemanticContext) {
-            // dup configs, tossing out semantic predicates
-            var dup = new ATNConfigSet();
-            for(var i=0;i<configs.items.length;i++) {
-            	var c = configs.items[i];
-                c = new ATNConfig({semanticContext:SemanticContext.NONE}, c);
-                dup.add(c);
-            }
-            configs = dup;
-        }
-        // now we have combined contexts for configs with dissimilar preds
-    }
-    // pure SLL or combined SLL+LL mode parsing
-    var altsets = PredictionMode.getConflictingAltSubsets(configs);
-    return PredictionMode.hasConflictingAltSet(altsets) && !PredictionMode.hasStateAssociatedWithOneAlt(configs);
+    // now we have combined contexts for configs with dissimilar preds
+  }
+  // pure SLL or combined SLL+LL mode parsing
+  var altsets = PredictionMode.getConflictingAltSubsets(configs);
+  return PredictionMode.hasConflictingAltSet(altsets) && !PredictionMode.hasStateAssociatedWithOneAlt(configs);
 };
 
 // Checks if any configuration in {@code configs} is in a
@@ -238,14 +237,14 @@ PredictionMode.hasSLLConflictTerminatingPrediction = function( mode, configs) {
 // @param configs the configuration set to test
 // @return {@code true} if any configuration in {@code configs} is in a
 // {@link RuleStopState}, otherwise {@code false}
-PredictionMode.hasConfigInRuleStopState = function(configs) {
-	for(var i=0;i<configs.items.length;i++) {
-		var c = configs.items[i];
-        if (c.state instanceof RuleStopState) {
-            return true;
-        }
-	}
-    return false;
+PredictionMode.hasConfigInRuleStopState = function (configs) {
+  for (var i = 0; i < configs.items.length; i++) {
+    var c = configs.items[i];
+    if (c.state instanceof RuleStopState) {
+      return true;
+    }
+  }
+  return false;
 };
 
 // Checks if all configurations in {@code configs} are in a
@@ -256,14 +255,14 @@ PredictionMode.hasConfigInRuleStopState = function(configs) {
 // @param configs the configuration set to test
 // @return {@code true} if all configurations in {@code configs} are in a
 // {@link RuleStopState}, otherwise {@code false}
-PredictionMode.allConfigsInRuleStopStates = function(configs) {
-	for(var i=0;i<configs.items.length;i++) {
-		var c = configs.items[i];
-        if (!(c.state instanceof RuleStopState)) {
-            return false;
-        }
-	}
-    return true;
+PredictionMode.allConfigsInRuleStopStates = function (configs) {
+  for (var i = 0; i < configs.items.length; i++) {
+    var c = configs.items[i];
+    if (!(c.state instanceof RuleStopState)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 //
@@ -407,8 +406,8 @@ PredictionMode.allConfigsInRuleStopStates = function(configs) {
 // we need exact ambiguity detection when the sets look like
 // {@code A={{1,2}}} or {@code {{1,2},{1,2}}}, etc...</p>
 //
-PredictionMode.resolvesToJustOneViableAlt = function(altsets) {
-    return PredictionMode.getSingleViableAlt(altsets);
+PredictionMode.resolvesToJustOneViableAlt = function (altsets) {
+  return PredictionMode.getSingleViableAlt(altsets);
 };
 
 //
@@ -419,8 +418,8 @@ PredictionMode.resolvesToJustOneViableAlt = function(altsets) {
 // @return {@code true} if every {@link BitSet} in {@code altsets} has
 // {@link BitSet//cardinality cardinality} &gt; 1, otherwise {@code false}
 //
-PredictionMode.allSubsetsConflict = function(altsets) {
-    return ! PredictionMode.hasNonConflictingAltSet(altsets);
+PredictionMode.allSubsetsConflict = function (altsets) {
+  return !PredictionMode.hasNonConflictingAltSet(altsets);
 };
 //
 // Determines if any single alternative subset in {@code altsets} contains
@@ -430,14 +429,14 @@ PredictionMode.allSubsetsConflict = function(altsets) {
 // @return {@code true} if {@code altsets} contains a {@link BitSet} with
 // {@link BitSet//cardinality cardinality} 1, otherwise {@code false}
 //
-PredictionMode.hasNonConflictingAltSet = function(altsets) {
-	for(var i=0;i<altsets.length;i++) {
-		var alts = altsets[i];
-        if (alts.length===1) {
-            return true;
-        }
-	}
-    return false;
+PredictionMode.hasNonConflictingAltSet = function (altsets) {
+  for (var i = 0; i < altsets.length; i++) {
+    var alts = altsets[i];
+    if (alts.length === 1) {
+      return true;
+    }
+  }
+  return false;
 };
 
 //
@@ -448,14 +447,14 @@ PredictionMode.hasNonConflictingAltSet = function(altsets) {
 // @return {@code true} if {@code altsets} contains a {@link BitSet} with
 // {@link BitSet//cardinality cardinality} &gt; 1, otherwise {@code false}
 //
-PredictionMode.hasConflictingAltSet = function(altsets) {
-	for(var i=0;i<altsets.length;i++) {
-		var alts = altsets[i];
-        if (alts.length>1) {
-            return true;
-        }
-	}
-    return false;
+PredictionMode.hasConflictingAltSet = function (altsets) {
+  for (var i = 0; i < altsets.length; i++) {
+    var alts = altsets[i];
+    if (alts.length > 1) {
+      return true;
+    }
+  }
+  return false;
 };
 
 //
@@ -465,17 +464,17 @@ PredictionMode.hasConflictingAltSet = function(altsets) {
 // @return {@code true} if every member of {@code altsets} is equal to the
 // others, otherwise {@code false}
 //
-PredictionMode.allSubsetsEqual = function(altsets) {
-    var first = null;
-	for(var i=0;i<altsets.length;i++) {
-		var alts = altsets[i];
-        if (first === null) {
-            first = alts;
-        } else if (alts!==first) {
-            return false;
-        }
-	}
-    return true;
+PredictionMode.allSubsetsEqual = function (altsets) {
+  var first = null;
+  for (var i = 0; i < altsets.length; i++) {
+    var alts = altsets[i];
+    if (first === null) {
+      first = alts;
+    } else if (alts !== first) {
+      return false;
+    }
+  }
+  return true;
 };
 
 //
@@ -485,13 +484,13 @@ PredictionMode.allSubsetsEqual = function(altsets) {
 //
 // @param altsets a collection of alternative subsets
 //
-PredictionMode.getUniqueAlt = function(altsets) {
-    var all = PredictionMode.getAlts(altsets);
-    if (all.length===1) {
-        return all.minValue();
-    } else {
-        return ATN.INVALID_ALT_NUMBER;
-    }
+PredictionMode.getUniqueAlt = function (altsets) {
+  var all = PredictionMode.getAlts(altsets);
+  if (all.length === 1) {
+    return all.minValue();
+  } else {
+    return ATN.INVALID_ALT_NUMBER;
+  }
 };
 
 // Gets the complete set of represented alternatives for a collection of
@@ -501,10 +500,12 @@ PredictionMode.getUniqueAlt = function(altsets) {
 // @param altsets a collection of alternative subsets
 // @return the set of represented alternatives in {@code altsets}
 //
-PredictionMode.getAlts = function(altsets) {
-    var all = new BitSet();
-    altsets.map( function(alts) { all.or(alts); });
-    return all;
+PredictionMode.getAlts = function (altsets) {
+  var all = new BitSet();
+  altsets.map(function (alts) {
+    all.or(alts);
+  });
+  return all;
 };
 
 //
@@ -516,26 +517,26 @@ PredictionMode.getAlts = function(altsets) {
 // alt and not pred
 // </pre>
 //
-PredictionMode.getConflictingAltSubsets = function(configs) {
-    var configToAlts = {};
-	for(var i=0;i<configs.items.length;i++) {
-		var c = configs.items[i];
-        var key = "key_" + c.state.stateNumber + "/" + c.context;
-        var alts = configToAlts[key] || null;
-        if (alts === null) {
-            alts = new BitSet();
-            configToAlts[key] = alts;
-        }
-        alts.add(c.alt);
-	}
-	var values = [];
-	for(var k in configToAlts) {
-		if(k.indexOf("key_")!==0) {
-			continue;
-		}
-		values.push(configToAlts[k]);
-	}
-    return values;
+PredictionMode.getConflictingAltSubsets = function (configs) {
+  var configToAlts = {};
+  for (var i = 0; i < configs.items.length; i++) {
+    var c = configs.items[i];
+    var key = 'key_' + c.state.stateNumber + '/' + c.context;
+    var alts = configToAlts[key] || null;
+    if (alts === null) {
+      alts = new BitSet();
+      configToAlts[key] = alts;
+    }
+    alts.add(c.alt);
+  }
+  var values = [];
+  for (var k in configToAlts) {
+    if (k.indexOf('key_') !== 0) {
+      continue;
+    }
+    values.push(configToAlts[k]);
+  }
+  return values;
 };
 
 //
@@ -546,41 +547,42 @@ PredictionMode.getConflictingAltSubsets = function(configs) {
 // map[c.{@link ATNConfig//state state}] U= c.{@link ATNConfig//alt alt}
 // </pre>
 //
-PredictionMode.getStateToAltMap = function(configs) {
-    var m = new AltDict();
-    configs.items.map(function(c) {
-        var alts = m.get(c.state);
-        if (alts === null) {
-            alts = new BitSet();
-            m.put(c.state, alts);
-        }
-        alts.add(c.alt);
-    });
-    return m;
-};
-
-PredictionMode.hasStateAssociatedWithOneAlt = function(configs) {
-    var values = PredictionMode.getStateToAltMap(configs).values();
-    for(var i=0;i<values.length;i++) {
-        if (values[i].length===1) {
-            return true;
-        }
+PredictionMode.getStateToAltMap = function (configs) {
+  var m = new AltDict();
+  configs.items.map(function (c) {
+    var alts = m.get(c.state);
+    if (alts === null) {
+      alts = new BitSet();
+      m.put(c.state, alts);
     }
-    return false;
+    alts.add(c.alt);
+  });
+  return m;
 };
 
-PredictionMode.getSingleViableAlt = function(altsets) {
-    var result = null;
-	for(var i=0;i<altsets.length;i++) {
-		var alts = altsets[i];
-        var minAlt = alts.minValue();
-        if(result===null) {
-            result = minAlt;
-        } else if(result!==minAlt) { // more than 1 viable alt
-            return ATN.INVALID_ALT_NUMBER;
-        }
-	}
-    return result;
+PredictionMode.hasStateAssociatedWithOneAlt = function (configs) {
+  var values = PredictionMode.getStateToAltMap(configs).values();
+  for (var i = 0; i < values.length; i++) {
+    if (values[i].length === 1) {
+      return true;
+    }
+  }
+  return false;
+};
+
+PredictionMode.getSingleViableAlt = function (altsets) {
+  var result = null;
+  for (var i = 0; i < altsets.length; i++) {
+    var alts = altsets[i];
+    var minAlt = alts.minValue();
+    if (result === null) {
+      result = minAlt;
+    } else if (result !== minAlt) {
+      // more than 1 viable alt
+      return ATN.INVALID_ALT_NUMBER;
+    }
+  }
+  return result;
 };
 
 exports.PredictionMode = PredictionMode;

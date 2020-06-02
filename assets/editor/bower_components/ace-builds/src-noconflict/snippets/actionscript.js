@@ -1,22 +1,23 @@
-ace.define("ace/snippets/actionscript",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/actionscript', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet main\n\
+  exports.snippetText =
+    'snippet main\n\
 	package {\n\
 		import flash.display.*;\n\
 		import flash.Events.*;\n\
 	\n\
 		public class Main extends Sprite {\n\
 			public function Main (	) {\n\
-				trace(\"start\");\n\
+				trace("start");\n\
 				stage.scaleMode = StageScaleMode.NO_SCALE;\n\
 				stage.addEventListener(Event.RESIZE, resizeListener);\n\
 			}\n\
 	\n\
 			private function resizeListener (e:Event):void {\n\
-				trace(\"The application window changed size!\");\n\
-				trace(\"New width:  \" + stage.stageWidth);\n\
-				trace(\"New height: \" + stage.stageHeight);\n\
+				trace("The application window changed size!");\n\
+				trace("New width:  " + stage.stageWidth);\n\
+				trace("New height: " + stage.stageHeight);\n\
 			}\n\
 	\n\
 		}\n\
@@ -25,25 +26,25 @@ exports.snippetText = "snippet main\n\
 snippet class\n\
 	${1:public|internal} class ${2:name} ${3:extends } {\n\
 		public function $2 (	) {\n\
-			(\"start\");\n\
+			("start");\n\
 		}\n\
 	}\n\
 snippet all\n\
 	package name {\n\
 \n\
 		${1:public|internal|final} class ${2:name} ${3:extends } {\n\
-			private|public| static const FOO = \"abc\";\n\
-			private|public| static var BAR = \"abc\";\n\
+			private|public| static const FOO = "abc";\n\
+			private|public| static var BAR = "abc";\n\
 \n\
 			// class initializer - no JIT !! one time setup\n\
-			if Cababilities.os == \"Linux|MacOS\" {\n\
-				FOO = \"other\";\n\
+			if Cababilities.os == "Linux|MacOS" {\n\
+				FOO = "other";\n\
 			}\n\
 \n\
 			// constructor:\n\
 			public function $2 (	){\n\
 				super2();\n\
-				trace(\"start\");\n\
+				trace("start");\n\
 			}\n\
 			public function name (a, b...){\n\
 				super.name(..);\n\
@@ -158,7 +159,6 @@ snippet FlxSprite\n\
 		}\n\
 	}\n\
 \n\
-";
-exports.scope = "actionscript";
-
+';
+  exports.scope = 'actionscript';
 });

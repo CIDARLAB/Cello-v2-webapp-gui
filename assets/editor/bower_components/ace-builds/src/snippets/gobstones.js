@@ -1,7 +1,8 @@
-define("ace/snippets/gobstones",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/gobstones', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "# Procedure\n\
+  exports.snippetText =
+    '# Procedure\n\
 snippet proc\n\
 	procedure ${1?:name}(${2:argument}) {\n\
 		${3:// body...}\n\
@@ -35,7 +36,6 @@ snippet if\n\
   while (${1?:condition}) {\n\
     ${2:// body...}	\n\
   }\n\
-";
-exports.scope = "gobstones";
-
+';
+  exports.scope = 'gobstones';
 });

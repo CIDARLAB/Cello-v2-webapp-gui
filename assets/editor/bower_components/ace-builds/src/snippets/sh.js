@@ -1,7 +1,8 @@
-define("ace/snippets/sh",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/sh', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "# Shebang. Executing bash via /usr/bin/env makes scripts more portable.\n\
+  exports.snippetText =
+    '# Shebang. Executing bash via /usr/bin/env makes scripts more portable.\n\
 snippet #!\n\
 	#!/usr/bin/env bash\n\
 	\n\
@@ -34,7 +35,7 @@ snippet case\n\
 			${3};;\n\
 	esac\n\
 snippet go \n\
-	while getopts '${1:o}' ${2:opts} \n\
+	while getopts \'${1:o}\' ${2:opts} \n\
 	do \n\
 		case $$2 in\n\
 		${3:o0})\n\
@@ -43,10 +44,10 @@ snippet go \n\
 	done\n\
 # Set SCRIPT_DIR variable to directory script is located.\n\
 snippet sdir\n\
-	SCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )\"\n\
+	SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"\n\
 # getopt\n\
 snippet getopt\n\
-	__ScriptVersion=\"${1:version}\"\n\
+	__ScriptVersion="${1:version}"\n\
 \n\
 	#===  FUNCTION  ================================================================\n\
 	#         NAME:  usage\n\
@@ -69,22 +70,21 @@ snippet getopt\n\
 	#  Handle command line arguments\n\
 	#-----------------------------------------------------------------------\n\
 \n\
-	while getopts \":hv\" opt\n\
+	while getopts ":hv" opt\n\
 	do\n\
 	  case $opt in\n\
 \n\
 		h|help     )  usage; exit 0   ;;\n\
 \n\
-		v|version  )  echo \"$${0:0} -- Version $__ScriptVersion\"; exit 0   ;;\n\
+		v|version  )  echo "$${0:0} -- Version $__ScriptVersion"; exit 0   ;;\n\
 \n\
-		\\? )  echo -e \"\\n  Option does not exist : $OPTARG\\n\"\n\
+		\\? )  echo -e "\\n  Option does not exist : $OPTARG\\n"\n\
 			  usage; exit 1   ;;\n\
 \n\
 	  esac    # --- end of case ---\n\
 	done\n\
 	shift $(($OPTIND-1))\n\
 \n\
-";
-exports.scope = "sh";
-
+';
+  exports.scope = 'sh';
 });

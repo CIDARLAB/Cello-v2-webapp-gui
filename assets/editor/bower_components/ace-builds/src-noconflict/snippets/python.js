@@ -1,7 +1,8 @@
-ace.define("ace/snippets/python",["require","exports","module"], function(require, exports, module) {
-"use strict";
+ace.define('ace/snippets/python', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "snippet #!\n\
+  exports.snippetText =
+    'snippet #!\n\
 	#!/usr/bin/env python\n\
 snippet imp\n\
 	import ${1:module}\n\
@@ -9,11 +10,11 @@ snippet from\n\
 	from ${1:package} import ${2:module}\n\
 # Module Docstring\n\
 snippet docs\n\
-	'''\n\
+	\'\'\'\n\
 	File: ${1:FILENAME:file_name}\n\
 	Author: ${2:author}\n\
 	Description: ${3}\n\
-	'''\n\
+	\'\'\'\n\
 snippet wh\n\
 	while ${1:condition}:\n\
 		${2:# TODO: write code...}\n\
@@ -29,18 +30,18 @@ snippet with\n\
 # New Class\n\
 snippet cl\n\
 	class ${1:ClassName}(${2:object}):\n\
-		\"\"\"${3:docstring for $1}\"\"\"\n\
+		"""${3:docstring for $1}"""\n\
 		def __init__(self, ${4:arg}):\n\
 			${5:super($1, self).__init__()}\n\
 			self.$4 = $4\n\
 			${6}\n\
 # New Function\n\
 snippet def\n\
-	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):\n\
-		\"\"\"${3:docstring for $1}\"\"\"\n\
+	def ${1:fname}(${2:`indent(\'.\') ? \'self\' : \'\'`}):\n\
+		"""${3:docstring for $1}"""\n\
 		${4:# TODO: write code...}\n\
 snippet deff\n\
-	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):\n\
+	def ${1:fname}(${2:`indent(\'.\') ? \'self\' : \'\'`}):\n\
 		${3:# TODO: write code...}\n\
 # New Method\n\
 snippet defs\n\
@@ -49,7 +50,7 @@ snippet defs\n\
 # New Property\n\
 snippet property\n\
 	def ${1:foo}():\n\
-		doc = \"${2:The $1 property.}\"\n\
+		doc = "${2:The $1 property.}"\n\
 		def fget(self):\n\
 			${3:return self._$1}\n\
 		def fset(self, value):\n\
@@ -108,9 +109,9 @@ snippet try Try/Except/Else/Finally\n\
 		${5:# TODO: write code...}\n\
 	finally:\n\
 		${6:# TODO: write code...}\n\
-# if __name__ == '__main__':\n\
+# if __name__ == \'__main__\':\n\
 snippet ifmain\n\
-	if __name__ == '__main__':\n\
+	if __name__ == \'__main__\':\n\
 		${1:main()}\n\
 # __magic__\n\
 snippet _\n\
@@ -126,10 +127,10 @@ snippet pdbbb\n\
 	import pdbpp; pdbpp.set_trace()\n\
 snippet pprint\n\
 	import pprint; pprint.pprint(${1})${2}\n\
-snippet \"\n\
-	\"\"\"\n\
+snippet "\n\
+	"""\n\
 	${1:doc}\n\
-	\"\"\"\n\
+	"""\n\
 # test function/method\n\
 snippet test\n\
 	def test_${1:description}(${2:self}):\n\
@@ -145,9 +146,9 @@ snippet fut\n\
 #getopt\n\
 snippet getopt\n\
 	try:\n\
-		# Short option syntax: \"hv:\"\n\
-		# Long option syntax: \"help\" or \"verbose=\"\n\
-		opts, args = getopt.getopt(sys.argv[1:], \"${1:short_options}\", [${2:long_options}])\n\
+		# Short option syntax: "hv:"\n\
+		# Long option syntax: "help" or "verbose="\n\
+		opts, args = getopt.getopt(sys.argv[1:], "${1:short_options}", [${2:long_options}])\n\
 	\n\
 	except getopt.GetoptError, err:\n\
 		# Print debug info\n\
@@ -155,11 +156,10 @@ snippet getopt\n\
 		${3:error_action}\n\
 \n\
 	for option, argument in opts:\n\
-		if option in (\"-h\", \"--help\"):\n\
+		if option in ("-h", "--help"):\n\
 			${4}\n\
-		elif option in (\"-v\", \"--verbose\"):\n\
+		elif option in ("-v", "--verbose"):\n\
 			verbose = argument\n\
-";
-exports.scope = "python";
-
+';
+  exports.scope = 'python';
 });

@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/maiermic/antlr4-ace-ext.svg)](https://travis-ci.org/maiermic/antlr4-ace-ext)
 
-Tokenizer for [ACE editor][ACE editor] to do syntax highlighting using an [ANTLR4][ANTLR4] lexer.
+Tokenizer for [ACE editor][ace editor] to do syntax highlighting using an [ANTLR4][antlr4] lexer.
 
 ## How to install
 
@@ -16,7 +16,6 @@ You can install ACE editor from bower, too:
 bower install --save ace-builds
 ```
 
-
 ## How to use
 
 After `ace` is loaded
@@ -25,7 +24,7 @@ After `ace` is loaded
 <script src="bower_components/ace-builds/src-noconflict/ace.js"></script>
 ```
 
-add scripts: 
+add scripts:
 
 ```html
 <script src="bower_components/antlr4-ace-ext/src/token-type-map.js"></script>
@@ -55,9 +54,12 @@ ace.define(
 Override the `getTokenizer` method of your mode class to use you custom tokenizer:
 
 ```js
-MyMode.prototype.getTokenizer = function() {
+MyMode.prototype.getTokenizer = function () {
   if (!this.$tokenizer) {
-    this.$tokenizer = new Antlr4Tokenizer(MyLanguageLexer, antlrTokenNameToAceTokenType);
+    this.$tokenizer = new Antlr4Tokenizer(
+      MyLanguageLexer,
+      antlrTokenNameToAceTokenType
+    );
   }
   return this.$tokenizer;
 };
@@ -81,12 +83,12 @@ You can use the helper function `createTokenTypeMap` to create a token type map 
 var antlrTokenNameToAceTokenType = createTokenTypeMap({
   literals: {
     'keyword.operator': ['+', '-'],
-    'keyword.control': 'return'
+    'keyword.control': 'return',
   },
   symbols: {
-    'identifier': 'ID',
-    'constant.numeric': 'INT'
-  }
+    identifier: 'ID',
+    'constant.numeric': 'INT',
+  },
 });
 ```
 
@@ -97,10 +99,11 @@ Thereby, you do not have to quote literal token names and you can map multiple t
 [See][example] the browser example of the Cymbol language ([Demo][example-demo]).
 
 > ### 6.4 Parsing Cymbol
-  To demonstrate how to parse a programming language with syntax derived
-  from C, we’re going to build a grammar for a language I conjured up called
-  Cymbol. Cymbol is a simple non-object-oriented programming language that
-  looks like C without  struct s.
+>
+> To demonstrate how to parse a programming language with syntax derived
+> from C, we’re going to build a grammar for a language I conjured up called
+> Cymbol. Cymbol is a simple non-object-oriented programming language that
+> looks like C without struct s.
 >
 > from [The Definitive ANTLR 4 Reference][antlr4-book]
 
@@ -109,17 +112,17 @@ Thereby, you do not have to quote literal token names and you can map multiple t
 [antlr4-book]: https://pragprog.com/book/tpantlr2/the-definitive-antlr-4-reference
 
 ## How to build
- 
+
 ### Required
 
 - [Node.JS](https://nodejs.org)
-- [ANTLR4](http://www.antlr.org/download.html) (`antlr4` has to be available as environment variable to (re-) build grammar files)  
+- [ANTLR4](http://www.antlr.org/download.html) (`antlr4` has to be available as environment variable to (re-) build grammar files)
 
 ### Build Instructions
 
-1. Install dependencies: `npm install` 
-2. Build project: `npm run build` 
-3. Run tests: `npm test` 
+1. Install dependencies: `npm install`
+2. Build project: `npm run build`
+3. Run tests: `npm test`
 
-[ACE editor]: https://ace.c9.io
-[ANTLR4]: http://www.antlr.org/
+[ace editor]: https://ace.c9.io
+[antlr4]: http://www.antlr.org/

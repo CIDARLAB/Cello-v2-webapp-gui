@@ -1,7 +1,8 @@
-define("ace/snippets/tcl",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/tcl', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "# #!/usr/bin/env tclsh\n\
+  exports.snippetText =
+    '# #!/usr/bin/env tclsh\n\
 snippet #!\n\
 	#!/usr/bin/env tclsh\n\
 	\n\
@@ -93,7 +94,6 @@ snippet ns\n\
 # Namespace current\n\
 snippet nsc\n\
 	namespace current\n\
-";
-exports.scope = "tcl";
-
+';
+  exports.scope = 'tcl';
 });

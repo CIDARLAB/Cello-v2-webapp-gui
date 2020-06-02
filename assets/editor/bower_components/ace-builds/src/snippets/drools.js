@@ -1,9 +1,10 @@
-define("ace/snippets/drools",["require","exports","module"], function(require, exports, module) {
-"use strict";
+define('ace/snippets/drools', ['require', 'exports', 'module'], function (require, exports, module) {
+  'use strict';
 
-exports.snippetText = "\n\
+  exports.snippetText =
+    '\n\
 snippet rule\n\
-	rule \"${1?:rule_name}\"\n\
+	rule "${1?:rule_name}"\n\
 	when\n\
 		${2:// when...} \n\
 	then\n\
@@ -20,14 +21,13 @@ snippet declare\n\
 		${2:// attributes} \n\
 	end\n\
 \n\
-";
-exports.scope = "drools";
-
-});                (function() {
-                    window.require(["ace/snippets/drools"], function(m) {
-                        if (typeof module == "object" && typeof exports == "object" && module) {
-                            module.exports = m;
-                        }
-                    });
-                })();
-            
+';
+  exports.scope = 'drools';
+});
+(function () {
+  window.require(['ace/snippets/drools'], function (m) {
+    if (typeof module == 'object' && typeof exports == 'object' && module) {
+      module.exports = m;
+    }
+  });
+})();
