@@ -11,6 +11,7 @@ import { Settings } from '@app/settings/shared/settings.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// TODO scrub this or use format strings
 const routes = {
   login: '/login',
   signup: '/users/signup',
@@ -108,6 +109,16 @@ export class ApiService {
     const credentials: Credentials = this.credentialsService.credentials;
     const url = '/project/' + encodeURIComponent(project) + '/execute';
     return this.httpClient.get(url, { headers: { Authorization: credentials.token } });
+  }
+
+  // TODO: Use routes
+  download(project: string): Observable<Blob> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    const url = '/project/' + encodeURIComponent(project) + '/download';
+    return this.httpClient.get<Blob>(url, {
+      responseType: 'blob' as 'json',
+      headers: { Authorization: credentials.token },
+    });
   }
 
   results(project: string): Observable<Result[]> {

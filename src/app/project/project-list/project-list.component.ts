@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../project.service';
+import { ApiService } from '@app/api/api.service';
 import { Project } from '../shared/project.model';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-project-list',
@@ -10,11 +11,20 @@ import { Project } from '../shared/project.model';
 export class ProjectListComponent implements OnInit {
   public projects: Project[];
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.projectService.projects().subscribe((projects) => {
+    this.apiService.projects().subscribe((projects) => {
       this.projects = projects;
+    });
+  }
+
+  download(project: string) {
+    this.apiService.download(project).subscribe((data) => {
+      let blob: any = new Blob([data], { type: 'application/zip' });
+      fileSaver.saveAs(blob, project);
+      // const url = window.URL.createObjectURL(blob);
+      // window.location.href = url;
     });
   }
 }

@@ -18,10 +18,6 @@ export class ProjectService {
     this.project = new Project();
   }
 
-  projects(): Observable<Project[]> {
-    return this.apiService.projects();
-  }
-
   // async submit() {
   // return this.apiService.specify(this.project.getSpecification(), this.project.name);
   // }
