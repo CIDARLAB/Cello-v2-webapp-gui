@@ -7,8 +7,6 @@ import { Result } from './result.model';
 
 export class Project implements Deserializeable {
   name: string;
-  application: string;
-  id: string;
   description: string;
 
   created: moment.Moment;
@@ -26,7 +24,7 @@ export class Project implements Deserializeable {
   constructor() {
     this.settings = new Settings();
     this.library = new TargetDataFiles();
-    this.results = [];
+    // this.results = [];
   }
 
   deserialize(input: any): this {

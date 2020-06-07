@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Result } from '@app/project/shared/result.model';
 import { ApiService } from '@app/api/api.service';
-import { Credentials, CredentialsService } from '@app/auth';
-import { HttpClient } from '@angular/common/http';
 import { ProjectService } from '@app/project/project.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
@@ -11,6 +9,7 @@ import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
   templateUrl: './results-list.component.html',
   styleUrls: ['./results-list.component.scss'],
 })
+// TODO this class needs refactoring
 export class ResultsListComponent implements OnInit, OnChanges {
   @Input() results: Result[];
   // @Input() headline: string;
@@ -31,8 +30,6 @@ export class ResultsListComponent implements OnInit, OnChanges {
 
   constructor(
     private apiService: ApiService,
-    private credentialsService: CredentialsService,
-    private httpClient: HttpClient,
     private projectService: ProjectService,
     private domSanitizer: DomSanitizer
   ) {}
@@ -50,18 +47,6 @@ export class ResultsListComponent implements OnInit, OnChanges {
       this.map.get(result.stage).push(result);
     }
     this.keys = Array.from(this.map.keys());
-  }
-
-  // TODO use api service
-  private getImage(result: Result) {
-    const credentials: Credentials = this.credentialsService.credentials;
-    const url =
-      '/project/' +
-      encodeURIComponent(this.projectService.project.name) +
-      '/result/' +
-      encodeURIComponent(result.file) +
-      '/download';
-    return this.httpClient.get(url, { responseType: 'blob', headers: { Authorization: credentials.token } });
   }
 
   createImageFromBlob(image: Blob) {
@@ -83,7 +68,7 @@ export class ResultsListComponent implements OnInit, OnChanges {
     let results = this.map.get('placing');
     for (let result of results) {
       if (result.name === 'dnaplotlib' && result.file.endsWith('png')) {
-        this.getImage(result).subscribe((data) => {
+        this.apiService.getResult(this.projectService.project.name, result.file).subscribe((data) => {
           this.createImageFromBlob(data);
         });
       }
@@ -108,7 +93,7 @@ export class ResultsListComponent implements OnInit, OnChanges {
   private getImages() {
     for (let result of this.results) {
       if (result.file.endsWith('png')) {
-        this.getImage(result).subscribe((data) => {
+        this.apiService.getResult(this.projectService.project.name, result.file).subscribe((data) => {
           this.mapImageFromBlob(data, result.file);
         });
       }

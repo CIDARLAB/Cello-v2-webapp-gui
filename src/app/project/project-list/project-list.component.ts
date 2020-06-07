@@ -14,13 +14,13 @@ export class ProjectListComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.projects().subscribe((projects) => {
+    this.apiService.getProjects().subscribe((projects) => {
       this.projects = projects;
     });
   }
 
   download(project: string) {
-    this.apiService.download(project).subscribe((data) => {
+    this.apiService.getProjectArchive(project).subscribe((data) => {
       let blob: any = new Blob([data], { type: 'application/zip' });
       fileSaver.saveAs(blob, project);
       // const url = window.URL.createObjectURL(blob);

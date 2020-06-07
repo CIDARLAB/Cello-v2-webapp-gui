@@ -1,7 +1,7 @@
-import { InputSensorFile } from './input-sensor-file.model';
+import { InputSensorFileDescriptor } from './input-sensor-file.model';
 
 describe('InputSensorFile', () => {
   it('should create an instance', () => {
-    expect(new InputSensorFile()).toBeTruthy();
+    expect(new InputSensorFileDescriptor()).toBeTruthy();
   });
 });

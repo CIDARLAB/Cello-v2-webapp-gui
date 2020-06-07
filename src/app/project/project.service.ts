@@ -44,20 +44,16 @@ export class ProjectService {
     const name = this.project.name;
     return Promise.resolve()
       .then(() => {
-        let body = this.project.getSpecification();
-        return this.apiService.specify(body, name).toPromise();
-      })
-      .then(() => {
-        this.toast('Job submitted. Results will appear after successful execution.');
-        return this.apiService.execute(name).toPromise();
+        // let body = this.project.getSpecification();
+        this.toast('Submitting project. Results will appear after successful execution.');
+        return this.apiService.createProject(this.project).toPromise();
       })
       .then(() => {
         if (this.project.name == name) {
-          this.apiService.results(name).subscribe((result) => {
+          this.apiService.getProjectResults(name).subscribe((result) => {
             this.project.results = result.sort((a, b) => (a.name > b.name ? 1 : -1));
           });
           this.toast('Project ' + name + ' finished successfully.', 'success');
-          // this.router.navigateByUrl("project/results");
         }
       })
       .catch((error) => {

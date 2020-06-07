@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '@app/project/project.service';
-import { InputSensorFile } from '@app/library/shared/input-sensor-file.model';
+import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file.model';
 import { OutputDeviceFile } from '@app/library/shared/output-device-file.model';
 import { ApiService } from '@app/api/api.service';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./verilog.component.scss'],
 })
 export class VerilogComponent implements OnInit {
-  inputSensorFiles: InputSensorFile[];
+  inputSensorFiles: InputSensorFileDescriptor[];
   outputDeviceFiles: OutputDeviceFile[];
 
   public sampleVerilog = [

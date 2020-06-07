@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-import { UserConstraintsFile } from '../shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file.model';
 import { ModalController } from '@ionic/angular';
 import { LibraryDetailsComponent } from '../library-details/library-details.component';
 
@@ -15,12 +15,12 @@ export class LibraryListComponent implements OnInit {
   ColumnMode = ColumnMode;
 
   @Input()
-  libraries: UserConstraintsFile[];
+  libraries: UserConstraintsFileDescriptor[];
 
-  library: UserConstraintsFile[] = [];
+  library: UserConstraintsFileDescriptor[] = [];
 
   @Output()
-  selected = new EventEmitter<UserConstraintsFile>();
+  selected = new EventEmitter<UserConstraintsFileDescriptor>();
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 

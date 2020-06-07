@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserConstraintsFile } from '../shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file.model';
 
 @Component({
   selector: 'app-library-details',
@@ -7,7 +7,7 @@ import { UserConstraintsFile } from '../shared/user-constraints-file.model';
   styleUrls: ['./library-details.component.scss'],
 })
 export class LibraryDetailsComponent implements OnInit {
-  public library: UserConstraintsFile;
+  public library: UserConstraintsFileDescriptor;
 
   constructor() {}
 

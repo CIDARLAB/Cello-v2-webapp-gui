@@ -1,7 +1,7 @@
 import { Deserializeable } from '@app/@shared/deserializeable/deserializeable.model';
 import { LibraryHeader } from './library-header.model';
 
-export class UserConstraintsFile implements Deserializeable {
+export class UserConstraintsFileDescriptor implements Deserializeable {
   file: string;
   header: LibraryHeader;
 

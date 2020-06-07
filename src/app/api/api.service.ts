@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginContext, SignupContext } from '@app/auth/authentication.service';
 import { Credentials, CredentialsService } from '@app/auth/credentials.service';
-import { InputSensorFile } from '@app/library/shared/input-sensor-file.model';
+import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file.model';
 import { OutputDeviceFile } from '@app/library/shared/output-device-file.model';
-import { UserConstraintsFile } from '@app/library/shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '@app/library/shared/user-constraints-file.model';
 import { Project } from '@app/project/shared/project.model';
 import { Result } from '@app/project/shared/result.model';
 import { Settings } from '@app/settings/shared/settings.model';
@@ -14,15 +14,14 @@ import { map } from 'rxjs/operators';
 // TODO scrub this or use format strings
 const routes = {
   login: '/login',
-  signup: '/users/signup',
+  signup: '/users',
   projects: '/projects',
-  userConstraintsFiles: '/resources/user_constraints_files',
-  userConstraintsFileSubmit: '/resources/user_constraints_file/submit',
-  inputSensorFiles: '/resources/input_sensor_files',
-  outputDeviceFiles: '/resources/output_device_files',
+  userConstraintsFiles: '/resources/user-constraints-files',
+  inputSensorFiles: '/resources/input-sensor-files',
+  outputDeviceFiles: '/resources/output-device-files',
   settings: '/resources/settings',
-  versionApi: '/version/api',
-  versionCore: '/version/core',
+  versionApi: '/version-api',
+  versionCore: '/version-core',
 };
 
 @Injectable({
@@ -31,54 +30,82 @@ const routes = {
 export class ApiService {
   constructor(private httpClient: HttpClient, private credentialsService: CredentialsService) {}
 
+  ////////////////////
+  // Authentication //
+  ////////////////////
+
   login(context: LoginContext): Observable<string> {
-    const body = {
-      username: context.username,
-      password: context.password,
-    }; // this is to scrub 'remember me' since it's not handled by the backend
     return this.httpClient
-      .post<string>(routes.login, body, { observe: 'response' })
+      .post<string>(routes.login, context, { observe: 'response' })
       .pipe(map((response: any) => response.headers.get('Authorization')));
   }
 
   signup(context: SignupContext): Observable<string> {
-    const body = {
-      username: context.username,
-      password: context.password,
-      name: context.name,
-      institution: context.institution,
-    }; // this is to scrub 'remember me' since it's not handled by the backend
     return this.httpClient
-      .post<string>(routes.signup, body, { observe: 'response' })
+      .post<string>(routes.signup, context, { observe: 'response' })
       .pipe(map((response: any) => response.headers.get('Authorization')));
   }
 
-  projects(): Observable<Project[]> {
+  ///////////////
+  // Resources //
+  ///////////////
+
+  getUserConstraintsFiles(): Observable<UserConstraintsFileDescriptor[]> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
-      .get<Project[]>(routes.projects, { headers: { Authorization: credentials.token } })
-      .pipe(map((data) => data.map((data) => new Project().deserialize(data))));
+      .get<UserConstraintsFileDescriptor[]>(routes.userConstraintsFiles, {
+        headers: { Authorization: credentials.token },
+      })
+      .pipe(map((data) => data.map((data) => new UserConstraintsFileDescriptor().deserialize(data))));
   }
 
-  userConstraintsFiles(): Observable<UserConstraintsFile[]> {
+  addUserConstraintsFile(body: string | ArrayBuffer): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient
-      .get<UserConstraintsFile[]>(routes.userConstraintsFiles, { headers: { Authorization: credentials.token } })
-      .pipe(map((data) => data.map((data) => new UserConstraintsFile().deserialize(data))));
+    return this.httpClient.post(routes.userConstraintsFiles, body, { headers: { Authorization: credentials.token } });
   }
 
-  userConstraintsFile(body: string | ArrayBuffer): Observable<any> {
+  // TODO String format in routes
+  getUserConstraintsFile(fileName: string): Observable<Blob> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.post<object>(routes.userConstraintsFileSubmit, body, {
+    return this.httpClient.get(routes.userConstraintsFiles + '/' + encodeURIComponent(fileName), {
+      headers: { Authorization: credentials.token },
+      responseType: 'blob',
+    });
+  }
+
+  deleteUserConstraintsFile(fileName: string): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.delete(routes.userConstraintsFiles + '/' + encodeURIComponent(fileName), {
       headers: { Authorization: credentials.token },
     });
   }
 
-  inputSensorFiles(): Observable<InputSensorFile[]> {
+  inputSensorFiles(): Observable<InputSensorFileDescriptor[]> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
-      .get<InputSensorFile[]>(routes.inputSensorFiles, { headers: { Authorization: credentials.token } })
-      .pipe(map((data) => data.map((data) => new InputSensorFile().deserialize(data))));
+      .get<InputSensorFileDescriptor[]>(routes.inputSensorFiles, { headers: { Authorization: credentials.token } })
+      .pipe(map((data) => data.map((data) => new InputSensorFileDescriptor().deserialize(data))));
+  }
+
+  addInputSensorFile(body: string | ArrayBuffer): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.post(routes.inputSensorFiles, body, { headers: { Authorization: credentials.token } });
+  }
+
+  // TODO String format in routes
+  getInputSensorFile(fileName: string): Observable<Blob> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.get(routes.inputSensorFiles + '/' + encodeURIComponent(fileName), {
+      headers: { Authorization: credentials.token },
+      responseType: 'blob',
+    });
+  }
+
+  deleteInputSensorFile(fileName: string): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.delete(routes.inputSensorFiles + '/' + encodeURIComponent(fileName), {
+      headers: { Authorization: credentials.token },
+    });
   }
 
   outputDeviceFiles(): Observable<OutputDeviceFile[]> {
@@ -88,6 +115,27 @@ export class ApiService {
       .pipe(map((data) => data.map((data) => new OutputDeviceFile().deserialize(data))));
   }
 
+  addOutputDeviceFile(body: string | ArrayBuffer): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.post(routes.outputDeviceFiles, body, { headers: { Authorization: credentials.token } });
+  }
+
+  // TODO String format in routes
+  getOutputDeviceFile(fileName: string): Observable<Blob> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.get(routes.outputDeviceFiles + '/' + encodeURIComponent(fileName), {
+      headers: { Authorization: credentials.token },
+      responseType: 'blob',
+    });
+  }
+
+  deleteOutputDeviceFile(fileName: string): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.delete(routes.outputDeviceFiles + '/' + encodeURIComponent(fileName), {
+      headers: { Authorization: credentials.token },
+    });
+  }
+
   settings(): Observable<Settings> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
@@ -95,46 +143,76 @@ export class ApiService {
       .pipe(map((data) => new Settings().deserialize(data)));
   }
 
-  // TODO: Use routes
-  specify(body: object, project: string): Observable<any> {
-    const credentials: Credentials = this.credentialsService.credentials;
-    const url = '/project/' + encodeURIComponent(project) + '/specify';
-    return this.httpClient.post<object>(url, body, {
-      headers: { Authorization: credentials.token },
-    });
-  }
+  //////////////
+  // Projects //
+  //////////////
 
-  // TODO: Use routes
-  execute(project: string): Observable<any> {
+  /**
+   * Get available projects.
+   */
+  getProjects(): Observable<Project[]> {
     const credentials: Credentials = this.credentialsService.credentials;
-    const url = '/project/' + encodeURIComponent(project) + '/execute';
-    return this.httpClient.get(url, { headers: { Authorization: credentials.token } });
-  }
-
-  // TODO: Use routes
-  download(project: string): Observable<Blob> {
-    const credentials: Credentials = this.credentialsService.credentials;
-    const url = '/project/' + encodeURIComponent(project) + '/download';
-    return this.httpClient.get<Blob>(url, {
-      responseType: 'blob' as 'json',
-      headers: { Authorization: credentials.token },
-    });
-  }
-
-  results(project: string): Observable<Result[]> {
-    const credentials: Credentials = this.credentialsService.credentials;
-    let url = '/project/' + encodeURIComponent(project) + '/results/';
     return this.httpClient
-      .get<Result[]>(url, { headers: { Authorization: credentials.token } })
+      .get<Project[]>(routes.projects, { headers: { Authorization: credentials.token } })
+      .pipe(map((data) => data.map((data) => new Project().deserialize(data))));
+  }
+
+  /**
+   * Create a new project.
+   * @param project The name of the project.
+   */
+  createProject(project: Project): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.post(routes.projects, project, { headers: { Authorization: credentials.token } });
+  }
+
+  /**
+   * Get a zip file as a Blob containing all project files.
+   * @param projectName
+   */
+  getProjectArchive(projectName: string): Observable<Blob> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.get(routes.projects + '/' + encodeURIComponent(projectName), {
+      headers: { Authorization: credentials.token },
+      responseType: 'blob',
+    });
+  }
+
+  deleteProject(projectName: string): Observable<any> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.delete(routes.projects + '/' + encodeURIComponent(projectName), {
+      headers: { Authorization: credentials.token },
+    });
+  }
+
+  getProjectResults(projectName: string): Observable<Result[]> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient
+      .get<Result[]>(routes.projects + '/' + encodeURIComponent(projectName) + '/results', {
+        headers: { Authorization: credentials.token },
+      })
       .pipe(map((data) => data.map((data) => new Result().deserialize(data))));
   }
 
-  versionApi(): Observable<string> {
+  // TODO String format in routes
+  getResult(projectName: string, fileName: string): Observable<Blob> {
+    const credentials: Credentials = this.credentialsService.credentials;
+    return this.httpClient.get(
+      routes.projects + '/' + encodeURIComponent(projectName) + '/' + encodeURIComponent(fileName),
+      { headers: { Authorization: credentials.token }, responseType: 'blob' }
+    );
+  }
+
+  /////////////
+  // Version //
+  /////////////
+
+  getApiVersion(): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient.get<string>(routes.versionApi, { headers: { Authorization: credentials.token } });
   }
 
-  versionCore(): Observable<string> {
+  getCoreVersion(): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient.get<string>(routes.versionApi, { headers: { Authorization: credentials.token } });
   }

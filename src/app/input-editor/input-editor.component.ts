@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { InputSensorFile } from '@app/library/shared/input-sensor-file.model';
+import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file.model';
 
 @Component({
   selector: 'app-input-editor',

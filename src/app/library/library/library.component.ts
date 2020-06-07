@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { ProjectService } from '@app/project/project.service';
-import { UserConstraintsFile } from '../shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file.model';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -10,12 +10,12 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./library.component.scss'],
 })
 export class LibraryComponent implements OnInit {
-  libraries: UserConstraintsFile[];
+  libraries: UserConstraintsFileDescriptor[];
 
   constructor(private apiService: ApiService, private projectService: ProjectService) {}
 
   loadLibraries() {
-    this.apiService.userConstraintsFiles().subscribe((data) => {
+    this.apiService.getUserConstraintsFiles().subscribe((data) => {
       this.libraries = data;
     });
   }
@@ -32,7 +32,7 @@ export class LibraryComponent implements OnInit {
       return function (e: any) {
         let json = JSON.parse(e.target.result);
         self.apiService
-          .userConstraintsFile(json)
+          .addUserConstraintsFile(json)
           .pipe(
             finalize(() => {
               self.loadLibraries();
@@ -44,7 +44,7 @@ export class LibraryComponent implements OnInit {
     reader.readAsText(file);
   }
 
-  onSelected(library: UserConstraintsFile) {
+  onSelected(library: UserConstraintsFileDescriptor) {
     this.projectService.project.library.userConstraintsFile = library;
   }
 }
