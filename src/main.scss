@@ -48,3 +48,15 @@ $datatable-footer-cell-color: var(--ion-color-step-550);
     }
   }
 }
+
+.ngx-datatable-justify-cell-right {
+  display: flex !important;
+  justify-content: right;
+}
+
+.shrink-modal .modal-wrapper {
+  @media only screen and (min-width: 768px) and (min-height: 600px) {
+    min-height: 430px; // this is hard-coded, couldn't find a way to make the modal fit content height
+    height: auto;
+  }
+}

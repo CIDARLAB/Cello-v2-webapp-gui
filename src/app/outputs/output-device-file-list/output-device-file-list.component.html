@@ -1,11 +1,54 @@
-<p>output-device-file-list works!</p>
-<!-- <ngx-datatable class="material fullscreen" headerHeight="50" rowHeight="auto" [rows]="rows"> -->
-<!--   <ngx-datatable-column prop="name" [minWidth]="160" [resizeable]="false" [flexGrow]="1"> -->
-<!--     <ng-template ngx-datatable-header-template> -->
-<!--       Name -->
-<!--     </ng-template> -->
-<!--     <ng-template let-value="value" ngx-datatable-cell-template> -->
-<!--       {{ value }} -->
-<!--     </ng-template> -->
-<!--   </ngx-datatable-column> -->
-<!-- </ngx-datatable> -->
+<ion-content>
+  <ngx-datatable
+    class="material fullscreen"
+    headerHeight="50"
+    footerHeight="50"
+    rowHeight="auto"
+    [columnMode]="ColumnMode.flex"
+    [rows]="outputDeviceFiles"
+  >
+    <ngx-datatable-column [flexGrow]="3" prop="file">
+      <ng-template ngx-datatable-header-template>
+        <span translate>File</span>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <!-- https://github.com/swimlane/ngx-datatable/issues/403 -->
+    <!-- https://stackoverflow.com/questions/47198777/ngx-datatable-cellclass-not-working -->
+    <!-- https://github.com/swimlane/ngx-datatable/issues/834 -->
+    <ngx-datatable-column
+      [flexGrow]="1"
+      sortable="false"
+      [cellClass]="'ngx-datatable-justify-cell-right'"
+      [headerClass]="'ngx-datatable-justify-cell-right'"
+    >
+      <ng-template ngx-datatable-header-template>
+        <span translate>Actions</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <ion-button class="ion-no-padding" fill="clear">
+          <ion-icon slot="icon-only" name="cloud-download-outline"></ion-icon>
+        </ion-button>
+        <ion-button class="ion-no-padding" fill="clear">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-footer>
+      <ng-template
+        ngx-datatable-footer-template
+        let-rowCount="rowCount"
+        let-pageSize="pageSize"
+        let-selectedCount="selectedCount"
+        let-curPage="curPage"
+        let-offset="offset"
+      >
+        <div style="padding: 0 1.2rem;">
+          <div>{{ rowCount }} <span translate>total</span></div>
+        </div>
+      </ng-template>
+    </ngx-datatable-footer>
+  </ngx-datatable>
+</ion-content>

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file-descriptor.model';
 import { ModalController } from '@ionic/angular';
-import { InputSensorFileManagerComponent } from '../input-sensor-file-manager/input-sensor-file-manager.component';
+import { InputSensorFileListComponent } from '../input-sensor-file-list/input-sensor-file-list.component';
 
 @Component({
   selector: 'app-inputs',
@@ -25,7 +25,11 @@ export class InputsComponent implements OnInit {
 
   async manage() {
     const modal = await this.modalController.create({
-      component: InputSensorFileManagerComponent,
+      component: InputSensorFileListComponent,
+      componentProps: {
+        inputSensorFiles: this.inputSensorFiles,
+      },
+      cssClass: 'shrink-modal',
     });
     return await modal.present();
   }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { OutputDeviceFileDescriptor } from '@app/library/shared/output-device-file-descriptor.model';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-output-device-file-list',
@@ -6,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./output-device-file-list.component.scss'],
 })
 export class OutputDeviceFileListComponent implements OnInit {
+  SelectionType = SelectionType;
+  ColumnMode = ColumnMode;
+
+  @Input() outputDeviceFiles: OutputDeviceFileDescriptor[];
+
   constructor() {}
 
   ngOnInit(): void {}

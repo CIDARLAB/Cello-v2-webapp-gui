@@ -5,12 +5,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { InputAssignComponent } from './input-assign/input-assign.component';
 import { InputSensorFileListComponent } from './input-sensor-file-list/input-sensor-file-list.component';
-import { InputSensorFileManagerComponent } from './input-sensor-file-manager/input-sensor-file-manager.component';
 import { InputsComponent } from './inputs/inputs.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [InputAssignComponent, InputSensorFileListComponent, InputSensorFileManagerComponent, InputsComponent],
+  declarations: [InputAssignComponent, InputSensorFileListComponent, InputsComponent],
   imports: [CommonModule, IonicModule, FormsModule, NgxDatatableModule, TranslateModule],
   exports: [InputsComponent],
 })

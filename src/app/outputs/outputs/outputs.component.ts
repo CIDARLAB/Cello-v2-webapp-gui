@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { OutputDeviceFileDescriptor } from '@app/library/shared/output-device-file-descriptor.model';
 import { ModalController } from '@ionic/angular';
-import { OutputDeviceFileManagerComponent } from '../output-device-file-manager/output-device-file-manager.component';
+import { OutputDeviceFileListComponent } from '../output-device-file-list/output-device-file-list.component';
 
 @Component({
   selector: 'app-outputs',
@@ -25,7 +25,11 @@ export class OutputsComponent implements OnInit {
 
   async manage() {
     const modal = await this.modalController.create({
-      component: OutputDeviceFileManagerComponent,
+      component: OutputDeviceFileListComponent,
+      componentProps: {
+        outputDeviceFiles: this.outputDeviceFiles,
+      },
+      cssClass: 'shrink-modal',
     });
     return await modal.present();
   }

@@ -34,16 +34,23 @@
       {{ value }}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column [minWidth]="120" [resizeable]="false" [flexGrow]="1" sortable="false">
+  <ngx-datatable-column
+    [minWidth]="120"
+    [resizeable]="false"
+    [flexGrow]="1"
+    sortable="false"
+    [cellClass]="'ngx-datatable-justify-cell-right'"
+    [headerClass]="'ngx-datatable-justify-cell-right'"
+  >
     <ng-template ngx-datatable-header-template>
       <span translate>Actions</span>
     </ng-template>
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       <ion-button class="ion-no-padding" fill="clear" (click)="download(row, $event)">
-        <ion-icon name="cloud-download-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="cloud-download-outline"></ion-icon>
       </ion-button>
       <ion-button class="ion-no-padding" fill="clear" (click)="details(row, $event)">
-        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
       </ion-button>
     </ng-template>
   </ngx-datatable-column>
