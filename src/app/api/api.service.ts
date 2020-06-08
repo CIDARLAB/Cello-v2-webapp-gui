@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginContext, SignupContext } from '@app/auth/authentication.service';
 import { Credentials, CredentialsService } from '@app/auth/credentials.service';
-import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file.model';
-import { OutputDeviceFile } from '@app/library/shared/output-device-file.model';
-import { UserConstraintsFileDescriptor } from '@app/library/shared/user-constraints-file.model';
+import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file-descriptor.model';
+import { OutputDeviceFileDescriptor } from '@app/library/shared/output-device-file-descriptor.model';
+import { UserConstraintsFileDescriptor } from '@app/library/shared/user-constraints-file-descriptor.model';
 import { Project } from '@app/project/shared/project.model';
 import { Result } from '@app/project/shared/result.model';
 import { Settings } from '@app/settings/shared/settings.model';
@@ -108,11 +108,11 @@ export class ApiService {
     });
   }
 
-  outputDeviceFiles(): Observable<OutputDeviceFile[]> {
+  outputDeviceFiles(): Observable<OutputDeviceFileDescriptor[]> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
-      .get<OutputDeviceFile[]>(routes.outputDeviceFiles, { headers: { Authorization: credentials.token } })
-      .pipe(map((data) => data.map((data) => new OutputDeviceFile().deserialize(data))));
+      .get<OutputDeviceFileDescriptor[]>(routes.outputDeviceFiles, { headers: { Authorization: credentials.token } })
+      .pipe(map((data) => data.map((data) => new OutputDeviceFileDescriptor().deserialize(data))));
   }
 
   addOutputDeviceFile(body: string | ArrayBuffer): Observable<any> {

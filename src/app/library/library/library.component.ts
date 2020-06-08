@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { ProjectService } from '@app/project/project.service';
-import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file-descriptor.model';
 import { finalize } from 'rxjs/operators';
 
 @Component({

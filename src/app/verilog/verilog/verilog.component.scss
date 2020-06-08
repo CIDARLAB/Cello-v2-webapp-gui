@@ -16,14 +16,13 @@ app-verilog-editor {
   width: 100%;
 }
 
-ion-select {
-  --placeholder-opacity: 0.75;
-}
-
-ion-card-title {
-  display: inline-block;
-}
+// ion-select {
+//   --placeholder-opacity: 0.75;
+// }
 
 ion-card-header {
-  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid
+    var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.13))));
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file-descriptor.model';
 
 @Component({
   selector: 'app-library-details',

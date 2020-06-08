@@ -1,6 +1,6 @@
-import { UserConstraintsFileDescriptor } from './user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from './user-constraints-file-descriptor.model';
 
-describe('UserConstraintsFile', () => {
+describe('UserConstraintsFileDescriptor', () => {
   it('should create an instance', () => {
     expect(new UserConstraintsFileDescriptor()).toBeTruthy();
   });

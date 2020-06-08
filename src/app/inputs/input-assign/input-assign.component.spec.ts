@@ -1,19 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { InputAssignComponent } from './input-assign.component';
 
-import { InputEditorComponent } from './input-editor.component';
-
-describe('InputEditorComponent', () => {
-  let component: InputEditorComponent;
-  let fixture: ComponentFixture<InputEditorComponent>;
+describe('InputAssignComponent', () => {
+  let component: InputAssignComponent;
+  let fixture: ComponentFixture<InputAssignComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [InputEditorComponent],
+      declarations: [InputAssignComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputEditorComponent);
+    fixture = TestBed.createComponent(InputAssignComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file.model';
+import { UserConstraintsFileDescriptor } from '../shared/user-constraints-file-descriptor.model';
 import { ModalController } from '@ionic/angular';
 import { LibraryDetailsComponent } from '../library-details/library-details.component';
 
