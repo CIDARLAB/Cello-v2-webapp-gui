@@ -6,7 +6,7 @@
         class="ion-no-padding"
         placeholder="{{ 'Select file' | translate }}"
         interface="popover"
-        [(ngModel)]="outputDeviceFile"
+        (ionChange)="select($event)"
       >
         <ion-select-option *ngFor="let file of outputDeviceFiles" [value]="file">
           {{ file.file }}

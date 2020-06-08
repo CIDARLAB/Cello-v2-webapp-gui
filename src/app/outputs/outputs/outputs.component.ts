@@ -12,7 +12,6 @@ import { OutputDeviceFileListComponent } from '../output-device-file-list/output
 export class OutputsComponent implements OnInit {
   @Input() symbols: string[];
   outputDeviceFiles: OutputDeviceFileDescriptor[];
-  outputDeviceFile: OutputDeviceFileDescriptor;
   outputDevices: any[] = ['YFP', 'RFP'];
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
@@ -20,6 +19,12 @@ export class OutputsComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.outputDeviceFiles().subscribe((data) => {
       this.outputDeviceFiles = data;
+    });
+  }
+
+  select(event: any) {
+    this.apiService.getOutputDeviceFile(event.detail.value.file).subscribe((data) => {
+      console.log(data);
     });
   }
 

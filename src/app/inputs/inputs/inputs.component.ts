@@ -12,7 +12,6 @@ import { InputSensorFileListComponent } from '../input-sensor-file-list/input-se
 export class InputsComponent implements OnInit {
   @Input() symbols: string[];
   inputSensorFiles: InputSensorFileDescriptor[];
-  inputSensorFile: InputSensorFileDescriptor;
   inputSensors: any[] = ['pTac', 'pTet', 'pBAD', 'pLuxStar'];
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
@@ -20,6 +19,12 @@ export class InputsComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.inputSensorFiles().subscribe((data) => {
       this.inputSensorFiles = data;
+    });
+  }
+
+  select(event: any) {
+    this.apiService.getInputSensorFile(event.detail.value.file).subscribe((data) => {
+      console.log(data);
     });
   }
 
