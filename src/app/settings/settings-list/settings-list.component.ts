@@ -12,7 +12,7 @@ export class SettingsListComponent implements OnInit {
   constructor(private apiService: ApiService, public projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.apiService.settings().subscribe((data) => {
+    this.apiService.getSettings().subscribe((data) => {
       this.projectService.project.settings = data;
     });
   }

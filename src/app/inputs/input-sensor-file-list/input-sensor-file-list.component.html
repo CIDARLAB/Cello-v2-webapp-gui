@@ -31,7 +31,7 @@
         <ion-button class="ion-no-padding" fill="clear">
           <ion-icon slot="icon-only" name="cloud-download-outline"></ion-icon>
         </ion-button>
-        <ion-button class="ion-no-padding" fill="clear">
+        <ion-button class="ion-no-padding" fill="clear" [hidden]="!row.isPrivate">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         </ion-button>
       </ng-template>

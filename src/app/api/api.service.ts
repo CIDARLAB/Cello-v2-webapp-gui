@@ -80,7 +80,7 @@ export class ApiService {
     });
   }
 
-  inputSensorFiles(): Observable<InputSensorFileDescriptor[]> {
+  getInputSensorFiles(): Observable<InputSensorFileDescriptor[]> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
       .get<InputSensorFileDescriptor[]>(routes.inputSensorFiles, { headers: { Authorization: credentials.token } })
@@ -108,7 +108,7 @@ export class ApiService {
     });
   }
 
-  outputDeviceFiles(): Observable<OutputDeviceFileDescriptor[]> {
+  getOutputDeviceFiles(): Observable<OutputDeviceFileDescriptor[]> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
       .get<OutputDeviceFileDescriptor[]>(routes.outputDeviceFiles, { headers: { Authorization: credentials.token } })
@@ -136,7 +136,7 @@ export class ApiService {
     });
   }
 
-  settings(): Observable<Settings> {
+  getSettings(): Observable<Settings> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient
       .get<Settings>(routes.settings, { headers: { Authorization: credentials.token } })

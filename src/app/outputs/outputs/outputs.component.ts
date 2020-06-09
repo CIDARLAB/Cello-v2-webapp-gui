@@ -17,7 +17,7 @@ export class OutputsComponent implements OnInit {
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
   ngOnInit(): void {
-    this.apiService.outputDeviceFiles().subscribe((data) => {
+    this.apiService.getOutputDeviceFiles().subscribe((data) => {
       this.outputDeviceFiles = data;
     });
   }

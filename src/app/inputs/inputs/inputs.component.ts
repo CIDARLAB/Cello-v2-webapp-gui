@@ -17,7 +17,7 @@ export class InputsComponent implements OnInit {
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
   ngOnInit(): void {
-    this.apiService.inputSensorFiles().subscribe((data) => {
+    this.apiService.getInputSensorFiles().subscribe((data) => {
       this.inputSensorFiles = data;
     });
   }
