@@ -4,6 +4,7 @@ import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file
 import { ModalController } from '@ionic/angular';
 import { InputSensorFileListComponent } from '../input-sensor-file-list/input-sensor-file-list.component';
 import { finalize } from 'rxjs/operators';
+import { InputSensor } from '@app/library/shared/file/input-sensor.model';
 
 @Component({
   selector: 'app-inputs',
@@ -13,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class InputsComponent implements OnInit {
   @Input() symbols: string[];
   inputSensorFiles: InputSensorFileDescriptor[];
-  inputSensors: any[] = ['pTac', 'pTet', 'pBAD', 'pLuxStar'];
+  inputSensors: InputSensor[];
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
@@ -41,7 +42,12 @@ export class InputsComponent implements OnInit {
 
   select(event: any): void {
     this.apiService.getInputSensorFile(event.detail.value.file).subscribe((data) => {
-      console.log(data);
+      this.inputSensors = [];
+      for (let obj of JSON.parse(data)) {
+        if (obj.collection === 'input_sensors') {
+          this.inputSensors.push(obj);
+        }
+      }
     });
   }
 

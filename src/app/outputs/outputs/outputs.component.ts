@@ -4,6 +4,7 @@ import { OutputDeviceFileDescriptor } from '@app/library/shared/output-device-fi
 import { ModalController } from '@ionic/angular';
 import { OutputDeviceFileListComponent } from '../output-device-file-list/output-device-file-list.component';
 import { finalize } from 'rxjs/operators';
+import { OutputDevice } from '@app/library/shared/file/output-device.model';
 
 @Component({
   selector: 'app-outputs',
@@ -13,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class OutputsComponent implements OnInit {
   @Input() symbols: string[];
   outputDeviceFiles: OutputDeviceFileDescriptor[];
-  outputDevices: any[] = ['YFP', 'RFP'];
+  outputDevices: OutputDevice[];
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
@@ -41,7 +42,12 @@ export class OutputsComponent implements OnInit {
 
   select(event: any): void {
     this.apiService.getOutputDeviceFile(event.detail.value.file).subscribe((data) => {
-      console.log(data);
+      this.outputDevices = [];
+      for (let obj of JSON.parse(data)) {
+        if (obj.collection === 'output_devices') {
+          this.outputDevices.push(obj);
+        }
+      }
     });
   }
 

@@ -64,10 +64,9 @@ export class ApiService {
   //   return this.httpClient.post(routes.userConstraintsFiles, body, { headers: { Authorization: credentials.token } });
   // }
 
-  addUserConstraintsFile(file: any): Observable<any> {
+  addUserConstraintsFile(file: File): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
     let fd = new FormData();
-    console.log(file);
     fd.append('file', file);
     return this.httpClient.post(routes.userConstraintsFiles, fd, {
       headers: { Authorization: credentials.token },
@@ -75,11 +74,11 @@ export class ApiService {
   }
 
   // TODO String format in routes
-  getUserConstraintsFile(fileName: string): Observable<Blob> {
+  getUserConstraintsFile(fileName: string): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient.get(routes.userConstraintsFiles + '/' + encodeURIComponent(fileName), {
       headers: { Authorization: credentials.token },
-      responseType: 'blob',
+      responseType: 'text',
     });
   }
 
@@ -97,17 +96,19 @@ export class ApiService {
       .pipe(map((data) => data.map((data) => new InputSensorFileDescriptor().deserialize(data))));
   }
 
-  addInputSensorFile(body: string | ArrayBuffer): Observable<any> {
+  addInputSensorFile(file: File): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.post(routes.inputSensorFiles, body, { headers: { Authorization: credentials.token } });
+    let fd = new FormData();
+    fd.append('file', file);
+    return this.httpClient.post(routes.inputSensorFiles, fd, { headers: { Authorization: credentials.token } });
   }
 
   // TODO String format in routes
-  getInputSensorFile(fileName: string): Observable<Blob> {
+  getInputSensorFile(fileName: string): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient.get(routes.inputSensorFiles + '/' + encodeURIComponent(fileName), {
       headers: { Authorization: credentials.token },
-      responseType: 'blob',
+      responseType: 'text',
     });
   }
 
@@ -125,17 +126,19 @@ export class ApiService {
       .pipe(map((data) => data.map((data) => new OutputDeviceFileDescriptor().deserialize(data))));
   }
 
-  addOutputDeviceFile(body: string | ArrayBuffer): Observable<any> {
+  addOutputDeviceFile(file: File): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.post(routes.outputDeviceFiles, body, { headers: { Authorization: credentials.token } });
+    let fd = new FormData();
+    fd.append('file', file);
+    return this.httpClient.post(routes.outputDeviceFiles, fd, { headers: { Authorization: credentials.token } });
   }
 
   // TODO String format in routes
-  getOutputDeviceFile(fileName: string): Observable<Blob> {
+  getOutputDeviceFile(fileName: string): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient.get(routes.outputDeviceFiles + '/' + encodeURIComponent(fileName), {
       headers: { Authorization: credentials.token },
-      responseType: 'blob',
+      responseType: 'text',
     });
   }
 
