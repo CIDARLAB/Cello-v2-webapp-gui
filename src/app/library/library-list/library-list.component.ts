@@ -26,7 +26,7 @@ export class LibraryListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async details(library: object, event: any) {
+  async details(library: UserConstraintsFileDescriptor, event: any) {
     event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
     const modal = await this.modalController.create({
       component: LibraryDetailsComponent,
@@ -37,8 +37,13 @@ export class LibraryListComponent implements OnInit {
     return await modal.present();
   }
 
-  download(library: object, event: any) {
+  download(library: UserConstraintsFileDescriptor, event: any) {
     event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+  }
+
+  delete(library: UserConstraintsFileDescriptor, event: any) {
+    event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+    this.apiService.deleteUserConstraintsFile(library.file).subscribe();
   }
 
   select(event: any) {

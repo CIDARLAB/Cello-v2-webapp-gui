@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file-descriptor.model';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
@@ -12,6 +12,8 @@ export class InputSensorFileListComponent implements OnInit {
   ColumnMode = ColumnMode;
 
   @Input() inputSensorFiles: InputSensorFileDescriptor[];
+  @Output() delete = new EventEmitter<InputSensorFileDescriptor>();
+  @Output() download = new EventEmitter<InputSensorFileDescriptor>();
 
   constructor() {}
 

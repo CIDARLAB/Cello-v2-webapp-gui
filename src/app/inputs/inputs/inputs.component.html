@@ -14,6 +14,7 @@
       </ion-select>
       <ion-button class="ion-no-padding" fill="clear">
         <ion-icon slot="icon-only" name="cloud-upload-outline"></ion-icon>
+        <input #fileInput accept="application/json" type="file" style="display: none;" (change)="onFileInput($event)" />
       </ion-button>
       <ion-button class="ion-no-padding" fill="clear" (click)="manage()">
         <ion-icon slot="icon-only" name="list-outline"></ion-icon>

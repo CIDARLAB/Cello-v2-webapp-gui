@@ -59,9 +59,19 @@ export class ApiService {
       .pipe(map((data) => data.map((data) => new UserConstraintsFileDescriptor().deserialize(data))));
   }
 
-  addUserConstraintsFile(body: string | ArrayBuffer): Observable<any> {
+  // addUserConstraintsFile(body: string | ArrayBuffer): Observable<any> {
+  //   const credentials: Credentials = this.credentialsService.credentials;
+  //   return this.httpClient.post(routes.userConstraintsFiles, body, { headers: { Authorization: credentials.token } });
+  // }
+
+  addUserConstraintsFile(file: any): Observable<any> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.post(routes.userConstraintsFiles, body, { headers: { Authorization: credentials.token } });
+    let fd = new FormData();
+    console.log(file);
+    fd.append('file', file);
+    return this.httpClient.post(routes.userConstraintsFiles, fd, {
+      headers: { Authorization: credentials.token },
+    });
   }
 
   // TODO String format in routes

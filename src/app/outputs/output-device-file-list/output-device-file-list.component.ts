@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OutputDeviceFileDescriptor } from '@app/library/shared/output-device-file-descriptor.model';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
@@ -12,6 +12,8 @@ export class OutputDeviceFileListComponent implements OnInit {
   ColumnMode = ColumnMode;
 
   @Input() outputDeviceFiles: OutputDeviceFileDescriptor[];
+  @Output() delete = new EventEmitter<OutputDeviceFileDescriptor>();
+  @Output() download = new EventEmitter<OutputDeviceFileDescriptor>();
 
   constructor() {}
 

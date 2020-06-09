@@ -14,37 +14,29 @@ export class LibraryComponent implements OnInit {
 
   constructor(private apiService: ApiService, private projectService: ProjectService) {}
 
-  loadLibraries() {
+  ngOnInit(): void {
+    this.getFiles();
+  }
+
+  getFiles(): void {
     this.apiService.getUserConstraintsFiles().subscribe((data) => {
       this.libraries = data;
     });
   }
 
-  ngOnInit(): void {
-    this.loadLibraries();
-  }
-
-  onFileInput(event: any) {
+  onFileInput(event: any): void {
     let file = event.target.files[0];
-    let reader = new FileReader();
-    let self = this;
-    reader.onload = (function (theFile) {
-      return function (e: any) {
-        let json = JSON.parse(e.target.result);
-        self.apiService
-          .addUserConstraintsFile(json)
-          .pipe(
-            finalize(() => {
-              self.loadLibraries();
-            })
-          )
-          .subscribe();
-      };
-    })(file);
-    reader.readAsText(file);
+    this.apiService
+      .addUserConstraintsFile(file)
+      .pipe(
+        finalize(() => {
+          this.getFiles();
+        })
+      )
+      .subscribe();
   }
 
-  onSelected(library: UserConstraintsFileDescriptor) {
+  onSelected(library: UserConstraintsFileDescriptor): void {
     this.projectService.project.library.userConstraintsFile = library;
   }
 }
