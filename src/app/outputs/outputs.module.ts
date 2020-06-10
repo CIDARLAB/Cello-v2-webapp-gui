@@ -10,7 +10,7 @@ import { OutputsComponent } from './outputs/outputs.component';
 
 @NgModule({
   declarations: [OutputAssignComponent, OutputDeviceFileListComponent, OutputsComponent],
-  imports: [CommonModule, IonicModule, FormsModule, NgxDatatableModule, TranslateModule],
+  imports: [CommonModule, IonicModule, TranslateModule, FormsModule, NgxDatatableModule, TranslateModule],
   exports: [OutputsComponent],
 })
 export class OutputsModule {}

@@ -5,6 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { InputSensorFileListComponent } from '../input-sensor-file-list/input-sensor-file-list.component';
 import { finalize } from 'rxjs/operators';
 import { InputSensor } from '@app/library/shared/file/input-sensor.model';
+import * as fileSaver from 'file-saver';
+import { ProjectService } from '@app/project/project.service';
 
 @Component({
   selector: 'app-inputs',
@@ -16,7 +18,11 @@ export class InputsComponent implements OnInit {
   inputSensorFiles: InputSensorFileDescriptor[];
   inputSensors: InputSensor[];
 
-  constructor(private apiService: ApiService, private modalController: ModalController) {}
+  constructor(
+    private apiService: ApiService,
+    private projectService: ProjectService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit(): void {
     this.getFiles();
@@ -41,6 +47,7 @@ export class InputsComponent implements OnInit {
   }
 
   select(event: any): void {
+    this.projectService.project.library.inputSensorFile = event.detail.value.file;
     this.apiService.getInputSensorFile(event.detail.value.file).subscribe((data) => {
       this.inputSensors = [];
       for (let obj of JSON.parse(data)) {
@@ -64,8 +71,11 @@ export class InputsComponent implements OnInit {
         .subscribe();
     });
     let downloadEmitter = new EventEmitter();
-    downloadEmitter.subscribe((result: InputSensorFileDescriptor) => {
-      this.apiService.getInputSensorFile(result.file).subscribe();
+    downloadEmitter.subscribe((descriptor: InputSensorFileDescriptor) => {
+      this.apiService.getInputSensorFile(descriptor.file).subscribe((data) => {
+        let blob: any = new Blob([data], { type: 'application/json' });
+        fileSaver.saveAs(blob, descriptor.file);
+      });
     });
     const modal = await this.modalController.create({
       component: InputSensorFileListComponent,

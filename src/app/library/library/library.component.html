@@ -11,6 +11,11 @@
     </ion-fab-button>
   </ion-fab>
   <ion-card>
-    <app-library-list [libraries]="libraries" (selected)="onSelected($event)"></app-library-list>
+    <app-library-list
+      [libraries]="libraries"
+      (select)="onSelect($event)"
+      (delete)="onDelete($event)"
+      (download)="onDownload($event)"
+    ></app-library-list>
   </ion-card>
 </ion-content>

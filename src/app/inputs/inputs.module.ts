@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [InputAssignComponent, InputSensorFileListComponent, InputsComponent],
-  imports: [CommonModule, IonicModule, FormsModule, NgxDatatableModule, TranslateModule],
+  imports: [CommonModule, IonicModule, TranslateModule, FormsModule, NgxDatatableModule],
   exports: [InputsComponent],
 })
 export class InputsModule {}

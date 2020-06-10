@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { OutputDeviceFileListComponent } from '../output-device-file-list/output-device-file-list.component';
 import { finalize } from 'rxjs/operators';
 import { OutputDevice } from '@app/library/shared/file/output-device.model';
+import { ProjectService } from '@app/project/project.service';
 
 @Component({
   selector: 'app-outputs',
@@ -16,7 +17,11 @@ export class OutputsComponent implements OnInit {
   outputDeviceFiles: OutputDeviceFileDescriptor[];
   outputDevices: OutputDevice[];
 
-  constructor(private apiService: ApiService, private modalController: ModalController) {}
+  constructor(
+    private apiService: ApiService,
+    private projectService: ProjectService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit(): void {
     this.getFiles();
@@ -41,6 +46,7 @@ export class OutputsComponent implements OnInit {
   }
 
   select(event: any): void {
+    this.projectService.project.library.outputDeviceFile = event.detail.value.file;
     this.apiService.getOutputDeviceFile(event.detail.value.file).subscribe((data) => {
       this.outputDevices = [];
       for (let obj of JSON.parse(data)) {

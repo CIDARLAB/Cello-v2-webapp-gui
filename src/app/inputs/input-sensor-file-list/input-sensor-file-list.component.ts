@@ -18,4 +18,12 @@ export class InputSensorFileListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  deleteFile(descriptor: InputSensorFileDescriptor, event: any): void {
+    this.delete.emit(descriptor);
+  }
+
+  downloadFile(descriptor: InputSensorFileDescriptor, event: any): void {
+    this.download.emit(descriptor);
+  }
 }

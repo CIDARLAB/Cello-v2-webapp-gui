@@ -31,12 +31,12 @@
         <ion-button
           class="ion-no-padding"
           fill="clear"
-          (click)="delete.emit(row)"
+          (click)="deleteFile(row, $event)"
           [style.visibility]="row.isPrivate ? 'visible' : 'hidden'"
         >
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         </ion-button>
-        <ion-button class="ion-no-padding" fill="clear">
+        <ion-button class="ion-no-padding" fill="clear" (click)="downloadFile(row, $event)">
           <ion-icon slot="icon-only" name="cloud-download-outline"></ion-icon>
         </ion-button>
       </ng-template>
@@ -50,8 +50,13 @@
         let-curPage="curPage"
         let-offset="offset"
       >
-        <div style="padding: 0 1.2rem;">
+        <div class="input-sensor-file-datatable-footer">
           <div>{{ rowCount }} <span translate>total</span></div>
+          <!-- <div> -->
+          <!--   <ion-button class="ion-no-padding" fill="clear"> -->
+          <!--     <ion-icon slot="icon-only" name="cloud-upload-outline"></ion-icon> -->
+          <!--   </ion-button> -->
+          <!-- </div> -->
         </div>
       </ng-template>
     </ngx-datatable-footer>

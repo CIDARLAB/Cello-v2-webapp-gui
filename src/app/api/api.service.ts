@@ -211,7 +211,7 @@ export class ApiService {
   getResult(projectName: string, fileName: string): Observable<Blob> {
     const credentials: Credentials = this.credentialsService.credentials;
     return this.httpClient.get(
-      routes.projects + '/' + encodeURIComponent(projectName) + '/' + encodeURIComponent(fileName),
+      routes.projects + '/' + encodeURIComponent(projectName) + '/results/' + encodeURIComponent(fileName),
       { headers: { Authorization: credentials.token }, responseType: 'blob' }
     );
   }

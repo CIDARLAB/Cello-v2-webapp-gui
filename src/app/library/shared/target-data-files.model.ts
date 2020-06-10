@@ -3,7 +3,7 @@ import { OutputDeviceFileDescriptor } from './output-device-file-descriptor.mode
 import { UserConstraintsFileDescriptor } from './user-constraints-file-descriptor.model';
 
 export class TargetDataFiles {
-  userConstraintsFile: UserConstraintsFileDescriptor;
-  inputSensorFile: InputSensorFileDescriptor;
-  outputDeviceFile: OutputDeviceFileDescriptor;
+  userConstraintsFile: string;
+  inputSensorFile: string;
+  outputDeviceFile: string;
 }

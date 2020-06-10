@@ -14,13 +14,12 @@ export class LibraryListComponent implements OnInit {
   SelectionType = SelectionType;
   ColumnMode = ColumnMode;
 
-  @Input()
-  libraries: UserConstraintsFileDescriptor[];
-
+  @Input() libraries: UserConstraintsFileDescriptor[];
   library: UserConstraintsFileDescriptor[] = [];
 
-  @Output()
-  selected = new EventEmitter<UserConstraintsFileDescriptor>();
+  @Output() select = new EventEmitter<UserConstraintsFileDescriptor>();
+  @Output() delete = new EventEmitter<UserConstraintsFileDescriptor>();
+  @Output() download = new EventEmitter<UserConstraintsFileDescriptor>();
 
   constructor(private apiService: ApiService, private modalController: ModalController) {}
 
@@ -37,16 +36,26 @@ export class LibraryListComponent implements OnInit {
     return await modal.present();
   }
 
-  download(library: UserConstraintsFileDescriptor, event: any) {
-    event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+  // download(library: UserConstraintsFileDescriptor, event: any) {
+  //   event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+  // }
+
+  // delete(library: UserConstraintsFileDescriptor, event: any) {
+  //   event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+  //   this.apiService.deleteUserConstraintsFile(library.file).subscribe();
+  // }
+
+  selectFile(event: any): void {
+    this.select.emit(event.selected[0]);
   }
 
-  delete(library: UserConstraintsFileDescriptor, event: any) {
+  deleteFile(descriptor: UserConstraintsFileDescriptor, event: any): void {
     event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
-    this.apiService.deleteUserConstraintsFile(library.file).subscribe();
+    this.delete.emit(descriptor);
   }
 
-  select(event: any) {
-    this.selected.emit(event.selected[0]);
+  downloadFile(descriptor: UserConstraintsFileDescriptor, event: any): void {
+    event.stopPropagation(); // https://github.com/swimlane/ngx-datatable/issues/661
+    this.download.emit(descriptor);
   }
 }
