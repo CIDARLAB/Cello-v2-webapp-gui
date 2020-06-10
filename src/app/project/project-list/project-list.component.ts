@@ -22,7 +22,7 @@ export class ProjectListComponent implements OnInit {
   download(project: string) {
     this.apiService.getProjectArchive(project).subscribe((data) => {
       let blob: any = new Blob([data], { type: 'application/zip' });
-      fileSaver.saveAs(blob, project);
+      fileSaver.saveAs(blob, project + '.zip');
       // const url = window.URL.createObjectURL(blob);
       // window.location.href = url;
     });
