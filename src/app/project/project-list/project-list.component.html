@@ -32,23 +32,30 @@
       {{ value }}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column [minWidth]="184" [resizeable]="false" [flexGrow]="1" sortable="false">
+  <ngx-datatable-column
+    [minWidth]="184"
+    [resizeable]="false"
+    [flexGrow]="1"
+    sortable="false"
+    [cellClass]="'ngx-datatable-justify-cell-right'"
+    [headerClass]="'ngx-datatable-justify-cell-right'"
+  >
     <ng-template ngx-datatable-header-template>
       <span translate>Actions</span>
     </ng-template>
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <ion-button class="ion-no-padding action-button" fill="clear">
-        <ion-icon name="information-circle-outline"></ion-icon>
-      </ion-button>
-      <ion-button class="ion-no-padding action-button" fill="clear" href="https://www.google.com" target="_blank">
-        <ion-icon name="folder-open-outline"></ion-icon>
-      </ion-button>
+      <!-- <ion-button class="ion-no-padding action-button" fill="clear"> -->
+      <!--   <ion-icon name="trash-outline"></ion-icon> -->
+      <!-- </ion-button> -->
       <ion-button class="ion-no-padding action-button" fill="clear" (click)="download(row.name)">
         <ion-icon name="cloud-download-outline"></ion-icon>
       </ion-button>
-      <ion-button class="ion-no-padding action-button" fill="clear">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
+      <!-- <ion-button class="ion-no-padding action-button" fill="clear" href="https://www.google.com" target="_blank"> -->
+      <!--   <ion-icon name="folder-open-outline"></ion-icon> -->
+      <!-- </ion-button> -->
+      <!-- <ion-button class="ion-no-padding action-button" fill="clear"> -->
+      <!--   <ion-icon name="information-circle-outline"></ion-icon> -->
+      <!-- </ion-button> -->
     </ng-template>
   </ngx-datatable-column>
   <ngx-datatable-footer>
