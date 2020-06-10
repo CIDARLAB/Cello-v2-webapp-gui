@@ -1,7 +1,7 @@
 <ion-list>
   <ion-item *ngFor="let symbol of symbols">
     <ion-label>{{ symbol }}</ion-label>
-    <ion-select placeholder="Sensor" [(ngModel)]="map[symbol]" interface="popover">
+    <ion-select placeholder="Sensor" [(ngModel)]="map[symbol]" interface="popover" (ionChange)="assignInputSensor()">
       <ion-select-option *ngFor="let sensor of inputSensors" [value]="sensor">{{ sensor.name }}</ion-select-option>
     </ion-select>
   </ion-item>

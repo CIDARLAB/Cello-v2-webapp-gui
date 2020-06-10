@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, EventEmitter, Output } from '@angular/core';
 import { OutputDevice } from '@app/library/shared/file/output-device.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { OutputDevice } from '@app/library/shared/file/output-device.model';
 export class OutputAssignComponent implements OnInit, OnChanges {
   @Input() symbols: string[];
   @Input() outputDevices: OutputDevice[];
+  @Output() assign = new EventEmitter<object>();
   map: object;
 
   constructor() {
@@ -21,5 +22,9 @@ export class OutputAssignComponent implements OnInit, OnChanges {
     if (changes.outputDevices) {
       this.map = {};
     }
+  }
+
+  assignOutputDevice(): void {
+    this.assign.emit(this.map);
   }
 }

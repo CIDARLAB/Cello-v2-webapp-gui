@@ -1,7 +1,7 @@
 <ion-list>
   <ion-item *ngFor="let symbol of symbols">
     <ion-label>{{ symbol }}</ion-label>
-    <ion-select placeholder="Device" [(ngModel)]="map[symbol]" interface="popover">
+    <ion-select placeholder="Device" [(ngModel)]="map[symbol]" interface="popover" (ionChange)="assignOutputDevice()">
       <ion-select-option *ngFor="let device of outputDevices" [value]="device">{{ device.name }}</ion-select-option>
     </ion-select>
   </ion-item>

@@ -45,7 +45,7 @@ export class OutputsComponent implements OnInit {
       .subscribe();
   }
 
-  select(event: any): void {
+  onSelectFile(event: any): void {
     this.projectService.project.library.outputDeviceFile = event.detail.value.file;
     this.apiService.getOutputDeviceFile(event.detail.value.file).subscribe((data) => {
       this.outputDevices = [];
@@ -55,6 +55,14 @@ export class OutputsComponent implements OnInit {
         }
       }
     });
+  }
+
+  onAssign(event: any) {
+    let map = {};
+    for (let key of Object.keys(event)) {
+      map[key] = event[key]['name'];
+    }
+    this.projectService.project.constraints.output_constraints = map;
   }
 
   async manage() {

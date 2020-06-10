@@ -6,7 +6,7 @@
         class="ion-no-padding"
         placeholder="{{ 'Select file' | translate }}"
         interface="popover"
-        (ionChange)="select($event)"
+        (ionChange)="onSelectFile($event)"
       >
         <ion-select-option *ngFor="let file of inputSensorFiles" [value]="file">
           {{ file.file }}
@@ -22,6 +22,6 @@
     </span>
   </ion-card-header>
   <ion-card-content class="ion-no-padding">
-    <app-input-assign [symbols]="symbols" [inputSensors]="inputSensors"></app-input-assign>
+    <app-input-assign [symbols]="symbols" [inputSensors]="inputSensors" (assign)="onAssign($event)"></app-input-assign>
   </ion-card-content>
 </ion-card>

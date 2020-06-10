@@ -14,8 +14,8 @@ export class Project implements Deserializeable {
   verilog: string;
   settings: Settings;
   constraints: {
-    input: Constraint[];
-    output: Constraint[];
+    input_constraints: object;
+    output_constraints: object;
   };
   library: TargetDataFiles;
 
@@ -24,7 +24,7 @@ export class Project implements Deserializeable {
   constructor() {
     this.settings = new Settings();
     this.library = new TargetDataFiles();
-    // this.results = [];
+    this.constraints = { input_constraints: {}, output_constraints: {} };
   }
 
   deserialize(input: any): this {

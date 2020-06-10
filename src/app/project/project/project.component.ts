@@ -18,7 +18,12 @@ export class ProjectComponent implements OnInit {
       inputs: [
         {
           name: 'name',
-          placeholder: 'project name',
+          placeholder: 'Project name',
+        },
+        {
+          name: 'description',
+          placeholder: 'Description',
+          type: 'textarea',
         },
       ],
       buttons: [
@@ -26,6 +31,7 @@ export class ProjectComponent implements OnInit {
           text: 'Submit',
           handler: (data) => {
             this.projectService.project.name = data.name;
+            this.projectService.project.description = data.description;
             this.projectService.submit();
           },
         },

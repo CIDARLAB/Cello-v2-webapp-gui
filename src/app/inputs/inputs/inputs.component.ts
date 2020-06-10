@@ -46,7 +46,7 @@ export class InputsComponent implements OnInit {
       .subscribe();
   }
 
-  select(event: any): void {
+  onSelectFile(event: any): void {
     this.projectService.project.library.inputSensorFile = event.detail.value.file;
     this.apiService.getInputSensorFile(event.detail.value.file).subscribe((data) => {
       this.inputSensors = [];
@@ -56,6 +56,14 @@ export class InputsComponent implements OnInit {
         }
       }
     });
+  }
+
+  onAssign(event: any) {
+    let map = {};
+    for (let key of Object.keys(event)) {
+      map[key] = event[key]['name'];
+    }
+    this.projectService.project.constraints.input_constraints = map;
   }
 
   async manage() {

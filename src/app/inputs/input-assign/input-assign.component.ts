@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, EventEmitter, Output } from '@angular/core';
 import { InputSensor } from '@app/library/shared/file/input-sensor.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { InputSensor } from '@app/library/shared/file/input-sensor.model';
 export class InputAssignComponent implements OnInit, OnChanges {
   @Input() symbols: string[] = [];
   @Input() inputSensors: InputSensor[] = [];
+  @Output() assign = new EventEmitter<object>();
   map: object;
 
   constructor() {
@@ -21,5 +22,9 @@ export class InputAssignComponent implements OnInit, OnChanges {
     if (changes.inputSensors) {
       this.map = {};
     }
+  }
+
+  assignInputSensor(): void {
+    this.assign.emit(this.map);
   }
 }
