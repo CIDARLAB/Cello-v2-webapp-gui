@@ -25,9 +25,10 @@ export class SynBioHubService {
 
   login(body: { email: string; password: string }, registry: string): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
-    const url = '/synbiohub/login?registry=' + encodeURIComponent(registry);
-    return this.httpClient.get(url, body, {
+    const url = '/synbiohub/login';
+    return this.httpClient.post(url, body, {
       headers: { Authorization: credentials.token },
+      params: { registry: registry },
       responseType: 'text',
     });
   }
@@ -59,8 +60,11 @@ export class SynBioHubService {
     if (this.token && personal) {
       headers['X-authorization'] = this.token;
     }
-    const url = '/synbiohub/collections?u=' + encodeURIComponent(registry);
-    return this.httpClient.get<object[]>(url, { headers: headers });
+    const url = '/synbiohub/collections';
+    return this.httpClient.get<object[]>(url, {
+      headers: headers,
+      params: { registry: registry },
+    });
   }
 
   submit(
