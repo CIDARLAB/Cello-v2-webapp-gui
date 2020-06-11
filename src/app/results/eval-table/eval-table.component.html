@@ -1,0 +1,8 @@
+<table *ngIf="data">
+  <tr>
+    <th *ngFor="let nodeName of data.header">{{ nodeName }}</th>
+  </tr>
+  <tr *ngFor="let row of data.table">
+    <td *ngFor="let field of row">{{ field }}</td>
+  </tr>
+</table>

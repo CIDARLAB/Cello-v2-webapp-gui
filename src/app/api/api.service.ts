@@ -6,7 +6,7 @@ import { InputSensorFileDescriptor } from '@app/library/shared/input-sensor-file
 import { OutputDeviceFileDescriptor } from '@app/library/shared/output-device-file-descriptor.model';
 import { UserConstraintsFileDescriptor } from '@app/library/shared/user-constraints-file-descriptor.model';
 import { Project } from '@app/project/shared/project.model';
-import { Result } from '@app/project/shared/result.model';
+import { Result } from '@app/results/shared/result.model';
 import { Settings } from '@app/settings/shared/settings.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

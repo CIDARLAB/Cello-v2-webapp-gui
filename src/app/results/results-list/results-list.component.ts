@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Result } from '@app/project/shared/result.model';
+import { Result } from '@app/results/shared/result.model';
 import { ApiService } from '@app/api/api.service';
 import { ProjectService } from '@app/project/project.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { EvalTable } from '../shared/eval-table.model';
 
 @Component({
   selector: 'app-results-list',
@@ -17,7 +18,17 @@ export class ResultsListComponent implements OnInit, OnChanges {
   map: Map<string, Result[]>;
   keys: string[];
   blobs: Map<string, SafeUrl> = new Map<string, SafeUrl>();
+  tables: Map<string, EvalTable> = new Map<string, EvalTable>();
 
+  stageIds = [
+    'logicSynthesis',
+    'clustering',
+    'logicOptimization',
+    'partitioning',
+    'technologyMapping',
+    'placing',
+    'export',
+  ];
   stages = new Map([
     ['logicSynthesis', 'Logic synthesis'],
     ['clustering', 'Clustering'],
@@ -46,7 +57,9 @@ export class ResultsListComponent implements OnInit, OnChanges {
       }
       this.map.get(result.stage).push(result);
     }
-    this.keys = Array.from(this.map.keys());
+    let keys = Array.from(this.map.keys());
+    keys.sort((a, b) => (this.stageIds.indexOf(a) > this.stageIds.indexOf(b) ? 1 : -1));
+    this.keys = keys;
   }
 
   createImageFromBlob(image: Blob) {
@@ -100,6 +113,29 @@ export class ResultsListComponent implements OnInit, OnChanges {
     }
   }
 
+  private mapEvalTableFromBlob(data: Blob, file: string) {
+    const reader = new FileReader();
+    reader.addEventListener(
+      'load',
+      (e) => {
+        const text = e.target.result;
+        this.tables.set(file, new EvalTable(text as string));
+      },
+      false
+    );
+    reader.readAsText(data);
+  }
+
+  private getTables() {
+    for (let result of this.results) {
+      if (result.file.endsWith('csv')) {
+        this.apiService.getResult(this.projectService.project.name, result.file).subscribe((data) => {
+          this.mapEvalTableFromBlob(data, result.file);
+        });
+      }
+    }
+  }
+
   ngOnInit(): void {
     this.getHeadline();
   }
@@ -107,5 +143,6 @@ export class ResultsListComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.groupResultsByStage();
     this.getImages();
+    this.getTables();
   }
 }

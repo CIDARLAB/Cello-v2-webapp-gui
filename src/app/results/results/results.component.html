@@ -3,6 +3,9 @@
     <h3 translate>Results</h3>
   </ion-text>
   <ion-card>
+    <app-eval-table></app-eval-table>
+  </ion-card>
+  <ion-card>
     <app-results-list [results]="projectService.project.results"></app-results-list>
   </ion-card>
 </ion-content>

@@ -3,7 +3,7 @@ import { TargetDataFiles } from '@app/library/shared/target-data-files.model';
 import { Settings } from '@app/settings/shared/settings.model';
 import * as moment from 'moment';
 import { Constraint } from './constraint.model';
-import { Result } from './result.model';
+import { Result } from '@app/results/shared/result.model';
 
 export class Project implements Deserializeable {
   name: string;

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '@app/api/api.service';
 import { ProjectService } from '@app/project/project.service';
-import { Result } from '@app/project/shared/result.model';
+import { Result } from '@app/results/shared/result.model';
 import { AlertController, ToastController } from '@ionic/angular';
 import { SynBioHubService } from '../synbiohub.service';
 

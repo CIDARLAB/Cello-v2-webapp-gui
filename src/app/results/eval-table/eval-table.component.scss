@@ -1,0 +1,22 @@
+td,
+th {
+  padding: 0.5em 1em;
+  font-family: monospace;
+}
+
+td {
+  text-align: center;
+  min-width: 2.5em;
+}
+
+th {
+  font-weight: bold;
+}
+
+// th:nth-child(2), td:nth-child(2), th:nth-child(5), td:nth-child(5) {
+//   border-right: 1px solid gray;
+// }
+
+tr:first-child {
+  border-bottom: 1px solid gray;
+}

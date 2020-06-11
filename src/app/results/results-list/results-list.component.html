@@ -4,23 +4,43 @@
 <mat-expansion-panel class="ion-text-center" *ngFor="let stage of keys">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{ stages.get(stage) }}
+      <ion-text
+        ><h3>{{ stages.get(stage) }}</h3></ion-text
+      >
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div *ngFor="let result of map.get(stage)">
     <!-- {{ result.name }} -->
-    <div *ngIf="result.file.endsWith('.png')">
+    <div class="result-wrapper" *ngIf="result.file.endsWith('.png')">
       <div style="height: auto; overflow: hidden;">
         <img [src]="blobs.get(result.file)" />
       </div>
     </div>
-    <div *ngIf="result.name === 'sbol'">
+    <div class="result-wrapper" *ngIf="result.name === 'sbol'">
       <ion-text>
         Login to SynBioHub to submit the SBOL representation of your design:
       </ion-text>
       <div id="synbiohub-submit">
         <app-synbiohub-submit [result]="result"></app-synbiohub-submit>
       </div>
+    </div>
+    <div class="result-wrapper" *ngIf="result.name === 'logic'">
+      <ion-text>
+        Truth table
+      </ion-text>
+      <app-eval-table [data]="tables.get(result.file)"></app-eval-table>
+    </div>
+    <div class="result-wrapper" *ngIf="result.name === 'activity'">
+      <ion-text>
+        Transcriptional activity table (RPU)
+      </ion-text>
+      <app-eval-table [data]="tables.get(result.file)"></app-eval-table>
+    </div>
+    <div class="result-wrapper" *ngIf="result.name === 'toxicity'">
+      <ion-text>
+        Relative growth
+      </ion-text>
+      <app-eval-table [data]="tables.get(result.file)"></app-eval-table>
     </div>
   </div>
 </mat-expansion-panel>
