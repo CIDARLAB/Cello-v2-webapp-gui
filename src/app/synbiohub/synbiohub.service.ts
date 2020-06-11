@@ -26,9 +26,9 @@ export class SynBioHubService {
   login(body: { email: string; password: string }, registry: string): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
     const url = '/synbiohub/login?registry=' + encodeURIComponent(registry);
-    return this.httpClient.post<string>(url, body, {
+    return this.httpClient.get(url, body, {
       headers: { Authorization: credentials.token },
-      responseType: 'text' as 'json',
+      responseType: 'text',
     });
   }
 
