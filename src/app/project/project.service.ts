@@ -16,6 +16,10 @@ export class ProjectService {
     private alertController: AlertController
   ) {
     this.project = new Project();
+    // this.project.name = "vava";
+    // this.apiService.getProjectResults("vava").subscribe((result) => {
+    //   this.project.results = result.sort((a, b) => (a.name > b.name ? 1 : -1));
+    // });
   }
 
   // async submit() {

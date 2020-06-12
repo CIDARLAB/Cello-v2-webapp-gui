@@ -5,6 +5,7 @@ import { ProjectService } from '@app/project/project.service';
 import { Result } from '@app/results/shared/result.model';
 import { AlertController, ToastController } from '@ionic/angular';
 import { SynBioHubService } from '../synbiohub.service';
+import { SynBioHubSubmission } from '../shared/synbiohub-submission.model';
 
 @Component({
   selector: 'app-synbiohub-submit',
@@ -103,11 +104,15 @@ export class SynBioHubSubmitComponent implements OnInit {
     return await toast.present();
   }
 
-  submit(collection: any, project: string, file: string) {
-    const body = {
+  submit(collection: any, projectName: string, resultFile: string) {
+    collection.overwrite = collection.overwrite ? '1' : '0';
+    const body: SynBioHubSubmission = {
+      registry: new URL(this.registry),
+      project: projectName,
+      result: resultFile,
       collection: collection,
     };
-    this.synBioHubService.submit(body, project, file, this.registry).subscribe(
+    this.synBioHubService.createNewCollection(body).subscribe(
       () => {
         this.toast('Succussfully uploaded.');
         this.updateCollections(this.registry, true);

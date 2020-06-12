@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from '@app/api/api.service';
 import { Observable } from 'rxjs';
 import { Credentials, CredentialsService } from '@app/auth';
+import { SynBioHubSubmission } from './shared/synbiohub-submission.model';
 
 @Injectable({
   providedIn: 'root',
@@ -67,41 +68,49 @@ export class SynBioHubService {
     });
   }
 
-  submit(
-    body: {
-      collection: {
-        id: string;
-        version: string;
-        name: string;
-        description: string;
-        citations: string;
-        overwrite: boolean;
-      };
-    },
-    project: string,
-    file: string,
-    registry: string
-  ): Observable<string>;
-  submit(
-    body: {
-      collection: { uri: string; overwrite: boolean };
-    },
-    project: string,
-    file: string,
-    registry: string
-  ): Observable<string>;
-  submit(body: any, project: string, file: string, registry: string): Observable<string> {
+  createNewCollection(body: SynBioHubSubmission): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
-    const url =
-      '/synbiohub/submit/' +
-      encodeURIComponent(project) +
-      '/' +
-      encodeURIComponent(file) +
-      '?registry=' +
-      encodeURIComponent(registry);
-    const options = {
+    const url = '/synbiohub/collections';
+    return this.httpClient.post<string>(url, body, {
       headers: { Authorization: credentials.token, 'X-authorization': this.token },
-    };
-    return this.httpClient.post<string>(url, body, options);
+    });
   }
+
+  // submit(
+  //   body: {
+  //     collection: {
+  //       id: string;
+  //       version: string;
+  //       name: string;
+  //       description: string;
+  //       citations: string;
+  //       overwrite: boolean;
+  //     };
+  //   },
+  //   project: string,
+  //   file: string,
+  //   registry: string
+  // ): Observable<string>;
+  // submit(
+  //   body: {
+  //     collection: { uri: string; overwrite: boolean };
+  //   },
+  //   project: string,
+  //   file: string,
+  //   registry: string
+  // ): Observable<string>;
+  // submit(body: any, project: string, file: string, registry: string): Observable<string> {
+  //   const credentials: Credentials = this.credentialsService.credentials;
+  //   const url =
+  //     '/synbiohub/submit/' +
+  //     encodeURIComponent(project) +
+  //     '/' +
+  //     encodeURIComponent(file) +
+  //     '?registry=' +
+  //     encodeURIComponent(registry);
+  //   const options = {
+  //     headers: { Authorization: credentials.token, 'X-authorization': this.token },
+  //   };
+  //   return this.httpClient.post<string>(url, body, options);
+  // }
 }
