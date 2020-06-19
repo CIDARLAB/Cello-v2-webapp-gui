@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '@app/api/api.service';
-import { Observable } from 'rxjs';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { from } from 'rxjs';
 import { Project } from './shared/project.model';
-import { ToastController, AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
+  isLoading = false;
   project: Project;
 
   constructor(
     private apiService: ApiService,
     private toastController: ToastController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private loadingController: LoadingController
   ) {
     this.project = new Project();
     // this.project.name = "vava";
@@ -46,10 +48,13 @@ export class ProjectService {
 
   async submit() {
     const name = this.project.name;
+    this.isLoading = true;
+    const loadingOverlay = await this.loadingController.create({});
     return Promise.resolve()
       .then(() => {
         // let body = this.project.getSpecification();
         this.toast('Submitting project. Results will appear after successful execution.');
+        const loading$ = from(loadingOverlay.present());
         return this.apiService.createProject(this.project).toPromise();
       })
       .then(() => {
@@ -57,6 +62,8 @@ export class ProjectService {
           this.apiService.getProjectResults(name).subscribe((result) => {
             this.project.results = result.sort((a, b) => (a.name > b.name ? 1 : -1));
           });
+          this.isLoading = false;
+          loadingOverlay.dismiss();
           this.toast('Project ' + name + ' finished successfully.', 'success');
         }
       })
