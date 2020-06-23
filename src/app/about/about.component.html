@@ -96,9 +96,19 @@
       </ul>
       <h1>Version</h1>
       <!-- <p><ion-icon name="code"></ion-icon> <span translate>Version</span> {{ version }}</p> -->
-      <p><ion-icon name="code"></ion-icon> GUI <span translate>version</span> 2.0.0-dev</p>
-      <p><ion-icon name="code"></ion-icon> API <span translate>version</span> 2.0.0-SNAPSHOT</p>
-      <p><ion-icon name="code"></ion-icon> core <span translate>version</span> 2.0.0-SNAPSHOT</p>
+      <p>
+        <ion-icon name="code"></ion-icon> GUI <span translate>version</span>:
+        <span class="version">{{ guiVersion }}</span>
+      </p>
+      <!-- <p><ion-icon name="code"></ion-icon> API <span translate>version</span> 2.0.0-SNAPSHOT</p> -->
+      <p>
+        <ion-icon name="code"></ion-icon> API <span translate>version</span>:
+        <span class="version">{{ apiVersion }}</span>
+      </p>
+      <p>
+        <ion-icon name="code"></ion-icon> core <span translate>version</span>:
+        <span class="version">2.0.0-SNAPSHOT</span>
+      </p>
     </ion-card-content>
   </ion-card>
 </ion-content>

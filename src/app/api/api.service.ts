@@ -222,11 +222,17 @@ export class ApiService {
 
   getApiVersion(): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.get<string>(routes.versionApi, { headers: { Authorization: credentials.token } });
+    return this.httpClient.get(routes.versionApi, {
+      headers: { Authorization: credentials.token },
+      responseType: 'text',
+    });
   }
 
   getCoreVersion(): Observable<string> {
     const credentials: Credentials = this.credentialsService.credentials;
-    return this.httpClient.get<string>(routes.versionApi, { headers: { Authorization: credentials.token } });
+    return this.httpClient.get(routes.versionApi, {
+      headers: { Authorization: credentials.token },
+      responseType: 'text',
+    });
   }
 }
