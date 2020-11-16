@@ -18,6 +18,9 @@ export class ProjectService {
     private loadingController: LoadingController
   ) {
     this.project = new Project();
+    this.apiService.getSettings().subscribe((data) => {
+      this.project.settings = data;
+    });
     // this.project.name = "vava";
     // this.apiService.getProjectResults("vava").subscribe((result) => {
     //   this.project.results = result.sort((a, b) => (a.name > b.name ? 1 : -1));
