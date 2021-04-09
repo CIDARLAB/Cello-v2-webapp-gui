@@ -21,19 +21,11 @@ export class ProjectService {
     this.apiService.getSettings().subscribe((data) => {
       this.project.settings = data;
     });
-    // this.project.name = "vava";
-    // this.apiService.getProjectResults("vava").subscribe((result) => {
-    //   this.project.results = result.sort((a, b) => (a.name > b.name ? 1 : -1));
-    // });
   }
-
-  // async submit() {
-  // return this.apiService.specify(this.project.getSpecification(), this.project.name);
-  // }
 
   async alert(message: any) {
     const alert = await this.alertController.create({
-      message: message,
+      message,
       buttons: ['OK'],
     });
     return await alert.present();
@@ -41,9 +33,9 @@ export class ProjectService {
 
   async toast(message: string, color: string = '') {
     const toast = await this.toastController.create({
-      message: message,
+      message,
       position: 'bottom',
-      color: color,
+      color,
       duration: 2000,
     });
     return await toast.present();
@@ -87,16 +79,13 @@ export class ProjectService {
   }
 
   async submit() {
-    console.log('Within the Submission.');
     const name = this.project.name;
     this.isLoading = true;
     const loadingOverlay = await this.loadingController.create({});
-    const validated = Promise.resolve().then(() => {
-      console.log('Validation Conditional {Chain 1}.');
-      this.validateProject();
-    });
+    const validated = await this.validateProject();
     if (validated) {
-      return Promise.resolve()
+      const timeoutPromise = new Promise((res) => setTimeout(() => res('timeoutPromise'), 30000));
+      const submissionPromise = Promise.resolve()
         .then(() => {
           // let body = this.project.getSpecification();
           this.toast('Submitting project. Results will appear after successful execution.');
@@ -117,6 +106,9 @@ export class ProjectService {
           this.toastController.dismiss();
           this.alert(error.error.message);
         });
+      return await Promise.race([timeoutPromise, submissionPromise]);
+    } else {
+      await loadingOverlay.dismiss();
     }
   }
 }
