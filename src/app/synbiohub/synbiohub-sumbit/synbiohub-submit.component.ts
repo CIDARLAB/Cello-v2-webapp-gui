@@ -51,7 +51,7 @@ export class SynBioHubSubmitComponent implements OnInit {
         Validators.compose([Validators.required, Validators.pattern('^[A-Za-z_][A-Za-z0-9_]*$')])
       ),
       version: new FormControl(null, Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])),
-      citations: new FormControl(),
+      citations: new FormControl(null, Validators.pattern('^[0-9]+(,[0-9]+)*$')),
       overwrite: new FormControl(false, Validators.required),
     });
     this.addToCollection = this.formBuilder.group({
